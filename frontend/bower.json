@@ -1,0 +1,38 @@
+{
+  "name": "Apm",
+  "version": "1.0.0",
+  "homepage": "",
+  "authors": [
+    "Jeroen Breen", "Arjen Duinhouwer"
+  ],
+  "description": "",
+  "main": "(none)",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.11",
+    "angular": "~1.2.16",
+    "requirejs-domready": "~2.0.1",
+    "requirejs-text": "~2.0.12",
+    "less.js": "~1.7.0",
+    "bootstrap": "~3.1.1",
+    "js-yaml": "~3.1.0",
+    "angular-ui-codemirror": "~0.1.6",
+    "harmony-reflect": "~1.1.0",
+    "event-emitter.js": "~0.2.0",
+    "jszip": "~2.5.0",
+    "mustache.js": "~2.0.0",
+    "file-saver.js": "~1.20150304.1",
+    "opentype.js": "~0.4.7",
+    "d3": "~3.5.5",
+    "jquery": "~2.1.4",
+    "jquery.ui": "~1.11.4"
+  }
+}
