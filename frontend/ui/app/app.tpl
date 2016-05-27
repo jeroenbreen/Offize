@@ -1,7 +1,7 @@
 <div id="menu">
     <div class="innouveau-square" ng-click="office.currentProject = null; office.currentContact = null"></div>
     <div class="identity">
-        <b>Innouveau</b> Office
+        <b>Innouveau</b> Offize
     </div>
     <div class="menu-select">
     <select ng-options="menu as menu for menu in menus"
