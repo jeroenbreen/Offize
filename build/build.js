@@ -1,6 +1,6 @@
 ({
-    baseUrl: "frontend/",
-    mainConfigFile: "frontend/browserConfig.js",
+    baseUrl: "../dev/frontend/",
+    mainConfigFile: "../dev/frontend/browserConfig.js",
     paths: {
         'requireLib': 'bower_components/requirejs/require'
     },
@@ -8,5 +8,5 @@
     optimize: "uglify2",
     removeCombined: true,
     name: "main",
-    out: 'build/innouveau-office-v1.0-build5-min.js'
+    out: '../live/innouveau-office-v1.0-build6-min.js'
 })

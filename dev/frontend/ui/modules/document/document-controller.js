@@ -74,7 +74,7 @@ define([], function() {
                 if (post.type === 'uren') {
                     total += post.tarief * post.uren;
                 } else if (post.type === 'bedrag') {
-                    total += parseInt(post.bedrag);
+                    total += parseFloat(post.bedrag);
                 }
             }
             total *= multiplier;
