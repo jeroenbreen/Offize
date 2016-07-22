@@ -114,11 +114,19 @@ define([
         };
 
         function compare(a,b) {
-            if (a.projectStatus < b.projectStatus)
+            if (a.projectStatus < b.projectStatus) {
                 return -1;
-            if (a.projectStatus > b.projectStatus)
+            } else if (a.projectStatus > b.projectStatus) {
                 return 1;
-            return 0;
+            } else {
+                if (a.week > b.week) {
+                    return 1;
+                } else if (a.week < b.week) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
         }
 
         $scope.prevStatus = function(project) {

@@ -46,6 +46,14 @@
             </tr>
             <tr>
                 <td class="label">
+                    Weeknummer
+                </td>
+                <td>
+                    <input title="weeknummer" ng-model="model.week">
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
                     Status
                 </td>
                 <td class="td-status status-{{model.projectStatus}}">

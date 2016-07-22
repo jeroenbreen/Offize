@@ -26,6 +26,7 @@ define([
         this.invoiceAttachements = project.invoiceAttachements;
         this.tenderAttachements = project.tenderAttachements;
         this.year = project.year;
+        this.week = project.week;
         this.hours = project.hours;
         this.tenders = [];
         this.invoices = [];
