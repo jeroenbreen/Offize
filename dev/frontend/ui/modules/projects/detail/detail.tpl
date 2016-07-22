@@ -46,10 +46,28 @@
             </tr>
             <tr>
                 <td class="label">
-                    Weeknummer
+                    Startweek
                 </td>
                 <td>
-                    <input title="weeknummer" ng-model="model.week">
+                    <input title="weeknummer" ng-model="model.week"><br>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    Doorloop
+                </td>
+                <td>
+                    <div class="distribution-set" ng-repeat="week in model.distribution">
+                        <input ng-model="member.hours"
+                               class="distribution-input"
+                               placeholder="{{member.initials}}"
+                               ng-repeat="member in week">
+                        •
+                    </div>
+                    <div class="distribution-tools">
+                        <button class="glyph" ng-click="subtractWeekToDistribution()" title="week verwijderen"> - </button>
+                        <button class="glyph" ng-click="addWeekToDistribution()" title="week toevoegen"> + </button>
+                    </div>
                 </td>
             </tr>
             <tr>

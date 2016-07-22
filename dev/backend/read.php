@@ -30,6 +30,8 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $projects .= '"tenders":' . $record["tenders"] . ',';
     $projects .= '"invoices":' . $record["invoices"] . ',';
     $projects .= '"year":' . $record["year"] . ',';
+    $projects .= '"week":' . $record["week"] . ',';
+    $projects .= '"distribution":' . stringToArray($record["distribution"]) . ',';
     $projects .= '"comments":"' . breakToNl($record["comments"]) . '"}';
 }
 $projects .="]"; 
@@ -124,6 +126,17 @@ $comments .="]";
 function breakToNl ($string) {
     $newstring = str_replace("<br/>", "<br/>", $string);
     return $newstring;
+}
+
+function stringToArray ($string) {
+    if (strlen($string) == 0) {
+        return "[]";
+    } else {
+        return $string;
+    }
+
+
+
 }
 
 // Output

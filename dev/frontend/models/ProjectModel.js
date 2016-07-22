@@ -28,6 +28,7 @@ define([
         this.year = project.year;
         this.week = project.week;
         this.hours = project.hours;
+        this.distribution = project.distribution;
         this.tenders = [];
         this.invoices = [];
         this.importDocuments(project, 'invoices');

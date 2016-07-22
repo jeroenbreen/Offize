@@ -372,6 +372,7 @@ ofc-hours .score-bg{
 .detail .label {
     padding: 10px 6px;
     text-align: right;
+    vertical-align: top;
 }
 
 .td-status {
@@ -391,6 +392,17 @@ input.detail-hours, input.detail-rate, input.detail-discount, input.detail-curre
 
 table.ofc-table tr.status-total td {
     height: 20px;
+}
+
+/* distribution */
+
+.distribution-set {
+    display: inline-block;
+    margin: 4px;
+}
+
+.distribution-input {
+    width: 30px;
 }
 
 

@@ -60,6 +60,34 @@ define([
 
         };
 
+        // distribution
+
+        $scope.subtractWeekToDistribution = function(){
+            $scope.model.distribution.pop();
+        };
+
+        $scope.addWeekToDistribution = function(){
+            var week = getDistributionWeek();
+            if (!$scope.model.distribution) {
+                $scope.model.distribution = [];
+            }
+            $scope.model.distribution.push(week);
+        };
+        
+        function getDistributionWeek() {
+            var week = [];
+            for (var i = 0, l = $scope.office.team.length; i < l; i++) {
+                var member = $scope.office.team[i];
+                week.push({
+                    hours: 0,
+                    memberId: member.memberId,
+                    initials: member.initials
+                });
+            }
+            return week;
+        }
+
+
     }
 
     DetailController.$inject = ['$scope', 'dataFactory'];

@@ -24,9 +24,11 @@ function insertProject() {
     $tenders = $_POST['tenders'];
     $invoices = $_POST['invoices'];
     $year = $_POST['year'];
+    $week = $_POST['week'];
+    $distribution = $_POST['distribution'];
     $comments = $_POST['comments'];
     $query="INSERT INTO projects 
-    (projectId, projectName, projectStatus, contactId, memberId, hours, rate, discount, fixedTotal, currency, tenders, invoices, year)
+    (projectId, projectName, projectStatus, contactId, memberId, hours, rate, discount, fixedTotal, currency, tenders, invoices, year, week, distribution, comments)
     VALUES (
     '". $projectId ."' ,
     '". $projectName ."'  ,
@@ -40,7 +42,10 @@ function insertProject() {
     '". $currency ."'  ,
     '". $tenders ."',
     '". $invoices ."',
-    '". $year ."'
+    '". $year ."' ,
+    '". $week ."' ,
+    '". $distribution ."' ,
+    '". comments ."'
     )";
     return $query;
 }

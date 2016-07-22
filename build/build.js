@@ -8,5 +8,5 @@
     optimize: "uglify2",
     removeCombined: true,
     name: "main",
-    out: '../live/innouveau-office-v1.0-build6-min.js'
+    out: '../live/innouveau-office-v1.0-build7-min.js'
 })

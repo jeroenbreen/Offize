@@ -10,6 +10,7 @@ define([
             timer;
 
         $scope.$watch('model.currentProject', function(newVal, oldVal) {
+            console.log(newVal);
             if (oldVal && newVal && oldVal.projectId === newVal.projectId && oldVal !== newVal) {
                 update(newVal);
             }

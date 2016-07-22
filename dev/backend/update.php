@@ -23,6 +23,8 @@ function updateProject() {
     $tenders = $_POST['tenders'];
     $invoices = $_POST['invoices'];
     $year = $_POST['year'];
+    $week = $_POST['week'];
+    $distribution = $_POST['distribution'];
     $query = "UPDATE projects SET
     projectId = '" . $projectId . "' , 
     projectName = '" . $projectName . "' , 
@@ -36,7 +38,9 @@ function updateProject() {
     currency = '" . $currency . "' ,
     tenders = '" . $tenders . "' ,
     invoices = '" . $invoices . "' ,
-    year = '" . $year . "'
+    year = '" . $year . "' ,
+    week = '" . $week . "' ,
+    distribution = '" . $distribution . "'
     WHERE
     projectId = '" . $projectId. "'";
     return $query;
