@@ -93,20 +93,23 @@
     </table>
 </div>
 
-<ofc-detail class="projects-middle"
-            ng-if="model.currentProject"
-            ofc-model="model.currentProject"
-            ofc-office="model"
-            ofc-configuration="model.configuration"></ofc-detail>
+<div class="projects-middle">
+    <ofc-detail ng-if="model.currentProject"
+                ofc-model="model.currentProject"
+                ofc-office="model"
+                ofc-configuration="model.configuration"></ofc-detail>
 
-<div class="projects-right">
     <ofc-comments ng-if="model.currentProject"
                   ofc-model="model.currentProject"
                   ofc-office="model"
                   ofc-configuration="model.configuration"></ofc-comments>
     <ofc-hours ng-if="model.currentProject"
-                ofc-model="model.currentProject"
-                ofc-office="model"
-                ofc-configuration="model.configuration"></ofc-hours>
+               ofc-model="model.currentProject"
+               ofc-office="model"
+               ofc-configuration="model.configuration"></ofc-hours>
+</div>
+
+<div class="projects-right">
+    <ofc-distribution ofc-model="model.projects" ofc-office="model"></ofc-distribution>
 </div>
 

@@ -12,8 +12,7 @@ define([
             template: template,
             scope: {
                 model: '=ofcModel',
-                office: '=ofcOffice',
-                configuration: '=ofcConfiguration'
+                office: '=ofcOffice'
             }
         };
     }
