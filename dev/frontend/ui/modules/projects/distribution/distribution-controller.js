@@ -7,7 +7,7 @@ define([
     function DistributionController($scope) {
         this.$scope = $scope;
 
-        var n = 8,
+        var n = 4,
             year = dateTool.dateToProperties(dateTool.daysFromToday(0)).year;
 
         $scope.weeks = [];

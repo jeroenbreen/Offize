@@ -176,7 +176,7 @@ office, ofc-projects, ofc-detail, ofc-contacts, ofc-documents, ofc-graphics {
     height: 100%;
 }
 
-.projects-left {
+.projects-col-1 {
     vertical-align: top;
     display: inline-block;
     width: 460px;
@@ -185,19 +185,28 @@ office, ofc-projects, ofc-detail, ofc-contacts, ofc-documents, ofc-graphics {
     margin-right: 16px;
 }
 
-.projects-middle {
+.projects-col-2 {
     vertical-align: top;
     display: inline-block;
-    width: 350px;
+    width: 290px;
     height: 100%;
     overflow: auto;
     margin-right: 16px;
 }
 
-.projects-right {
+.projects-col-3 {
     vertical-align: top;
     display: inline-block;
-    width: 350px;
+    margin-right: 16px;
+    width: 290px;
+    height: 100%;
+    overflow: auto;
+}
+
+.projects-col-4 {
+    vertical-align: top;
+    display: inline-block;
+    width: 140px;
     height: 100%;
     overflow: auto;
 }
@@ -405,29 +414,58 @@ table.ofc-table tr.status-total td {
     width: 30px;
 }
 
+.distribution-container {
+
+}
+
 .distribution-graph-container {
-    border-bottom: 1px dotted #000;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+    height: 80px;
+    position: relative;
+    background: #EEEEEE;
+    margin-bottom: 5px;
+}
+
+.distribution-label {
+    padding: 4px 8px;
+    color: #fff;
+    font-size: 9px;
+    float: right;
+}
+
+.distribution-graph-line {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dotted red;
 }
 
 .distribution-block {
     width: 30px;
-    padding: 4px;
     background: #888;
-    margin-top: 8px;
     margin-right: 2px;
     display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.distribution-member {
+    position: absolute;
+    left: 8px;
+    top: 0;
+    font-size: 7px;
+    color: #fff;
 }
 
 /* hours */
 
 input.hours-description {
-    width: 200px;
+    width: 170px;
 }
 
 input.hours-time {
-    width: 70px;
+    width: 40px;
 }
 
 

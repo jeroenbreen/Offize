@@ -22,7 +22,7 @@
                     Klant
                 </td>
                 <td>
-                    <select title="Verander klant" ng-options="contact.contactId as contact.getFullName() for (index, contact) in office.contacts" ng-model="model.contactId"></select>
+                    <select title="Verander klant" ng-options="contact.contactId as limitString(contact.getFullName()) for (index, contact) in office.contacts" ng-model="model.contactId"></select>
                 </td>
             </tr>
             <tr>

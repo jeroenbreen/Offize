@@ -9,6 +9,15 @@ define([
 
         $scope.status = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Dood'];
 
+        $scope.limitString = function(string) {
+            var l = 24;
+            if (string.length > l) {
+                return string.substr(0,l) + '...'
+            } else {
+                return string;
+            }
+        };
+
         $scope.removeProject = function() {
             var message = 'Wil je ' + $scope.model.projectName + ' echt verwijderen?',
                 handleSuccess = function(data, status) {

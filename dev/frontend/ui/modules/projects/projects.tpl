@@ -1,4 +1,4 @@
-<div class="projects-left">
+<div class="projects-col-1">
     <table width="96%" cellspacing="0" cellpadding="0" class="ofc-table">
         <!-- filter -->
         <tr class="filter">
@@ -93,12 +93,14 @@
     </table>
 </div>
 
-<div class="projects-middle">
+<div class="projects-col-2">
     <ofc-detail ng-if="model.currentProject"
                 ofc-model="model.currentProject"
                 ofc-office="model"
                 ofc-configuration="model.configuration"></ofc-detail>
+</div>
 
+<div class="projects-col-3">
     <ofc-comments ng-if="model.currentProject"
                   ofc-model="model.currentProject"
                   ofc-office="model"
@@ -109,7 +111,7 @@
                ofc-configuration="model.configuration"></ofc-hours>
 </div>
 
-<div class="projects-right">
+<div class="projects-col-4">
     <ofc-distribution ofc-model="model.projects" ofc-office="model"></ofc-distribution>
 </div>
 
