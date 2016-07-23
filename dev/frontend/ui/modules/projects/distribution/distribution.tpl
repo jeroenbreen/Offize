@@ -5,6 +5,7 @@
              ng-repeat="member in office.team">
              <div class="distribution-member">{{member.initials}}</div>
              <div class="distribution-block"
+                  title="{{office.getProjectById(block.projectId).projectName}} - {{block.hours}} uren"
                   ng-repeat="block in getBlocks(member, week)"
                   ng-style="{'height': block.hours}"
                   ng-click="selectProject(block.projectId)"
