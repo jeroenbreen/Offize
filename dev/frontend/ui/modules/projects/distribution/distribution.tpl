@@ -1,9 +1,15 @@
 <div ng-repeat="week in weeks" class="panel">
     <div class="distribution-graph-container">
         <div class="distribution-graph-line"></div>
-        <div class="distribution-block"
-             ng-style="{'height': getHeight(week, member)}"
-             ng-repeat="member in office.team"><div class="distribution-member">{{member.initials}}</div></div>
+        <div class="distribution-member-set"
+             ng-repeat="member in office.team">
+             <div class="distribution-member">{{member.initials}}</div>
+             <div class="distribution-block"
+                  ng-repeat="block in getBlocks(member, week)"
+                  ng-style="{'height': block.hours}"
+                  ng-click="selectProject(block.projectId)"
+                  ng-class="{'selected-project': block.projectId === office.currentProject.projectId}"></div>
+        </div>
     </div>
     <div class="panel-footer">
         <div class="distribution-label">{{week}}</div>

@@ -90,7 +90,8 @@ define([
                 week.push({
                     hours: 0,
                     memberId: member.memberId,
-                    initials: member.initials
+                    initials: member.initials,
+                    projectId: $scope.model.projectId
                 });
             }
             return week;
