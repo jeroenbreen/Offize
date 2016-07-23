@@ -419,7 +419,7 @@ table.ofc-table tr.status-total td {
 }
 
 .distribution-graph-container {
-    height: 80px;
+    height: 240px;
     position: relative;
     background: #EEEEEE;
     margin-bottom: 5px;
@@ -436,7 +436,7 @@ table.ofc-table tr.status-total td {
 .distribution-graph-line {
     position: absolute;
     left: 0;
-    top: 40px;
+    top: 120px;
     width: 100%;
     height: 1px;
     border-bottom: 1px dotted #aaa;

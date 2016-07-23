@@ -7,7 +7,7 @@
              <div class="distribution-block"
                   title="{{office.getProjectById(block.projectId).projectName}} - {{block.hours}} uren"
                   ng-repeat="block in getBlocks(member, week)"
-                  ng-style="{'height': block.hours}"
+                  ng-style="{'height': block.hours * 3}"
                   ng-click="selectProject(block.projectId)"
                   ng-class="{'selected-project': block.projectId === office.currentProject.projectId}"></div>
         </div>
