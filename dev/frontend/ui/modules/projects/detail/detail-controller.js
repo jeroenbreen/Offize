@@ -10,7 +10,7 @@ define([
         $scope.status = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Dood'];
 
         $scope.limitString = function(string) {
-            var l = 24;
+            var l = 20;
             if (string.length > l) {
                 return string.substr(0,l) + '...'
             } else {
@@ -95,6 +95,12 @@ define([
                 });
             }
             return week;
+        }
+
+        // helpers
+
+        $scope.addWeek = function(a,b) {
+            return parseInt(a) + b;
         }
 
 

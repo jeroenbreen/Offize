@@ -406,12 +406,34 @@ table.ofc-table tr.status-total td {
 /* distribution */
 
 .distribution-set {
+    padding: 4px;
+}
+
+.distribution-week {
+    background: #fed401;
+    padding: 4px 6px;
+    color: #555;
+    margin-right: 8px;
+    font-size: 10px;
     display: inline-block;
-    margin: 4px;
 }
 
 .distribution-input {
     width: 30px;
+}
+
+.superscript {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 8px;
+    background: #ddd;
+    color: #555;
+    top: -3px;
+    margin: -4px 6px 0 -8px;
+    vertical-align: top;
 }
 
 .distribution-container {

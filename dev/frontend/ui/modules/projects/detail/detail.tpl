@@ -58,11 +58,12 @@
                 </td>
                 <td>
                     <div class="distribution-set" ng-repeat="week in model.distribution">
+                        <div class="distribution-week">week {{addWeek(model.week, $index)}}</div>
                         <input ng-model="member.hours"
                                class="distribution-input"
                                placeholder="{{member.initials}}"
-                               ng-repeat="member in week">
-                        •
+                               ng-repeat-start="member in week">
+                        <div class="superscript" ng-repeat-end>{{member.initials}}</div>
                     </div>
                     <div class="distribution-tools">
                         <button class="glyph" ng-click="subtractWeekToDistribution()" title="week verwijderen"> - </button>
