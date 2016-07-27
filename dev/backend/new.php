@@ -26,9 +26,10 @@ function insertProject() {
     $year = $_POST['year'];
     $week = $_POST['week'];
     $distribution = $_POST['distribution'];
+    $finished = $_POST['finished'];
     $comments = $_POST['comments'];
     $query="INSERT INTO projects 
-    (projectId, projectName, projectStatus, contactId, memberId, hours, rate, discount, fixedTotal, currency, tenders, invoices, year, week, distribution, comments)
+    (projectId, projectName, projectStatus, contactId, memberId, hours, rate, discount, fixedTotal, currency, tenders, invoices, year, week, distribution, finished, comments)
     VALUES (
     '". $projectId ."' ,
     '". $projectName ."'  ,
@@ -45,6 +46,7 @@ function insertProject() {
     '". $year ."' ,
     '". $week ."' ,
     '". $distribution ."' ,
+    '". $finished ."' ,
     '". comments ."'
     )";
     return $query;

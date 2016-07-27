@@ -41,7 +41,7 @@
         <!-- projects loop -->
         <tr class="animation-item-2 status-{{project.projectStatus}}"
             ng-repeat-start="project in filterProjects(model.projects)"
-            ng-class="{'selected': project === model.currentProject}"
+            ng-class="{'selected': project === model.currentProject, 'project-finished': project.finished}"
             ng-click="model.currentProject = project">
             <td class="project-title project-status">
                 <span>{{project.contact.getNumber()}}-{{project.projectName}}</span>

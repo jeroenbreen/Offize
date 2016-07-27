@@ -15,7 +15,7 @@ button {
     cursor: pointer;
 }
 
-input {
+input[type="text"] {
     font-family: "Roboto condensed";
     font-size: 12px;
     transition: background 0.5s ease;
@@ -1124,6 +1124,10 @@ span.gl {
 
 .status-2 .project-status {
     background: #de7070;
+}
+
+.status-2.project-finished {
+    opacity: 0.6;
 }
 
 .status-3 .project-status {

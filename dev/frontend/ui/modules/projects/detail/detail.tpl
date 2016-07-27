@@ -79,6 +79,14 @@
                     <div class="status-label project-status"></div> {{status[model.projectStatus]}}
                 </td>
             </tr>
+            <tr ng-if="model.projectStatus === 2">
+                <td class="label">
+                    Afgerond
+                </td>
+                <td>
+                    <input type="checkbox" ng-model="model.finished"><br>
+                </td>
+            </tr>
         </table>
     </div>
     <div class="panel-footer panel-footer-remove">

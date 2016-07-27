@@ -122,12 +122,23 @@ define([
             } else if (a.projectStatus > b.projectStatus) {
                 return 1;
             } else {
-                if (a.week > b.week) {
-                    return 1;
-                } else if (a.week < b.week) {
-                    return -1;
+                if (a.projectStatus === 2 && (a.finished || b.finished)) {
+                    if (a.finished && !b.finished) {
+                        return 1;
+                    } else if (!a.finished && b.finished) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
                 } else {
-                    return 0;
+
+                    if (a.week > b.week) {
+                        return 1;
+                    } else if (a.week < b.week) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
                 }
             }
         }

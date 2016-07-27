@@ -32,6 +32,7 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $projects .= '"year":' . $record["year"] . ',';
     $projects .= '"week":' . $record["week"] . ',';
     $projects .= '"distribution":' . stringToArray($record["distribution"]) . ',';
+    $projects .= '"finished":' . toBoolean($record["finished"]) . ',';
     $projects .= '"comments":"' . breakToNl($record["comments"]) . '"}';
 }
 $projects .="]"; 
@@ -134,10 +135,16 @@ function stringToArray ($string) {
     } else {
         return $string;
     }
-
-
-
 }
+
+function toBoolean ($string) {
+    if (strlen($string) == 0) {
+        return 'false';
+    } else {
+        return $string;
+    }
+}
+
 
 // Output
 $output = '{"timestamp":' . $timestamp . ',"projects":' . $projects . ',"contacts":' . $contacts . ',"team":' . $team . ',"hours":' . $hours . ',"configuration":' . $configuration . ',"comments":' . $comments .'}';
