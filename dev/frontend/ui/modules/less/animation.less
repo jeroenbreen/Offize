@@ -1,0 +1,38 @@
+
+
+.animation-item.ng-enter,
+.animation-item.ng-leave {
+    -webkit-transition: 0.3s linear all;
+    transition: 0.3s linear all;
+}
+
+.animation-item.ng-enter,
+.animation-item.ng-leave.ng-leave-active {
+    transform: scale(0.1);
+    -webkit-transform: scale(0.1);
+    -ms-transform: scale(0.1);
+}
+
+.animation-item.ng-leave,
+.animation-item.ng-enter.ng-enter-active {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+}
+
+
+.animation-item-2.ng-enter,
+.animation-item-2.ng-leave {
+    -webkit-transition: 0.5s linear all;
+    transition: 0.5s linear all;
+}
+
+.animation-item-2.ng-enter,
+.animation-item-2.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+
+.animation-item-2.ng-leave,
+.animation-item-2.ng-enter.ng-enter-active {
+    opacity: 1;
+}

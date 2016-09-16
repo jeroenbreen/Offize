@@ -1,0 +1,510 @@
+@import "detail/detail";
+@import "distribution/distribution";
+@import "comments/comments";
+
+
+.projects-col-1 {
+    vertical-align: top;
+    display: inline-block;
+    width: 460px;
+    height: 100%;
+    overflow: auto;
+    margin-right: 16px;
+}
+
+.projects-col-2 {
+    vertical-align: top;
+    display: inline-block;
+    width: 290px;
+    height: 100%;
+    overflow: auto;
+    margin-right: 16px;
+}
+
+.projects-col-3 {
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 16px;
+    width: 290px;
+    height: 100%;
+    overflow: auto;
+}
+
+.projects-col-4 {
+    vertical-align: top;
+    display: inline-block;
+    width: 140px;
+    height: 100%;
+    overflow: auto;
+}
+
+tr.new-project, tr.filter {
+    background: #eee;
+}
+
+table.ofc-table tr td {
+    height: 34px;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+table tr.tr-red {
+    background: #de7070;
+}
+
+table tr.tr-red td:first-child, table tr.tr-yellow td:first-child {
+    border-right: 1px solid #fff;
+}
+
+table tr.tr-yellow {
+    background: #fed401;
+}
+
+table.ofc-table tr td.table-spacer {
+    height: 4px;
+}
+
+table.ofc-table tr td span {
+    padding: 10px 0 0 10px;
+    display: inline-block;
+}
+
+.ofc-table input {
+    margin: 4px;
+    height: 26px;
+    padding: 2px 8px;
+    background: transparent;
+    border: none;
+    width: calc(100% - 8px);
+}
+
+.ofc-table input:hover {
+    background: rgba(0,0,0,0.04);
+}
+
+.ofc-table input:focus {
+    background: #eee;
+    color: #000;
+}
+
+input.new-contact {
+    width: calc(100% - 40px);
+}
+
+.project-title {
+    border-left: 3px solid transparent;
+    border-right: 1px solid #fff;
+}
+
+.selected td:first-child {
+    border-left: 3px solid #000;
+}
+
+.project-title span {
+    display: inline-block;
+    width: 140px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.project-hours-score {
+    float: left;
+    height: 100%;
+    width: 135px;
+    border-right: 1px solid #fff;
+    color: #000;
+}
+
+ofc-hours {
+    display: block;
+    height: 50%
+}
+
+ofc-hours .score-bg{
+    background: #eee;
+    width: 100%;
+}
+
+.worked-hours {
+    width: 30px;
+    text-align: right;
+    display: inline-block;
+}
+
+.total-hours {
+    width: 30px;
+    display: inline-block;
+}
+
+.score-bg {
+    display: inline-block;
+    position: relative;
+    background: #fff;
+    height: 12px;
+    width: 64px;
+    margin-top: 11px;
+}
+
+.score-fg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #000;
+}
+
+.score-bg.score-over {
+    background: #000;
+}
+
+.score-bg.score-over .score-fg {
+    background: #f00;
+}
+
+.project-budget {
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+}
+
+.project-buttons {
+    padding-right: 4px;
+    border-right: 1px solid #eee;
+}
+
+.project-cell {
+    border-right: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding-left: 4px;
+    background: #fff;
+}
+
+/*
+#project-totals {
+    padding-top: 40px;
+    clear: both;
+}
+
+#project-totals #totals-left {
+    float: left;
+    width: 120px;
+}
+
+#project-totals #totals-right {
+    float: left;
+    width: 100px;
+    text-align: right;
+}
+*/
+
+
+/* paper */
+
+ofc-document {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    overflow: auto;
+}
+
+#paper-container {
+    display: block;
+    padding: 30px;
+    width: 900px;
+    margin: 0 auto;
+}
+
+#paper {
+    float: left;
+    display: inline-block;
+    width: 622px;
+    height: 880px;
+    background: #fff;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    border: 1px solid #888;
+    padding: 80px 60px;
+    margin-right: 10px;
+    margin-bottom: 100px;
+}
+
+#paper-header {
+    width: 50%;
+    float: left;
+}
+
+#paper-info {
+    width: 50%;
+    float: left;
+    text-align: right;
+    padding-top: 8px;
+}
+
+#paper-info input {
+    font-weight: 700;
+    padding: 0;
+    font-family: "Roboto condensed";
+    font-size: 14px;
+    text-align: right;
+}
+
+.paper-year {
+    width: 38px;
+}
+
+.paper-nr {
+    width: 30px;
+}
+
+#paper-contact {
+    clear: both;
+    width: 100%;
+    padding-top: 20px;
+    overflow: auto;
+}
+
+#paper-contact-left {
+    width: calc(50% - 20px);
+    float: left;
+    border-top: 1px solid #000;
+    padding-top: 10px;
+    margin-right: 10px;
+}
+
+#paper-contact-right {
+    width: calc(50% - 20px);
+    float: left;
+    border-top: 1px solid #000;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
+#paper-contact-right input, #paper-contact-left input {
+    width: 150px;
+}
+
+#paper input {
+    border: 0;
+    background: #f5f5f5;
+    padding: 4px;
+}
+
+.input-bold {
+    font-weight: 700;
+}
+
+#paper-betreft {
+    margin-top: 20px;
+    width: 100%;
+}
+
+#paper-betreft input {
+    width: 400px;
+}
+
+#paper-werkzaamheden {
+    padding-top: 20px;
+    width: 100%;
+}
+
+#paper-werkzaamheden ul {
+    padding: 0;
+    margin-left: -14px;
+}
+
+.handle {
+    cursor: move;
+    display: inline-block;
+    width: 20px;
+    float: left;
+    padding: 6px;
+}
+
+.ui-sortable-helper {
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+    z-index: 1000;
+    background: #fff;
+}
+
+.werkzaamheden-cell {
+    display: inline-block;
+    width: calc(100% - 20px);
+    float: left;
+}
+
+.locked-file #paper-werkzaamheden ul {
+    margin-left: 0;
+}
+
+.locked-file #paper-contact-left, .locked-file #paper-contact-right, .locked-file #paper-werkzaamheden ul {
+    font-family: "Roboto";
+    font-size: 11px;
+}
+
+
+.werkzaamheden-row {
+    width: 100%;
+    overflow: auto;
+    clear: both;
+    margin-bottom: 1px;
+}
+
+.werkzaamheden-row-c1 {
+    float: left;
+    width: calc(52% - 30px);
+}
+
+.werkzaamheden-row-c1 input {
+    width: 90%;
+}
+
+.werkzaamheden-row-c2 {
+    float: left;
+    width: 12%;
+}
+
+.werkzaamheden-row-c2 input {
+    width: 78%;
+    text-align: right;
+}
+
+.werkzaamheden-row-c3 {
+    float: left;
+    width: 12%;
+}
+
+.werkzaamheden-row-c3 input {
+    width: 90%;
+}
+
+.werkzaamheden-row-c4 {
+    float: left;
+    width: 24%;
+    text-align: right;
+}
+
+.werkzaamheden-row-c4 input {
+    width: 50%;
+    text-align: right;
+}
+
+input.longtext {
+    width: calc(100% - 50px);
+}
+
+.subtotal {
+    margin-bottom: 20px;
+}
+
+.subtotal-1 {
+    height: 20px;
+}
+
+.subtotal-1 > div {
+    padding-top: 5px;
+}
+
+.subtotal .werkzaamheden-row-c1 {
+    padding-left: 4px;
+}
+
+.subtotal-total {
+    border-top: 1px solid #000;
+}
+
+.enter {
+}
+
+.remove-post {
+    float: right;
+    margin-top: 0!important;
+}
+
+#werkzaamheden-totaal {
+    width: 100%;
+    border-top: 1px solid #000;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+#werkzaamheden-totaal span.left {
+    float: left;
+    width: 50%;
+}
+
+#werkzaamheden-totaal span.right {
+    float: right;
+    width: 50%;
+    text-align: right;
+    padding-right: 30px;
+}
+
+#werkzaamheden-nieuw {
+    clear: both;
+    padding-top: 20px;
+}
+
+#paper-buttons {
+    float: left;
+    display: inline-block;
+    width: 170px;
+}
+
+#paper-buttons-extra {
+    margin-top: 20px;
+    color: #fff;
+}
+
+#paper-buttons-extra input {
+    width: 30px;
+}
+
+#paper-buttons-extra span {
+    width: 120px;
+    display: inline-block;
+}
+
+input.hours-description {
+    width: 170px;
+}
+
+input.hours-time {
+    width: 40px;
+}
+
+#dollar-warning {
+    clear: both;
+    background: #C93434;
+    padding: 20px;
+    color: #fff;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+    border-radius: 4px;
+    transform: rotateZ(-3deg);
+    width: 70%;
+    position: relative;
+    left: -150px;
+    top: 40px;
+}
+
+.ui-sortable-helper {
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    list-style: none;
+    background: #fff;
+}
+
+.sortable-placeholder {
+    list-style: none;
+    box-shadow: inset 0 3px 5px 0 #636363,5px 5px 5px 1px #ddd;
+    -webkit-box-shadow: inset 0 3px 5px 0 #636363,5px 5px 5px 1px #ddd;
+    -moz-box-shadow: inset 0 3px 5px 0 #636363,5px 5px 5px 1px #ddd;
+    -o-box-shadow: inset 0 3px 5px 0 #636363,5px 5px 5px 1px #ddd;
+}
+
+.ui-sortable-helper input {
+    border: 0;
+}

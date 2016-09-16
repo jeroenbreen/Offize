@@ -1,0 +1,52 @@
+.panel {
+    border: 1px solid #de7070;
+    padding: 10px;
+    background: #fafafa;
+    position: relative;
+    margin-bottom: 40px;
+
+}
+
+ofc-hours .panel, ofc-comments .panel {
+    height: calc(100% - 40px);
+}
+
+.panel-body {
+    height: calc(100% - 34px);
+    overflow: auto;
+}
+
+.panel-attachement {
+    height: 34px;
+}
+
+.panel-footer {
+    background-image: url('frontend/assets/img/footer.png');
+    position: absolute;
+    right: -1px;
+    width: 39px;
+    bottom: -26px;
+    height: 26px;
+}
+
+.panel-footer-remove {
+    background-image: url('frontend/assets/img/footer-red.png');
+}
+
+.panel-footer button {
+    background: #de7070;
+    float: right;
+    color: #fff;
+}
+
+.panel-footer button:hover {
+    color: #000;
+}
+
+.panel-footer-remove button {
+    background: red;
+}
+
+.panel-footer-remove button:hover {
+    color: #000!important;
+}

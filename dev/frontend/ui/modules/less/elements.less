@@ -1,0 +1,370 @@
+button {
+    cursor: pointer;
+}
+
+input[type="text"] {
+    font-family: "Roboto condensed";
+    font-size: 12px;
+    transition: background 0.5s ease;
+    width: 100%;
+}
+
+td.align-right {
+    text-align: right;
+}
+
+/* icons **/
+
+.spacer {
+    width: 26px;
+    display: inline-block;
+}
+
+.icon {
+    font-family: 'glyphs';
+    font-size: 20px;
+    color: #000;
+}
+
+.glyph {
+    text-align: center;
+    font-family: "glyphs";
+    vertical-align: top;
+    font-size: 13px;
+    background: #fff;
+    color: #888;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    margin-top: 4px;
+}
+
+.glyph.inactive {
+    color: #ddd;
+}
+
+.glyph:hover {
+    color: #fff;
+    background: #de7070;
+}
+
+.project-card .glyph {
+    position: relative;
+    top: -1px;
+    background: transparent;
+    color: #000;
+}
+
+.project-card .glyph:hover {
+    background: rgba(255,255,255,1);
+    color: #000;
+}
+
+.red:hover {
+    color: #fff!important;
+    background: #f00!important;
+}
+
+.grey {
+    background: #fff;
+    color: #000;
+    border: 1px solid rgba(0,0,0,0.5);
+}
+
+.grey:hover {
+    border: 1px solid transparent;
+}
+
+.unlocked:hover {
+    background: red!important;
+    color: #000!important;
+}
+
+.locked {
+    background: red;
+}
+
+.locked:hover {
+    background: #fff!important;
+    color: #000!important;
+}
+
+
+.doc {
+    background: #fff;
+    color: #888;
+    border: 0;
+    padding: 3px 6px 4px 6px;
+    margin-right: 4px;
+    margin-top: 3px;
+    border-radius: 13px;
+    height: 26px;
+    text-decoration: none;
+    font-family: "Roboto Condensed";
+    font-size: 11px;
+    font-weight: 400;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.doc:hover, .selected {
+    background: #de7070;
+    color: #fff;
+}
+
+.doc.niet-betaald:hover, .doc.niet-betaald.selected {
+    background: #f00;
+    color: #fff;
+}
+
+.doc a {
+    color: #888;
+    text-decoration: none;
+}
+
+.doc:hover a {
+    color: #fff;
+}
+
+span.gl {
+    font-family: "glyphs";
+    font-size: 14px;
+    top: 2px;
+    position: relative;
+}
+
+
+
+
+/* loading bar */
+
+
+#loading-bar {
+    position: fixed;
+    width: 200px;
+    height: 30px;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+    left: calc(50% - 100px);
+    top: 45%;
+    background: #fff;
+    display: none;
+}
+
+#loaded {
+    color: #de7070;
+    height: 100%;
+    width: 0;
+}
+
+#loaded-nr {
+    position: absolute;
+    left: calc(50% - 20px);
+    top: 4px;
+    text-align: center;
+    z-index: 100;
+    width: 40px;
+    color: #000;
+}
+
+
+
+
+
+
+
+/* status buttons */
+
+.status-0 .status-up:hover {
+    background: #7DE3A9;
+}
+
+.status-1 .status-down:hover {
+    background: #C1DBD6;
+}
+
+.status-1 .status-up:hover {
+    background: #de7070;
+}
+
+.status-2 .status-down:hover {
+    background: #7DE3A9;
+}
+
+.status-2 .status-up:hover {
+    background: #aa1717;
+}
+
+.status-3 .status-down:hover {
+    background: #de7070;
+}
+
+.status-3 .status-up:hover {
+    background: #999;
+}
+
+.status-4 .status-down:hover {
+    background: #aa1717;
+}
+
+.status-4 .status-up:hover {
+    background: #555;
+}
+
+.status-5 .status-down:hover {
+    background: #999;
+}
+
+.status-0 .project-status {
+    background: #C1DBD6;
+}
+
+.status-1 .project-status {
+    background: #7DE3A9;
+}
+
+.status-2 .project-status {
+    background: #de7070;
+}
+
+.status-2.project-finished {
+    opacity: 0.6;
+}
+
+.status-3 .project-status {
+    background: #aa1717;
+}
+
+.status-4 .project-status {
+    background: #999;
+}
+
+.status-5 .project-status {
+    background: #555;
+}
+
+
+
+
+
+
+
+
+/* glyph */
+
+.glyph.glyphhidden {
+    color: #ddd;
+}
+
+.glyph.glyphhidden:hover {
+    color: #fff;
+}
+
+.niet-betaald {
+    color: #f00;
+}
+
+
+.att {
+    position: relative;
+    width: 120px;
+    padding-right: 30px;
+}
+
+.att-frame {
+    display: inline-block;
+    float: right;
+    width: 68px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.att-frame-in {
+    float: right;
+    text-align: left;
+    min-width: 68px;
+    padding-top: 2px;
+}
+
+.remove-att.glyph {
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    z-index: 100;
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    margin-top: 0px;
+}
+
+.att:hover > .remove-att {
+    display: inline-block;
+}
+
+.att-full-name {
+    white-space: nowrap;
+    min-width: 120px;
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    background: #de7070;
+    color: #fff;
+    border: 0;
+    padding: 3px 30px 4px 6px;
+    border-radius: 13px;
+    height: 26px;
+    text-decoration: none;
+    font-family: "Roboto Condensed";
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.att:hover > .att-full-name {
+    display: inline-block;
+}
+
+.content-bar {
+    width: 150px;
+    padding: 10px;
+    margin: 0 8px 8px 0;
+    background: #de7070;
+    display: inline-block;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+}
+
+.contact-bar.selected {
+    border-left: 4px solid #000;
+}
+
+.mini-doc {
+    background: #fff;
+    box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
+    width: 100px;
+    height: 140px;
+    padding: 12px 4px 10px 4px;
+    margin: 0 8px 8px 0;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: top;
+    border-left: 4px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.overlapper {
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.mini-doc.selected {
+    border-left: 4px solid #000;
+}

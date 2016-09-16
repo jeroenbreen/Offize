@@ -1,0 +1,85 @@
+html {
+    width: 100%;
+    height: 100%;
+    font-family: "Roboto condensed";
+    background: #fff;
+    color: #333;
+    font-size: 12px;
+    line-height: 15px;
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #menu {
+        height: 40px;
+    }
+
+    .content {
+        height: ~'calc(100% - 40px)';
+        padding: 10px;
+
+        .frame-left, .frame-right {
+            height: 100%;
+            width: 50%;
+            overflow: auto;
+            display: inline-block;
+            float: left;
+        }
+
+        .frame-top {
+            height: 120px;
+        }
+
+        .frame-bottom {
+            height: ~'calc(100% - 120px)';
+        }
+
+        .frame-left {
+            padding-right: 10px;
+
+        }
+
+        .frame-right {
+            padding-left: 10px;
+        }
+    }
+}
+
+office,
+ofc-projects,
+ofc-detail,
+ofc-contacts,
+ofc-documents,
+ofc-graphics {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.innouveau-square {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    display: inline-block;
+    background: #fed401;
+}
+
+.identity {
+    display: inline-block;
+    font-size: 32px;
+    line-height: 40px;
+    vertical-align: top;
+    font-family: 'Dosis';
+}
+
+.menu-select {
+    vertical-align: top;
+    display: inline-block;
+    padding: 16px;
+}
