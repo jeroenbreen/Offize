@@ -1,0 +1,147 @@
+/* contact detail */
+
+.contacts-top {
+    height: 120px;
+    width: 380px;
+
+    .contacts-search {
+        input {
+            width: 100%;
+        }
+    }
+
+    .panel {
+        margin-bottom: 10px;
+    }
+
+    .contacts-add button {
+        margin-top: 0;
+        float: right;
+        background: #ccc;
+    }
+}
+
+.contacts-bottom {
+    height: ~'calc(100% - 120px)';
+
+    .contacts-left, .contacts-right {
+        height: 100%;
+        overflow: auto;
+        display: inline-block;
+        float: left;
+    }
+
+    .contacts-left {
+        width: 400px;
+        padding-right: 20px;
+
+    }
+
+    .contacts-right {
+        width: ~'calc(100% - 400px)';
+
+        .contact-bar {
+            width: 150px;
+            padding: 10px;
+            margin: 0 8px 8px 0;
+            background: #de7070;
+            display: inline-block;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            border-left: 4px solid transparent;
+        }
+
+        .contact-bar.selected {
+            border-left: 4px solid #000;
+        }
+    }
+
+}
+
+
+/* contacts */
+
+
+.contact-card {
+    width: 300px;
+    float: left;
+    background: #fff;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    margin: 0 20px 20px 0;
+    border-left: 1px solid #ddd;
+}
+
+.contact-new {
+    padding-bottom: 90px;
+}
+
+.contact-card hr {
+    width: 92%;
+    border: none;
+    border-top: dotted 1px #ddd;
+    color: #fff;
+    background-color: #fff;
+}
+
+.card-head {
+    color: #de7070;
+    padding: 20px;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
+.card-head.card-head-new {
+    background: #ddd;
+}
+
+.card-head .contact-id {
+    float: left;
+    font-size: 20px;
+    color: #de7070;
+    width: 38px;
+}
+
+.card-head .contact-name {
+    float: left;
+}
+
+.card-head .contact-name input {
+    background: transparent;
+    color: #de7070;
+    border: 0;
+    font-size: 20px;
+    width: 180px;
+}
+
+.card-head button {
+    float: right;
+}
+
+.contact-card .contact-row {
+    width: 100%;
+    overflow: auto;
+    padding: 4px 15px;
+}
+
+.contact-card .contact-label {
+    width: 50%;
+    display: inline-block;
+    float: left;
+    font-weight: 300;
+}
+
+.contact-card .contact-row input {
+    width: 50%;
+    float: left;
+    border: 0;
+    background: #eee;
+    padding: 4px;
+}
+
+.contact-tools {
+    margin-top: 20px;
+    width: 100%;
+    padding: 20px;
+    background: #555;
+}

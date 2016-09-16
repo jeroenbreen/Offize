@@ -1,15 +1,15 @@
 require([
-    'require/domReady'
-  , 'angular'
-  , 'ui/app/app'
-  , 'office'
-  , 'models/OfficeModel'
+    'require/domReady',
+    'angular',
+    'ui/app/app',
+    'office',
+    'models/OfficeModel'
 ], function (
-    domReady
-  , angular
-  , angularApp
-  , Office
-  , OfficeModel
+    domReady,
+    angular,
+    angularApp,
+    Office,
+    OfficeModel
 ) {
     "use strict";
 

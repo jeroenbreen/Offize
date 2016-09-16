@@ -77,6 +77,11 @@ define([
         }
     };
 
+    _p.getSlug = function() {
+        var name = this.projectName.toLowerCase().replace(/\s/g, '-');
+        return this.contact.getNumber() + '-' + name;
+    };
+
     _p.hasComments = function() {
         if (this.comments.length > 0) {
             return true;

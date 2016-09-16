@@ -1,7 +1,9 @@
 define([
-   './_BaseModel'
+   './_BaseModel',
+   '../ui/ui-tools/common-tools'
 ], function(
-    Parent
+    Parent,
+    commonTools
 ){
     "use strict";
     function ContactModel(parent, contact) {
@@ -41,6 +43,12 @@ define([
 
     _p.getFullName = function() {
         return this.getNumber() + '-' + this.name;
+    };
+
+    _p.getSlug = function() {
+        var number = commonTools.digitize(this.contactId),
+            name = this.name.toLowerCase().replace(/\s/g, '-');
+        return number + '-' + name;
     };
 
     _p.getNumber = function() {

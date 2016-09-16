@@ -44,7 +44,7 @@
             ng-class="{'selected': project === model.currentProject, 'project-finished': project.finished}"
             ng-click="model.currentProject = project">
             <td class="project-title project-status">
-                <span>{{project.contact.getNumber()}}-{{project.projectName}}</span>
+                <span>{{project.getSlug()}}</span>
             </td>
             <td class="project-status">
                 <div class="project-hours-score">
