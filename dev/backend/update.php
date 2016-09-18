@@ -2,8 +2,6 @@
 include ('connect.php');
 
 $type = $_POST['type'];
-echo '!!!';
-echo $type;
 if ($type == "projects") { $query = updateProject(); }
 else if ($type == "contacts") { $query = updateContact(); }
 else if ($type == "team") { $query = updateTeam(); }
