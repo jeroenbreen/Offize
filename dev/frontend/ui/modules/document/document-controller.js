@@ -24,7 +24,7 @@ define([], function() {
 
 
         $scope.removeFile = function() {
-            if (confirm($scope.model.type + ' ' + $scope.model.jaar + '-' + $scope.model.nr + ' verwijderen. Sure?')) {
+            if (confirm($scope.model.type + ' ' + $scope.model.year + '-' + $scope.model.nr + ' verwijderen. Sure?')) {
                 $scope.model.remove();
                 $scope.closeDocument();
             }
@@ -60,8 +60,7 @@ define([], function() {
 
 
         $scope.monthelize = function(m) {
-            var months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
-            return months[m - 1];
+            return $scope.months[m - 1];
         };
 
         $scope.months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
@@ -69,12 +68,12 @@ define([], function() {
 
         $scope.getTotal = function(multiplier) {
             var total = 0;
-            for (var i = 0; i < $scope.model.posten.length; i++) {
-                var post = $scope.model.posten[i];
-                if (post.type === 'uren') {
-                    total += post.tarief * post.uren;
-                } else if (post.type === 'bedrag') {
-                    total += parseFloat(post.bedrag);
+            for (var i = 0; i < $scope.model.lines.length; i++) {
+                var line = $scope.model.lines[i];
+                if (line.type === 'count') {
+                    total += line.rate * line.hours;
+                } else if (line.type === 'amount') {
+                    total += parseFloat(line.amount);
                 }
             }
             total *= multiplier;
@@ -85,11 +84,11 @@ define([], function() {
         $scope.getSubTotal = function(index, multiplier) {
             var total = 0;
             for (var i = index; i > -1; i--) {
-                var post = $scope.model.posten[i];
-                if (post.type === 'uren') {
-                    total += post.tarief * post.uren;
-                } else if (post.type === 'bedrag') {
-                    total += parseInt(post.bedrag);
+                var line = $scope.model.lines[i];
+                if (line.type === 'count') {
+                    total += line.rate * line.hours;
+                } else if (line.type === 'amount') {
+                    total += parseFloat(line.amount);
                 }
             }
             total *= multiplier;
@@ -97,8 +96,8 @@ define([], function() {
             return total;
         };
 
-        $scope.removePost = function(post) {
-            $scope.model.posten.splice($scope.model.posten.indexOf(post), 1);
+        $scope.removeLine = function(line) {
+            $scope.model.lines.splice($scope.model.lines.indexOf(line), 1);
         };
 
         //

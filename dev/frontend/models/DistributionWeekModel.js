@@ -1,0 +1,33 @@
+define([
+    './_BaseModel',
+    './DistributionModel'
+], function(
+    Parent,
+    DistributionModel
+){
+    "use strict";
+    function DistributionWeekModel(parent, distributionWeek) {
+        Object.defineProperty(this, 'parent', { value: parent, enumerable: false, writable: true, configurable: true });
+        this.parent = distributionWeek.parent;
+        this.distributions = [];
+        this.importDistributions(distributionWeek);
+    }
+
+    var _p = DistributionWeekModel.prototype = Object.create(Parent.prototype);
+
+    _p.importDistributions = function(distributionWeek) {
+        for (var i = 0, l = distributionWeek.distributions.length; i < l; i++) {
+            this.distributions.push(new DistributionModel(this, distributionWeek.distributions[i]))
+        }
+    };
+
+    _p.exportSettings = function() {
+        return {
+            ignoreProperties: ['parent'],
+            children: ['distributions']
+        }
+    };
+
+
+    return DistributionWeekModel;
+});

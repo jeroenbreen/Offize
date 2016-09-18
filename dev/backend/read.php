@@ -31,7 +31,7 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $projects .= '"invoices":' . $record["invoices"] . ',';
     $projects .= '"year":' . $record["year"] . ',';
     $projects .= '"week":' . $record["week"] . ',';
-    $projects .= '"distribution":' . stringToArray($record["distribution"]) . ',';
+    $projects .= '"distributionWeeks":' . stringToArray($record["distributionWeeks"]) . ',';
     $projects .= '"finished":' . toBoolean($record["finished"]) . ',';
     $projects .= '"comments":"' . breakToNl($record["comments"]) . '"}';
 }

@@ -6,7 +6,6 @@ define([
     "use strict";
     var show,
         confirm,
-        param,
         _timer,
         digitize,
         _divShow,
@@ -30,23 +29,6 @@ define([
         _timer = setTimeout(function(){
             _divHide(modal);
         }, 2500);
-    };
-
-    param = function(obj) {
-        var parameterised = {},
-            ignoreProperties = [];
-        ignoreProperties.push('parent');
-        ignoreProperties.push('$$hashKey');
-        for (var property in obj) {
-            if ($.type(obj[property]) !== 'function' && ignoreProperties.indexOf(property) === -1) {
-                if($.type(obj[property]) === 'array') {
-                    parameterised[property] = JSON.stringify(obj[property]);
-                } else {
-                    parameterised[property] = obj[property];
-                }
-            }
-        }
-        return $.param(parameterised);
     };
 
     _divShow = function(div, devTxt, message) {
@@ -92,6 +74,5 @@ define([
         confirm : confirm,
         show : show,
         digitize : digitize,
-        param : param
     };
 });

@@ -59,12 +59,12 @@
                     Doorloop
                 </td>
                 <td>
-                    <div class="distribution-set" ng-repeat="week in model.distribution">
+                    <div class="distribution-set" ng-repeat="distributionWeek in model.distributionWeeks">
                         <div class="distribution-week">week {{addWeek(model.week, $index)}}</div>
                         <input ng-model="member.hours"
                                class="distribution-input"
                                placeholder="{{member.initials}}"
-                               ng-repeat-start="member in week">
+                               ng-repeat-start="member in distributionWeek.distributions">
                         <div class="superscript" ng-repeat-end>{{member.initials}}</div>
                     </div>
                     <div class="distribution-tools">
@@ -104,7 +104,7 @@
              class="doc"
              ng-repeat="tender in model.tenders"
              ng-click="office.currentDocument = tender;">
-            <span class="gl">f</span> {{tender.jaar}} - {{tender.nr}}
+            <span class="gl">f</span> {{tender.year}} - {{tender.nr}}
         </div>
     </div>
     <div class="panel-footer">
@@ -120,7 +120,7 @@
              ng-repeat="invoice in model.invoices"
              ng-class="{'niet-betaald': !invoice.betaald}"
              ng-click="office.currentDocument = invoice;">
-            <span class="gl">f</span> {{invoice.jaar}} - {{invoice.nr}}
+            <span class="gl">f</span> {{invoice.year}} - {{invoice.nr}}
         </div>
     </div>
     <div class="panel-footer">

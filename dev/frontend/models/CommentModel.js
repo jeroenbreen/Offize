@@ -31,5 +31,12 @@ define([
         }
     };
 
+    _p.exportSettings = function() {
+        return {
+            ignoreProperties: ['parent'],
+            children: []
+        }
+    };
+
     return CommentModel;
 });

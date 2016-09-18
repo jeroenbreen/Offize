@@ -1,7 +1,9 @@
 define([
-    '../../ui-tools/common-tools'
+    '../../ui-tools/common-tools',
+    'jquery'
 ], function(
-    commonTools
+    commonTools,
+    $
 ) {
     "use strict";
     function ProjectsController($scope, dataFactory) {
@@ -12,21 +14,21 @@ define([
         $scope.liveProjects = [];
 
         $scope.$watch('model.currentProject', function(newVal, oldVal) {
-            console.log(newVal);
             if (oldVal && newVal && oldVal.projectId === newVal.projectId && oldVal !== newVal) {
                 update(newVal);
             }
         }, true);
 
-        function update(obj) {
+        function update(project) {
             var handleSuccess;
             clearTimeout(timer);
             timer = setTimeout(function(){
                 handleSuccess = function(data, status) {
-                    var message = 'Save: ' + obj.projectName;
+                    var message = 'Save: ' + project.projectName;
                     commonTools.show(message, false);
                 };
-                dataFactory.update(commonTools.param(obj)).success(handleSuccess);
+                var exp = $.param(project.export());
+                dataFactory.update(exp).success(handleSuccess);
             }, 1000);
         }
 

@@ -23,7 +23,7 @@ define([
         this.currentProject = null;
         this.currentContact = null;
         this.currentDocument = null;
-        this.menu = 'documents';
+        this.menu = 'projects';
         this.popup = '';
         this.configuration = null;
         this.years = ['alle'];

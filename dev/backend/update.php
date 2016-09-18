@@ -2,6 +2,8 @@
 include ('connect.php');
 
 $type = $_POST['type'];
+echo '!!!';
+echo $type;
 if ($type == "projects") { $query = updateProject(); }
 else if ($type == "contacts") { $query = updateContact(); }
 else if ($type == "team") { $query = updateTeam(); }
@@ -24,7 +26,7 @@ function updateProject() {
     $invoices = $_POST['invoices'];
     $year = $_POST['year'];
     $week = $_POST['week'];
-    $distribution = $_POST['distribution'];
+    $distributionWeeks = $_POST['distributionWeeks'];
     $finished = $_POST['finished'];
     $query = "UPDATE projects SET
     projectId = '" . $projectId . "' , 
@@ -41,7 +43,7 @@ function updateProject() {
     invoices = '" . $invoices . "' ,
     year = '" . $year . "' ,
     week = '" . $week . "' ,
-    distribution = '" . $distribution . "',
+    distributionWeeks = '" . $distributionWeeks . "',
     finished = '" . $finished . "'
     WHERE
     projectId = '" . $projectId. "'";

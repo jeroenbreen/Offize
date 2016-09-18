@@ -72,29 +72,27 @@ define([
         // distribution
 
         $scope.subtractWeekToDistribution = function(){
-            $scope.model.distribution.pop();
+            $scope.model.distributionWeeks.pop();
         };
 
         $scope.addWeekToDistribution = function(){
-            var week = getDistributionWeek();
-            if (!$scope.model.distribution) {
-                $scope.model.distribution = [];
-            }
-            $scope.model.distribution.push(week);
+            var distribution = getDistributionWeek();
+            $scope.model.addDistribution(distribution);
         };
         
         function getDistributionWeek() {
-            var week = [];
+            var distributionWeek = {
+                distributions: []
+            };
             for (var i = 0, l = $scope.office.team.length; i < l; i++) {
                 var member = $scope.office.team[i];
-                week.push({
+                distributionWeek.distributions.push({
                     hours: 0,
                     memberId: member.memberId,
-                    initials: member.initials,
-                    projectId: $scope.model.projectId
+                    initials: member.initials
                 });
             }
-            return week;
+            return distributionWeek;
         }
 
         // helpers

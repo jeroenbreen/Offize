@@ -1,9 +1,11 @@
 define([
    './_BaseModel',
-   './DocumentModel'
+   './DocumentModel',
+   './DistributionWeekModel'
 ], function(
     Parent,
-    DocumentModel
+    DocumentModel,
+    DistributionWeekModel
 ){
     "use strict";
     function ProjectModel(parent, project) {
@@ -23,20 +25,23 @@ define([
         this.fixedTotal = project.fixedTotal;
         this.rate = project.rate;
         this.hours = project.hours;
-        this.invoiceAttachements = project.invoiceAttachements;
-        this.tenderAttachements = project.tenderAttachements;
         this.year = project.year;
         this.week = project.week;
         this.hours = project.hours;
-        this.distribution = project.distribution;
         this.finished = project.finished;
+        this.distributionWeeks = [];
         this.tenders = [];
         this.invoices = [];
+        this.importDistributionWeeks(project.distributionWeeks);
         this.importDocuments(project, 'invoices');
         this.importDocuments(project, 'tenders');
     }
 
     var _p = ProjectModel.prototype = Object.create(Parent.prototype);
+
+    _p.addDistribution = function(distribution) {
+        this.distributionWeeks.push(new DistributionWeekModel(this, distribution));
+    };
 
     _p.getContact = function() {
         for (var i = 0, l = this.parent.contacts.length; i < l; i++) {
@@ -46,6 +51,12 @@ define([
             }
         }
         return null;
+    };
+
+    _p.importDistributionWeeks = function(distributionWeeks) {
+        for (var i = 0, l = distributionWeeks.length; i < l; i++) {
+            this.distributionWeeks.push(new DistributionWeekModel(this, distributionWeeks[i]))
+        }
     };
 
     _p.importDocuments = function(project, type) {
@@ -132,6 +143,13 @@ define([
             return true;
         } else {
             return false;
+        }
+    };
+
+    _p.exportSettings = function() {
+        return {
+            ignoreProperties: ['parent'],
+            children: ['tenders', 'invoices', 'comments', 'workedHours', 'distributionWeeks']
         }
     };
 

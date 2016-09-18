@@ -23,13 +23,13 @@ define([
             for (var i = 0, l = $scope.model.length; i < l; i++) {
                 var project = $scope.model[i];
                 if (year === project.year &&
-                    (week >= project.week && week <= project.week + project.distribution.length) &&
+                    (week >= project.week && week <= project.week + project.distributionWeeks.length) &&
                     project.projectStatus === 2
                 ) {
-                    var wk = project.distribution[week - project.week];
+                    var wk = project.distributionWeeks[week - project.week];
                     if (wk) {
-                        for (var j = 0, jl = wk.length; j < jl; j++) {
-                            var mmb = wk[j];
+                        for (var j = 0, jl = wk.distributions.length; j < jl; j++) {
+                            var mmb = wk.distributions[j];
                             if (mmb.initials === member.initials) {
                                 blocks.push(mmb);
                             }
