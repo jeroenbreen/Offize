@@ -1,0 +1,1 @@
+<input placeholder="Titel" ng-model="model.text">

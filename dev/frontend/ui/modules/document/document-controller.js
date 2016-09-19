@@ -31,14 +31,16 @@ define([], function() {
         };
 
         $scope.printFile = function() {
-            var url;
+            var url,
+                printData = $scope.model.export();
+            console.log(printData);
             if ($scope.model.english) {
                 url = 'frontend/to-pdf/print_en.php';
             } else {
                 url = 'frontend/to-pdf/print.php';
             }
             $http.post(url, {
-                'data' : $scope.model.getClean()
+                'data' : printData
             }).success(function(data, status, headers, config) {
                 //console.log(data);
                 window.open(data);
@@ -69,21 +71,6 @@ define([], function() {
         $scope.getTotal = function(multiplier) {
             var total = 0;
             for (var i = 0; i < $scope.model.lines.length; i++) {
-                var line = $scope.model.lines[i];
-                if (line.type === 'count') {
-                    total += line.rate * line.hours;
-                } else if (line.type === 'amount') {
-                    total += parseFloat(line.amount);
-                }
-            }
-            total *= multiplier;
-            total = Math.round(100 * total) / 100;
-            return total;
-        };
-
-        $scope.getSubTotal = function(index, multiplier) {
-            var total = 0;
-            for (var i = index; i > -1; i--) {
                 var line = $scope.model.lines[i];
                 if (line.type === 'count') {
                     total += line.rate * line.hours;

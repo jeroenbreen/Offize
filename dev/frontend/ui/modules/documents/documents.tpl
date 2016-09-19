@@ -19,8 +19,8 @@
                   ng-repeat="doc in filterDocs(model.invoices, 'invoices') track by $index"
                   ng-class="{'selected': doc === model.currentDocument}"
                   ng-click="model.currentDocument = doc; model.currentProject = doc.parent">
-                    <b>{{doc.jaar}} - {{doc.nr}}</b><br>
-                    {{doc.omschrijving}}
+                    <b>{{doc.year}} - {{doc.nr}}</b><br>
+                    {{doc.title}}
             </div>
         </div>
     </div>

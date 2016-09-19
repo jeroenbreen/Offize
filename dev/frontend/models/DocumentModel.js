@@ -95,7 +95,7 @@ define([
                 lineModel = new SubtotalModel(this);
                 break;
             case 'text':
-                lineModel = new TextModel(this);
+                lineModel = new TextModel(this, {text:''});
         }
         this.lines.push(lineModel);
     };
