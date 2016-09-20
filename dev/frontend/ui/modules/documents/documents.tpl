@@ -1,38 +1,38 @@
 <div class="frame-top">
-    <div class="frame-left">
+    <div class="col col-6">
         <div class="panel">
-            <input placeholder="Zoek factuur" ng-model="filter.search.invoices">
+            <input placeholder="Zoek factuur" type="text" ng-model="filter.search.invoices">
         </div>
     </div>
 
-    <div class="frame-right">
+    <div class="col col-6">
         <div class="panel">
-            <input placeholder="Zoek offerte" ng-model="filter.search.tenders">
+            <input placeholder="Zoek offerte" type="text" ng-model="filter.search.tenders">
         </div>
     </div>
 </div>
 
 <div class="frame-bottom">
-    <div class="frame-left">
-        <div class="panel">
+    <div class="col col-6">
+        <div class="panel panel-spacy">
             <div class="mini-doc"
                   ng-repeat="doc in filterDocs(model.invoices, 'invoices') track by $index"
                   ng-class="{'selected': doc === model.currentDocument}"
                   ng-click="model.currentDocument = doc; model.currentProject = doc.parent">
-                    <b>{{doc.year}} - {{doc.nr}}</b><br>
+                    <b>Factuur {{doc.year}} - {{doc.nr}}</b><br>
                     {{doc.title}}
             </div>
         </div>
     </div>
 
-    <div class="frame-right">
-        <div class="panel">
+    <div class="col col-6">
+        <div class="panel panel-spacy">
             <div class="mini-doc"
                  ng-repeat="doc in filterDocs(model.tenders, 'tenders') track by $index"
                  ng-class="{'selected': doc === model.currentDocument}"
                  ng-click="model.currentDocument = doc; model.currentProject = doc.parent">
-                <b>{{doc.jaar}} - {{doc.nr}}</b><br>
-                {{doc.omschrijving}}
+                <b>Offerte {{doc.year}} - {{doc.nr}}</b><br>
+                {{doc.title}}
             </div>
         </div>
     </div>

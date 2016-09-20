@@ -22,12 +22,29 @@ html {
         height: ~'calc(100% - 40px)';
         padding: 10px;
 
-        .frame-left, .frame-right {
+        .col {
             height: 100%;
             width: 50%;
             overflow: auto;
             display: inline-block;
             float: left;
+            padding-right: 20px;
+        }
+
+        .col:last-child {
+            padding-right: 0;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-4 {
+            width: calc(100% / 3);
+        }
+
+        .col-8 {
+            width: calc(200% / 3);
         }
 
         .frame-top {

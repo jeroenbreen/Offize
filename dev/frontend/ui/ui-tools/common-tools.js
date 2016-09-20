@@ -6,10 +6,28 @@ define([
     "use strict";
     var show,
         confirm,
+        param,
         _timer,
         digitize,
         _divShow,
         _divHide;
+
+    param = function(obj) {
+        var parameterised = {},
+            ignoreProperties = [];
+        ignoreProperties.push('parent');
+        ignoreProperties.push('$$hashKey');
+        for (var property in obj) {
+            if ($.type(obj[property]) !== 'function' && ignoreProperties.indexOf(property) === -1) {
+                if($.type(obj[property]) === 'array') {
+                    parameterised[property] = JSON.stringify(obj[property]);
+                } else {
+                    parameterised[property] = obj[property];
+                }
+            }
+        }
+        return $.param(parameterised);
+    };
 
     show = function(message, error) {
         var modal = $('.modal');
@@ -74,5 +92,6 @@ define([
         confirm : confirm,
         show : show,
         digitize : digitize,
+        param: param
     };
 });
