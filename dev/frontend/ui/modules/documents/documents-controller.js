@@ -4,9 +4,12 @@ define([
     commonTools
 ) {
     'use strict';
-    function DocumentsController($scope, dataFactory) {
+    function DocumentsController($scope, dataFactory, OfficeModel) {
         this.$scope = $scope;
+        $scope.model = OfficeModel;
         var timer;
+
+        $scope.model.menu = 'documents';
 
         $scope.$watch('model.currentProject', function(newVal, oldVal) {
             if (oldVal && newVal && oldVal.projectId === newVal.projectId && oldVal !== newVal) {
@@ -66,7 +69,7 @@ define([
 
     }
 
-    DocumentsController.$inject = ['$scope', 'dataFactory'];
+    DocumentsController.$inject = ['$scope', 'dataFactory', 'OfficeModel'];
 
     return DocumentsController;
 }); 

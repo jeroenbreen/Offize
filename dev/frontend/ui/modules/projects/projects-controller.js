@@ -10,6 +10,8 @@ define([
         this.$scope = $scope;
         $scope.model = OfficeModel;
 
+        $scope.model.menu = 'projects';
+
         var thisYear = new Date().getFullYear(),
             timer;
         

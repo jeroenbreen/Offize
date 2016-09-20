@@ -5,7 +5,6 @@
     </div>
     <div class="menu-select">
         <a ng-repeat="menu in menus"
-           ng-click="office.menu = menu"
            ng-class="{'current': office.menu === menu}"
            href="#/{{menu}}">
             {{menu}}
