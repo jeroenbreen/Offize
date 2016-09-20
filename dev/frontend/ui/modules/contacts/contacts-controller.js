@@ -4,10 +4,13 @@ define([
     commonTools
 ) {
     "use strict";
-    function ContactsController($scope, dataFactory) {
+    function ContactsController($scope, dataFactory, OfficeModel) {
         this.$scope = $scope;
+        $scope.model = OfficeModel;
+
         $scope.commonTools = commonTools;
         var timer;
+
 
         $scope.$watch('model.currentContact', function(newVal, oldVal) {
             if (oldVal && newVal && oldVal.contactId === newVal.contactId && oldVal !== newVal) {
@@ -103,7 +106,7 @@ define([
         }
     }
 
-    ContactsController.$inject = ['$scope', 'dataFactory'];
+    ContactsController.$inject = ['$scope', 'dataFactory', 'OfficeModel'];
 
     return ContactsController;
 }); 

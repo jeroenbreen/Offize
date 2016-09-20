@@ -4,16 +4,17 @@ define([
     template
 ) {
     "use strict";
-    function appDirective($document) {
+    function appDirective() {
         return {
-            restrict : 'E',
-            controller : 'AppController',
-            replace : false,
-            template : template
+            restrict: 'E',
+            controller: 'AppController',
+            replace: false,
+            template: template,
+            scope: {
+                model: '=ofcModel'
+            }
         };
     }
-
-
-    appDirective.$inject = ['$document'];
+    appDirective.$inject = [];
     return appDirective;
 });

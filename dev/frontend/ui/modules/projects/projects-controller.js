@@ -6,10 +6,13 @@ define([
     $
 ) {
     "use strict";
-    function ProjectsController($scope, dataFactory) {
+    function ProjectsController($scope, dataFactory, OfficeModel) {
         this.$scope = $scope;
+        $scope.model = OfficeModel;
+
         var thisYear = new Date().getFullYear(),
             timer;
+        
 
         $scope.liveProjects = [];
 
@@ -161,7 +164,7 @@ define([
 
     }
 
-    ProjectsController.$inject = ['$scope', 'dataFactory'];
+    ProjectsController.$inject = ['$scope', 'dataFactory', 'OfficeModel'];
 
     return ProjectsController;
 }); 

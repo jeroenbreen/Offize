@@ -18,7 +18,7 @@ define([
     var _p = CountModel.prototype = Object.create(Parent.prototype);
 
     _p.import = function(line) {
-        if (!line.title === null) {
+        if (!line.hasOwnProperty('title')) {
             this.title = line.titel;
             this.rate = line.tarief;
             this.hours = line.uren;

@@ -11,7 +11,7 @@ define([
 ) {
     "use strict";
     return angular.module('ofc.contacts', [contactDetailModule.name])
-           .controller('ContactsController', Controller)
-           .directive('ofcContacts', directive)
-           ;
+        .controller('ContactsController', Controller)
+        .directive('ofcContacts', directive)
+        ;
 });

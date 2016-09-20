@@ -23,13 +23,60 @@ define([
         this.currentProject = null;
         this.currentContact = null;
         this.currentDocument = null;
-        this.menu = 'projects';
+        this.menu = '';
         this.popup = '';
         this.configuration = null;
         this.years = ['alle'];
     }
 
     var _p = OfficeModel.prototype = Object.create(Parent.prototype);
+
+    _p.import = function(bootstrap) {
+        var self = this;
+        importContacts(bootstrap.contacts);
+        importProjects(breakToNewLine(bootstrap.projects));
+        importTeam(bootstrap.team);
+        importHours(bootstrap.hours);
+        importComments(bootstrap.comments);
+        this.setConfiguration(bootstrap.configuration);
+
+        function importContacts(contacts) {
+            for (var i = 0, l = contacts.length; i < l; i++) {
+                self.importContact(contacts[i]);
+            }
+        }
+
+        function importProjects(projects) {
+            for (var i = 0, l = projects.length; i < l; i++) {
+                self.importProject(projects[i]);
+            }
+        }
+
+        function importHours(hours) {
+            for (var i = 0, l = hours.length; i < l; i++) {
+                self.importHour(hours[i]);
+            }
+        }
+
+        function importTeam(team) {
+            for (var i = 0, l = team.length; i < l; i++) {
+                self.importMember(team[i]);
+            }
+        }
+
+        function importComments(comments) {
+            for (var i = 0, l = comments.length; i < l; i++) {
+                self.importComment(comments[i]);
+            }
+        }
+
+        function breakToNewLine(data){
+            for (var i = 0, l = data.length; i < l; i++) {
+                data[i].comments = data[i].comments.replace(/<br>/g, '\n');
+            }
+            return data;
+        }
+    };
 
     _p.importProject = function(project) {
         var newProject = new ProjectModel(this, project);

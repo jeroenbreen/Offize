@@ -17,7 +17,7 @@ define([
     var _p = AmountModel.prototype = Object.create(Parent.prototype);
 
     _p.import = function(line) {
-        if (line.title === null) {
+        if (!line.hasOwnProperty('title')) {
             this.title = line.titel;
             this.amount = line.bedrag;
         } else {

@@ -17,7 +17,7 @@ define([
 ) {
     "use strict";
     return angular.module('ofc.projects', [detailModule.name, commentsModule.name, hoursModule.name, distributionModule.name])
-           .controller('ProjectsController', Controller)
-           .directive('ofcProjects', directive)
-           ;
+        .controller('ProjectsController', Controller)
+        .directive('ofcProjects', directive)
+        ;
 });

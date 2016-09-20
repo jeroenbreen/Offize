@@ -4,17 +4,19 @@
         <b>Innouveau</b> Office
     </div>
     <div class="menu-select">
-    <select ng-options="menu as menu for menu in menus"
-            ng-model="office.menu"></select>
+        <a ng-repeat="menu in menus"
+           ng-click="office.menu = menu"
+           ng-class="{'current': office.menu === menu}"
+           href="#/{{menu}}">
+            {{menu}}
+        </a>
     </div>
 </div>
 
-<ofc-projects ng-if="office.menu === 'projects'" ofc-model="office" class="content"></ofc-projects>
-<ofc-contacts ng-if="office.menu === 'contacts'" ofc-model="office" class="content"></ofc-contacts>
-<ofc-documents ng-if="office.menu === 'documents'" ofc-model="office" class="content"></ofc-documents>
-<ofc-graphics ng-if="office.menu === 'graphics'" ofc-model="office" class="content"></ofc-graphics>
+<div ng-view class="content"></div>
 
 <ofc-document ng-if="office.currentDocument" ofc-model="office.currentDocument" ofc-office="office"></ofc-document>
+
 <div class="modal"></div>
 <div class="confirm">
     <span class="confirm-text"></span>

@@ -10,7 +10,9 @@ requirejs.config({
         'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap.min',
         'slider': 'bower_components/angular-ui-slider/src/slider',
         'sortable': 'bower_components/angular-ui-sortable/sortable.min',
-        'ngResource' : 'bower_components/angular-resource/angular-resource.min'
+        'ngResource' : 'bower_components/angular-resource/angular-resource.min',
+        'ngRoute' : 'bower_components/angular-route/angular-route.min',
+        'ngStorage' : 'bower_components/ngstorage/ngStorage.min'
     },
     shim: {
         bootstrap : {
@@ -33,6 +35,12 @@ requirejs.config({
             deps: ['jqueryUi', 'angular']
         },
         ngResource: {
+            deps: ['angular']
+        },
+        ngRoute: {
+            deps: ['angular']
+        },
+        ngStorage: {
             deps: ['angular']
         }
     }

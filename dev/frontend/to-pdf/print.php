@@ -132,7 +132,7 @@ $html = "
                 </tr>";
         }
         else if ($lines[$i]->{'type'} == 'text') {
-            $title = $lines[$i]->{'title'};
+            $title = $lines[$i]->{'text'};
             $html .= "
                 <tr>
                     <td colspan='3' class='cell5'>
