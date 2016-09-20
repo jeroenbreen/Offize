@@ -1,7 +1,9 @@
 define([
-    '../../../ui-tools/common-tools'
+    '../../../ui-tools/common-tools',
+    '../../../ui-tools/modal'
 ], function(
-    commonTools
+    commonTools,
+    modal
 ) {
     "use strict";
     function HoursController($scope, dataFactory) {
@@ -16,12 +18,12 @@ define([
                 $scope.newHour.projectId = $scope.model.projectId;
                 $scope.office.importHour($scope.newHour);
                 message = 'added hour...';
-                commonTools.show(message, false);
+                modal.show(message, false);
                 // resource
                 $scope.newHour = cleanHour();
             } else {
                 message = 'Vul wat in.';
-                commonTools.show(message, true);
+                modal.show(message, true);
             }
         };
 
@@ -32,14 +34,14 @@ define([
                     var message = 'Toegevoegd: ' + $scope.newHour.description;
                     $scope.office.importHour($scope.newHour);
                     $scope.newHour = emptyHour();
-                    commonTools.show(message, false);
+                    modal.show(message, false);
                 };
                 $scope.newHour.date = new Date().toLocaleString();
                 $scope.newHour.projectId = $scope.model.projectId;
                 dataFactory.add(commonTools.param($scope.newHour)).success(handleSuccess);
             } else {
                 message = 'Vul wat in.';
-                commonTools.show(message, true);
+                modal.show(message, true);
             }
         };
 
@@ -48,9 +50,9 @@ define([
                 handleSuccess = function(data, status) {
                     var successMessage = hour.description + ' verwijderd';
                     hour.remove();
-                    commonTools.show(successMessage, false)
+                    modal.show(successMessage, false)
                 };
-            commonTools.confirm(message, function(result){
+            modal.confirm(message, function(result){
                 if (result) {
                     dataFactory.remove(commonTools.param(hour)).success(handleSuccess);
                 }

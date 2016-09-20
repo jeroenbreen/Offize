@@ -1,7 +1,9 @@
 define([
-    '../../ui-tools/common-tools'
+    '../../ui-tools/common-tools',
+    '../../ui-tools/modal'
 ], function(
-    commonTools
+    commonTools,
+    modal
 ) {
     'use strict';
     function DocumentsController($scope, dataFactory, OfficeModel) {
@@ -23,7 +25,7 @@ define([
         function update(obj) {
             var handleSuccess = function(data, status) {
                 var message = 'Save: ' + obj.projectName;
-                commonTools.show(message, false);
+                modal.show(message, false);
             };
             dataFactory.update(commonTools.param(obj)).success(handleSuccess);
         }

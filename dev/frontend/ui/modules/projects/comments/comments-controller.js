@@ -1,7 +1,9 @@
 define([
-    '../../../ui-tools/common-tools'
+    '../../../ui-tools/common-tools',
+    '../../../ui-tools/modal'
 ], function(
-    commonTools
+    commonTools,
+    modal
 ) {
     "use strict";
     function CommentsController($scope, dataFactory) {
@@ -16,7 +18,7 @@ define([
                     var message = 'Toegevoegd: ' + $scope.newComment.comment;
                     $scope.office.importComment($scope.newComment);
                     $scope.newComment = emptyComment();
-                    commonTools.show(message, false);
+                    modal.show(message, false);
                 };
                 $scope.newComment.date = new Date().toLocaleString();
                 $scope.newComment.id = $scope.office.getCommentId();
@@ -25,7 +27,7 @@ define([
                 dataFactory.add(commonTools.param($scope.newComment)).success(handleSuccess);
             } else {
                 message = 'Vul wat in.';
-                commonTools.show(message, true);
+                modal.show(message, true);
             }
         };
 

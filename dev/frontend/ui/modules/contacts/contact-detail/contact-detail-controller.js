@@ -1,7 +1,9 @@
 define([
-    '../../../ui-tools/common-tools'
+    '../../../ui-tools/common-tools',
+    '../../../ui-tools/modal'
 ], function(
-    commonTools
+    commonTools,
+    modal
 ) {
     "use strict";
     function ContactDetailController($scope, dataFactory) {
@@ -13,9 +15,9 @@ define([
                 handleSuccess = function(data, status) {
                     var successMessage = $scope.model.name + ' verwijderd';
                     $scope.model.remove();
-                    commonTools.show(successMessage, false)
+                    modal.show(successMessage, false)
                 };
-            commonTools.confirm(message, function(result){
+            modal.confirm(message, function(result){
                 if (result) {
                     dataFactory.remove(commonTools.param($scope.model)).success(handleSuccess);
                 }

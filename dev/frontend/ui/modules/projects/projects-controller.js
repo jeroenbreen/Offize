@@ -1,8 +1,10 @@
 define([
     '../../ui-tools/common-tools',
+    '../../ui-tools/modal',
     'jquery'
 ], function(
     commonTools,
+    modal,
     $
 ) {
     "use strict";
@@ -30,7 +32,7 @@ define([
             timer = setTimeout(function(){
                 handleSuccess = function(data, status) {
                     var message = 'Save: ' + project.projectName;
-                    commonTools.show(message, false);
+                    modal.show(message, false);
                 };
                 var exp = $.param(project.export());
                 dataFactory.update(exp).success(handleSuccess);
@@ -63,14 +65,14 @@ define([
                     var message = 'Toegevoegd: ' + $scope.newProject.projectName;
                     $scope.model.importProject($scope.newProject);
                     $scope.newProject = emptyProject();
-                    commonTools.show(message, false);
+                    modal.show(message, false);
                 };
                 $scope.newProject.rate = $scope.model.getContactById($scope.newProject.contactId).rate;
                 $scope.newProject.projectId = $scope.model.getProjectId();
                 dataFactory.add(commonTools.param($scope.newProject)).success(handleSuccess);
             } else {
                 message = 'Vul klant en contact in.';
-                commonTools.show(message, true);
+                modal.show(message, true);
             }
         };
 

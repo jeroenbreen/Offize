@@ -1,16 +1,16 @@
 define([
-    '../../ui-tools/common-tools'
+    '../../ui-tools/common-tools',
+    '../../ui-tools/modal'
 ], function(
-    commonTools
+    commonTools,
+    modal
 ) {
     "use strict";
     function ContactsController($scope, dataFactory, OfficeModel) {
         this.$scope = $scope;
         $scope.model = OfficeModel;
-        
         $scope.model.menu = 'contacts';
-
-        $scope.commonTools = commonTools;
+        
         var timer;
 
 
@@ -26,7 +26,7 @@ define([
         function update(obj) {
             var handleSuccess = function(data, status) {
                 var message = 'Save: ' + obj.name;
-                commonTools.show(message, false);
+                modal.show(message, false);
             };
             dataFactory.update(commonTools.param(obj)).success(handleSuccess);
         }
@@ -57,13 +57,13 @@ define([
                     var message = 'Toegevoegd: ' + $scope.newContact.name;
                     $scope.model.importContact($scope.newContact);
                     $scope.newContact = emptyContact();
-                    commonTools.show(message, false);
+                    modal.show(message, false);
                 };
                 $scope.newContact.contactId = $scope.model.getContactId();
                 dataFactory.add(commonTools.param($scope.newContact)).success(handleSuccess);
             } else {
                 message = 'Vul een naam in.';
-                commonTools.show(message, true);
+                modal.show(message, true);
             }
         };
 
