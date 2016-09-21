@@ -43,18 +43,19 @@ define([
 
         function emptyProject() {
             return {
-                type : 'projects',
+                type: 'projects',
                 memberId: null,
-                contactId : null,
-                projectName : '',
-                projectStatus : 0,
-                rate : 0,
-                hours : 0,
-                discount : 0,
-                currency : 'EUR',
-                year : thisYear,
-                invoices : [],
-                tenders : []
+                contactId: null,
+                projectName: '',
+                projectStatus: 0,
+                rate: 0,
+                hours: 0,
+                discount: 0,
+                currency: 'EUR',
+                year: thisYear,
+                invoices: [],
+                tenders: [],
+                distributionWeeks: []
             }
         }
 

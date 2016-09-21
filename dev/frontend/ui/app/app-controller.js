@@ -9,7 +9,7 @@ define([], function() {
         importData();
 
         function importData() {
-            $http.get("./backend/read.php").success(function(data) {
+            $http.get("./backend/bootstrap.php").success(function(data) {
                 console.log(data);
                 importContacts(data.contacts);
                 importProjects(breakToNewLine(data.projects));

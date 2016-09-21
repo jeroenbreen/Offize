@@ -81,33 +81,25 @@ define([
 
     .factory('dataFactory', ['$resource', '$http', function($resource, $http) {
         var remove = function(obj) {
-            return $http({
-                method : 'POST',
-                url : 'backend/delete.php',
-                data : obj,
-                headers : {
-                    'Content-Type' : 'application/x-www-form-urlencoded'
-                }
-            });
-        }, add = function(obj) {
-            return $http({
-                method : 'POST',
-                url : 'backend/new.php',
-                data : obj,
-                headers : {
-                    'Content-Type' : 'application/x-www-form-urlencoded'
-                }
-            });
-        }, update = function(obj) {
-            return $http({
-                method : 'POST',
-                url : 'backend/update.php',
-                data : obj,
-                headers : {
-                    'Content-Type' : 'application/x-www-form-urlencoded'
-                }
-            });
+            return request(obj, 'remove');
+        }, 
+        add = function(obj) {
+            return request(obj, 'add');
+        }, 
+        update = function(obj) {
+            return request(obj, 'update');
         };
+        
+        function request(obj, type) {
+            return $http({
+                method : 'POST',
+                url : 'backend/' + type + '.php',
+                data : obj,
+                headers : {
+                    'Content-Type' : 'application/x-www-form-urlencoded'
+                }
+            });
+        }
 
         return {
             remove : remove,
