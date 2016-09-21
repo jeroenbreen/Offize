@@ -9,7 +9,7 @@ define([
 ) {
     "use strict";
     return angular.module('ofc.detail', [])
-           .controller('DetailController', Controller)
-           .directive('ofcDetail', directive)
-           ;
+        .controller('DetailController', Controller)
+        .directive('ofcDetail', directive)
+        ;
 });

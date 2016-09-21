@@ -105,6 +105,7 @@
                   ofc-model="model.currentProject"
                   ofc-office="model"
                   ofc-configuration="model.configuration"></ofc-comments>
+
     <ofc-hours ng-if="model.currentProject"
                ofc-model="model.currentProject"
                ofc-office="model"

@@ -3,23 +3,25 @@ define([
     './app-controller',
     './app-directive',
 
-    '../modules/projects/projects',
     '../modules/projects/projects-controller',
     'require/text!../modules/projects/projects.tpl',
 
-    '../modules/contacts/contacts',
     '../modules/contacts/contacts-controller',
     'require/text!../modules/contacts/contacts.tpl',
 
-    '../modules/documents/documents',
     '../modules/documents/documents-controller',
     'require/text!../modules/documents/documents.tpl',
 
-    '../modules/graphics/graphics',
     '../modules/graphics/graphics-controller',
     'require/text!../modules/graphics/graphics.tpl',
 
+    '../modules/contacts/contact-detail/contact-detail',
     '../modules/document/document',
+    '../modules/projects/detail/detail',
+    '../modules/projects/comments/comments',
+    '../modules/projects/hours/hours',
+    '../modules/projects/distribution/distribution',
+    
     'ngStorage',
     'ngResource',
     'ngRoute'
@@ -28,30 +30,31 @@ define([
     Controller,
     directive,
 
-    projectsModule,
     ProjectsController,
     projectsTemplate,
 
-    contactsModule,
     ContactsController,
     contactsTemplate,
 
-    documentsModule,
     DocumentsController,
     documentsTemplate,
 
-    graphicsModule,
     GraphicsController,
     graphicsTemplate,
 
+    contactDetailModule,
     documentModule,
-    dataModule,
+    detailModule,
+    commentsModule,
+    hoursModule,
+    distributionModule,
+    
     ngStorage,
     ngResource,
     ngRoute
 ) {
     "use strict";
-    return angular.module('OfficeModel', ['ngResource', 'ngRoute', 'ngStorage', projectsModule.name, contactsModule.name, documentsModule.name, graphicsModule.name, documentModule.name])
+    return angular.module('OfficeModel', ['ngResource', 'ngRoute', 'ngStorage', documentModule.name, contactDetailModule.name, detailModule.name, commentsModule.name, hoursModule.name, distributionModule.name])
     .config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when('/', {

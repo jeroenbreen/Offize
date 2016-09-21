@@ -4,7 +4,7 @@ define([
     template
 ) {
     "use strict";
-    function detailDirective() {
+    function contactDetailDirective() {
         return {
             restrict: 'E',
             controller: 'ContactDetailController',
@@ -17,6 +17,6 @@ define([
             }
         };
     }
-    detailDirective.$inject = [];
-    return detailDirective;
+    contactDetailDirective.$inject = [];
+    return contactDetailDirective;
 });
