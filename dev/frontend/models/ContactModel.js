@@ -45,12 +45,6 @@ define([
         return this.getNumber() + '-' + this.name;
     };
 
-    _p.getSlug = function() {
-        var number = commonTools.digitize(this.contactId),
-            name = this.name.toLowerCase().replace(/\s/g, '-');
-        return number + '-' + name;
-    };
-
     _p.getNumber = function() {
         var id = this.contactId;
         if (id < 10) {

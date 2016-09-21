@@ -10,6 +10,7 @@ define([
         this.$scope = $scope;
         $scope.model = OfficeModel;
         $scope.model.menu = 'contacts';
+        $scope.commonTools = commonTools;
         
         var timer;
 

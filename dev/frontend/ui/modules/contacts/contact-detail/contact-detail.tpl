@@ -6,7 +6,7 @@
                     Naam
                 </td>
                 <td>
-                    <input title="Projectnaam" ng-model="model.name"><br><br> slug:<br>{{model.getSlug()}}<br><br>
+                    <input title="Projectnaam" ng-model="model.name"><br><br> slug:<br>{{commonTools.toSlug(model.getNumber(), model.name)}}<br><br>
                 </td>
             </tr>
             <tr>

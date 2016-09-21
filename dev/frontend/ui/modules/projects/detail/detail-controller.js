@@ -8,17 +8,9 @@ define([
     "use strict";
     function DetailController($scope, dataFactory) {
         this.$scope = $scope;
+        $scope.commonTools = commonTools;
 
         $scope.status = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Dood'];
-
-        $scope.limitString = function(string) {
-            var l = 20;
-            if (string.length > l) {
-                return string.substr(0,l) + '...'
-            } else {
-                return string;
-            }
-        };
 
         $scope.removeProject = function() {
             var message = 'Wil je ' + $scope.model.projectName + ' echt verwijderen?',

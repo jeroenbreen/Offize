@@ -11,8 +11,9 @@ define([
     function ProjectsController($scope, dataFactory, OfficeModel) {
         this.$scope = $scope;
         $scope.model = OfficeModel;
-
         $scope.model.menu = 'projects';
+        
+        $scope.commonTools = commonTools;
 
         var thisYear = new Date().getFullYear(),
             timer;

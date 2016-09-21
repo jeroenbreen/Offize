@@ -7,7 +7,7 @@
                 </td>
                 <td>
                     <input title="Projectnaam" ng-model="model.projectName"><br><br>
-                    Slug:<br>{{model.getSlug()}}
+                    Slug:<br>{{commonTools.toSlug(model.contact.getNumber(), model.projectName)}}
                     <br><br>
                 </td>
             </tr>
@@ -24,7 +24,7 @@
                     Klant
                 </td>
                 <td>
-                    <select title="Verander klant" ng-options="contact.contactId as limitString(contact.getFullName()) for (index, contact) in office.contacts" ng-model="model.contactId"></select>
+                    <select title="Verander klant" ng-options="contact.contactId as commonTools.limitString(commonTools.toSlug(contact.getNumber(), contact.name), 20) for (index, contact) in office.contacts" ng-model="model.contactId"></select>
                 </td>
             </tr>
             <tr>

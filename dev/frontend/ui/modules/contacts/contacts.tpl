@@ -27,7 +27,7 @@
              ng-class="{'selected': contact === model.currentContact}"
              ng-click="model.currentContact = contact">
             <div class="project-status">
-                <div class="overlapper">{{contact.getSlug()}}</div>
+                <div class="overlapper">{{commonTools.toSlug(contact.getNumber(), contact.name)}}</div>
             </div>
         </div>
     </div>

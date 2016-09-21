@@ -25,7 +25,7 @@
             <td>
                 <span>
                     <select title="selecteer teamlid" ng-options="member.memberId as member.initials for (index, member) in model.team" ng-model="newProject.memberId"></select>
-                    <select title="selecteer opdrachtgever" ng-options="contact.contactId as limitString(contact.getFullName()) for contact in model.contacts" ng-model="newProject.contactId"></select>
+                    <select title="selecteer opdrachtgever" ng-options="contact.contactId as commonTools.limitString(commonTools.toSlug(contact.getNumber(), contact.name), 20) for contact in model.contacts" ng-model="newProject.contactId"></select>
                 </span>
             </td>
             <td align="right" class="project-buttons">
@@ -44,7 +44,7 @@
             ng-class="{'selected': project === model.currentProject, 'project-finished': project.finished}"
             ng-click="model.currentProject = project">
             <td class="project-title project-status">
-                <span>{{project.getSlug()}}</span>
+                <span>{{commonTools.toSlug(project.contact.getNumber(), project.projectName)}}</span>
             </td>
             <td class="project-status">
                 <div class="project-hours-score">

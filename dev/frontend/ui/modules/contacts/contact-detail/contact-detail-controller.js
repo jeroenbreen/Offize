@@ -8,6 +8,7 @@ define([
     "use strict";
     function ContactDetailController($scope, dataFactory) {
         this.$scope = $scope;
+        $scope.commonTools = commonTools;
 
 
         $scope.removeContact = function() {

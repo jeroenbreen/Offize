@@ -5,7 +5,9 @@ define([
 ) {
     "use strict";
     var param,
-        digitize;
+        toSlug,
+        digitize,
+        limitString;
 
     param = function(obj) {
         var parameterised = {},
@@ -36,10 +38,24 @@ define([
         }
     };
 
+    toSlug = function(nr, string) {
+        var name = string.toLowerCase().replace(/\s/g, '-').replace(/\./g, '-');
+        return nr + '-' + name;
+    };
+
+    limitString = function(string, l) {
+        if (string.length > l) {
+            return string.substr(0,l) + '...'
+        } else {
+            return string;
+        }
+    };
 
 
     return {
         digitize : digitize,
-        param: param
+        param: param,
+        toSlug: toSlug,
+        limitString: limitString
     };
 });
