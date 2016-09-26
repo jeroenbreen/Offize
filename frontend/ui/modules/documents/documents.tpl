@@ -1,4 +1,4 @@
-<div class="frame-top">
+<div class="frame-top small-top">
     <div class="col col-6">
         <div class="panel">
             <input placeholder="Zoek factuur" type="text" ng-model="filter.search.invoices">
@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div class="frame-bottom">
+<div class="frame-bottom small-top">
     <div class="col col-6">
         <div class="panel panel-spacy">
             <div class="mini-doc"

@@ -51,8 +51,22 @@ html {
             height: 120px;
         }
 
+        .frame-top.small-top {
+            height: 70px;
+        }
+
         .frame-bottom {
             height: ~'calc(100% - 120px)';
+            overflow: auto;
+
+            .panel {
+                height: 100%;
+                overflow: auto;
+            }
+        }
+
+        .frame-bottom.small-top {
+            height: ~'calc(100% - 70px)';
         }
 
         .frame-left {
