@@ -9,7 +9,8 @@ define([
 ) {
     "use strict";
     var daysFromToday,
-        dateToProperties;
+        dateToProperties,
+        toString;
 
     Date.prototype.getWeek = function () { return $.datepicker.iso8601Week(this); };
 
@@ -31,9 +32,15 @@ define([
         }
     };
 
+    toString = function(date) {
+        var newDate = dateToProperties(new Date(date));
+        return newDate.day + '/' + newDate.month + '/' + newDate.year;
+    };
+
 
     return {
         daysFromToday: daysFromToday,
-        dateToProperties: dateToProperties
+        dateToProperties: dateToProperties,
+        toString: toString
     };
 });

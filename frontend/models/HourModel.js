@@ -17,11 +17,6 @@ define([
 
     var _p = HourModel.prototype = Object.create(Parent.prototype);
 
-    _p.getDate = function() {
-        var newDate = new Date(this.date.substr(0,10));
-        return this._digitize(newDate.getDate()) + '/' + this._digitize(newDate.getMonth() + 1) + '/' + newDate.getFullYear();
-    };
-
     _p._digitize = function(x) {
         if (x < 10) {
             return '0' + x;

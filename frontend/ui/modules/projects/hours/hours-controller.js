@@ -1,8 +1,10 @@
 define([
     '../../../ui-tools/common-tools',
+    '../../../ui-tools/date-tool',
     '../../../ui-tools/modal'
 ], function(
     commonTools,
+    dateTool,
     modal
 ) {
     "use strict";
@@ -36,7 +38,7 @@ define([
                     $scope.newHour = emptyHour();
                     modal.show(message, false);
                 };
-                $scope.newHour.date = new Date().toLocaleString();
+                $scope.newHour.date = new Date();
                 $scope.newHour.projectId = $scope.model.projectId;
                 dataFactory.add(commonTools.param($scope.newHour)).success(handleSuccess);
             } else {
@@ -57,6 +59,10 @@ define([
                     dataFactory.remove(commonTools.param(hour)).success(handleSuccess);
                 }
             });
+        };
+
+        $scope.formateDate = function(date) {
+            return dateTool.toString(date);
         };
 
         function emptyHour() {

@@ -1,29 +1,30 @@
 <div class="panel">
     <div class="panel-body">
-        <table width="100%" cellspacing="0" cellpadding="0">
+        <div title="voortgang uren opdracht" class="score-bg" ng-class="{'score-over': model.isOverHours()}" ng-if="model.workedHours.length > 0">
+            <div ng-style="{'width': model.getModusScore() + '%'}" class="score-fg">&nbsp;</div>
+        </div>
+
+        <table class="hours-table" width="100%" cellspacing="0" cellpadding="0">
             <tr class="animation-item-2" ng-repeat="hour in model.workedHours">
-                <td>
+                <td width="30">
                     {{office.getMemberById(hour.memberId).initials}}&nbsp;
                 </td>
                 <td>
                     {{hour.description}}
                 </td>
-                <td align="right">
+                <td width="30" class="align-right">
                     {{hour.time}}′
                 </td>
-                <td align="right">
-                    {{hour.getDate()}}
+                <td width="58" class="align-right">
+                    {{formateDate(hour.date)}}
                 </td>
-                <td>
+                <td width="30">
                     <button ng-click="removeHour(hour)" class="glyph red remove-post">
                         d
                     </button>
                 </td>
             </tr>
         </table>
-        <div title="voortgang uren opdracht" class="score-bg" ng-class="{'score-over': model.isOverHours()}" ng-if="model.workedHours.length > 0">
-            <div ng-style="{'width': model.getModusScore() + '%'}" class="score-fg">&nbsp;</div>
-        </div>
     </div>
     <div class="panel-attachement">
         <select title="selecteer teamlid" ng-options="member.memberId as member.initials for (index, member) in office.team" ng-model="newHour.memberId"></select>
