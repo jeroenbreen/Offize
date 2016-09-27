@@ -9,6 +9,6 @@
         <input ng-model="newComment.comment" placeholder="Comment">
     </div>
     <div class="panel-footer">
-        <button title="Comment toevoegen" class="glyph" ng-click="addComment()">+</button>
+        <button title="Comment toevoegen" class="glyph fa fa-plus" ng-click="addComment()"></button>
     </div>
 </div>

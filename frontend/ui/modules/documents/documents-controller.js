@@ -44,16 +44,17 @@ define([
                 var doc = docs[i];
                 if (
                     ($scope.filter.search[type] === '' ||
-                     doc.jaar.toString().indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1 ||
-                     doc.klant.naam.toLocaleLowerCase().indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1 ||
+                     doc.year.toString().indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1 ||
+                     doc.client.naam.toLocaleLowerCase().indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1 ||
                      doc.nr.indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1 ||
-                     doc.omschrijving.toLocaleLowerCase().indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1
+                     doc.title.toLocaleLowerCase().indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1
                    )
                 ) {
                     filtered.push(doc);
                 }
             }
             sorted = filtered.sort(compare);
+
             return sorted;
         };
 

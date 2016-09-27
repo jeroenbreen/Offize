@@ -29,9 +29,7 @@
                 </span>
             </td>
             <td align="right" class="project-buttons">
-                <button title="opdracht toevoegen" class="glyph" ng-click="addProject()">
-                    +
-                </button>
+                <button title="opdracht toevoegen" class="glyph fa fa-plus" ng-click="addProject()"></button>
             </td>
         </tr>
         <tr>
@@ -61,15 +59,11 @@
                 </div>
             </td>
             <td class="project-buttons project-cell">
-                <button title="opdrachtstatus terug" class="glyph status-down" ng-click="prevStatus(project)" ng-if="project.projectStatus > 0">
-                    ]
-                </button>
+                <button title="opdrachtstatus terug" class="glyph status-down fa fa-arrow-up" ng-click="prevStatus(project)" ng-if="project.projectStatus > 0"></button>
                 <div class="spacer" ng-if="project.projectStatus == 0">
                     &nbsp;
                 </div>
-                <button title="opdrachtstatus vooruit" class="glyph status-up" ng-click="nextStatus(project)" ng-if="project.projectStatus < 5">
-                    [
-                </button>
+                <button title="opdrachtstatus vooruit" class="glyph status-up fa fa-arrow-down" ng-click="nextStatus(project)" ng-if="project.projectStatus < 5"></button>
                 <div class="spacer" ng-if="project.projectStatus == 5">
                     &nbsp;
                 </div>

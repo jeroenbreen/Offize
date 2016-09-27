@@ -19,9 +19,7 @@
                     {{formateDate(hour.date)}}
                 </td>
                 <td width="30">
-                    <button ng-click="removeHour(hour)" class="glyph red remove-post">
-                        d
-                    </button>
+                    <button ng-click="removeHour(hour)" class="glyph red remove-post fa fa-trash"></button>
                 </td>
             </tr>
         </table>
@@ -32,6 +30,6 @@
         <input ng-model="newHour.time" placeholder="Tijd in min." class="hours-time">
     </div>
     <div class="panel-footer">
-        <button title="Comment toevoegen" class="glyph" ng-click="addHour()">+</button>
+        <button title="Comment toevoegen" class="glyph fa fa-plus" ng-click="addHour()"></button>
     </div>
 </div>

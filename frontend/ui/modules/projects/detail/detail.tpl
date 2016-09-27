@@ -68,8 +68,8 @@
                         <div class="superscript" ng-repeat-end>{{member.initials}}</div>
                     </div>
                     <div class="distribution-tools">
-                        <button class="glyph" ng-click="subtractWeekToDistribution()" title="week verwijderen"> - </button>
-                        <button class="glyph" ng-click="addWeekToDistribution()" title="week toevoegen"> + </button>
+                        <button class="glyph fa fa-minus" ng-click="subtractWeekToDistribution()" title="week verwijderen"></button>
+                        <button class="glyph fa fa-plus" ng-click="addWeekToDistribution()" title="week toevoegen"></button>
                     </div>
                 </td>
             </tr>
@@ -89,10 +89,20 @@
                     <input type="checkbox" ng-model="model.finished"><br>
                 </td>
             </tr>
+            <tr>
+                <td class="label">
+                    <span ng-if="model.projectStatus === 5">Breng terug</span>
+                    <span ng-if="model.projectStatus < 5">Archiveren</span>
+                </td>
+                <td>
+                    <button ng-if="model.projectStatus < 5" title="archiveer opdracht" class="glyph fa fa-paper-plane" ng-click="archiveProject()"></button>
+                    <button ng-if="model.projectStatus === 5" title="breng opdracht terug" class="glyph fa fa-reply" ng-click="reviveProject()"></button>
+                </td>
+            </tr>
         </table>
     </div>
     <div class="panel-footer panel-footer-remove">
-        <button title="verwijder opdracht" class="glyph red" ng-click="removeProject()">d</button>
+        <button title="verwijder opdracht" class="glyph red fa fa-trash" ng-click="removeProject()"></button>
     </div>
 </div>
 
@@ -108,7 +118,7 @@
         </div>
     </div>
     <div class="panel-footer">
-        <button title="Offerte toevoegen" class="glyph" ng-click="addDocument('tenders')">+</button>
+        <button title="Offerte toevoegen" class="glyph fa fa-plus" ng-click="addDocument('tenders')"></button>
     </div>
 </div>
 
@@ -124,6 +134,6 @@
         </div>
     </div>
     <div class="panel-footer">
-        <button title="Factuur toevoegen" class="glyph" ng-click="addDocument('invoices')">+</button>
+        <button title="Factuur toevoegen" class="glyph fa fa-plus" ng-click="addDocument('invoices')"></button>
     </div>
 </div>

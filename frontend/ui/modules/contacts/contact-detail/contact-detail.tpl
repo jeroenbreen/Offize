@@ -76,6 +76,6 @@
         </table>
     </div>
     <div class="panel-footer panel-footer-remove">
-        <button title="Verwijder contact" class="glyph red" ng-click="removeContact()">d</button>
+        <button title="Verwijder contact" class="glyph red fa fa-trash" ng-click="removeContact()"></button>
     </div>
 </div>

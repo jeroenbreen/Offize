@@ -10,7 +10,7 @@ define([
         this.$scope = $scope;
         $scope.commonTools = commonTools;
 
-        $scope.status = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Dood'];
+        $scope.status = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Gearchiveerd'];
 
         $scope.removeProject = function() {
             var message = 'Wil je ' + $scope.model.projectName + ' echt verwijderen?',
@@ -24,6 +24,18 @@ define([
                     dataFactory.remove(commonTools.param($scope.model)).success(handleSuccess);
                 }
             });
+        };
+
+        $scope.archiveProject = function() {
+            $scope.model.projectStatus = 5;
+        };
+
+        $scope.reviveProject = function() {
+            $scope.model.projectStatus = 0;
+        };
+
+        $scope.dearchiveProject = function() {
+            $scope.model.projectStatus = 0;
         };
 
         $scope.addDocument = function(type) {

@@ -53,28 +53,16 @@
                     <ofc-enter ng-if="line.type === 'enter'" class="lines-cell">
                     </ofc-enter>
                     <ofc-subtotal ofc-model="model" ofc-index="$index" ng-if="line.type === 'subtotal'" class="lines-cell subtotal"></ofc-subtotal>
-                    <button ng-click="removeLine(line)" class="glyph red remove-post">
-                        d
-                    </button>
+                    <button ng-click="removeLine(line)" class="glyph red remove-post fa fa-trash"></button>
                 </li>
             </ul>
 
             <div id="lines-new">
-                <button title="rekenmodel toevoegen" class="glyph grey" ng-click="model.addLine('count')">
-                    ,
-                </button>
-                <button title="vast bedrag toevoegen" class="glyph grey" ng-click="model.addLine('amount')">
-                    E
-                </button>
-                <button title="subtotal" class="glyph grey" ng-click="model.addLine('subtotal')">
-                    C
-                </button>
-                <button title="beschrijving toevoegen" class="glyph grey" ng-click="model.addLine('text')">
-                    T
-                </button>
-                <button title="enter toevoegen" class="glyph grey" ng-click="model.addLine('enter')">
-                    B
-                </button>
+                <button title="rekenmodel toevoegen" class="glyph grey fa fa-ellipsis-h" ng-click="model.addLine('count')"></button>
+                <button title="vast bedrag toevoegen" class="glyph grey fa fa-eur" ng-click="model.addLine('amount')"></button>
+                <button title="subtotal" class="glyph grey fa fa-calculator" ng-click="model.addLine('subtotal')"></button>
+                <button title="beschrijving toevoegen" class="glyph grey fa fa-align-left" ng-click="model.addLine('text')"></button>
+                <button title="enter toevoegen" class="glyph grey fa fa-paragraph" ng-click="model.addLine('enter')"></button>
             </div>
 
             <div id="lines-total" ng-if="!model.hideTotal">
@@ -94,18 +82,10 @@
     </div>
 
     <div id="paper-buttons">
-        <button class="glyph grey" ng-click="closeDocument()" title="Esc">
-            x
-        </button>
-        <button ng-click="printFile()" class="glyph grey" title="Print file">
-            p
-        </button>
-        <button ng-class="{'locked': model.lock}" ng-click="lockFile()" class="glyph grey unlocked" title="Lock file">
-            l
-        </button>
-        <button ng-if="!model.lock" ng-click="removeFile()" class="glyph grey red" title="Delete file">
-            d
-        </button>
+        <button class="glyph grey fa fa-remove" ng-click="closeDocument()" title="Esc"></button>
+        <button ng-click="printFile()" class="glyph grey fa fa-print" title="Print file"></button>
+        <button ng-class="{'locked': model.lock}" ng-click="lockFile()" class="glyph grey unlocked fa fa-lock" title="Lock file"></button>
+        <button ng-if="!model.lock" ng-click="removeFile()" class="glyph grey red fa fa-trash" title="Delete file"></button>
         <div id="paper-buttons-extra">
             <div ng-if="model.type == 'Factuur'">
                 <span>Betaald</span><input class="" type="checkbox" value="1" ng-model="model.paid">

@@ -6,7 +6,7 @@
 
         <div class="contacts-add panel">
             <input class="new-contact" placeholder="Nieuw contact..." ng-model="newContact.name">
-            <button title="Contact toevoegen" class="glyph" ng-click="addContact()">+</button>
+            <button title="Contact toevoegen" class="glyph fa fa-plus" ng-click="addContact()"></button>
         </div>
     </div>
     <div class="col col-8"></div>
