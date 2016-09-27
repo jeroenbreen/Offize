@@ -10,6 +10,9 @@ define([
         this.$scope = $scope;
 
         $scope.newComment = emptyComment();
+        
+        $scope.editing = null;
+        var timer = null;
 
         $scope.addComment = function() {
             var message;
@@ -29,6 +32,47 @@ define([
                 message = 'Vul wat in.';
                 modal.show(message, true);
             }
+        };
+
+        $scope.keydown = function(event) {
+            if (event.keyCode === 13) {
+                $scope.closeComment();
+            }
+        };
+
+        $scope.openComment = function(comment, index) {
+            $scope.editing = comment;
+        };
+
+        $scope.closeComment = function() {
+            $scope.editing = null;
+        };
+
+        $scope.removeComment = function(comment) {
+            var message = 'Wil je deze comment echt verwijderen?',
+                handleSuccess = function(data, status) {
+                    var successMessage = 'Comment verwijderd';
+                    comment.remove();
+                    modal.show(successMessage, false)
+                };
+            modal.confirm(message, function(result){
+                if (result) {
+                    dataFactory.remove(commonTools.param(comment)).success(handleSuccess);
+                }
+            });
+        };
+
+        $scope.updateComment = function(comment) {
+            console.log("!");
+            var handleSuccess;
+            clearTimeout(timer);
+            timer = setTimeout(function(){
+                handleSuccess = function(data, status) {
+                    var message = 'Save: comment';
+                    modal.show(message, false);
+                };
+                dataFactory.update(commonTools.param(comment)).success(handleSuccess);
+            }, 1000);
         };
 
         function emptyComment() {
