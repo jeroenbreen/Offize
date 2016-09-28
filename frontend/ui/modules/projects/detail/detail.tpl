@@ -32,10 +32,10 @@
                     Projecturen
                 </td>
                 <td class="td-content">
-                    <input class="detail-hours" title="Projecturen" ng-model="model.hours"> x
-                    <input class="detail-currency" title="Munt" ng-model="model.currency">
-                    <input class="detail-rate" title="Uurtarief" ng-model="model.rate"> -
-                    <input class="detail-discount" title="Korting / Correctie" ng-model="model.discount">
+                    <input class="input-small" title="Projecturen" ng-model="model.hours"> x
+                    <input class="input-small" title="Munt" ng-model="model.currency">
+                    <input class="input-small" title="Uurtarief" ng-model="model.rate"> -
+                    <input class="input-small" title="Korting / Correctie" ng-model="model.discount">
                 </td>
             </tr>
             <tr>
@@ -43,7 +43,7 @@
                     Boekjaar
                 </td>
                 <td class="td-content">
-                    <input title="boekjaar" ng-model="model.year">
+                    <input class="input-medium" title="boekjaar" ng-model="model.year">
                 </td>
             </tr>
             <tr>
@@ -51,7 +51,7 @@
                     Startweek
                 </td>
                 <td class="td-content">
-                    <input title="weeknummer" ng-model="model.week"><br>
+                    <input class="input-small" title="weeknummer" ng-model="model.week"><br>
                 </td>
             </tr>
             <tr>
