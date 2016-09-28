@@ -6,8 +6,25 @@ define([
     modal
 ) {
     "use strict";
-    function CommentsController($scope, dataFactory) {
+    function CommentsController($scope, dataFactory, $document) {
         this.$scope = $scope;
+
+        // esc key
+
+        // esc key
+
+        $document.bind('keydown', function (event) {
+            $scope.keyManager(event);
+        });
+
+        $scope.keyManager = function (e) {
+            if (e.target.tagName !== "INPUT") {
+                if ($scope.model.popup !== 0 && e.keyCode === 27) {
+                    $scope.editing = null;
+                }
+                $scope.$apply();
+            }
+        };
 
         $scope.newComment = emptyComment();
         
@@ -84,7 +101,7 @@ define([
 
     }
 
-    CommentsController.$inject = ['$scope', 'dataFactory'];
+    CommentsController.$inject = ['$scope', 'dataFactory', '$document'];
 
     return CommentsController;
 }); 
