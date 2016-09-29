@@ -46,19 +46,19 @@ define([
                 typeNl = (type === 'invoices' ? 'Factuur' : 'Offerte');
             newDocument = {
                 type : typeNl,
-                jaar : year,
-                datum : {
+                year : year,
+                date : {
                     j : year,
                     m : d.getMonth() + 1,
                     d : d.getDate()
                 },
-                klant : {
+                client : {
                     naam : contact.name,
                     contact : contact.contactPerson,
                     adres : contact.street,
                     postcode : contact.zipcode + ' ' + contact.city
                 },
-                bedrijf : {
+                sender : {
                     naam : $scope.office.configuration.companyName,
                     contact : $scope.office.getMemberById($scope.model.memberId).name,
                     adres : $scope.office.configuration.companyAddress,
@@ -66,9 +66,9 @@ define([
                 },
                 currency : $scope.model.currency,
                 rate : $scope.model.rate,
-                omschrijving : $scope.model.projectName,
-                posten : [],
-                betaald : false,
+                title : $scope.model.projectName,
+                lines : [],
+                paid : false,
                 nr : $scope.office.getHighestNr(type)
             };
             $scope.office.currentDocument = $scope.model.importDocument(newDocument, type);
