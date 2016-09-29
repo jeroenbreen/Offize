@@ -111,7 +111,7 @@ define([
                 if (
                     ($scope.filter.year === 'alle' || project.year === $scope.filter.year) &&
                     ($scope.filter.search === '' || project.projectName.toLocaleLowerCase().indexOf($scope.filter.search.toLocaleLowerCase()) > -1) &&
-                    (!$scope.showOnlyLiveProjects || (project.projectStatus > 0 && project.projectStatus < 3))
+                    (!$scope.showOnlyLiveProjects || project.projectStatus < 3)
                 ) {
                     filtered.push(project);
                     addToTotal(project);
