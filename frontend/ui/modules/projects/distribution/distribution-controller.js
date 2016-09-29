@@ -40,10 +40,14 @@ define([
             return blocks;
         };
 
-        $scope.selectProject = function(projectId) {
-            console.log(projectId);
-            $scope.office.currentProject = $scope.office.getProjectById(projectId);
+        $scope.selectProject = function(block) {
+            $scope.office.currentProject = $scope.office.getProjectById(block.parent.projectId);
         };
+
+        $scope.formatTitle = function(block) {
+            var project = $scope.office.getProjectById(block.parent.projectId);
+            return project.projectName + '\n' + block.hours + ' uren.';
+        }
     }
 
     DistributionController.$inject = ['$scope'];

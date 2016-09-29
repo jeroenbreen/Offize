@@ -8,7 +8,7 @@ define([
     "use strict";
     function DistributionWeekModel(parent, distributionWeek) {
         Object.defineProperty(this, 'parent', { value: parent, enumerable: false, writable: true, configurable: true });
-        this.parent = distributionWeek.parent;
+        this.parent = parent;
         this.distributions = [];
         this.importDistributions(distributionWeek);
     }
@@ -17,7 +17,7 @@ define([
 
     _p.importDistributions = function(distributionWeek) {
         for (var i = 0, l = distributionWeek.distributions.length; i < l; i++) {
-            this.distributions.push(new DistributionModel(this, distributionWeek.distributions[i]))
+            this.distributions.push(new DistributionModel(this.parent, distributionWeek.distributions[i]))
         }
     };
 
