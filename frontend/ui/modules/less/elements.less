@@ -79,18 +79,6 @@ input[type="text"] {
     background: #de7070;
 }
 
-.project-card .glyph {
-    position: relative;
-    top: -1px;
-    background: transparent;
-    color: #000;
-}
-
-.project-card .glyph:hover {
-    background: rgba(255,255,255,1);
-    color: #000;
-}
-
 .red:hover {
     color: #fff!important;
     background: #f00!important;
@@ -124,42 +112,39 @@ input[type="text"] {
 .doc {
     background: #fff;
     color: #888;
-    border: 0;
     padding: 5px 10px 4px 10px;
     margin-right: 4px;
     margin-top: 3px;
     border-radius: 13px;
     height: 26px;
     text-decoration: none;
-    font-family: "Roboto Condensed";
     font-size: 11px;
     font-weight: 400;
     display: inline-block;
     cursor: pointer;
+    border: 1px solid transparent;
+
+
+    span.gl {
+        font-size: 14px;
+        position: relative;
+    }
+
+    &:hover, .selected {
+        border: 1px solid #de7070;
+        color: #de7070;
+    }
+
+    &.niet-betaald {
+
+        &:hover, .selected {
+            background: #f00;
+            color: #fff;
+            border: 0;
+        }
+    }
 }
 
-.doc:hover, .selected {
-    color: #fff;
-}
-
-.doc.niet-betaald:hover, .doc.niet-betaald.selected {
-    background: #f00;
-    color: #fff;
-}
-
-.doc a {
-    color: #888;
-    text-decoration: none;
-}
-
-.doc:hover a {
-    color: #fff;
-}
-
-span.gl {
-    font-size: 14px;
-    position: relative;
-}
 
 
 
@@ -364,6 +349,6 @@ span.gl {
     border-left: 4px solid transparent;
 }
 
-.contact-bar.selected {
+.content-bar.selected {
     border-left: 4px solid #000;
 }

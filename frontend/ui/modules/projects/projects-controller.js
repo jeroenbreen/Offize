@@ -18,7 +18,7 @@ define([
         var thisYear = new Date().getFullYear(),
             timer;
         
-        $scope.showOnlyLiveProjects = false;
+        $scope.showOnlyLiveProjects = true;
 
         $scope.liveProjects = [];
 
