@@ -18,6 +18,7 @@ define([
         var thisYear = new Date().getFullYear(),
             timer;
         
+        $scope.showOnlyLiveProjects = false;
 
         $scope.liveProjects = [];
 
@@ -62,7 +63,8 @@ define([
 
         $scope.addProject = function() {
             var message;
-            if ($scope.newProject.memberId && $scope.newProject.contactId) {
+            console.log($scope.newProject);
+            if ($scope.newProject.memberId !== null && $scope.newProject.contactId !== null) {
                 var handleSuccess = function(data, status) {
                     var message = 'Toegevoegd: ' + $scope.newProject.projectName;
                     $scope.model.importProject($scope.newProject);
@@ -87,6 +89,13 @@ define([
             }
         };
 
+        $scope.digitize = function(value) {
+            while (/(\d+)(\d{3})/.test(value.toString())){
+                value = value.toString().replace(/(\d+)(\d{3})/, '$1'+'.'+'$2');
+            }
+            return value;
+        };
+
         $scope.filter = {
             search : '',
             year : thisYear
@@ -101,7 +110,8 @@ define([
                 var project = projects[i];
                 if (
                     ($scope.filter.year === 'alle' || project.year === $scope.filter.year) &&
-                    ($scope.filter.search === '' || project.projectName.toLocaleLowerCase().indexOf($scope.filter.search.toLocaleLowerCase()) > -1)
+                    ($scope.filter.search === '' || project.projectName.toLocaleLowerCase().indexOf($scope.filter.search.toLocaleLowerCase()) > -1) &&
+                    (!$scope.showOnlyLiveProjects || (project.projectStatus > 0 && project.projectStatus < 3))
                 ) {
                     filtered.push(project);
                     addToTotal(project);

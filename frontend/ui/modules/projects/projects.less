@@ -39,165 +39,145 @@
     overflow: auto;
 }
 
-tr.new-project, tr.filter {
-    background: #eee;
+
+.ofc-row {
+    clear: both;
+    height: 40px;
+    border-bottom: 4px solid #fff;
+
+    .ofc-cell {
+        float: left;
+        height: 100%;
+        padding: 10px 4px 0 10px;
+        vertical-align: top;
+    }
+
+    .ofc-cell-1 {
+        width: 146px;
+        border-right: 1px solid #fff;
+    }
+
+    .ofc-cell-2 {
+        width: 144px;
+        border-right: 1px solid #fff;
+
+        .worked-hours {
+            width: 30px;
+            text-align: right;
+            display: inline-block;
+        }
+
+        .total-hours {
+            width: 30px;
+            display: inline-block;
+        }
+    }
+
+    .ofc-cell-3 {
+        width: 79px;
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    .ofc-cell-4 {
+        width: 68px;
+        border: 1px solid #ddd;
+        border-left: 0;
+        padding: 0 0 0 6px;
+    }
+
+    .ofc-cell-5 {
+        width: 290px;
+    }
+
+    .project-name span {
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+        width: calc(100% - 4px);
+    }
 }
 
-table.ofc-table tr td {
-    height: 34px;
-    vertical-align: top;
+.projects .ofc-row {
     cursor: pointer;
 }
 
-table tr.tr-red {
-    background: #de7070;
+.selected .ofc-cell-1 {
+    border-left: 4px solid #000;
 }
 
-table tr.tr-red td:first-child, table tr.tr-yellow td:first-child {
-    border-right: 1px solid #fff;
+.filter, .new-project {
+
+    .ofc-cell {
+        background: #eee;
+
+        input[type=text] {
+            width: 100%;
+            background: transparent;
+            border: 0;
+            padding: 4px;
+            transition: all 0.5s ease;
+        }
+
+        input:focus {
+            background: #fff;
+        }
+    }
+
+    .ofc-cell-3 {
+        text-align :left;
+        padding-right: 0;
+    }
+
+    .ofc-cell-4 {
+        border: 0;
+    }
+
+    .ofc-cell-6 {
+        width: 142px;
+    }
+
+    .ofc-cell-7 {
+        width: 291px;
+
+        button {
+            float: right;
+            margin: -5px 4px 0 0;
+        }
+    }
+
+    .ofc-cell-8 {
+        width: 147px;
+
+        select {
+            float: right;
+        }
+    }
+
+    .ofc-cell-5, .ofc-cell-1 {
+        padding: 8px;
+    }
 }
 
-table tr.tr-yellow {
-    background: #fed401;
+.filter {
+    .ofc-cell-4 {
+        padding-top: 8px;
+    }
 }
 
-table.ofc-table tr td.table-spacer {
-    height: 4px;
+.sums {
+
+    margin-top: 40px;
+
+    .ofc-row {
+        height: 20px;
+
+        .ofc-cell {
+            padding: 4px;
+        }
+
+        .ofc-cell-3 {
+            text-align: left;
+        }
+    }
 }
-
-table.ofc-table tr td span {
-    padding: 10px 0 0 10px;
-    display: inline-block;
-}
-
-.ofc-table input {
-    margin: 4px;
-    height: 26px;
-    padding: 2px 8px;
-    background: transparent;
-    border: none;
-    width: calc(100% - 8px);
-}
-
-.ofc-table input:hover {
-    background: rgba(0,0,0,0.04);
-}
-
-.ofc-table input:focus {
-    background: #eee;
-    color: #000;
-}
-
-input.new-contact {
-    width: calc(100% - 40px);
-}
-
-.project-title {
-    border-left: 3px solid transparent;
-    border-right: 1px solid #fff;
-}
-
-.selected td:first-child {
-    border-left: 3px solid #000;
-}
-
-.project-title span {
-    display: inline-block;
-    width: 140px;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.project-hours-score {
-    float: left;
-    height: 100%;
-    width: 135px;
-    border-right: 1px solid #fff;
-    color: #000;
-}
-
-
-.score-bg {
-    display: inline-block;
-    position: relative;
-    background: #fff;
-    height: 12px;
-    width: 64px;
-    margin-top: 11px;
-}
-
-.score-fg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: #000;
-}
-
-.score-bg.score-over {
-    background: #000;
-}
-
-.score-bg.score-over .score-fg {
-    background: #f00;
-}
-
-
-input.hours-description {
-    width: 170px;
-}
-
-input.hours-time {
-    width: 40px;
-}
-
-
-
-.worked-hours {
-    width: 30px;
-    text-align: right;
-    display: inline-block;
-}
-
-.total-hours {
-    width: 30px;
-    display: inline-block;
-}
-
-
-.project-budget {
-    display: inline-block;
-    width: 70px;
-    text-align: right;
-}
-
-.project-buttons {
-    padding-right: 4px;
-    border-right: 1px solid #eee;
-}
-
-.project-cell {
-    border-right: 1px solid #eee;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    padding-left: 4px;
-    background: #fff;
-}
-
-/*
-#project-totals {
-    padding-top: 40px;
-    clear: both;
-}
-
-#project-totals #totals-left {
-    float: left;
-    width: 120px;
-}
-
-#project-totals #totals-right {
-    float: left;
-    width: 100px;
-    text-align: right;
-}
-*/
