@@ -9,24 +9,24 @@
             <input class="paper-year input-bold" ng-model="model.year"> -
             <input class="paper-nr input-bold" ng-model="model.nr">
             <br>
-            <input class="paper-year" ng-model="model.date.d">
-            <select ng-model="model.date.m"
+            <input class="paper-year" ng-model="model.date.day">
+            <select ng-model="model.date.month"
                     ng-options="(months.indexOf(month) + 1) as month for month in months"></select>
-            <input class="paper-year" ng-model="model.date.j">
+            <input class="paper-year" ng-model="model.date.year">
         </div>
 
         <div id="paper-contact">
             <div id="paper-contact-left">
-                <input ng-model="model.client.naam" class="input-bold">
-                <input ng-model="model.client.contact">
-                <input ng-model="model.client.adres">
-                <input ng-model="model.client.postcode">
+                <input ng-model="model.client.name" class="input-bold">
+                <input ng-model="model.client.contactPerson">
+                <input ng-model="model.client.address">
+                <input ng-model="model.client.zipcode">
             </div>
             <div id="paper-contact-right">
-                <input class="input-bold" ng-model="model.sender.naam">
-                <input ng-model="model.sender.contact">
-                <input ng-model="model.sender.adres">
-                <input ng-model="model.sender.postcode">
+                <input class="input-bold" ng-model="model.sender.name">
+                <input ng-model="model.sender.contactPerson">
+                <input ng-model="model.sender.address">
+                <input ng-model="model.sender.zipcode">
             </div>
         </div>
 

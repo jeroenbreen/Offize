@@ -7,20 +7,20 @@ $objData = json_decode($data);
 $year = $objData->data->{'year'};
 $nr = $objData->data->{'nr'};
 
-$client_naam = $objData->data->client->{'naam'};
-$client_contact = $objData->data->client->{'contact'};
-$client_adres = $objData->data->client->{'adres'};
-$client_postcode = $objData->data->client->{'postcode'};
+$client_name = $objData->data->client->{'name'};
+$client_contact_person = $objData->data->client->{'contactPerson'};
+$client_address = $objData->data->client->{'address'};
+$client_zipcode = $objData->data->client->{'zipcode'};
 
-$sender_contact = $objData->data->sender->{'contact'};
-$sender_adres = $objData->data->sender->{'adres'};
-$sender_postcode = $objData->data->sender->{'postcode'};
+$sender_contact_person = $objData->data->sender->{'contactPerson'};
+$sender_address = $objData->data->sender->{'address'};
+$sender_zipcode = $objData->data->sender->{'zipcode'};
 
-$dag = $objData->data->date->{'d'};
-$month = $objData->data->date->{'m'};
+$day = $objData->data->date->{'day'};
+$month = $objData->data->date->{'month'};
 $months = array("januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december");
 $date_month = $months[$month - 1];
-$date_year = $objData->data->date->{'j'};
+$date_year = $objData->data->date->{'year'};
 
 $vat = $objData->data->{'vat'};
 $title = $objData->data->{'title'};
@@ -60,23 +60,23 @@ $html = "
                     </td>
                     <td id='info' class='half'>
                         <b>" . $type . " " . $year . " - " . $nr . "</b><br>
-                        " . $dag . " " . $date_month . " " . $date_year . "</td>
+                        " . $day . " " . $date_month . " " . $date_year . "</td>
                 </tr>
                 <tr>
                     <td>
                         <div id='client'>
-                            <b>" . $client_naam . "</b><br>
-                            " . $client_contact . "<br>
-                            " . $client_adres . "<br>
-                            " . $client_postcode . "
+                            <b>" . $client_name . "</b><br>
+                            " . $client_contact_person . "<br>
+                            " . $client_address . "<br>
+                            " . $client_zipcode . "
                         </div>
                     </td>
                     <td>
                         <div id='sender'>
                             <b>Innouveau</b><br>
-                            " . $sender_contact . "<br>
-                            " . $sender_adres . "<br>
-                            " . $sender_postcode . "
+                            " . $sender_contact_person . "<br>
+                            " . $sender_address . "<br>
+                            " . $sender_zipcode . "
                         </div>
                     </td>
                 </tr>

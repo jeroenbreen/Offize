@@ -7,7 +7,8 @@ define([
     var param,
         toSlug,
         digitize,
-        limitString;
+        limitString,
+        clipboard;
 
     param = function(obj) {
         var parameterised = {},
@@ -51,11 +52,42 @@ define([
         }
     };
 
+    clipboard = function(value) {
+        var success = true,
+            range = document.createRange(),
+            selection,
+             tmpElem = $('<div>');
+        tmpElem.css({
+            position: "absolute",
+            left: "-1000px",
+            top: "-1000px"
+        });
+
+        // Add the input value to the temp element.
+        tmpElem.text(value);
+        $("body").append(tmpElem);
+        // Select temp element.
+        range.selectNodeContents(tmpElem.get(0));
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        try {
+            success = document.execCommand('copy', false, null);
+        } catch (e) {
+            console.log(e);
+            success = false;
+        }
+        if (success) {
+            tmpElem.remove();
+        }
+    };
+
 
     return {
         digitize : digitize,
         param: param,
         toSlug: toSlug,
-        limitString: limitString
+        limitString: limitString,
+        clipboard: clipboard
     };
 });

@@ -24,6 +24,10 @@ define([
                 }
             });
         };
+
+        $scope.copySlug = function() {
+            commonTools.clipboard(commonTools.toSlug($scope.model.getNumber(), $scope.model.name));
+        };
     }
 
     ContactDetailController.$inject = ['$scope', 'dataFactory'];

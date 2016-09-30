@@ -34,6 +34,9 @@ define([
         this.english = false;
         this.newStyle = false;
         this.setProperties(document);
+        console.log(this.client);
+        console.log(this.date);
+        console.log(this.sender);
     }
 
     var _p = DocumentModel.prototype = Object.create(Parent.prototype);
@@ -47,11 +50,11 @@ define([
 
     _p.setProperties = function(document) {
         if (!document.sender) {
-            this.sender = document.bedrijf;
-            this.client = document.klant;
+            this.sender = this.convertSender(document.bedrijf);
+            this.client = this.convertClient(document.klant);
             this.year = document.jaar;
             this.nr = document.nr;
-            this.date = document.datum;
+            this.date = this.convertDate(document.datum);
             this.title = document.omschrijving;
             this.paid = document.betaald;
             this.rate = document.rate;
@@ -62,11 +65,11 @@ define([
             this.newStyle = true;
             this.importLines(document.posten);
         } else {
-            this.sender = document.sender;
-            this.client = document.client;
+            this.sender = this.convertSender(document.sender);
+            this.client = this.convertClient(document.client);
             this.year = document.year;
             this.nr = document.nr;
-            this.date = document.date;
+            this.date = this.convertDate(document.date);
             this.title = document.title;
             this.paid = document.paid;
             this.rate = document.rate;
@@ -76,6 +79,32 @@ define([
             this.english = document.english;
             this.newStyle = true;
             this.importLines(document.lines);
+        }
+    };
+
+    _p.convertClient = function(client) {
+        return {
+            name: client.name ? client.name : client.naam,
+            contactPerson: client.contactPerson ? client.contactPerson : client.contact,
+            address: client.address ? client.address : client.adres,
+            zipcode: client.zipcode ? client.zipcode : client.postcode
+        }
+    };
+
+    _p.convertSender = function(sender) {
+        return {
+            name: sender.name ? sender.name : sender.naam,
+            contactPerson: sender.contactPerson ? sender.contactPerson : sender.contact,
+            address: sender.address ? sender.address : sender.adres,
+            zipcode: sender.zipcode ? sender.zipcode : sender.postcode
+        }
+    };
+
+    _p.convertDate = function(date) {
+        return {
+            day: date.day ? date.day : date.d,
+            month: date.month ? date.month : date.m,
+            year: date.year ? date.year : date.j
         }
     };
 

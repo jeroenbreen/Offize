@@ -38,6 +38,10 @@ define([
             $scope.model.projectStatus = 0;
         };
 
+        $scope.copySlug = function() {
+            commonTools.clipboard(commonTools.toSlug($scope.model.contact.getNumber(), $scope.model.projectName));
+        };
+
         $scope.addDocument = function(type) {
             var d = new Date(),
                 year = d.getFullYear(),
@@ -48,21 +52,21 @@ define([
                 type : typeNl,
                 year : year,
                 date : {
-                    j : year,
-                    m : d.getMonth() + 1,
-                    d : d.getDate()
+                    year : year,
+                    month : d.getMonth() + 1,
+                    day : d.getDate()
                 },
                 client : {
-                    naam : contact.name,
-                    contact : contact.contactPerson,
-                    adres : contact.street,
-                    postcode : contact.zipcode + ' ' + contact.city
+                    name : contact.name,
+                    contactPerson : contact.contactPerson,
+                    address : contact.street,
+                    zipcode : contact.zipcode + ' ' + contact.city
                 },
                 sender : {
-                    naam : $scope.office.configuration.companyName,
-                    contact : $scope.office.getMemberById($scope.model.memberId).name,
-                    adres : $scope.office.configuration.companyAddress,
-                    postcode : $scope.office.configuration.companyZipcode + ' ' + $scope.office.configuration.companyCity
+                    name : $scope.office.configuration.companyName,
+                    contactPerson : $scope.office.getMemberById($scope.model.memberId).name,
+                    address : $scope.office.configuration.companyAddress,
+                    zipcode : $scope.office.configuration.companyZipcode + ' ' + $scope.office.configuration.companyCity
                 },
                 currency : $scope.model.currency,
                 rate : $scope.model.rate,

@@ -6,7 +6,8 @@
                     Naam
                 </td>
                 <td class="td-content">
-                    <input title="Projectnaam" ng-model="model.name"><br><br> slug:<br>{{commonTools.toSlug(model.getNumber(), model.name)}}<br><br>
+                    <input title="Projectnaam" ng-model="model.name"><br>
+                    <button title="kopieer slug" class="glyph fa fa-pencil" ng-click="copySlug()"></button><br>
                 </td>
             </tr>
             <tr>
