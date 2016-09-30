@@ -158,11 +158,12 @@ define([
     };
 
     _p.getPrefix = function() {
+        console.log(this.doctype);
         switch (this.doctype) {
-            case 'Tenders':
+            case 'tenders':
                 return 'Offerte';
                 break;
-            case 'Invoices':
+            case 'invoices':
                 return 'Factuur';
                 break;
         }

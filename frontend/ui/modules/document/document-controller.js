@@ -1,4 +1,8 @@
-define([], function() {
+define([
+    '../../ui-tools/modal'
+], function(
+    modal
+) {
     'use strict';
     function DocumentController($scope, $document, $http) {
         this.$scope = $scope;
@@ -22,12 +26,21 @@ define([], function() {
             $scope.office.currentDocument = null;
         };
 
-
         $scope.removeFile = function() {
-            if (confirm($scope.model.type + ' ' + $scope.model.year + '-' + $scope.model.nr + ' verwijderen. Sure?')) {
-                $scope.model.remove();
-                $scope.closeDocument();
-            }
+            var name = $scope.model.getPrefix() + ' ' + $scope.model.year + '-' + $scope.model.nr,
+                message = 'Wil je ' + name + ' echt verwijderen?',
+                handleSuccess = function(data, status) {
+                    var successMessage = name + ' verwijderd';
+                    modal.show(successMessage, false);
+                    $scope.model.remove();
+                    $scope.closeDocument();
+                    $scope.$apply();
+                };
+            modal.confirm(message, function(result){
+                if (result) {
+                    handleSuccess();
+                }
+            });
         };
 
         $scope.printFile = function() {
