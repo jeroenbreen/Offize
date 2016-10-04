@@ -1,6 +1,12 @@
 .detail {
     .label {
-        padding: 4px 6px 14px 6px;
+        padding: 13px 6px 5px 6px;
+        text-align: right;
+        vertical-align: top;
+    }
+
+    .label-with-input {
+        padding: 5px 6px 13px 6px;
         text-align: right;
         vertical-align: top;
     }
@@ -64,9 +70,19 @@
         padding-top: 5px;
 
         .status-label {
-            width: 30px;
-            height: 10px;
-            margin: 0 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 8px;
+            margin-right: 4px;
+            display: inline-block;
+            position: relative;
+            top: 7px;
+            border: 1px solid #333;
+        }
+
+        .status-label-text {
+            position: relative;
+            top: 4px;
             display: inline-block;
         }
     }

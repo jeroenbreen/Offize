@@ -2,7 +2,7 @@
     <div class="panel-body">
         <table class="detail" width="100%" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="70px" class="label">
+                <td width="70px" class="label-with-input">
                     Projectnaam
                 </td>
                 <td class="td-content">
@@ -11,7 +11,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">
+                <td class="label-with-input">
                     Contact
                 </td>
                 <td class="td-content">
@@ -19,7 +19,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">
+                <td class="label-with-input">
                     Klant
                 </td>
                 <td class="td-content">
@@ -27,7 +27,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">
+                <td class="label-with-input">
                     Projecturen
                 </td>
                 <td class="td-content">
@@ -38,7 +38,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">
+                <td class="label-with-input">
                     Boekjaar
                 </td>
                 <td class="td-content">
@@ -46,7 +46,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">
+                <td class="label-with-input">
                     Startweek
                 </td>
                 <td class="td-content">
@@ -54,7 +54,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">
+                <td class="label-with-input">
                     Doorloop
                 </td>
                 <td class="td-content">
@@ -77,11 +77,11 @@
                     Status
                 </td>
                 <td class="td-content td-status status-{{model.projectStatus}}">
-                    <div class="status-label project-status"></div> {{status[model.projectStatus]}}
+                    <div class="status-label project-status"></div> <div class="status-label-text">{{status[model.projectStatus]}}</div>
                 </td>
             </tr>
             <tr ng-if="model.projectStatus === 2">
-                <td class="label">
+                <td class="label-with-input">
                     Afgerond
                 </td>
                 <td class="td-content">

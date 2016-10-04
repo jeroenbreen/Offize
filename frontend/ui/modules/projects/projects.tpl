@@ -1,4 +1,4 @@
-<div class="projects-col-1">
+<div class="projects-col projects-col-big">
 
     <div>
         <!-- filter -->
@@ -84,26 +84,28 @@
     </div>
 </div>
 
-<div class="projects-col-2">
+<div class="projects-col projects-col-med">
     <ofc-detail ng-if="model.currentProject"
                 ofc-model="model.currentProject"
                 ofc-office="model"
                 ofc-configuration="model.configuration"></ofc-detail>
 </div>
 
-<div class="projects-col-3">
+<div class="projects-col projects-col-med">
     <ofc-comments ng-if="model.currentProject"
                   ofc-model="model.currentProject"
                   ofc-office="model"
                   ofc-configuration="model.configuration"></ofc-comments>
+</div>
 
+<div class="projects-col projects-col-med">
     <ofc-hours ng-if="model.currentProject"
                ofc-model="model.currentProject"
                ofc-office="model"
                ofc-configuration="model.configuration"></ofc-hours>
 </div>
 
-<div class="projects-col-4">
+<div class="projects-col projects-col-small">
     <ofc-distribution ofc-model="model.projects" ofc-office="model"></ofc-distribution>
 </div>
 
