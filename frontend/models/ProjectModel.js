@@ -89,11 +89,7 @@ define([
     };
 
     _p.hasComments = function() {
-        if (this.comments.length > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.comments.length > 0;
     };
 
     _p.getHours = function() {
@@ -134,11 +130,7 @@ define([
     };
 
     _p.isOverHours = function() {
-        if (this.getScore() > 100) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.getScore() > 100;
     };
 
     _p.exportSettings = function() {
