@@ -14,7 +14,7 @@ define([
             var amount = 0;
             for (var i = 0, l = $scope.model.invoices.length; i < l; i++) {
                 var invoice = $scope.model.invoices[i];
-                if (invoice.date.j === year && invoice.date.m === month) {
+                if (invoice.date.year === year && invoice.date.month === month) {
                     var thisAmount = 0;
                     for (var j = 0, jl = invoice.lines.length; j < jl; j++) {
                         var line = invoice.lines[j];
