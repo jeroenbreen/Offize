@@ -16,7 +16,6 @@ define([
     var _p = DistributionWeekModel.prototype = Object.create(Parent.prototype);
 
     _p.importDistributions = function(distributionWeek) {
-        console.log(distributionWeek);
         // todo this is temp code for transition
         if (distributionWeek.distributions) {
             for (var i = 0, l = distributionWeek.distributions.length; i < l; i++) {
