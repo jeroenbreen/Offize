@@ -9,7 +9,7 @@
                   ng-repeat="block in getBlocks(member, week)"
                   ng-style="{'height': block.hours * 3}"
                   ng-click="selectProject(block)"
-                  ng-class="{'selected-project': block.projectId === office.currentProject.projectId}"></div>
+                  ng-class="{'selected-project': block.parent === office.currentProject}"></div>
         </div>
     </div>
     <div class="panel-footer">

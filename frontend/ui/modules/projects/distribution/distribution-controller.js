@@ -7,7 +7,7 @@ define([
     function DistributionController($scope) {
         this.$scope = $scope;
 
-        var n = 8,
+        var n = 4,
             year = dateTool.dateToProperties(dateTool.daysFromToday(0)).year;
 
         $scope.weeks = [];
@@ -41,7 +41,7 @@ define([
         };
 
         $scope.selectProject = function(block) {
-            $scope.office.currentProject = $scope.office.getProjectById(block.parent.projectId);
+            $scope.office.currentProject = block.parent;
         };
 
         $scope.formatTitle = function(block) {

@@ -16,8 +16,12 @@ define([
     var _p = DistributionWeekModel.prototype = Object.create(Parent.prototype);
 
     _p.importDistributions = function(distributionWeek) {
-        for (var i = 0, l = distributionWeek.length; i < l; i++) {
-            this.distributions.push(new DistributionModel(this.parent, distributionWeek[i]))
+        console.log(distributionWeek);
+        // todo this is temp code for transition
+        if (distributionWeek.distributions) {
+            for (var i = 0, l = distributionWeek.distributions.length; i < l; i++) {
+                this.distributions.push(new DistributionModel(this.parent, distributionWeek.distributions[i]))
+            }
         }
     };
 

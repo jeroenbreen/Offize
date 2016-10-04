@@ -86,8 +86,8 @@ define([
         };
 
         $scope.addWeekToDistribution = function(){
-            var distribution = getDistributionWeek();
-            $scope.model.addDistribution(distribution);
+            var distributionWeek = getDistributionWeek();
+            $scope.model.addDistribution(distributionWeek);
         };
         
         function getDistributionWeek() {
