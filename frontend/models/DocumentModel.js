@@ -47,6 +47,7 @@ define([
 
     _p.setProperties = function(document) {
         if (!document.sender) {
+            console.log(document);
             this.sender = this.convertSender(document.bedrijf);
             this.client = this.convertClient(document.klant);
             this.year = document.jaar;
