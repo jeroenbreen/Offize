@@ -21,7 +21,7 @@
                 <input class="paper-year" ng-model="model.date.year">
             </span>
             <span ng-if="model.locked">
-                {{model.date.day}} {{months[model.date.month]}} {{model.date.year}}
+                {{model.date.day}} {{months[model.date.month - 1]}} {{model.date.year}}
             </span>
         </div>
 
