@@ -70,13 +70,13 @@ ofc-document {
                 clear: both;
                 width: 100%;
                 padding-top: 20px;
-                overflow: auto;
+                height: 120px;
 
                 input {
                     width: 100%;
                 }
 
-                #paper-contact-left {
+                .paper-contact-left {
                     width: ~'calc(50% - 20px)';
                     float: left;
                     border-top: 1px solid #000;
@@ -84,7 +84,7 @@ ofc-document {
                     margin-right: 10px;
                 }
 
-                #paper-contact-right {
+                .paper-contact-right {
                     width: ~'calc(50% - 20px)';
                     float: right;
                     border-top: 1px solid #000;
@@ -96,6 +96,7 @@ ofc-document {
             #paper-title {
                 margin-top: 20px;
                 width: 100%;
+                clear: both;
 
                 input {
                     width: 100%;
@@ -258,15 +259,18 @@ li.lines-row, .ui-sortable-helper {
 
 
 .locked-file {
-    #paper-contact-left,
-    #paper-contact-right,
-    #paper-lines ul {
-        font-family: "Roboto";
-        font-size: 11px;
+    #paper-info,
+    .paper-contact-left,
+    .paper-contact-right {
+        line-height: 1.5;
     }
 
-    #paper-lines ul {
+    li.lines-row {
         margin-left: 0;
+
+        .lines-cell {
+            width: ~'calc(100% - 14px)';
+        }
     }
 }
 
