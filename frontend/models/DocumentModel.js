@@ -30,13 +30,10 @@ define([
         this.currency = '';
         this.lines = [];
         this.locked = false;
-        this.vat = true;
-        this.english = false;
-        this.newStyle = false;
+        this.vat = true; // currently inactive
+        this.english = false; // currently inactive
+        this.hideTotal = false;
         this.setProperties(document);
-        console.log(this.client);
-        console.log(this.date);
-        console.log(this.sender);
     }
 
     var _p = DocumentModel.prototype = Object.create(Parent.prototype);
@@ -62,7 +59,7 @@ define([
             this.locked = document.locked;
             this.vat = document.btw;
             this.english = document.english;
-            this.newStyle = true;
+            this.hideTotal = document.hideTotal;
             this.importLines(document.posten);
         } else {
             this.sender = this.convertSender(document.sender);
@@ -77,7 +74,7 @@ define([
             this.locked = document.locked;
             this.vat = document.vat;
             this.english = document.english;
-            this.newStyle = true;
+            this.hideTotal = document.hideTotal;
             this.importLines(document.lines);
         }
     };
@@ -158,7 +155,6 @@ define([
     };
 
     _p.getPrefix = function() {
-        console.log(this.doctype);
         switch (this.doctype) {
             case 'tenders':
                 return 'Offerte';

@@ -34,11 +34,10 @@ define([
         $scope.addComment = function() {
             var message;
             if ($scope.newComment.comment !== '') {
-                var handleSuccess = function(data, status) {
-                    var message = 'Toegevoegd: ' + $scope.newComment.comment;
+                var handleSuccess = function(response, status) {
                     $scope.office.importComment($scope.newComment);
                     $scope.newComment = emptyComment();
-                    modal.show(message, false);
+                    modal.show(response, false);
                 };
                 $scope.newComment.date = new Date().toLocaleString();
                 $scope.newComment.id = $scope.office.getCommentId();
@@ -67,10 +66,9 @@ define([
 
         $scope.removeComment = function(comment) {
             var message = 'Wil je deze comment echt verwijderen?',
-                handleSuccess = function(data, status) {
-                    var successMessage = 'Comment verwijderd';
+                handleSuccess = function(response, status) {
                     comment.remove();
-                    modal.show(successMessage, false)
+                    modal.show(response, false)
                 };
             modal.confirm(message, function(result){
                 if (result) {
@@ -80,13 +78,11 @@ define([
         };
 
         $scope.updateComment = function(comment) {
-            console.log("!");
             var handleSuccess;
             clearTimeout(timer);
             timer = setTimeout(function(){
-                handleSuccess = function(data, status) {
-                    var message = 'Save: comment';
-                    modal.show(message, false);
+                handleSuccess = function(response, status) {
+                    modal.show(response, false);
                 };
                 dataFactory.update(commonTools.param(comment)).success(handleSuccess);
             }, 1000);

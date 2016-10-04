@@ -163,10 +163,10 @@ function nlToBreak ($string) {
 
 
 $result = $mysqli->query ($query);
-if ($result === false) {
-    echo '<p>Er is een fout opgetreden:
+if ($result == false) {
+    echo 'Er is een fout opgetreden:
           <br />Foutmelding: ' . mysql_error() . '
-          <br />Query: ' . $query . '</p>';
+          <br />Query: ' . $query;
 } else {
     echo $type . " gewijzigd in database";
 }

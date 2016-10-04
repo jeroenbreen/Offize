@@ -34,7 +34,7 @@ define([
 
     toString = function(date) {
         var newDate = dateToProperties(new Date(date));
-        return newDate.day + '/' + newDate.month + '/' + newDate.year;
+        return newDate.day + '/' + (newDate.month + 1) + '/' + newDate.year;
     };
 
 

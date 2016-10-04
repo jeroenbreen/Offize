@@ -33,8 +33,7 @@ define([
             clearTimeout(timer);
             timer = setTimeout(function(){
                 handleSuccess = function(data, status) {
-                    var message = 'Save: ' + project.projectName;
-                    modal.show(message, false);
+                    modal.show(data);
                 };
                 var exp = $.param(project.export());
                 dataFactory.update(exp).success(handleSuccess);
@@ -63,13 +62,11 @@ define([
 
         $scope.addProject = function() {
             var message;
-            console.log($scope.newProject);
             if ($scope.newProject.memberId !== null && $scope.newProject.contactId !== null) {
-                var handleSuccess = function(data, status) {
-                    var message = 'Toegevoegd: ' + $scope.newProject.projectName;
+                var handleSuccess = function(response, status) {
                     $scope.model.importProject($scope.newProject);
                     $scope.newProject = emptyProject();
-                    modal.show(message, false);
+                    modal.show(response, false);
                 };
                 $scope.newProject.rate = $scope.model.getContactById($scope.newProject.contactId).rate;
                 $scope.newProject.projectId = $scope.model.getProjectId();

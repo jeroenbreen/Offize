@@ -64,7 +64,7 @@ define([
 
 
         $scope.lockFile = function () {
-            $scope.model.lock = !$scope.model.lock;
+            $scope.model.locked = !$scope.model.locked;
         };
 
         // document functions

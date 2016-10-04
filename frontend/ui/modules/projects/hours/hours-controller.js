@@ -16,27 +16,10 @@ define([
         $scope.addHour = function() {
             var message;
             if ($scope.newHour.description !== '') {
-                $scope.newHour.date = new Date().toLocaleString();
-                $scope.newHour.projectId = $scope.model.projectId;
-                $scope.office.importHour($scope.newHour);
-                message = 'added hour...';
-                modal.show(message, false);
-                // resource
-                $scope.newHour = cleanHour();
-            } else {
-                message = 'Vul wat in.';
-                modal.show(message, true);
-            }
-        };
-
-        $scope.addHour = function() {
-            var message;
-            if ($scope.newHour.description !== '') {
-                var handleSuccess = function(data, status) {
-                    var message = 'Toegevoegd: ' + $scope.newHour.description;
+                var handleSuccess = function(response, status) {
                     $scope.office.importHour($scope.newHour);
                     $scope.newHour = emptyHour();
-                    modal.show(message, false);
+                    modal.show(response, false);
                 };
                 $scope.newHour.date = new Date();
                 $scope.newHour.projectId = $scope.model.projectId;
@@ -49,10 +32,9 @@ define([
 
         $scope.removeHour = function(hour) {
             var message = 'Wil je ' + hour.description + ' echt verwijderen?',
-                handleSuccess = function(data, status) {
-                    var successMessage = hour.description + ' verwijderd';
+                handleSuccess = function(response, status) {
                     hour.remove();
-                    modal.show(successMessage, false)
+                    modal.show(response, false)
                 };
             modal.confirm(message, function(result){
                 if (result) {

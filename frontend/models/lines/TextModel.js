@@ -7,15 +7,13 @@ define([
     function TextModel(parent, line) {
         Object.defineProperty(this, 'parent', { value: parent, enumerable: false, writable: true, configurable: true });
         this.type = 'text';
-        if (line) {
-            this.import(line);
-        }
+        this.import(line);
     }
 
     var _p = TextModel.prototype = Object.create(Parent.prototype);
 
     _p.import = function(line) {
-        if (!line.hasOwnProperty('title')) {
+        if (!line.hasOwnProperty('text')) {
             if (line.type === 'text') {
                 this.text = line.content
             } else {
