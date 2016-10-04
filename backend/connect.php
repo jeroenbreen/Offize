@@ -1,11 +1,11 @@
 <?php
 $server = "localhost";
-$gebruiker = "root";
-$wachtwoord = "root";
+$user = "root";
+$password = "root";
 $db = "inn_office";
 
-$mysqli = mysqli_connect($server,$gebruiker,$wachtwoord, $db); 
+$mysqli = mysqli_connect($server,$user,$password,$db);
 if($mysqli->set_charset("utf8")) {
-    
+
 }
 ?>
