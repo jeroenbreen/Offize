@@ -84,7 +84,7 @@
     </div>
 </div>
 
-<div class="projects-col projects-col-med">
+<div class="projects-col projects-col-med projects-col-detail">
     <ofc-detail ng-if="model.currentProject"
                 ofc-model="model.currentProject"
                 ofc-office="model"

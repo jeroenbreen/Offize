@@ -26,8 +26,8 @@
     </div>
     <div class="panel-attachement">
         <select title="selecteer teamlid" ng-options="member.memberId as member.initials for (index, member) in office.team" ng-model="newHour.memberId"></select>
-        <input ng-model="newHour.description" placeholder="Beschrijving" class="hours-description">
         <input ng-model="newHour.time" placeholder="Tijd in min." class="hours-time">
+        <input ng-model="newHour.description" placeholder="Beschrijving" class="hours-description">
     </div>
     <div class="panel-footer">
         <button title="Comment toevoegen" class="glyph fa fa-plus" ng-click="addHour()"></button>
