@@ -31,7 +31,7 @@
                     Projecturen
                 </td>
                 <td class="td-content">
-                    <input class="input-small" title="Projecturen" ng-model="model.hours"> x
+                    <input class="input-small" title="Projecturen" ng-model="model.hours"> ×
                     <input class="input-small" title="Munt" ng-model="model.currency">
                     <input class="input-small" title="Uurtarief" ng-model="model.rate"> -
                     <input class="input-small" title="Korting / Correctie" ng-model="model.discount">

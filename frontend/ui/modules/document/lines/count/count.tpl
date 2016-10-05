@@ -5,7 +5,7 @@
 <div class="lines-row-c2">
     <input ng-if="!model.parent.locked" ng-model="model.hours">
     <span ng-if="model.parent.locked">{{model.hours}}</span>
-    x
+    ×
 </div>
 <div class="lines-row-c3">
     <input ng-if="!model.parent.locked" ng-model="model.rate">

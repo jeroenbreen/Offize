@@ -109,7 +109,7 @@ $html = "
                         " . $title . "
                     </td>
                     <td class='cell2'>
-                        " . $hours . " x " . $rate . " EUR
+                        " . $hours . " × " . $rate . " EUR
                     </td>
                     <td class='cell3'>
                         " . nrToCur($hours * $rate) . " EUR
