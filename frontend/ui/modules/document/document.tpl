@@ -112,12 +112,12 @@
         <button ng-class="{'locked': model.locked}" ng-click="lockFile()" class="glyph grey unlocked fa fa-lock" title="Lock file"></button>
         <button ng-if="!model.locked" ng-click="removeFile()" class="glyph grey red fa fa-trash" title="Delete file"></button>
         <div id="paper-buttons-extra">
-            <div ng-if="model.type == 'Factuur'">
+            <div ng-if="model.doctype === 'invoices'">
                 <span>Betaald</span><input class="" type="checkbox" value="1" ng-model="model.paid">
-                <span>PDF Engelstalig</span><input type="checkbox" value="1" ng-model="model.english">
-                <div ng-if="model.english">
-                    <span>Zonder BTW</span><input type="checkbox" value="1" ng-model="model.vat">
-                </div>
+                <!--<span>PDF Engelstalig</span><input type="checkbox" value="1" ng-model="model.english">-->
+                <!--<div ng-if="model.english">-->
+                    <!--<span>Zonder BTW</span><input type="checkbox" value="1" ng-model="model.vat">-->
+                <!--</div>-->
             </div>
             <div ng-if="!model.locked">
                 <span>Verberg total</span><input type="checkbox" ng-model="model.hideTotal">
