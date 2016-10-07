@@ -3,24 +3,24 @@ define([
     './app-controller',
     './app-directive',
 
-    '../modules/projects/projects-controller',
-    'require/text!../modules/projects/projects.tpl',
+    './modules/projects/projects-controller',
+    'require/text!./modules/projects/projects.tpl',
 
-    '../modules/contacts/contacts-controller',
-    'require/text!../modules/contacts/contacts.tpl',
+    './modules/contacts/contacts-controller',
+    'require/text!./modules/contacts/contacts.tpl',
 
-    '../modules/documents/documents-controller',
-    'require/text!../modules/documents/documents.tpl',
+    './modules/documents/documents-controller',
+    'require/text!./modules/documents/documents.tpl',
 
-    '../modules/graphics/graphics-controller',
-    'require/text!../modules/graphics/graphics.tpl',
+    './modules/graphics/graphics-controller',
+    'require/text!./modules/graphics/graphics.tpl',
 
-    '../modules/contacts/contact-detail/contact-detail',
-    '../modules/document/document',
-    '../modules/projects/detail/detail',
-    '../modules/projects/comments/comments',
-    '../modules/projects/hours/hours',
-    '../modules/projects/distribution/distribution',
+    './modules/contacts/contact-detail/contact-detail',
+    './modules/document/document',
+    './modules/projects/detail/detail',
+    './modules/projects/comments/comments',
+    './modules/projects/hours/hours',
+    './modules/projects/distribution/distribution',
     
     'ngStorage',
     'ngResource',

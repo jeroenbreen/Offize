@@ -56,7 +56,7 @@ $html = "
             <table id='header-table'>
                 <tr>
                     <td class='half'>
-                        <img class='header-logo' src='../../frontend/assets/img/logo-big.png'>
+                        <img class='header-logo' src='../../assets/img/logo-big.png'>
                     </td>
                     <td id='info' class='half'>
                         <b>" . $type . " " . $year . " - " . $nr . "</b><br>

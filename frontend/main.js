@@ -1,7 +1,7 @@
 require([
     'require/domReady',
     'angular',
-    'ui/app/app',
+    'ui/app',
     'office',
     'models/OfficeModel'
 ], function (
