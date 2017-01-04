@@ -1,4 +1,8 @@
-define([], function() {
+define([
+    './dataMock'
+], function(
+    dataMock
+) {
     "use strict";
     function AppController($scope, OfficeModel, $http) {
         this.$scope = $scope;
@@ -9,15 +13,14 @@ define([], function() {
         importData();
 
         function importData() {
-            $http.get("./backend/bootstrap.php").success(function(data) {
-                console.log(data);
-                importContacts(data.contacts);
-                importProjects(breakToNewLine(data.projects));
-                importTeam(data.team);
-                importHours(data.hours);
-                importComments(data.comments);
-                $scope.office.setConfiguration(data.configuration);
-            });
+            var data = dataMock.dataMock;
+            importContacts(data.contacts);
+            importProjects(breakToNewLine(data.projects));
+            importTeam(data.team);
+            importHours(data.hours);
+            importComments(data.comments);
+            $scope.office.setConfiguration(data.configuration);
+            $scope.office.currentDocument = $scope.office.tenders[0];
         }
 
         function importProjects(projects) {
