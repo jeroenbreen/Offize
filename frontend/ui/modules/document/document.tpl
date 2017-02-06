@@ -1,7 +1,7 @@
 <div id="paper-container" ng-class="{'locked-file': model.locked}">
     <div id="paper">
         <div id="paper-header">
-            <img ng-src="assets/img/logo.png">
+            <img ng-src="frontend/assets/img/logo.png">
         </div>
 
         <div id="paper-info">
@@ -67,7 +67,7 @@
             <ul ui-sortable="sortableOptions" ng-model="model.lines">
                 <li class="lines-row animation-item-2" ng-repeat="line in model.lines" >
                     <div ng-if="!model.locked" class="handle" title="posten herordenen">
-                        <img src="assets/img/drag.png">
+                        <img src="frontend/assets/img/drag.png">
                     </div>
 
                     <ofc-count ofc-model="line" ng-if="line.type === 'count'" class="lines-cell">

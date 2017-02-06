@@ -3,10 +3,11 @@
     <div>
         <!-- filter -->
         <div class="filter ofc-row">
-            <div class="ofc-cell ofc-cell-5">
+            <div class="ofc-cell ofc-cell-1">
                 <input type="text" placeholder="Zoek..." ng-model="filter.search">
             </div>
-            <div class="ofc-cell ofc-cell-8">
+            <div class="ofc-cell ofc-cell-7">
+                <select title="selecteer teamlid" ng-options="member.memberId as member.initials for (index, member) in model.memberFilter" ng-model="filter.memberId"></select>
                 <input type="checkbox" ng-model="showOnlyLiveProjects"> live proj.
                 <select title="selecteer jaar" ng-options="year as year for year in model.years" ng-model="filter.year"></select>
             </div>

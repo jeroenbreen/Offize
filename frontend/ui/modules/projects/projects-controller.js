@@ -95,6 +95,7 @@ define([
 
         $scope.filter = {
             search : '',
+            memberId: -1,
             year : thisYear
         };
 
@@ -106,8 +107,9 @@ define([
             for (var i = 0, l = projects.length; i < l; i++) {
                 var project = projects[i];
                 if (
-                    ($scope.filter.year === 'alle' || project.year === $scope.filter.year) &&
+                    ($scope.filter.year === 'Alle' || project.year === $scope.filter.year) &&
                     ($scope.filter.search === '' || project.projectName.toLocaleLowerCase().indexOf($scope.filter.search.toLocaleLowerCase()) > -1) &&
+                    ($scope.filter.memberId === -1 || project.memberId === $scope.filter.memberId) &&
                     (!$scope.showOnlyLiveProjects || project.projectStatus < 3)
                 ) {
                     filtered.push(project);

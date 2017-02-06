@@ -10,12 +10,14 @@ define([], function() {
 
         function importData() {
             $http.get("./backend/bootstrap.php").success(function(data) {
+                console.log(JSON.stringify(data));
                 console.log(data);
                 importContacts(data.contacts);
                 importProjects(breakToNewLine(data.projects));
                 importTeam(data.team);
                 importHours(data.hours);
                 importComments(data.comments);
+                createMemberFilter();
                 $scope.office.setConfiguration(data.configuration);
             });
         }
@@ -55,6 +57,23 @@ define([], function() {
                 data[i].comments = data[i].comments.replace(/<br>/g, '\n');
             }
             return data;
+        }
+
+        function createMemberFilter() {
+            var members = [],
+                allOption = {
+                    memberId: -1,
+                    initials: 'Alle'
+                };
+            members.push(allOption);
+            for (var i = 0, l = $scope.office.team.length; i < l; i++) {
+                var member = {
+                    memberId: $scope.office.team[i].memberId,
+                    initials: $scope.office.team[i].initials
+                };
+                members.push(member);
+            }
+            $scope.office.memberFilter = members;
         }
         
 
