@@ -2,3 +2,4 @@
 frontend/uploads/
 /vendor/
 backend/bootstrap.php
+print/pdf/
