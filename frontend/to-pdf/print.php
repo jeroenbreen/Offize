@@ -22,21 +22,23 @@ $months = array("januari", "februari", "maart", "april", "mei", "juni", "juli", 
 $date_month = $months[$month - 1];
 $date_year = $objData->data->date->{'year'};
 
-$vat = $objData->data->{'vat'};
+$vat = (isset($objData->data->{'vat'})) ? $objData->data->{'vat'} : true;
 $title = $objData->data->{'title'};
 $lines = $objData->data->{'lines'};
+$hideTotal = false;
 
 $doctype= $objData->data->{'doctype'};
 if ($doctype == 'invoices') {
     $type = 'Factuur';
 } else {
+    $hideTotal = $objData->data->{'hideTotal'};
     $type = 'Offerte';
 }
 
 $total = 0;
 $subtotal = 0;
 
-$hideTotal = $objData->data->{'hideTotal'};
+
 
 function nrToCur ($nr) {
     $cur = number_format($nr, 2);
