@@ -1,3 +1,4 @@
 .idea/
 frontend/uploads/
 /vendor/
+backend/bootstrap.php
