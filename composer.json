@@ -1,0 +1,12 @@
+{
+    "name": "arjen/office",
+    "authors": [
+        {
+            "name": "Arjen Duinhouwer",
+            "email": "arjen@arjenduinhouwer.nl"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^0.8.0"
+    }
+}

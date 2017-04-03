@@ -50,13 +50,17 @@ define([
             if ($scope.model.english) {
                 url = 'frontend/to-pdf/print_en.php';
             } else {
-                url = 'frontend/to-pdf/print.php';
+                url = 'print/print-adapter.php';
             }
+
             $http.post(url, {
                 'data' : printData
             }).success(function(data, status, headers, config) {
-                //console.log(data);
-                window.open(data);
+
+                console.log(data);
+
+                //window.open(data);
+
             }).error(function(data, status, headers, config) {
             });
         };
