@@ -31,6 +31,7 @@ class PrintManager
         $link = "pdf/" . $this->type . "-" . $this->year . "-" . $this->nr . ".pdf";
 
         file_put_contents($link, $dompdf->output());
+        echo $link;
     }
 
     protected function getHMTL()

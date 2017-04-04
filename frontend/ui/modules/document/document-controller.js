@@ -56,13 +56,8 @@ define([
             $http.post(url, {
                 'data' : printData
             }).success(function(data, status, headers, config) {
-
-                console.log(data);
-
-                //window.open(data);
-
-            }).error(function(data, status, headers, config) {
-            });
+                window.open(window.config.printLocation + data);
+            }).error(function(data, status, headers, config) { });
         };
 
 
