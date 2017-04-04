@@ -12,7 +12,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 class PrintManager
 {
-    protected $data, $type, $year, $nr, $address;
+    protected $data, $type, $year, $nr, $address, $hideTotal;
 
     public function handlePrint()
     {
@@ -40,13 +40,14 @@ class PrintManager
         $subtotal = 0;
 
         $months = array("januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december");
-        $date_month = $months[$this->data->date->month - 1];
+        $this->date_month = $months[$this->data->date->month - 1];
         $this->year = $this->data->date->year;
         $this->nr = $this->data->nr;
 
         $this->address = (isset($this->data->client->address))? $this->data->client->address : '-';
 
         $doctype = $this->data->{'doctype'};
+        $hideTotal = false;
         if ($doctype == 'invoices') {
             $type = 'Factuur';
             $this->type = $type;
@@ -96,7 +97,7 @@ class PrintManager
                         <td valign='top' class='half'>
                             <div id='document-info'>
                                 <b>" . $this->type . " " . $this->data->date->year . " - " . $this->data->nr . "</b><br>
-                                  " . $this->data->date->day . " " . $date_month . " " . $this->data->date->year . "
+                                  " . $this->data->date->day . " " . $this->date_month . " " . $this->data->date->year . "
                             </div>
                         </td>
                     </tr>
@@ -247,7 +248,7 @@ class PrintManager
                 }
             }
 
-            if (!$this->data->hideTotal){
+            if (!$hideTotal){
                 $html .= "
                         <tr>
                             <td colspan='3' class='cell5 spacer'>
@@ -267,7 +268,7 @@ class PrintManager
                                 " . $this->nrToCur($total) . " EUR
                             </td>
                         </tr>";
-                if ($type == "Factuur" && $this->data->vat == false) {
+                if ($this->data->{'doctype'} === "invoices" && $this->data->vat == false) {
                     $html .=
                         "<tr>
                             <td colspan='2' class='cell4'>
