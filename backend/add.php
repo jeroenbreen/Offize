@@ -11,7 +11,6 @@ else if ($type == "hours") { $query = insertHours(); }
 
 
 function insertProject() {
-    $projectId = $_POST['projectId'];
     $projectName = $_POST['projectName'];
     $projectStatus = $_POST['projectStatus'];
     $contactId = $_POST['contactId'];
@@ -19,19 +18,16 @@ function insertProject() {
     $hours = $_POST['hours'];
     $rate = $_POST['rate'];
     $discount = $_POST['discount'];
-    $fixedTotal = $_POST['fixedTotal'];
     $currency = $_POST['currency'];
     $tenders = $_POST['tenders'];
     $invoices = $_POST['invoices'];
+    $comments = $_POST['comments'];
     $year = $_POST['year'];
     $week = $_POST['week'];
     $distributionWeeks = $_POST['distributionWeeks'];
-    $finished = $_POST['finished'];
-    $comments = $_POST['comments'];
-    $query="INSERT INTO projects 
-    (projectId, projectName, projectStatus, contactId, memberId, hours, rate, discount, fixedTotal, currency, tenders, invoices, year, week, distributionWeeks, finished, comments)
+    $query="INSERT INTO projects
+    (projectName, projectStatus, contactId, memberId, hours, rate, discount, currency, tenders, invoices, comments, year, week, distributionWeeks)
     VALUES (
-    '". $projectId ."' ,
     '". $projectName ."'  ,
     '". $projectStatus ."' ,
     '". $contactId ."'  ,
@@ -39,15 +35,13 @@ function insertProject() {
     '". $hours ."'  ,
     '". $rate ."' ,
     '". $discount ."'  ,
-    '". $fixedTotal ."' ,
     '". $currency ."'  ,
     '". $tenders ."',
     '". $invoices ."',
+    '". $comments ."',
     '". $year ."' ,
     '". $week ."' ,
-    '". $distributionWeeks ."' ,
-    '". $finished ."' ,
-    '". comments ."'
+    '". $distributionWeeks ."'
     )";
     return $query;
 }
@@ -141,9 +135,7 @@ function nlToBreak ($string) {
 
 $result = $mysqli->query ($query);
 if ($result === false) {
-    echo '<p>Er is een fout opgetreden:
-          <br />Foutmelding: ' . mysql_error() . '
-          <br />Query: ' . $query . '</p>';
+    echo $mysqli->error;
 } else {
     echo $type . " toegevoegd in database";
 }

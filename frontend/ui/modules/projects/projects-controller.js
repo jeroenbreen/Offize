@@ -53,10 +53,12 @@ define([
                 hours: 0,
                 discount: 0,
                 currency: 'EUR',
+                week: 0,
                 year: thisYear,
                 invoices: [],
                 tenders: [],
-                distributionWeeks: []
+                distributionWeeks: [],
+                comments: ''
             }
         }
 

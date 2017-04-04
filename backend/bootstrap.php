@@ -25,7 +25,6 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $projects .= '"hours":' . $record["hours"] . ',';
     $projects .= '"rate":' . $record["rate"] . ',';
     $projects .= '"discount":' . $record["discount"] . ',';
-    $projects .= '"fixedTotal":' . $record["fixedTotal"] . ',';
     $projects .= '"currency":"' . $record["currency"] . '",';
     $projects .= '"tenders":' . $record["tenders"] . ',';
     $projects .= '"invoices":' . $record["invoices"] . ',';
