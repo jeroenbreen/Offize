@@ -21,7 +21,6 @@ define([
                     $scope.newHour = emptyHour();
                     modal.show(response, false);
                 };
-                $scope.newHour.date = new Date();
                 $scope.newHour.projectId = $scope.model.projectId;
                 dataFactory.add(commonTools.param($scope.newHour)).success(handleSuccess);
             } else {
@@ -50,7 +49,7 @@ define([
         function emptyHour() {
             return {
                 description : '',
-                date : '',
+                date : new Date(),
                 time : 0,
                 memberId : null,
                 type : 'hours'
