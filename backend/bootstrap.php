@@ -80,10 +80,7 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $hours .= '"memberId":' . $record["memberId"] . ',';
     $hours .= '"date":"' . $record["date"] . '",';
     $hours .= '"description":"' . $record["description"] . '",';
-    $hours .= '"time":'. $record["time"] . ',';
-    $hours .= '"day":'. $record["day"] . ',';
-    $hours .= '"month":'. $record["month"] . ',';
-    $hours .= '"year":'. $record["year"] . '}';
+    $hours .= '"time":'. $record["time"] . '}';
 }
 $hours .="]"; 
 

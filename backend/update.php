@@ -92,18 +92,12 @@ function updateHours() {
     $memberId = $_POST['memberId'];
     $description = $_POST['description'];
     $time = $_POST['time'];
-    $day = $_POST['day'];
-    $month = $_POST['month'];
-    $year = $_POST['year'];
-    $query = "UPDATE hours SET 
+    $query = "UPDATE hours SET
     projectId = '" . $projectId . "' , 
     memberId = '" . $memberId . "' ,
     description = '" . $description . "' ,
     time = '" . $time . "' ,
-    day = '" . $day . "' ,
-    month = '" . $month . "' ,
-    year = '" . $year . "'  
-    WHERE 
+    WHERE
     hourId = " . $hourId;
     return $query;
 }

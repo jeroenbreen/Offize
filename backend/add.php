@@ -111,19 +111,13 @@ function insertHours() {
     $memberId = $_POST['memberId'];
     $description = $_POST['description'];
     $time = $_POST['time'];
-    $day = $_POST['day'];
-    $month = $_POST['month'];
-    $year = $_POST['year'];
-    $query="INSERT INTO hours 
-    (projectId, memberId , description, time, day, month, year)
+    $query="INSERT INTO hours
+    (projectId, memberId , description, time)
     VALUES (
     '". $projectId ."' ,
     '". $memberId ."'  ,
     '". $description ."',
-    '". $time ."',
-    '". $day ."',
-    '". $month ."',
-    '". $year ."'
+    '". $time ."'
     )";
     return $query;
 }
