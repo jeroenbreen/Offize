@@ -42,9 +42,7 @@ function deleteHours() {
 
 $result = $mysqli->query ($query);
 if ($result === false) {
-    echo '<p>Er is een fout opgetreden:
-          <br />Foutmelding: ' . mysql_error() . '
-          <br />Query: ' . $query . '</p>';
+    echo $mysqli->error;
 } else {
     echo $type. " verwijderd uit database";
 }
