@@ -18,7 +18,6 @@ function updateProject() {
     $hours = $_POST['hours'];
     $rate = $_POST['rate'];
     $discount = $_POST['discount'];
-    $fixedTotal = $_POST['fixedTotal'];
     $currency = $_POST['currency'];
     $tenders = $_POST['tenders'];
     $invoices = $_POST['invoices'];
@@ -35,7 +34,6 @@ function updateProject() {
     hours = '" . $hours . "' , 
     rate = '" . $rate . "' , 
     discount = '" . $discount . "' , 
-    fixedTotal = '" . $fixedTotal . "' , 
     currency = '" . $currency . "' ,
     tenders = '" . $tenders . "' ,
     invoices = '" . $invoices . "' ,
@@ -163,10 +161,8 @@ function nlToBreak ($string) {
 
 
 $result = $mysqli->query ($query);
-if ($result == false) {
-    echo 'Er is een fout opgetreden:
-          <br />Foutmelding: ' . mysql_error() . '
-          <br />Query: ' . $query;
+if ($result === false) {
+    echo $mysqli->error;
 } else {
     echo $type . " gewijzigd in database";
 }
