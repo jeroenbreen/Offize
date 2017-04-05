@@ -17,7 +17,7 @@ define([
         this.contactId = project.contactId;
         this.contact = this.getContact();
         this.memberId = project.memberId;
-        this.projectId = project.projectId;
+        this.projectId = Number(project.projectId);
         this.projectName = project.projectName;
         this.projectStatus = project.projectStatus;
         this.currency = project.currency;
