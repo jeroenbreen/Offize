@@ -22,7 +22,6 @@ define([
         this.projectStatus = project.projectStatus;
         this.currency = project.currency;
         this.discount = project.discount;
-        this.fixedTotal = project.fixedTotal;
         this.rate = project.rate;
         this.hours = project.hours;
         this.year = project.year;
