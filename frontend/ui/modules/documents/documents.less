@@ -8,11 +8,25 @@
     display: inline-block;
     cursor: pointer;
     vertical-align: top;
-    border-left: 4px solid transparent;
     position: relative;
     overflow: hidden;
     font-size: 10px;
     transition: all 0.2s ease;
+    border-bottom: 4px solid red;
+
+    &.paid {
+        border-bottom: 4px solid greenyellow;
+    }
+
+    &.mini-doc--tender {
+        border-bottom: 4px solid transparent;
+    }
+
+    &:hover,
+    &.selected {
+        transform: scale(1.1);
+        z-index: 10;
+    }
 }
 
 .overlapper {
@@ -20,9 +34,4 @@
     height: 100%;
     white-space: nowrap;
     overflow: hidden;
-}
-
-.mini-doc:hover, .mini-doc.selected  {
-    transform: scale(1.1);
-    z-index: 10;
 }
