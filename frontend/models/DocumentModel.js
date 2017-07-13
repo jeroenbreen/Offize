@@ -30,7 +30,7 @@ define([
         this.currency = '';
         this.lines = [];
         this.locked = false;
-        this.vat = true; // currently inactive
+        this.vat = 0;
         this.english = false; // currently inactive
         this.hideTotal = false;
         this.setProperties(document);
@@ -46,38 +46,20 @@ define([
     };
 
     _p.setProperties = function(document) {
-        if (!document.sender) {
-            console.log(document);
-            this.sender = this.convertSender(document.bedrijf);
-            this.client = this.convertClient(document.klant);
-            this.year = document.jaar;
-            this.nr = document.nr;
-            this.date = this.convertDate(document.datum);
-            this.title = document.omschrijving;
-            this.paid = document.betaald;
-            this.rate = document.rate;
-            this.currency = document.currency;
-            this.locked = document.locked;
-            this.vat = document.btw;
-            this.english = document.english;
-            this.hideTotal = document.hideTotal;
-            this.importLines(document.posten);
-        } else {
-            this.sender = this.convertSender(document.sender);
-            this.client = this.convertClient(document.client);
-            this.year = document.year;
-            this.nr = document.nr;
-            this.date = this.convertDate(document.date);
-            this.title = document.title;
-            this.paid = document.paid;
-            this.rate = document.rate;
-            this.currency = document.currency;
-            this.locked = document.locked;
-            this.vat = document.vat;
-            this.english = document.english;
-            this.hideTotal = document.hideTotal;
-            this.importLines(document.lines);
-        }
+        this.sender = this.convertSender(document.sender);
+        this.client = this.convertClient(document.client);
+        this.year = document.year;
+        this.nr = document.nr;
+        this.date = this.convertDate(document.date);
+        this.title = document.title;
+        this.paid = document.paid;
+        this.rate = document.rate;
+        this.currency = document.currency;
+        this.locked = document.locked;
+        this.vat = document.vat ? document.vat : 21;
+        this.english = document.english;
+        this.hideTotal = document.hideTotal;
+        this.importLines(document.lines);
     };
 
     _p.convertClient = function(client) {

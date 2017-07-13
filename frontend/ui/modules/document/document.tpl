@@ -94,8 +94,8 @@
                 <span class="left">Totaal</span><span class="right">{{getTotal(1) | number:2}} {{model.currency}}</span>
                 <br>
                 <div ng-if="!model.btw">
-                    <span class="left">BTW 21%</span><span class="right">{{getTotal(0.21) | number:2}} {{model.currency}}</span>
-                    <span class="left"><b>Te betalen</b></span><span class="right"><b>{{getTotal(1.21) | number:2}} {{model.currency}}</b></span>
+                    <span class="left">BTW {{model.vat}}%</span><span class="right">{{getTotal((model.vat / 100)) | number:2}} {{model.currency}}</span>
+                    <span class="left"><b>Te betalen</b></span><span class="right"><b>{{getTotal((1 + (model.vat / 100))) | number:2}} {{model.currency}}</b></span>
                 </div>
             </div>
 
@@ -121,6 +121,9 @@
             </div>
             <div ng-if="!model.locked">
                 <span>Verberg total</span><input type="checkbox" ng-model="model.hideTotal">
+            </div>
+            <div>
+                <span>BTW</span><input type="text" ng-model="model.vat">
             </div>
         </div>
     </div>

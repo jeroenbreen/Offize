@@ -268,14 +268,14 @@ class PrintManager
                                 " . $this->nrToCur($total) . " EUR
                             </td>
                         </tr>";
-                if ($this->data->{'doctype'} === "invoices" && $this->data->vat == false) {
+                if ($this->data->{'doctype'} === "invoices") {
                     $html .=
                         "<tr>
                             <td colspan='2' class='cell4'>
-                                BTW 21%
+                                BTW " .$this->data->vat . "%
                             </td>
                             <td class='cell3'>
-                                " . $this->nrToCur($total * 0.21) . " EUR
+                                " . $this->nrToCur($total * ($this->data->vat / 100)) . " EUR
                             </td>
                         </tr>
                         <tr>
@@ -283,7 +283,7 @@ class PrintManager
                                 <b>Te betalen</b>
                             </td>
                             <td class='cell3'>
-                                <b>" . $this->nrToCur($total * 1.21) . " EUR</b>
+                                <b>" . $this->nrToCur($total * (1 + ($this->data->vat / 100))) . " EUR</b>
                             </td>
                         </tr>";
                 }
