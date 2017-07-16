@@ -7,7 +7,8 @@
                 </td>
                 <td class="td-content">
                     <input type="text" title="Projectnaam" ng-model="model.projectName"><br>
-                    <button title="kopieer slug" class="glyph fa fa-pencil" ng-click="copySlug()"></button><br>
+                    <button title="kopieer slug" class="glyph fa fa-pencil" ng-click="copySlug()"></button>
+                    <span class="detail-slug">{{commonTools.toSlug(model.contact.getNumber(), model.projectName)}}</span>
                 </td>
             </tr>
             <tr>

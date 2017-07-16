@@ -40,7 +40,7 @@ define([
     };
 
     toSlug = function(nr, string) {
-        var name = string.toLowerCase().replace(/\s/g, '-').replace(/\./g, '-');
+        var name = string.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-');
         return nr + '-' + name;
     };
 
