@@ -258,8 +258,7 @@ class PrintManager
                         <tr>
                             <td colspan='2' class='cell4'>
                                 Totaal";
-
-                if ($type == "Offerte") {
+                if ($this->type == "Offerte") {
                     $html .= " (excl. 21% BTW)";
                 }
 
