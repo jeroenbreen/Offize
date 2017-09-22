@@ -31,11 +31,10 @@ define([
             var handleSuccess;
             clearTimeout(timer);
             timer = setTimeout(function(){
-                handleSuccess = function(data, status) {
-                    modal.show(data);
+                handleSuccess = function(response, status) {
+                    modal.show(response);
                 };
-                var exp = $.param(project.export());
-                dataFactory.update(exp).success(handleSuccess);
+                dataFactory.update($.param(project.toBackend())).success(handleSuccess);
             }, 1000);
         }
 
@@ -48,31 +47,24 @@ define([
             $scope.newProject = new Project();
         });
 
-        // TODO fix this
         $scope.addProject = function() {
-            // var message;
-            // if ($scope.newProject.memberId !== null && $scope.newProject.contactId !== null) {
-            //     var handleSuccess = function(response, status) {
-            //         $scope.model.importProject($scope.newProject);
-            //         $scope.newProject = emptyProject();
-            //         modal.show(response, false);
-            //     };
-            //     $scope.newProject.rate = $scope.model.getContactById($scope.newProject.contactId).rate;
-            //     $scope.newProject.projectId = $scope.model.getProjectId();
-            //     dataFactory.add(commonTools.param($scope.newProject)).success(handleSuccess);
-            // } else {
-            //     message = 'Vul klant en contact in.';
-            //     modal.show(message, true);
-            // }
-        };
-
-        $scope.digitize = function(value) {
-            while (/(\d+)(\d{3})/.test(value.toString())){
-                value = value.toString().replace(/(\d+)(\d{3})/, '$1'+'.'+'$2');
+            var message, project;
+            if ($scope.newProject.member !== null && $scope.newProject.contact !== null) {
+                var successCallback = function(response, status) {
+                    $scope.newProject.projectId = response.id;
+                    $scope.model.projects.push($scope.newProject);
+                    $scope.model.currentProject = $scope.newProject;
+                    $scope.newProject = new Project();
+                    modal.show(response.message, false);
+                };
+                $scope.newProject.rate = $scope.newProject.contact.rate;
+                project = $scope.newProject.toBackend();
+                dataFactory.create($.param(project)).success(successCallback);
+            } else {
+                message = 'Vul klant en contact in.';
+                modal.show(message, true);
             }
-            return value;
         };
-
 
 
 

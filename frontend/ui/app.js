@@ -91,10 +91,10 @@ define([
 
     .factory('dataFactory', ['$resource', '$http', function($resource, $http) {
         var remove = function(obj) {
-            return request(obj, 'remove');
+            return request(obj, 'delete');
         }, 
-        add = function(obj) {
-            return request(obj, 'add');
+        create = function(obj) {
+            return request(obj, 'create');
         }, 
         update = function(obj) {
             return request(obj, 'update');
@@ -112,9 +112,9 @@ define([
         }
 
         return {
-            remove : remove,
-            add : add,
-            update : update
+            create : create,
+            update : update,
+            delete : remove
         }
     }]);
 });

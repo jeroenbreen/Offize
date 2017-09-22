@@ -2,7 +2,7 @@
 include ('connect.php');
 
 $type = $_POST['type'];
-if ($type == "projects") { $query = deleteProject(); }
+if ($type == "project") { $query = deleteProject(); }
 else if ($type == "contacts") { $query = deleteContact(); }
 else if ($type == "team") { $query = deleteTeam(); }
 else if ($type == "comments") { $query = deleteComment(); }

@@ -3,7 +3,7 @@ include ('connect.php');
 
 
 $type = $_POST['type'];
-if ($type == "projects") { $query = insertProject(); }
+if ($type == "project") { $query = insertProject(); }
 else if ($type == "contacts") { $query = insertContact(); }
 else if ($type == "team") { $query = insertTeam(); }
 else if ($type == "comments") { $query = insertComment(); }
@@ -19,14 +19,10 @@ function insertProject() {
     $rate = $_POST['rate'];
     $discount = $_POST['discount'];
     $currency = $_POST['currency'];
-    $tenders = $_POST['tenders'];
-    $invoices = $_POST['invoices'];
-    $comments = $_POST['comments'];
     $year = $_POST['year'];
-    $week = $_POST['week'];
-    $distributionWeeks = $_POST['distributionWeeks'];
+    $finished = $_POST['finished'];
     $query="INSERT INTO projects
-    (projectName, projectStatus, contactId, memberId, hours, rate, discount, currency, tenders, invoices, comments, year, week, distributionWeeks)
+    (projectName, projectStatus, contactId, memberId, hours, rate, discount, currency, year, finished)
     VALUES (
     '". $projectName ."'  ,
     '". $projectStatus ."' ,
@@ -36,12 +32,8 @@ function insertProject() {
     '". $rate ."' ,
     '". $discount ."'  ,
     '". $currency ."'  ,
-    '". $tenders ."',
-    '". $invoices ."',
-    '". $comments ."',
     '". $year ."' ,
-    '". $week ."' ,
-    '". $distributionWeeks ."'
+    '". $finished ."'
     )";
     return $query;
 }
@@ -131,7 +123,10 @@ $result = $mysqli->query ($query);
 if ($result === false) {
     echo $mysqli->error;
 } else {
-    echo $type . " toegevoegd in database";
+    $response = [];
+    $response['id'] = mysqli_insert_id($mysqli);
+    $response['message'] = $type . " toegevoegd in database";
+    echo json_encode($response);
 }
 $mysqli->close();
 ?>

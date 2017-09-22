@@ -1,9 +1,11 @@
 define([
-    '../../../ui-tools/common-tools',
-    '../../../ui-tools/modal'
+    'ui/ui-tools/common-tools',
+    'ui/ui-tools/modal',
+    'jquery'
 ], function(
     commonTools,
-    modal
+    modal,
+    $
 ) {
     "use strict";
     function DetailController($scope, dataFactory) {
@@ -13,40 +15,42 @@ define([
         $scope.status = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Gearchiveerd'];
 
         $scope.removeProject = function() {
-            var message = 'Wil je ' + $scope.model.projectName + ' echt verwijderen?',
+            var message = 'Wil je ' + $scope.project.projectName + ' echt verwijderen?',
                 handleSuccess = function(data, status) {
-                    var successMessage = $scope.model.projectName + ' verwijderd';
-                    $scope.model.remove();
+                    var successMessage = $scope.project.projectName + ' verwijderd',
+                        index = $scope.office.projects.indexOf($scope.project);
+                    $scope.office.projects.splice(index, 1);
+                    $scope.office.currentProject = null;
                     modal.show(successMessage, false)
                 };
             modal.confirm(message, function(result){
                 if (result) {
-                    dataFactory.remove(commonTools.param($scope.model)).success(handleSuccess);
+                    dataFactory.delete($.param($scope.project.toBackend())).success(handleSuccess);
                 }
             });
         };
 
         $scope.archiveProject = function() {
-            $scope.model.projectStatus = 5;
+            $scope.project.projectStatus = 5;
         };
 
         $scope.reviveProject = function() {
-            $scope.model.projectStatus = 0;
+            $scope.project.projectStatus = 0;
         };
 
         $scope.dearchiveProject = function() {
-            $scope.model.projectStatus = 0;
+            $scope.project.projectStatus = 0;
         };
 
         $scope.copySlug = function() {
-            commonTools.clipboard(commonTools.toSlug($scope.model.contact.getNumber(), $scope.model.projectName));
+            commonTools.clipboard(commonTools.toSlug($scope.project.contact.getNumber(), $scope.project.projectName));
         };
 
         $scope.addDocument = function(type) {
             var d = new Date(),
                 year = d.getFullYear(),
                 newDocument,
-                contact = $scope.office.getContactById($scope.model.contactId),
+                contact = $scope.office.getContactById($scope.project.contactId),
                 typeNl = (type === 'invoices' ? 'Factuur' : 'Offerte');
             newDocument = {
                 type : typeNl,
@@ -64,54 +68,20 @@ define([
                 },
                 sender : {
                     name : $scope.office.configuration.companyName,
-                    contactPerson : $scope.office.getMemberById($scope.model.memberId).name,
+                    contactPerson : $scope.office.getMemberById($scope.project.memberId).name,
                     address : $scope.office.configuration.companyAddress,
                     zipcode : $scope.office.configuration.companyZipcode + ' ' + $scope.office.configuration.companyCity
                 },
-                currency : $scope.model.currency,
-                rate : $scope.model.rate,
-                title : $scope.model.projectName,
+                currency : $scope.project.currency,
+                rate : $scope.project.rate,
+                title : $scope.project.projectName,
                 lines : [],
                 paid : false,
                 nr : $scope.office.getHighestNr(type)
             };
-            $scope.office.currentDocument = $scope.model.importDocument(newDocument, type);
+            $scope.office.currentDocument = $scope.project.importDocument(newDocument, type);
 
         };
-
-        // distribution
-
-        $scope.subtractWeekToDistribution = function(){
-            $scope.model.distributionWeeks.pop();
-        };
-
-        $scope.addWeekToDistribution = function(){
-            var distributionWeek = getDistributionWeek();
-            $scope.model.addDistribution(distributionWeek);
-        };
-        
-        function getDistributionWeek() {
-            var distributionWeek = {
-                distributions: []
-            };
-            for (var i = 0, l = $scope.office.team.length; i < l; i++) {
-                var member = $scope.office.team[i];
-                distributionWeek.distributions.push({
-                    hours: 0,
-                    memberId: member.memberId,
-                    initials: member.initials
-                });
-            }
-            return distributionWeek;
-        }
-
-        // helpers
-
-        $scope.addWeek = function(a,b) {
-            return parseInt(a) + b;
-        }
-
-
     }
 
     DetailController.$inject = ['$scope', 'dataFactory'];

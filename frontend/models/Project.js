@@ -7,7 +7,7 @@ define([
 ){
     "use strict";
     function Project(project) {
-        this.type = 'projects';
+        this.type = 'project';
 
         this.contact = project ? app.getContactById(Number(project.contactId)) : null;
         this.member = project ? app.getMemberById(Number(project.memberId)) : null;
@@ -66,24 +66,6 @@ define([
 
 
 
-    // events TODO move this to controller
-
-    _p.remove = function() {
-        var index = this._getIndex();
-        if (index > -1) {
-            app.projects.splice(index, 1);
-            app.currentProject = null;
-        }
-    };
-
-    _p._getIndex = function() {
-        for (var i = 0, l = app.projects.length; i < l; i++) {
-            if (app.projects[i] === this) {
-                return i;
-            }
-        }
-    };
-
 
     // status
 
@@ -132,11 +114,37 @@ define([
         return this.getScore() > 100;
     };
 
-    _p.exportSettings = function() {
-        return {
-            ignoreProperties: ['parent'],
-            children: ['tenders', 'invoices', 'comments', 'workedHours', 'distributionWeeks']
+
+    // object stuff
+
+    _p.toBackend = function() {
+        var project = {};
+        for (var key in this) {
+            if (this.hasOwnProperty(key)) {
+                switch (key) {
+                    case 'contact':
+                        project.contactId = this.contact.contactId;
+                        break;
+                    case 'member':
+                        project.memberId = this.member.memberId;
+                        break;
+                    case 'quotations':
+                    case 'invoices':
+                    case 'comments':
+                    case 'blocks':
+                        // skip
+                        break;
+                    case 'finished':
+                        project.finished = this.finished ? 1 : 0;
+                        break;
+                    default:
+                        project[key] = this[key];
+                        break;
+                }
+            }
         }
+
+        return project;
     };
 
     return Project;

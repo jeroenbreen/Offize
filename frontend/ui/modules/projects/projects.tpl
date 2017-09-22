@@ -20,8 +20,14 @@
                 <input type="text" placeholder="Nieuw project..." ng-model="newProject.projectName">
             </div>
             <div class="ofc-cell ofc-cell-7">
-                <select ng-model="newProject.member" ng-options="member as member.initials for (index, member) in model.members" title="selecteer teamlid" ></select>
-                <select title="selecteer opdrachtgever" ng-options="contact.contactId as commonTools.limitString(commonTools.toSlug(contact.getNumber(), contact.name), 20) for contact in model.contacts" ng-model="newProject.contactId"></select>
+                <select
+                    ng-model="newProject.member"
+                    ng-options="member as member.initials for (index, member) in model.members"
+                    title="selecteer teamlid" ></select>
+                <select
+                    ng-options="contact as commonTools.limitString(commonTools.toSlug(contact.getNumber(), contact.name), 20) for contact in model.contacts"
+                    ng-model="newProject.contact"
+                    title="selecteer opdrachtgever" ></select>
                 <button title="opdracht toevoegen" class="glyph fa fa-plus" ng-click="addProject()"></button>
             </div>
         </div>
@@ -49,7 +55,7 @@
                 </div>
                 <div class="ofc-cell ofc-cell-3 project-status">
                     <span>
-                        {{digitize(project.getBudget(model.configuration.autoCalc))}} {{project.currency}}
+                        {{commonTools.currencyFormat(project.getBudget(model.configuration.autoCalc))}} {{project.currency}}
                     </span>
                 </div>
                 <div class="ofc-cell ofc-cell-4">
@@ -71,7 +77,7 @@
                     {{stat}}
                 </div>
                 <div class="ofc-cell ofc-cell-3">
-                    {{digitize(totals[$index])}} EUR
+                    {{commonTools.currencyFormat(totals[$index])}} EUR
                 </div>
             </div>
             <div class="status-total ofc-row">
@@ -79,7 +85,7 @@
                     <b>Totaal</b>
                 </div>
                 <div  class="ofc-cell ofc-cell-3">
-                    <b>{{digitize(sumOfTotals(totals))}} EUR</b>
+                    <b>{{commonTools.currencyFormat(sumOfTotals(totals))}} EUR</b>
                 </div>
             </div>
         </div>
@@ -88,7 +94,7 @@
 
 <div class="projects-col projects-col-med projects-col-detail">
     <ofc-detail ng-if="model.currentProject"
-                ofc-model="model.currentProject"
+                project="model.currentProject"
                 ofc-office="model"
                 ofc-configuration="model.configuration"></ofc-detail>
 </div>

@@ -126,15 +126,7 @@ define([
     //     return highest + 1;
     // };
     //
-    // _p.getProjectId = function() {
-    //     var highest = 0;
-    //     for (var i = 0, l = this.projects.length; i < l; i++){
-    //         var id = this.projects[i].projectId;
-    //         if (id > highest) {
-    //             highest = id;
-    //         }
-    //     }
-    //     return highest + 1;
+
     // };
     //
     // _p.getCommentId = function() {

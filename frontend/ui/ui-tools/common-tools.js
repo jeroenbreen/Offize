@@ -8,7 +8,8 @@ define([
         toSlug,
         digitize,
         limitString,
-        clipboard;
+        clipboard,
+        currencyFormat;
 
     param = function(obj) {
         var parameterised = {},
@@ -82,12 +83,20 @@ define([
         }
     };
 
+    currencyFormat = function(value) {
+        while (/(\d+)(\d{3})/.test(value.toString())){
+            value = value.toString().replace(/(\d+)(\d{3})/, '$1'+'.'+'$2');
+        }
+        return value;
+    };
+
 
     return {
         digitize : digitize,
         param: param,
         toSlug: toSlug,
         limitString: limitString,
-        clipboard: clipboard
+        clipboard: clipboard,
+        currencyFormat: currencyFormat
     };
 });

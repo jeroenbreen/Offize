@@ -11,7 +11,7 @@ define([
             replace: false,
             template: template,
             scope: {
-                model: '=ofcModel',
+                project: '=project',
                 office: '=ofcOffice',
                 configuration: '=ofcConfiguration'
             }

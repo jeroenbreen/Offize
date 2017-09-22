@@ -2,7 +2,7 @@
 include ('connect.php');
 
 $type = $_POST['type'];
-if ($type == "projects") { $query = updateProject(); }
+if ($type == "project") { $query = updateProject(); }
 else if ($type == "contacts") { $query = updateContact(); }
 else if ($type == "team") { $query = updateTeam(); }
 else if ($type == "hours") { $query = updateHours(); }
@@ -19,11 +19,7 @@ function updateProject() {
     $rate = $_POST['rate'];
     $discount = $_POST['discount'];
     $currency = $_POST['currency'];
-    $tenders = $_POST['tenders'];
-    $invoices = $_POST['invoices'];
     $year = $_POST['year'];
-    $week = $_POST['week'];
-    $distributionWeeks = $_POST['distributionWeeks'];
     $finished = $_POST['finished'];
     $query = "UPDATE projects SET
     projectId = '" . $projectId . "' , 
@@ -35,11 +31,7 @@ function updateProject() {
     rate = '" . $rate . "' , 
     discount = '" . $discount . "' , 
     currency = '" . $currency . "' ,
-    tenders = '" . $tenders . "' ,
-    invoices = '" . $invoices . "' ,
     year = '" . $year . "' ,
-    week = '" . $week . "' ,
-    distributionWeeks = '" . $distributionWeeks . "',
     finished = '" . $finished . "'
     WHERE
     projectId = '" . $projectId. "'";

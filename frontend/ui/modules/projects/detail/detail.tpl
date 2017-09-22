@@ -6,9 +6,9 @@
                     Projectnaam
                 </td>
                 <td class="td-content">
-                    <input type="text" title="Projectnaam" ng-model="model.projectName"><br>
+                    <input type="text" title="Projectnaam" ng-model="project.projectName"><br>
                     <button title="kopieer slug" class="glyph fa fa-pencil" ng-click="copySlug()"></button>
-                    <span class="detail-slug">{{commonTools.toSlug(model.contact.getNumber(), model.projectName)}}</span>
+                    <span class="detail-slug">{{commonTools.toSlug(project.contact.getNumber(), project.projectName)}}</span>
                 </td>
             </tr>
             <tr>
@@ -16,7 +16,10 @@
                     Contact
                 </td>
                 <td class="td-content">
-                    <select title="verander teamlid" ng-options="member.memberId as member.initials for (index, member) in office.team" ng-model="model.memberId"></select>
+                    <select
+                        ng-options="member as member.name for (index, member) in office.members"
+                        ng-model="project.member"
+                        title="verander teamlid"></select>
                 </td>
             </tr>
             <tr>
@@ -24,7 +27,10 @@
                     Klant
                 </td>
                 <td class="td-content">
-                    <select title="Verander klant" ng-options="contact.contactId as commonTools.limitString(commonTools.toSlug(contact.getNumber(), contact.name), 20) for (index, contact) in office.contacts" ng-model="model.contactId"></select>
+                    <select
+                        ng-options="contact as commonTools.limitString(commonTools.toSlug(contact.getNumber(), contact.name), 20) for (index, contact) in office.contacts"
+                        ng-model="project.contact"
+                        title="Verander klant"></select>
                 </td>
             </tr>
             <tr>
@@ -32,10 +38,10 @@
                     Projecturen
                 </td>
                 <td class="td-content">
-                    <input class="input-small" title="Projecturen" ng-model="model.hours"> ×
-                    <input class="input-small" title="Munt" ng-model="model.currency">
-                    <input class="input-small" title="Uurtarief" ng-model="model.rate"> -
-                    <input class="input-small" title="Korting / Correctie" ng-model="model.discount">
+                    <input class="input-small" title="Projecturen" ng-model="project.hours"> ×
+                    <input class="input-small" title="Munt" ng-model="project.currency">
+                    <input class="input-small" title="Uurtarief" ng-model="project.rate"> -
+                    <input class="input-small" title="Korting / Correctie" ng-model="project.discount">
                 </td>
             </tr>
             <tr>
@@ -43,60 +49,40 @@
                     Boekjaar
                 </td>
                 <td class="td-content">
-                    <input class="input-medium" title="boekjaar" ng-model="model.year">
-                </td>
-            </tr>
-            <tr>
-                <td class="label-with-input">
-                    Startweek
-                </td>
-                <td class="td-content">
-                    <input class="input-small" title="weeknummer" ng-model="model.week"><br>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-with-input">
-                    Doorloop
-                </td>
-                <td class="td-content">
-                    <div class="distribution-set" ng-repeat="distributionWeek in model.distributionWeeks">
-                        <div class="distribution-week">week {{addWeek(model.week, $index)}}</div>
-                        <input ng-model="member.hours"
-                               class="distribution-input"
-                               placeholder="{{member.initials}}"
-                               ng-repeat-start="member in distributionWeek.distributions">
-                        <div class="superscript" ng-repeat-end>{{member.initials}}</div>
-                    </div>
-                    <div class="distribution-tools">
-                        <button class="glyph fa fa-minus" ng-click="subtractWeekToDistribution()" title="week verwijderen"></button>
-                        <button class="glyph fa fa-plus" ng-click="addWeekToDistribution()" title="week toevoegen"></button>
-                    </div>
+                    <input class="input-medium" title="boekjaar" ng-model="project.year">
                 </td>
             </tr>
             <tr>
                 <td class="label">
                     Status
                 </td>
-                <td class="td-content td-status status-{{model.projectStatus}}">
-                    <div class="status-label project-status"></div> <div class="status-label-text">{{status[model.projectStatus]}}</div>
+                <td class="td-content td-status status-{{project.projectStatus}}">
+                    <div class="status-label project-status"></div>
+                    <div class="status-label-text">
+                        {{status[project.projectStatus]}}
+                    </div>
                 </td>
             </tr>
-            <tr ng-if="model.projectStatus === 2">
+            <tr ng-if="project.projectStatus === 2">
                 <td class="label-with-input">
                     Afgerond
                 </td>
                 <td class="td-content">
-                    <input type="checkbox" ng-model="model.finished"><br>
+                    <input type="checkbox" ng-model="project.finished"><br>
                 </td>
             </tr>
             <tr>
                 <td class="label">
-                    <span ng-if="model.projectStatus === 5">Breng terug</span>
-                    <span ng-if="model.projectStatus < 5">Archiveren</span>
+                    <span ng-if="project.projectStatus === 5">
+                        Breng terug
+                    </span>
+                    <span ng-if="project.projectStatus < 5">
+                        Archiveren
+                    </span>
                 </td>
                 <td class="td-content">
-                    <button ng-if="model.projectStatus < 5" title="archiveer opdracht" class="glyph fa fa-paper-plane" ng-click="archiveProject()"></button>
-                    <button ng-if="model.projectStatus === 5" title="breng opdracht terug" class="glyph fa fa-reply" ng-click="reviveProject()"></button>
+                    <button ng-if="project.projectStatus < 5" title="archiveer opdracht" class="glyph fa fa-paper-plane" ng-click="archiveProject()"></button>
+                    <button ng-if="project.projectStatus === 5" title="breng opdracht terug" class="glyph fa fa-reply" ng-click="reviveProject()"></button>
                 </td>
             </tr>
         </table>
@@ -112,9 +98,10 @@
         Offertes<br><br>
         <div title="offerte"
              class="doc"
-             ng-repeat="quotation in model.quotations"
+             ng-repeat="quotation in project.quotations"
              ng-click="office.currentDocument = quotation;">
-            <span class="gl fa fa-folder-open"></span> {{quotation.year}} - {{quotation.nr}}
+            <span class="gl fa fa-folder-open"></span>
+            {{quotation.year}} - {{quotation.nr}}
         </div>
     </div>
     <div class="panel-footer">
@@ -127,7 +114,7 @@
         Facturen<br><br>
         <div title="factuur"
              class="doc"
-             ng-repeat="invoice in model.invoices"
+             ng-repeat="invoice in project.invoices"
              ng-class="{'niet-betaald': !invoice.paid}"
              ng-click="office.currentDocument = invoice;">
             <span class="gl fa fa-folder-open"></span> {{invoice.year}} - {{invoice.nr}}
