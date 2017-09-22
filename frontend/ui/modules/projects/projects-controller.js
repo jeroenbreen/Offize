@@ -1,8 +1,10 @@
 define([
-    '../../ui-tools/common-tools',
-    '../../ui-tools/modal',
+    'models/Project',
+    'ui/ui-tools/common-tools',
+    'ui/ui-tools/modal',
     'jquery'
 ], function(
+    Project,
     commonTools,
     modal,
     $
@@ -12,15 +14,12 @@ define([
         this.$scope = $scope;
         $scope.model = OfficeModel;
         $scope.model.menu = 'projects';
-
         $scope.commonTools = commonTools;
 
-        var thisYear = new Date().getFullYear(),
-            timer;
-        
-        $scope.showOnlyLiveProjects = true;
 
-        $scope.liveProjects = [];
+        // saving
+
+        var timer;
 
         $scope.$watch('model.currentProject', function(newVal, oldVal) {
             if (oldVal && newVal && oldVal.projectId === newVal.projectId && oldVal !== newVal) {
@@ -40,52 +39,31 @@ define([
             }, 1000);
         }
 
-        $scope.newProject = emptyProject();
 
-        function emptyProject() {
-            return {
-                type: 'projects',
-                memberId: null,
-                contactId: null,
-                projectName: '',
-                projectStatus: 0,
-                rate: 0,
-                hours: 0,
-                discount: 0,
-                currency: 'EUR',
-                week: 0,
-                year: thisYear,
-                invoices: [],
-                tenders: [],
-                distributionWeeks: [],
-                comments: ''
-            }
-        }
+        // events
 
+        // wait for boostrap, otherwise the app.configuration for the standard rate
+        // is not yet available
+        $scope.$on('bootstrap', function(){
+            $scope.newProject = new Project();
+        });
+
+        // TODO fix this
         $scope.addProject = function() {
-            var message;
-            if ($scope.newProject.memberId !== null && $scope.newProject.contactId !== null) {
-                var handleSuccess = function(response, status) {
-                    $scope.model.importProject($scope.newProject);
-                    $scope.newProject = emptyProject();
-                    modal.show(response, false);
-                };
-                $scope.newProject.rate = $scope.model.getContactById($scope.newProject.contactId).rate;
-                $scope.newProject.projectId = $scope.model.getProjectId();
-                dataFactory.add(commonTools.param($scope.newProject)).success(handleSuccess);
-            } else {
-                message = 'Vul klant en contact in.';
-                modal.show(message, true);
-            }
-        };
-
-        $scope.limitString = function(string) {
-            var max = 20;
-            if (string.length > max) {
-                return string.substr(0, max - 3) + '[...]';
-            } else {
-                return string;
-            }
+            // var message;
+            // if ($scope.newProject.memberId !== null && $scope.newProject.contactId !== null) {
+            //     var handleSuccess = function(response, status) {
+            //         $scope.model.importProject($scope.newProject);
+            //         $scope.newProject = emptyProject();
+            //         modal.show(response, false);
+            //     };
+            //     $scope.newProject.rate = $scope.model.getContactById($scope.newProject.contactId).rate;
+            //     $scope.newProject.projectId = $scope.model.getProjectId();
+            //     dataFactory.add(commonTools.param($scope.newProject)).success(handleSuccess);
+            // } else {
+            //     message = 'Vul klant en contact in.';
+            //     modal.show(message, true);
+            // }
         };
 
         $scope.digitize = function(value) {
@@ -95,10 +73,18 @@ define([
             return value;
         };
 
+
+
+
+
+        // filter
+
+        $scope.showOnlyLiveProjects = true;
+
         $scope.filter = {
             search : '',
-            memberId: -1,
-            year : thisYear
+            member: null,
+            year : $scope.model.thisYear
         };
 
 
@@ -106,14 +92,12 @@ define([
             var filtered = [],
                 sorted;
             $scope.totals = [0,0,0,0,0,0];
-            console.log(projects);
-            console.log($scope.filter);
             for (var i = 0, l = projects.length; i < l; i++) {
                 var project = projects[i];
                 if (
                     ($scope.filter.year === 'Alle' || project.year === $scope.filter.year) &&
                     ($scope.filter.search === '' || project.projectName.toLocaleLowerCase().indexOf($scope.filter.search.toLocaleLowerCase()) > -1) &&
-                    ($scope.filter.memberId === -1 || project.memberId === $scope.filter.memberId) &&
+                    ($scope.filter.member.memberId === -1 || project.member.memberId === $scope.filter.member.memberId) &&
                     (!$scope.showOnlyLiveProjects || project.projectStatus < 3)
                 ) {
                     filtered.push(project);

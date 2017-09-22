@@ -12,6 +12,7 @@ define([], function() {
             $http.get("./backend/bootstrap.php").success(function(data) {
                 console.log(data);
                 $scope.office.bootstrap(data);
+                $scope.$broadcast('bootstrap');
             });
         }
     }

@@ -19,8 +19,7 @@ define([
     './modules/document/document',
     './modules/projects/detail/detail',
     './modules/projects/comments/comments',
-    './modules/projects/hours/hours',
-    './modules/projects/distribution/distribution',
+    './modules/projects/shared/member-filter/member-filter',
     
     'ngStorage',
     'ngResource',
@@ -46,15 +45,23 @@ define([
     documentModule,
     detailModule,
     commentsModule,
-    hoursModule,
-    distributionModule,
+    memberFilterModule,
     
     ngStorage,
     ngResource,
     ngRoute
 ) {
     "use strict";
-    return angular.module('OfficeModel', ['ngResource', 'ngRoute', 'ngStorage', documentModule.name, contactDetailModule.name, detailModule.name, commentsModule.name, hoursModule.name, distributionModule.name])
+    return angular.module('OfficeModel', [
+        'ngResource',
+        'ngRoute',
+        'ngStorage',
+        documentModule.name,
+        contactDetailModule.name,
+        detailModule.name,
+        commentsModule.name,
+         memberFilterModule.name
+    ])
     .config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider.when('/', {

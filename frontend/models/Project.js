@@ -9,25 +9,26 @@ define([
     function Project(project) {
         this.type = 'projects';
 
-        this.contact = app.getContactById(Number(project.contactId));
-        this.member = app.getMemberById(Number(project.memberId));
+        this.contact = project ? app.getContactById(Number(project.contactId)) : null;
+        this.member = project ? app.getMemberById(Number(project.memberId)) : null;
 
-        this.projectId = Number(project.projectId);
-        this.projectName = project.projectName;
-        this.projectStatus = Number(project.projectStatus);
-        this.currency = project.currency;
-        this.discount = Number(project.discount);
-        this.rate = Number(project.rate);
-        this.hours = Number(project.hours);
-        this.year = Number(project.year);
-        this.hours = Number(project.hours);
+        this.projectId = project ? Number(project.projectId) : null;
+        this.projectName = project ? project.projectName : '';
+        this.projectStatus = project ? Number(project.projectStatus) : 0;
+        this.currency = project ? project.currency : 'EUR';
+        this.discount = project ? Number(project.discount) : 0;
+        this.rate = project ? Number(project.rate) : Number(app.configuration.standardRate);
+        this.hours = project ? Number(project.hours) : 0;
+        this.year = project ? Number(project.year) : new Date().getFullYear();
         this.finished = project && project.finished ? (project.finished === "true" ? true : false) : false;
 
+        this.blocks = [];
         this.quotations = [];
         this.invoices = [];
         this.comments = [];
-        this.importChildren();
-        console.log(this);
+        if (project) {
+            this.importChildren();
+        }
     }
 
     var _p = Project.prototype = Object.create(Parent.prototype);
@@ -92,8 +93,8 @@ define([
 
     _p.getHours = function() {
         var hours = 0;
-        for (var i = 0, l = this.workedHours.length; i < l; i++) {
-            hours += this.workedHours[i].time / 60;
+        for (var i = 0, l = this.blocks.length; i < l; i++) {
+            hours += this.blocks[i].hours;
         }
         return hours.toFixed(1);
     };

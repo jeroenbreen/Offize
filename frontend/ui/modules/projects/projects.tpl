@@ -7,7 +7,7 @@
                 <input type="text" placeholder="Zoek..." ng-model="filter.search">
             </div>
             <div class="ofc-cell ofc-cell-7">
-                <select title="selecteer teamlid" ng-options="member.memberId as member.initials for (index, member) in model.memberFilter" ng-model="filter.memberId"></select>
+                <member-filter model="model" current="filter.member"></member-filter>
                 <input type="checkbox" ng-model="showOnlyLiveProjects"> live proj.
                 <select title="selecteer jaar" ng-options="year as year for year in model.years" ng-model="filter.year"></select>
             </div>
@@ -20,7 +20,7 @@
                 <input type="text" placeholder="Nieuw project..." ng-model="newProject.projectName">
             </div>
             <div class="ofc-cell ofc-cell-7">
-                <select title="selecteer teamlid" ng-options="member.memberId as member.initials for (index, member) in model.team" ng-model="newProject.memberId"></select>
+                <select ng-model="newProject.member" ng-options="member as member.initials for (index, member) in model.members" title="selecteer teamlid" ></select>
                 <select title="selecteer opdrachtgever" ng-options="contact.contactId as commonTools.limitString(commonTools.toSlug(contact.getNumber(), contact.name), 20) for contact in model.contacts" ng-model="newProject.contactId"></select>
                 <button title="opdracht toevoegen" class="glyph fa fa-plus" ng-click="addProject()"></button>
             </div>
@@ -99,15 +99,3 @@
                   ofc-office="model"
                   ofc-configuration="model.configuration"></ofc-comments>
 </div>
-
-<div class="projects-col projects-col-med">
-    <ofc-hours ng-if="model.currentProject"
-               ofc-model="model.currentProject"
-               ofc-office="model"
-               ofc-configuration="model.configuration"></ofc-hours>
-</div>
-
-<div class="projects-col projects-col-small">
-    <ofc-distribution ofc-model="model.projects" ofc-office="model"></ofc-distribution>
-</div>
-

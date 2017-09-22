@@ -40,6 +40,7 @@ define([
 
         this.years = ['Alle'];
         this.memberFilter = [];
+        this.thisYear = new Date().getFullYear();
       }
 
     var _p = App.prototype = Object.create(Parent.prototype);

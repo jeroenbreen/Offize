@@ -112,9 +112,9 @@
         Offertes<br><br>
         <div title="offerte"
              class="doc"
-             ng-repeat="tender in model.tenders"
-             ng-click="office.currentDocument = tender;">
-            <span class="gl fa fa-folder-open"></span> {{tender.year}} - {{tender.nr}}
+             ng-repeat="quotation in model.quotations"
+             ng-click="office.currentDocument = quotation;">
+            <span class="gl fa fa-folder-open"></span> {{quotation.year}} - {{quotation.nr}}
         </div>
     </div>
     <div class="panel-footer">
