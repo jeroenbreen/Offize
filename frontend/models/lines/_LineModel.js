@@ -18,6 +18,19 @@ function(
         }
     };
 
+    _p.toCSV = function() {
+        var string = '';
+        string += ',';
+        string += this.documentId + ',';
+        string += this.type + ',';
+        string += this.text.replace(/,/g,' -') + ',';
+        string += this.hours + ',';
+        string += this.amount + ',';
+        string += this.arrayOrder + ',';
+        string += this.rate + '\n';
+        return string;
+    };
+
     return _LineModel;
 });
 

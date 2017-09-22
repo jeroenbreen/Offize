@@ -16,27 +16,47 @@ define([
     $
 ){
     "use strict";
-    function DocumentModel(parent, document, doctype) {
-        Object.defineProperty(this, 'parent', { value: parent, enumerable: false, writable: true, configurable: true });
-        this.doctype = doctype;
-        this.sender = {};
-        this.client = {};
-        this.year = 0;
-        this.nr = 0;
-        this.date = {};
-        this.title = '';
-        this.paid = false;
-        this.rate = 0;
-        this.currency = '';
+    function Document(document) {
+        this.id = Number(document.id);
+        this.projectId = Number(document.projectId);
+        this.type = document.type;
+        this.member = app.getMemberById(Number(document.memberId));
+
+        this.title = document.title;
+        this.nr = Number(document.nr);
+        this.clientName = document.clientName;
+        this.year = Number(document.year);
+        this.month = Number(document.month);
+        this.day = Number(document.day);
+
+        this.vat = Number(document.vat);
+        this.currency = document.currency;
+        this.paid = Boolean(parseInt(document.paid));
+        this.locked = Boolean(parseInt(document.locked));
+        this.english = Boolean(parseInt(document.english));
+        this.hideTotal = Boolean(parseInt(document.hideTotal));
+
         this.lines = [];
-        this.locked = false;
-        this.vat = 0;
-        this.english = false; // currently inactive
-        this.hideTotal = false;
-        this.setProperties(document);
+        this.importLines();
     }
 
-    var _p = DocumentModel.prototype = Object.create(Parent.prototype);
+    var _p = Document.prototype = Object.create(Parent.prototype);
+
+    // import
+
+    _p.importLines = function() {
+        for (var i = 0, l = app.store.lines.length; i < l; i++) {
+            var line = app.store.lines[i];
+            if (line.documentId === this.id) {
+                this.lines.push(line);
+            }
+        }
+    };
+
+
+
+
+
 
     _p.exportSettings = function() {
         return {
@@ -108,34 +128,34 @@ define([
         }
         this.lines.push(lineModel);
     };
-
-    _p.importLines = function(lines) {
-        for (var i = 0, l = lines.length; i < l; i++) {
-            var line = lines[i],
-                lineModel;
-            switch (line.type) {
-                case 'amount':
-                case 'bedrag':
-                    lineModel = new AmountModel(this, line);
-                    break;
-                case 'count':
-                case 'uren':
-                    lineModel = new CountModel(this, line);
-                    break;
-                case 'enter':
-                    lineModel = new EnterModel(this, line);
-                    break;
-                case 'subtotal':
-                    lineModel = new SubtotalModel(this, line);
-                    break;
-                case 'kopje':
-                case 'text':
-                    lineModel = new TextModel(this, line);
-                    break;
-            }
-            this.lines.push(lineModel);
-        }
-    };
+    //
+    // _p.importLines = function(lines) {
+    //     for (var i = 0, l = lines.length; i < l; i++) {
+    //         var line = lines[i],
+    //             lineModel;
+    //         switch (line.type) {
+    //             case 'amount':
+    //             case 'bedrag':
+    //                 lineModel = new AmountModel(this, line);
+    //                 break;
+    //             case 'count':
+    //             case 'uren':
+    //                 lineModel = new CountModel(this, line);
+    //                 break;
+    //             case 'enter':
+    //                 lineModel = new EnterModel(this, line);
+    //                 break;
+    //             case 'subtotal':
+    //                 lineModel = new SubtotalModel(this, line);
+    //                 break;
+    //             case 'kopje':
+    //             case 'text':
+    //                 lineModel = new TextModel(this, line);
+    //                 break;
+    //         }
+    //         this.lines.push(lineModel);
+    //     }
+    // };
 
     _p.getPrefix = function() {
         switch (this.doctype) {
@@ -169,5 +189,43 @@ define([
         return parameterised;
     };
 
-    return DocumentModel;
+    _p.toCSV = function() {
+        var string = '';
+
+        function boolToInt(bool) {
+            return bool ? 1 : 0;
+        }
+
+        string += this.id + ',';
+        string += this.clientName + ',';
+        string += this.projectId + ',';
+        string += this.type + ',';
+        string += this.currency + ',';
+        string += boolToInt(this.english) + ',';
+        string += boolToInt(this.hideTotal) + ',';
+        string += boolToInt(this.locked) + ',';
+        string += this.nr + ',';
+        string += boolToInt(this.paid) + ',';
+        string += this.member.memberId + ',';
+        string += this.title + ',';
+        string += this.vat + ',';
+        string += this.year + ',';
+        string += this.month + ',';
+        string += this.day + ',';
+        string += this.rate;
+        console.log(string);
+
+        return string + '\n';
+    };
+
+    _p.linesToCSV = function() {
+        var string = '';
+        for (var i = 0, l = this.lines.length; i < l; i++) {
+            var line = this.lines[i];
+            string += line.toCSV();
+        }
+        return string;
+    };
+
+    return Document;
 });

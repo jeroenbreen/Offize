@@ -3,7 +3,7 @@ require([
     'angular',
     'ui/app',
     'office',
-    'models/OfficeModel'
+    'models/App'
 ], function (
     domReady,
     angular,
@@ -14,6 +14,7 @@ require([
     "use strict";
 
     var model = new OfficeModel();
+    window.app = model;
 
     window.office = new Office(model, angularApp);
     domReady(function() {

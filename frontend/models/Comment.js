@@ -4,8 +4,7 @@ define([
     Parent
 ){
     "use strict";
-    function CommentModel(parent, comment) {
-        Object.defineProperty(this, 'parent', { value: parent, enumerable: false, writable: true, configurable: true });
+    function CommentModel(comment) {
         this.id = comment.id;
         this.type = 'comments';
         this.contactId = comment.contactId;
@@ -15,6 +14,8 @@ define([
     }
 
     var _p = CommentModel.prototype = Object.create(Parent.prototype);
+
+    // todo move this to controller
 
     _p.remove = function() {
         var index = this._getIndex();

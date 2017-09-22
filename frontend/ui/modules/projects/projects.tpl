@@ -29,10 +29,11 @@
 
         <!-- projects loop -->
         <div class="projects">
-            <div class="ofc-row status-{{project.projectStatus}}"
+            <div
                 ng-repeat="project in filterProjects(model.projects)"
                 ng-class="{'selected': project === model.currentProject, 'project-finished': project.finished}"
-                ng-click="model.currentProject = project">
+                ng-click="model.currentProject = project"
+                class="ofc-row status-{{project.projectStatus}}">
                 <div class="ofc-cell ofc-cell-1 project-status project-name">
                     <span>{{commonTools.toSlug(project.contact.getNumber(), project.projectName)}}</span>
                 </div>

@@ -12,7 +12,7 @@ define([
         this.$scope = $scope;
         $scope.model = OfficeModel;
         $scope.model.menu = 'projects';
-        
+
         $scope.commonTools = commonTools;
 
         var thisYear = new Date().getFullYear(),
@@ -106,6 +106,8 @@ define([
             var filtered = [],
                 sorted;
             $scope.totals = [0,0,0,0,0,0];
+            console.log(projects);
+            console.log($scope.filter);
             for (var i = 0, l = projects.length; i < l; i++) {
                 var project = projects[i];
                 if (

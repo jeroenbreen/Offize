@@ -4,27 +4,16 @@ define([
     Parent
 ){
     "use strict";
-    function AmountModel(parent, line) {
-        Object.defineProperty(this, 'parent', { value: parent, enumerable: false, writable: true, configurable: true });
+    function AmountModel(line, documentId, i) {
         this.type = 'amount';
-        this.title = '';
-        this.amount = 0;
-        if (line) {
-            this.import(line);
-        }
+        this.documentId = documentId;
+        this.amount = line && line.amount ? Number(line.amount) : 0;
+        this.text = line && line.title ? line.title : '';
+        this.hours = line && line.hours ? Number(line.hours) : 0;
+        this.order = i;
     }
 
     var _p = AmountModel.prototype = Object.create(Parent.prototype);
-
-    _p.import = function(line) {
-        if (!line.hasOwnProperty('title')) {
-            this.title = line.titel;
-            this.amount = line.bedrag;
-        } else {
-            this.title = line.title;
-            this.amount = line.amount;
-        }
-    };
 
     return AmountModel;
 });

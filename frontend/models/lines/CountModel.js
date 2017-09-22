@@ -4,30 +4,16 @@ define([
     Parent
 ){
     "use strict";
-    function CountModel(parent, line) {
-        Object.defineProperty(this, 'parent', { value: parent, enumerable: false, writable: true, configurable: true });
+    function CountModel(line, documentId, i) {
         this.type = 'count';
-        this.title = '';
-        this.rate = parent.parent.rate;
-        this.hours = 0;
-        if (line) {
-            this.import(line);
-        }
+        this.documentId = documentId;
+        this.amount = line && line.amount ? line.amount : 0;
+        this.text = line && line.title ? line.title : '';
+        this.hours = line && line.hours ? Number(line.hours) : 0;
+        this.order = i;
     }
 
     var _p = CountModel.prototype = Object.create(Parent.prototype);
-
-    _p.import = function(line) {
-        if (!line.hasOwnProperty('title')) {
-            this.title = line.titel;
-            this.rate = line.tarief;
-            this.hours = line.uren;
-        } else {
-            this.title = line.title;
-            this.rate = line.rate;
-            this.hours = line.hours;
-        }
-    };
 
     return CountModel;
 });

@@ -1,41 +1,39 @@
 define([
-   './_BaseModel',
-   '../ui/ui-tools/common-tools'
+   './_BaseModel'
 ], function(
-    Parent,
-    commonTools
+    Parent
 ){
     "use strict";
-    function ContactModel(parent, contact) {
-        Object.defineProperty(this, 'parent', { value: parent, enumerable: false, writable: true, configurable: true });
+    function Contact(contact) {
         this.type = 'contacts';
-        this.contactId = contact.contactId;
+        this.contactId = Number(contact.contactId);
         this.name = contact.name;
         this.contactPerson = contact.contactPerson;
         this.street = contact.street;
         this.zipcode = contact.zipcode;
         this.city = contact.city;
-        this.rate = contact.rate;
+        this.rate = Number(contact.rate);
         this.email = contact.email;
         this.telephone = contact.telephone;
         this.web = contact.web;
         this.info = contact.info;
-        this.comments = [];
     }
 
-    var _p = ContactModel.prototype = Object.create(Parent.prototype);
+    var _p = Contact.prototype = Object.create(Parent.prototype);
 
+
+    // TODO move to controller
     _p.remove = function() {
         var index = this._getIndex();
         if (index > -1) {
-            this.parent.contacts.splice(index, 1);
-            this.parent.currentContact = null;
+            app.contacts.splice(index, 1);
+            app.currentContact = null;
         }
     };
 
     _p._getIndex = function() {
-        for (var i = 0, l = this.parent.contacts.length; i < l; i++) {
-            if (this.parent.contacts[i] === this) {
+        for (var i = 0, l = app.contacts.length; i < l; i++) {
+            if (app.contacts[i] === this) {
                 return i;
             }
         }
@@ -45,6 +43,7 @@ define([
         return this.getNumber() + '-' + this.name;
     };
 
+    // TODO move to a number tool
     _p.getNumber = function() {
         var id = this.contactId;
         if (id < 10) {
@@ -55,5 +54,5 @@ define([
         return id;
     };
 
-    return ContactModel;
+    return Contact;
 });
