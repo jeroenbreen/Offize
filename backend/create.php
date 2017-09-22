@@ -4,6 +4,7 @@ include ('connect.php');
 
 $type = $_POST['type'];
 if ($type == "project") { $query = insertProject(); }
+else if ($type == "document") { $query = insertDocument(); }
 else if ($type == "contacts") { $query = insertContact(); }
 else if ($type == "team") { $query = insertTeam(); }
 else if ($type == "comments") { $query = insertComment(); }
@@ -34,6 +35,46 @@ function insertProject() {
     '". $currency ."'  ,
     '". $year ."' ,
     '". $finished ."'
+    )";
+    return $query;
+}
+
+function insertDocument() {
+    $clientName = $_POST['clientName'];
+    $projectId = $_POST['projectId'];
+    $doctype = $_POST['doctype'];
+    $currency = $_POST['currency'];
+    $english = $_POST['english'];
+    $hideTotal = $_POST['hideTotal'];
+    $locked = $_POST['locked'];
+    $nr = $_POST['nr'];
+    $paid = $_POST['paid'];
+    $memberId = $_POST['memberId'];
+    $title = $_POST['title'];
+    $vat = $_POST['vat'];
+    $year = $_POST['year'];
+    $month = $_POST['month'];
+    $day = $_POST['day'];
+    $rate = $_POST['rate'];
+    $query="INSERT INTO documents
+    (clientName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, memberId, title, vat, year, month, day, rate)
+    VALUES (
+    '". $clientName ."'  ,
+    '". $projectId ."'  ,
+    '". $doctype ."'  ,
+    '". $currency ."'  ,
+    '". $english ."'  ,
+    '". $hideTotal ."'  ,
+    '". $locked ."'  ,
+    '". $nr ."'  ,
+    '". $paid ."'  ,
+    '". $memberId ."'  ,
+    '". $title ."'  ,
+    '". $vat ."'  ,
+    '". $year ."'  ,
+    '". $month ."'  ,
+    '". $day ."'  ,
+    '". $rate ."'
     )";
     return $query;
 }

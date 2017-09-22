@@ -1,11 +1,17 @@
 define([
-    '../../ui-tools/modal'
+    'ui/ui-tools/modal',
+    'jquery'
 ], function(
-    modal
+    modal,
+    $
 ) {
     'use strict';
-    function DocumentController($scope, $document, $http) {
+    function DocumentController($scope, $document, $http, dataFactory) {
         this.$scope = $scope;
+
+        $scope.months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
+
+
 
         // menu functions
 
@@ -22,32 +28,55 @@ define([
             }
         };
 
+
+
+        // events
+
         $scope.closeDocument = function() {
             $scope.office.currentDocument = null;
         };
 
-        $scope.removeFile = function() {
-            var name = $scope.model.getPrefix() + ' ' + $scope.model.year + '-' + $scope.model.nr,
-                message = 'Wil je ' + name + ' echt verwijderen?',
-                handleSuccess = function(data, status) {
-                    var successMessage = name + ' verwijderd';
-                    modal.show(successMessage, false);
-                    $scope.model.remove();
-                    $scope.closeDocument();
-                    $scope.$apply();
-                };
+        $scope.removeDocument = function() {
+            var name, message, successCallback, confirmCallback;
+
+            name = $scope.document.doctype + ' ' + $scope.document.year + '-' + $scope.document.nr;
+            message = 'Wil je ' + name + ' echt verwijderen?';
+            successCallback = function(data, status) {
+                var successMessage = name + ' verwijderd';
+                modal.show(successMessage, false);
+                removeFromOffice();
+                removeFromProject();
+                $scope.closeDocument();
+            };
+
+            function removeFromOffice() {
+                var index = $scope.office.documents.indexOf($scope.document);
+                $scope.office.documents.splice(index, 1);
+            }
+
+            function removeFromProject() {
+                var index = $scope.project[$scope.document.doctype + 's'].indexOf($scope.document);
+                $scope.project[$scope.document.doctype + 's'].splice(index, 1);
+            }
+
+            confirmCallback = function() {
+                $scope.$apply();
+                dataFactory.delete($.param($scope.document.toBackend())).success(successCallback);
+            };
+
+
             modal.confirm(message, function(result){
                 if (result) {
-                    handleSuccess();
+                    confirmCallback();
                 }
             });
         };
 
         $scope.printFile = function() {
             var url,
-                printData = $scope.model.export();
+                printData = $scope.document.export();
             console.log(printData);
-            if ($scope.model.english) {
+            if ($scope.document.english) {
                 url = 'frontend/to-pdf/print_en.php';
             } else {
                 url = 'print/print-adapter.php';
@@ -63,13 +92,13 @@ define([
 
 
         $scope.lockFile = function () {
-            $scope.model.locked = !$scope.model.locked;
+            $scope.document.locked = !$scope.document.locked;
         };
 
         // document functions
 
-        if ($scope.model.hideTotal === null) {
-            $scope.model.hideTotal = false;
+        if ($scope.document.hideTotal === null) {
+            $scope.document.hideTotal = false;
         }
 
 
@@ -77,13 +106,12 @@ define([
             return $scope.months[m - 1];
         };
 
-        $scope.months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
 
 
         $scope.getTotal = function(multiplier) {
             var total = 0;
-            for (var i = 0; i < $scope.model.lines.length; i++) {
-                var line = $scope.model.lines[i];
+            for (var i = 0; i < $scope.document.lines.length; i++) {
+                var line = $scope.document.lines[i];
                 if (line.type === 'count') {
                     total += line.rate * line.hours;
                 } else if (line.type === 'amount') {
@@ -96,7 +124,7 @@ define([
         };
 
         $scope.removeLine = function(line) {
-            $scope.model.lines.splice($scope.model.lines.indexOf(line), 1);
+            $scope.document.lines.splice($scope.document.lines.indexOf(line), 1);
         };
 
         //
@@ -113,7 +141,7 @@ define([
         };
     }
 
-    DocumentController.$inject = ['$scope', '$document', '$http'];
+    DocumentController.$inject = ['$scope', '$document', '$http', 'dataFactory'];
 
     return DocumentController;
 }); 

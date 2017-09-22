@@ -1,8 +1,10 @@
 define([
+    'models/Document',
     'ui/ui-tools/common-tools',
     'ui/ui-tools/modal',
     'jquery'
 ], function(
+    Document,
     commonTools,
     modal,
     $
@@ -34,11 +36,7 @@ define([
             $scope.project.projectStatus = 5;
         };
 
-        $scope.reviveProject = function() {
-            $scope.project.projectStatus = 0;
-        };
-
-        $scope.dearchiveProject = function() {
+        $scope.deArchiveProject = function() {
             $scope.project.projectStatus = 0;
         };
 
@@ -46,41 +44,39 @@ define([
             commonTools.clipboard(commonTools.toSlug($scope.project.contact.getNumber(), $scope.project.projectName));
         };
 
-        $scope.addDocument = function(type) {
-            var d = new Date(),
-                year = d.getFullYear(),
-                newDocument,
-                contact = $scope.office.getContactById($scope.project.contactId),
-                typeNl = (type === 'invoices' ? 'Factuur' : 'Offerte');
-            newDocument = {
-                type : typeNl,
-                year : year,
-                date : {
-                    year : year,
-                    month : d.getMonth() + 1,
-                    day : d.getDate()
-                },
-                client : {
-                    name : contact.name,
-                    contactPerson : contact.contactPerson,
-                    address : contact.street,
-                    zipcode : contact.zipcode + ' ' + contact.city
-                },
-                sender : {
-                    name : $scope.office.configuration.companyName,
-                    contactPerson : $scope.office.getMemberById($scope.project.memberId).name,
-                    address : $scope.office.configuration.companyAddress,
-                    zipcode : $scope.office.configuration.companyZipcode + ' ' + $scope.office.configuration.companyCity
-                },
-                currency : $scope.project.currency,
-                rate : $scope.project.rate,
-                title : $scope.project.projectName,
-                lines : [],
-                paid : false,
-                nr : $scope.office.getHighestNr(type)
+        $scope.addDocument = function(doctype) {
+            var d, data, document, backendDocument, message, successCallback;
+            d = new Date();
+            data = {
+                    id: null,
+                    type: 'document',
+                    clientName: $scope.project.contact.contactPerson,
+                    projectId: $scope.project.projectId,
+                    doctype: doctype,
+                    currency: $scope.project.currency,
+                    english: 0,
+                    hideTotal: 0,
+                    locked: 0,
+                    nr: $scope.office.getHighestNr(doctype),
+                    paid: 0,
+                    memberId: $scope.project.member.memberId,
+                    title: $scope.project.projectName,
+                    vat: 21,
+                    year: d.getFullYear(),
+                    month: d.getMonth() + 1,
+                    day: d.getDate(),
+                    rate: $scope.project.rate
             };
-            $scope.office.currentDocument = $scope.project.importDocument(newDocument, type);
+            document = new Document(data);
 
+            successCallback = function(response, status) {
+                document.id = response.id;
+                $scope.project[doctype + 's'].push(document);
+                $scope.office.currentDocument = document;
+                modal.show(response.message, false);
+            };
+
+            dataFactory.create($.param(data)).success(successCallback);
         };
     }
 

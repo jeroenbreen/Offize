@@ -82,7 +82,7 @@
                 </td>
                 <td class="td-content">
                     <button ng-if="project.projectStatus < 5" title="archiveer opdracht" class="glyph fa fa-paper-plane" ng-click="archiveProject()"></button>
-                    <button ng-if="project.projectStatus === 5" title="breng opdracht terug" class="glyph fa fa-reply" ng-click="reviveProject()"></button>
+                    <button ng-if="project.projectStatus === 5" title="breng opdracht terug" class="glyph fa fa-reply" ng-click="deArchiveProject()"></button>
                 </td>
             </tr>
         </table>
@@ -105,7 +105,7 @@
         </div>
     </div>
     <div class="panel-footer">
-        <button title="Offerte toevoegen" class="glyph fa fa-plus" ng-click="addDocument('tenders')"></button>
+        <button title="Offerte toevoegen" class="glyph fa fa-plus" ng-click="addDocument('quotation')"></button>
     </div>
 </div>
 
@@ -121,6 +121,6 @@
         </div>
     </div>
     <div class="panel-footer">
-        <button title="Factuur toevoegen" class="glyph fa fa-plus" ng-click="addDocument('invoices')"></button>
+        <button title="Factuur toevoegen" class="glyph fa fa-plus" ng-click="addDocument('invoice')"></button>
     </div>
 </div>

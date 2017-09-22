@@ -49,7 +49,7 @@ define([
         this.importer(data.members, Member, this.members);
         this.importer(data.comments, Comment, this.store.comments);
         this.importer(data.lines, Line, this.store.lines);
-        this.importer(data.documents, Document, this.store.documents);
+        this.importer(data.documents, Document, this.documents);
         this.importer(data.contacts, Contact, this.contacts);
         this.importer(data.projects, Project, this.projects);
         this.setConfiguration(data.configuration);
@@ -104,16 +104,20 @@ define([
     //     return null;
     // };
     //
-    // _p.getHighestNr = function(type) {
-    //     var highest = 0;
-    //     for (var i = 0, l = this[type].length; i < l; i++){
-    //         var nr = parseInt(this[type][i].nr);
-    //         if (nr > highest) {
-    //             highest = nr;
-    //         }
-    //     }
-    //     return this._digitize(highest + 1);
-    // };
+    _p.getHighestNr = function(doctype) {
+        var highest = 0;
+        for (var i = 0, l = this.documents.length; i < l; i++){
+            var document = this.documents[i];
+            if (document.doctype === doctype) {
+                var nr = document.nr;
+                if (nr > highest) {
+                    highest = nr;
+                }
+            }
+
+        }
+        return highest + 1;
+    };
     //
     // _p.getContactId = function() {
     //     var highest = 0;

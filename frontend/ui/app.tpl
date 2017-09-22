@@ -14,7 +14,11 @@
 
 <div ng-view class="content"></div>
 
-<ofc-document ng-if="office.currentDocument" ofc-model="office.currentDocument" ofc-office="office"></ofc-document>
+<ofc-document
+    ng-if="office.currentDocument"
+    office="office"
+    project="office.currentProject"
+    document="office.currentDocument"></ofc-document>
 
 <div class="modal"></div>
 <div class="confirm">

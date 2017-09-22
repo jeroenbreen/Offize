@@ -3,6 +3,7 @@ include ('connect.php');
 
 $type = $_POST['type'];
 if ($type == "project") { $query = deleteProject(); }
+else if ($type == "document") { $query = deleteDocument(); }
 else if ($type == "contacts") { $query = deleteContact(); }
 else if ($type == "team") { $query = deleteTeam(); }
 else if ($type == "comments") { $query = deleteComment(); }
@@ -12,6 +13,12 @@ else if ($type == "hours") { $query = deleteHours(); }
 function deleteProject() {
     $projectId = $_POST['projectId'];
     $query = "DELETE FROM projects WHERE projectId = '" . $projectId . "'";
+    return $query;
+}
+
+function deleteDocument() {
+    $id = $_POST['id'];
+    $query = "DELETE FROM documents WHERE id = '" . $id . "'";
     return $query;
 }
 

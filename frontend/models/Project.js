@@ -41,12 +41,10 @@ define([
     };
 
     _p.importDocuments = function() {
-        for (var i = 0, l = app.store.documents.length; i < l; i++) {
-            var document = app.store.documents[i];
+        for (var i = 0, l = app.documents.length; i < l; i++) {
+            var document = app.documents[i];
             if (document.projectId === this.projectId) {
-                // temp TODO remove this line
-                document.rate = this.rate;
-                if (document.type === 'invoice') {
+                if (document.doctype === 'invoice') {
                     this.invoices.push(document);
                 } else {
                     this.quotations.push(document);

@@ -17,9 +17,10 @@ define([
 ){
     "use strict";
     function Document(document) {
-        this.id = Number(document.id);
+        this.type = 'document';
+        this.id = document && document.id ? Number(document.id) : null;
         this.projectId = Number(document.projectId);
-        this.type = document.type;
+        this.doctype = document.doctype;
         this.member = app.getMemberById(Number(document.memberId));
 
         this.title = document.title;
@@ -37,7 +38,10 @@ define([
         this.hideTotal = Boolean(parseInt(document.hideTotal));
 
         this.lines = [];
-        this.importLines();
+        // skip this for new created documents
+        if (document.id !== null) {
+            this.importLines();
+        }
     }
 
     var _p = Document.prototype = Object.create(Parent.prototype);
@@ -128,65 +132,37 @@ define([
         }
         this.lines.push(lineModel);
     };
-    //
-    // _p.importLines = function(lines) {
-    //     for (var i = 0, l = lines.length; i < l; i++) {
-    //         var line = lines[i],
-    //             lineModel;
-    //         switch (line.type) {
-    //             case 'amount':
-    //             case 'bedrag':
-    //                 lineModel = new AmountModel(this, line);
-    //                 break;
-    //             case 'count':
-    //             case 'uren':
-    //                 lineModel = new CountModel(this, line);
-    //                 break;
-    //             case 'enter':
-    //                 lineModel = new EnterModel(this, line);
-    //                 break;
-    //             case 'subtotal':
-    //                 lineModel = new SubtotalModel(this, line);
-    //                 break;
-    //             case 'kopje':
-    //             case 'text':
-    //                 lineModel = new TextModel(this, line);
-    //                 break;
-    //         }
-    //         this.lines.push(lineModel);
-    //     }
-    // };
 
-    _p.getPrefix = function() {
-        switch (this.doctype) {
-            case 'tenders':
-                return 'Offerte';
-                break;
-            case 'invoices':
-                return 'Factuur';
-                break;
-        }
-    };
 
-    _p.remove = function() {
-        var project = this.parent,
-            office = this.parent.parent;
-        project[this.doctype].splice(project[this.doctype].indexOf(this), 1);
-        office[[this.doctype]].splice(office[this.doctype].indexOf(this), 1);
-    };
 
-    _p.getClean = function() {
-        var parameterised = {},
-            ignoreProperties = [],
-            self = this;
-        ignoreProperties.push('parent');
-        ignoreProperties.push('$$hashKey');
-        for (var property in self) {
-            if ($.type(self[property]) !== 'function' && ignoreProperties.indexOf(property) === -1) {
-                parameterised[property] = self[property];
+
+    // object stuff
+
+    _p.toBackend = function() {
+        var document = {};
+        for (var key in this) {
+            if (this.hasOwnProperty(key)) {
+                switch (key) {
+                    case 'paid':
+                    case 'locked':
+                    case 'english':
+                    case 'hideTotal':
+                        document[key] = this[key] ? 1 : 0;
+                        break;
+                    case 'lines':
+                    case '$$hashKey':
+                        // skip
+                        break;
+                    case 'member':
+                        document.memberId = this.member.memberId;
+                        break;
+                    default:
+                        document[key] = this[key];
+                        break;
+                }
             }
         }
-        return parameterised;
+        return document;
     };
 
     _p.toCSV = function() {
@@ -199,7 +175,7 @@ define([
         string += this.id + ',';
         string += this.clientName + ',';
         string += this.projectId + ',';
-        string += this.type + ',';
+        string += this.doctype + ',';
         string += this.currency + ',';
         string += boolToInt(this.english) + ',';
         string += boolToInt(this.hideTotal) + ',';

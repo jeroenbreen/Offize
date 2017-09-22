@@ -11,8 +11,9 @@ define([
             replace: false,
             template: template,
             scope: {
-                model: '=ofcModel',
-                office: '=ofcOffice'
+                office: '=office',
+                project: '=project',
+                document: '=document'
             }
         };
     }
