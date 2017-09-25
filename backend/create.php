@@ -5,7 +5,7 @@ include ('connect.php');
 $type = $_POST['type'];
 if ($type == "project") { $query = insertProject(); }
 else if ($type == "document") { $query = insertDocument(); }
-else if ($type == "contacts") { $query = insertContact(); }
+else if ($type == "contact") { $query = insertContact(); }
 else if ($type == "team") { $query = insertTeam(); }
 else if ($type == "comments") { $query = insertComment(); }
 else if ($type == "hours") { $query = insertHours(); }
@@ -80,7 +80,6 @@ function insertDocument() {
 }
 
 function insertContact() {
-    $contactId = $_POST['contactId'];
     $name = $_POST['name'];
     $contactPerson = $_POST['contactPerson'];
     $street = $_POST['street'];
@@ -92,9 +91,8 @@ function insertContact() {
     $rate = $_POST['rate'];
     $info = $_POST['info'];
     $query="INSERT INTO contacts 
-    (contactId, name, contactPerson, street, zipcode, city, web, email, telephone, rate, info)
+    (name, contactPerson, street, zipcode, city, web, email, telephone, rate, info)
     VALUES (
-    '". $contactId ."' ,
     '". $name ."'  ,
     '". $contactPerson ."' ,
     '". $street ."'  ,

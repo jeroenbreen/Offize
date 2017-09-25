@@ -25,7 +25,7 @@
                     ng-options="member as member.initials for (index, member) in model.members"
                     title="selecteer teamlid" ></select>
                 <select
-                    ng-options="contact as commonTools.limitString(commonTools.toSlug(contact.getNumber(), contact.name), 20) for contact in model.contacts"
+                    ng-options="contact as contact.toSlug(20) for contact in model.contacts"
                     ng-model="newProject.contact"
                     title="selecteer opdrachtgever" ></select>
                 <button title="opdracht toevoegen" class="glyph fa fa-plus" ng-click="addProject()"></button>
@@ -41,7 +41,7 @@
                 ng-click="model.currentProject = project"
                 class="ofc-row status-{{project.projectStatus}}">
                 <div class="ofc-cell ofc-cell-1 project-status project-name">
-                    <span>{{commonTools.toSlug(project.contact.getNumber(), project.projectName)}}</span>
+                    <span>{{project.toSlug()}}</span>
                 </div>
                 <div class="ofc-cell ofc-cell-2 project-status">
                     <div class="project-hours-score">

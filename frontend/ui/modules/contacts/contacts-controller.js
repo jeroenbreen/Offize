@@ -1,9 +1,13 @@
 define([
-    '../../ui-tools/common-tools',
-    '../../ui-tools/modal'
+    'models/Contact',
+    'ui/ui-tools/common-tools',
+    'ui/ui-tools/modal',
+    'jquery'
 ], function(
+    Contact,
     commonTools,
-    modal
+    modal,
+    $
 ) {
     "use strict";
     function ContactsController($scope, dataFactory, OfficeModel) {
@@ -17,10 +21,12 @@ define([
 
         $scope.$watch('model.currentContact', function(newVal, oldVal) {
             if (oldVal && newVal && oldVal.contactId === newVal.contactId && oldVal !== newVal) {
-                clearTimeout(timer);
-                timer = setTimeout(function(){
-                    update(newVal);
-                }, 1000);
+                if (newVal.id) {
+                    clearTimeout(timer);
+                    timer = setTimeout(function () {
+                        update(newVal);
+                    }, 1000);
+                }
             }
         }, true);
 
@@ -32,36 +38,20 @@ define([
             dataFactory.update(commonTools.param(obj)).success(handleSuccess);
         }
 
-        $scope.newContact = emptyContact();
-
-        function emptyContact() {
-            return {
-                type : 'contacts',
-                contactId : null,
-                name : '',
-                contactPerson : '',
-                street : '',
-                zipcode : '',
-                city : '',
-                email : '',
-                telephone : '',
-                web : '',
-                info : '',
-                rate : 70
-            }
-        }
 
         $scope.addContact = function() {
             var message;
             if ($scope.newContact.name) {
                 var handleSuccess = function(data, status) {
                     var message = 'Toegevoegd: ' + $scope.newContact.name;
-                    $scope.model.importContact($scope.newContact);
-                    $scope.newContact = emptyContact();
+                    $scope.newContact.contactId =data.id;
+                    $scope.model.contacts.push($scope.newContact);
+                    $scope.model.currentContact = $scope.newContact;
+                    $scope.newContact = new Contact();
                     modal.show(message, false);
                 };
-                $scope.newContact.contactId = $scope.model.getContactId();
-                dataFactory.add(commonTools.param($scope.newContact)).success(handleSuccess);
+
+                dataFactory.create($.param($scope.newContact.toBackend())).success(handleSuccess);
             } else {
                 message = 'Vul een naam in.';
                 modal.show(message, true);
@@ -107,6 +97,11 @@ define([
                 return -1;
             return 0;
         }
+
+        $scope.$on('bootstrap', function(){
+            $scope.newContact = new Contact();
+            $scope.model.currentContact = $scope.newContact;
+        })
     }
 
     ContactsController.$inject = ['$scope', 'dataFactory', 'OfficeModel'];

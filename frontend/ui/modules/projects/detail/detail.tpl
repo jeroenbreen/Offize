@@ -8,7 +8,7 @@
                 <td class="td-content">
                     <input type="text" title="Projectnaam" ng-model="project.projectName"><br>
                     <button title="kopieer slug" class="glyph fa fa-paperclip" ng-click="copySlug()"></button>
-                    <span class="detail-slug">{{commonTools.toSlug(project.contact.getNumber(), project.projectName)}}</span>
+                    <span class="detail-slug">{{project.toSlug()}}</span>
                 </td>
             </tr>
             <tr>
@@ -28,7 +28,7 @@
                 </td>
                 <td class="td-content">
                     <select
-                        ng-options="contact as commonTools.limitString(commonTools.toSlug(contact.getNumber(), contact.name), 20) for (index, contact) in office.contacts"
+                        ng-options="contact as contact.toSlug(20) for (index, contact) in office.contacts"
                         ng-model="project.contact"
                         title="Verander klant"></select>
                 </td>

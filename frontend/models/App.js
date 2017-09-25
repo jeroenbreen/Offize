@@ -137,16 +137,7 @@ define([
         return highest + 1;
     };
     //
-    // _p.getContactId = function() {
-    //     var highest = 0;
-    //     for (var i = 0, l = this.contacts.length; i < l; i++){
-    //         var id = this.contacts[i].contactId;
-    //         if (id > highest) {
-    //             highest = id;
-    //         }
-    //     }
-    //     return highest + 1;
-    // };
+
     //
 
     // };

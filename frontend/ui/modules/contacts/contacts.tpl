@@ -15,10 +15,8 @@
 <div class="frame-bottom">
 
     <ofc-contact-detail class="col col-4"
-                        ng-if="model.currentContact"
                         ofc-model="model.currentContact"
-                        ofc-office="model"
-                        ofc-configuration="model.configuration">
+                        ofc-office="model">
     </ofc-contact-detail>
 
     <div class="col col-8">
@@ -27,7 +25,7 @@
              ng-class="{'selected': contact === model.currentContact}"
              ng-click="model.currentContact = contact">
             <div class="project-status">
-                <div class="overlapper">{{commonTools.toSlug(contact.getNumber(), contact.name)}}</div>
+                <div class="overlapper">{{contact.toSlug()}}</div>
             </div>
         </div>
     </div>

@@ -5,9 +5,6 @@ define([
 ) {
     "use strict";
     var param,
-        toSlug,
-        digitize,
-        limitString,
         clipboard,
         currencyFormat;
 
@@ -26,31 +23,6 @@ define([
             }
         }
         return $.param(parameterised);
-    };
-
-    digitize = function(x) {
-        if (x < 100) {
-            if (x < 10) {
-                return '00' + x;
-            } else {
-                return '0' + x;
-            }
-        } else {
-            return x;
-        }
-    };
-
-    toSlug = function(nr, string) {
-        var name = string.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-');
-        return nr + '-' + name;
-    };
-
-    limitString = function(string, l) {
-        if (string.length > l) {
-            return string.substr(0,l) + '...'
-        } else {
-            return string;
-        }
     };
 
     clipboard = function(value) {
@@ -92,10 +64,7 @@ define([
 
 
     return {
-        digitize : digitize,
         param: param,
-        toSlug: toSlug,
-        limitString: limitString,
         clipboard: clipboard,
         currencyFormat: currencyFormat
     };
