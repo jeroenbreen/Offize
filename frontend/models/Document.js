@@ -25,7 +25,8 @@ define([
 
         this.title = document.title;
         this.nr = Number(document.nr);
-        this.clientName = document.clientName;
+        this.contactName = document.contactName;
+        this.contact = document ? app.getContactById(Number(document.contactId)) : null;
         this.year = Number(document.year);
         this.month = Number(document.month);
         this.day = Number(document.day);
@@ -36,6 +37,7 @@ define([
         this.locked = Boolean(parseInt(document.locked));
         this.english = Boolean(parseInt(document.english));
         this.hideTotal = Boolean(parseInt(document.hideTotal));
+        this.rate = Number(document.rate);
 
         this.lines = [];
         // skip this for new created documents
@@ -173,7 +175,8 @@ define([
         }
 
         string += this.id + ',';
-        string += this.clientName + ',';
+        string += this.contact.contactId + ',';
+        string += this.contactName + ',';
         string += this.projectId + ',';
         string += this.doctype + ',';
         string += this.currency + ',';
@@ -189,8 +192,6 @@ define([
         string += this.month + ',';
         string += this.day + ',';
         string += this.rate;
-        console.log(string);
-
         return string + '\n';
     };
 

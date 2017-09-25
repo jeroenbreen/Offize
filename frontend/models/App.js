@@ -1,6 +1,7 @@
 define([
    './_BaseModel',
    './Project',
+   './Company',
    './Comment',
    './Document',
    './Member',
@@ -9,6 +10,7 @@ define([
 ], function(
     Parent,
     Project,
+    Company,
     Comment,
     Document,
     Member,
@@ -20,6 +22,7 @@ define([
         this.projects = [];
         this.contacts = [];
         this.members = [];
+        this.company = null;
         this.configuration = null;
 
         // gets removed after all wiring from bootstrap is done
@@ -46,17 +49,32 @@ define([
     var _p = App.prototype = Object.create(Parent.prototype);
 
     _p.bootstrap = function(data) {
+        this.importCompany(data.configuration);
         this.importer(data.members, Member, this.members);
         this.importer(data.comments, Comment, this.store.comments);
         this.importer(data.lines, Line, this.store.lines);
-        this.importer(data.documents, Document, this.documents);
         this.importer(data.contacts, Contact, this.contacts);
+        this.importer(data.documents, Document, this.documents);
         this.importer(data.projects, Project, this.projects);
         this.setConfiguration(data.configuration);
         // after connecting all lines with the documents
         // and all documents and comments with projects
         // we can erase the temp store
         delete this.store;
+    };
+
+    _p.importCompany = function (configuration) {
+        var company = {
+            name: configuration.companyName,
+            address: configuration.companyAddress,
+            city: configuration.companyCity,
+            zipcode: configuration.companyZipcode,
+            standardRate: configuration.standardRate,
+            startingYear: configuration.startingYear,
+            title: configuration.title,
+            welcome: configuration.welcome
+        };
+        this.company = new Company(company);
     };
 
     _p.importer = function (set, Model, destination) {
@@ -74,15 +92,15 @@ define([
         }
     };
 
-    // _p.getProjectById = function(projectId) {
-    //     for (var i = 0, l = this.projects.length; i < l; i++) {
-    //         var project = this.projects[i];
-    //         if (project.projectId === projectId) {
-    //             return project;
-    //         }
-    //     }
-    //     return null;
-    // };
+    _p.getProjectById = function(projectId) {
+        for (var i = 0, l = this.projects.length; i < l; i++) {
+            var project = this.projects[i];
+            if (project.projectId === projectId) {
+                return project;
+            }
+        }
+        return null;
+    };
     //
     // _p.getContactById = function(contactId) {
     //     for (var i = 0, l = this.contacts.length; i < l; i++) {
@@ -191,14 +209,14 @@ define([
 
     // refactoring tools
     //
-    // _p.documentsToCSV = function() {
-    //     var csv = '';
-    //     for (var i = 0, l = this.store.documents.length; i < l; i++) {
-    //         var document = this.store.documents[i];
-    //         csv += document.toCSV();
-    //     }
-    //     console.log(csv);
-    // };
+    _p.documentsToCSV = function() {
+        var csv = '';
+        for (var i = 0, l = this.documents.length; i < l; i++) {
+            var document = this.documents[i];
+            csv += document.toCSV();
+        }
+        console.log(csv);
+    };
     //
     // _p.linesToCSV = function() {
     //     var csv = '';

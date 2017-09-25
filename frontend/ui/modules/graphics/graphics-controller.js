@@ -12,20 +12,22 @@ define([
 
         $scope.getAmount = function(year, month) {
             var amount = 0;
-            for (var i = 0, l = $scope.model.invoices.length; i < l; i++) {
-                var invoice = $scope.model.invoices[i];
-                if (invoice.date.year === year && invoice.date.month === month) {
-                    var thisAmount = 0;
-                    for (var j = 0, jl = invoice.lines.length; j < jl; j++) {
-                        var line = invoice.lines[j];
-                        if (line.type === 'count') {
-                            thisAmount += parseFloat(line.rate) * parseFloat(line.hours);
-                        } else if (line.type === 'amount') {
-                            thisAmount += parseFloat(line.amount);
-                        }
+            for (var i = 0, l = $scope.model.documents.length; i < l; i++) {
+                var document = $scope.model.documents[i];
+                if (document.doctype === 'invoice') {
+                    if (document.year === year && document.month === month) {
+                        var thisAmount = 0;
+                        for (var j = 0, jl = document.lines.length; j < jl; j++) {
+                            var line = document.lines[j];
+                            if (line.type === 'count') {
+                                thisAmount += parseFloat(line.rate) * parseFloat(line.hours);
+                            } else if (line.type === 'amount') {
+                                thisAmount += parseFloat(line.amount);
+                            }
 
+                        }
+                        amount += thisAmount;
                     }
-                    amount += thisAmount;
                 }
             }
             return amount;

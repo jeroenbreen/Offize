@@ -1,6 +1,6 @@
 <div class="lines-row-c1">
-    <input ng-if="!model.parent.locked" placeholder="Post" ng-model="model.title">
-    <span ng-if="model.parent.locked">{{model.title}}</span>
+    <input ng-if="!model.parent.locked" placeholder="Post" ng-model="model.text">
+    <span ng-if="model.parent.locked">{{model.text}}</span>
 </div>
 <div class="lines-row-c2">
     &nbsp;

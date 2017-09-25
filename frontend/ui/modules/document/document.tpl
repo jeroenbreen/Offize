@@ -27,28 +27,30 @@
 
         <div id="paper-contact">
             <div class="paper-contact-left" ng-if="!document.locked">
-                <input ng-model="document.client.name" class="input-bold">
-                <input ng-model="document.client.contactPerson">
-                <input ng-model="document.client.address">
-                <input ng-model="document.client.zipcode">
+                <b>{{document.contact.name}}</b><br>
+                <input ng-model="document.contactName">
+                {{document.contact.street}}<br>
+                {{document.contact.zipcode}} {{document.contact.city}}
             </div>
             <div class="paper-contact-left" ng-if="document.locked">
-                <b>{{document.client.name}}</b><br>
-                {{document.clientName}}<br>
-                {{document.client.address}}<br>
-                {{document.client.zipcode}}
+                <b>{{document.contact.name}}</b><br>
+                {{document.contactName}}<br>
+                {{document.contact.street}}<br>
+                {{document.contact.zipcode}} {{document.contact.city}}
             </div>
             <div class="paper-contact-right" ng-if="!document.locked">
-                <input class="input-bold" ng-model="document.sender.name">
-                <input ng-model="document.sender.contactPerson">
-                <input ng-model="document.sender.address">
-                <input ng-model="document.sender.zipcode">
+                <b>{{office.company.name}}</b><br>
+                <select
+                    ng-options="member as member.name for member in office.members"
+                    ng-model="document.member"></select><br>
+                {{office.company.address}}<br>
+                {{office.company.zipcode}} {{office.company.city}}
             </div>
             <div class="paper-contact-right" ng-if="document.locked">
-                <b>{{document.sender.name}}</b><br>
-                {{document.member.contactPerson}}<br>
-                {{document.sender.address}}<br>
-                {{document.sender.zipcode}}
+                <b>{{office.company.name}}</b><br>
+                {{document.member.name}}<br>
+                {{office.company.address}}<br>
+                {{office.company.zipcode}} {{office.company.city}}
             </div>
         </div>
 

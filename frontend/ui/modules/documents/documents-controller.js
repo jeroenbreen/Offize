@@ -1,56 +1,40 @@
 define([
-    '../../ui-tools/common-tools',
-    '../../ui-tools/modal'
+    'ui/ui-tools/common-tools',
+    'ui/ui-tools/modal'
 ], function(
     commonTools,
     modal
 ) {
     'use strict';
-    function DocumentsController($scope, dataFactory, OfficeModel) {
+    function DocumentsController($scope, OfficeModel) {
         this.$scope = $scope;
         $scope.model = OfficeModel;
-        var timer;
 
         $scope.model.menu = 'documents';
 
-        $scope.$watch('model.currentProject', function(newVal, oldVal) {
-            if (oldVal && newVal && oldVal.projectId === newVal.projectId && oldVal !== newVal) {
-                clearTimeout(timer);
-                timer = setTimeout(function(){
-                    update(newVal);
-                }, 1000);
-            }
-        }, true);
-
-        function update(obj) {
-            var handleSuccess = function(data, status) {
-                var message = 'Save: ' + obj.projectName;
-                modal.show(message, false);
-            };
-            dataFactory.update(commonTools.param(obj)).success(handleSuccess);
-        }
 
         $scope.filter = {
-            search : {
-                invoices : '',
-                tenders : ''
-            }
+            search : '',
+            doctype: 'invoice',
+            year: $scope.model.thisYear
         };
 
-        $scope.filterDocs = function(docs, type) {
+        $scope.filterDocs = function() {
             var filtered = [],
                 sorted;
-            for (var i = 0, l = docs.length; i < l; i++) {
-                var doc = docs[i];
+            for (var i = 0, l = $scope.model.documents.length; i < l; i++) {
+                var document = $scope.model.documents[i];
                 if (
-                    ($scope.filter.search[type] === '' ||
-                     doc.year.toString().indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1 ||
-                     doc.client.naam.toLocaleLowerCase().indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1 ||
-                     doc.nr.indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1 ||
-                     doc.title.toLocaleLowerCase().indexOf($scope.filter.search[type].toLocaleLowerCase()) > -1
-                   )
+                    ($scope.filter.search === '' ||
+                        (document.year.toString().indexOf($scope.filter.search.toLocaleLowerCase()) > -1 ||
+                     document.contact.name.toLocaleLowerCase().indexOf($scope.filter.search.toLocaleLowerCase()) > -1 ||
+                     document.nr.toString().indexOf($scope.filter.search.toLocaleLowerCase()) > -1 ||
+                     document.title.toLocaleLowerCase().indexOf($scope.filter.search.toLocaleLowerCase()) > -1)
+                    )
+                    && $scope.filter.doctype === document.doctype
+                    && ($scope.filter.year === document.year || $scope.filter.year === 'Alle')
                 ) {
-                    filtered.push(doc);
+                    filtered.push(document);
                 }
             }
             sorted = filtered.sort(compare);
@@ -67,12 +51,17 @@ define([
         }
 
         function combi(x) {
-            return x.jaar + '' + x.nr
+            return x.year + '' + x.nr
         }
+
+        $scope.selectDocument = function(document) {
+            $scope.model.currentDocument = document;
+            $scope.model.currentProject = $scope.model.getProjectById(document.projectId)
+        };
 
     }
 
-    DocumentsController.$inject = ['$scope', 'dataFactory', 'OfficeModel'];
+    DocumentsController.$inject = ['$scope', 'OfficeModel'];
 
     return DocumentsController;
 }); 
