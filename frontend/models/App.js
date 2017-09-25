@@ -61,6 +61,9 @@ define([
         // and all documents and comments with projects
         // we can erase the temp store
         delete this.store;
+        //
+        this.currentContact = this.contacts[this.contacts.length - 1];
+        this.currentProject = this.projects[this.projects.length - 1];
     };
 
     _p.importCompany = function (configuration) {

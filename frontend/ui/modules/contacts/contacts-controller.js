@@ -21,7 +21,7 @@ define([
 
         $scope.$watch('model.currentContact', function(newVal, oldVal) {
             if (oldVal && newVal && oldVal.contactId === newVal.contactId && oldVal !== newVal) {
-                if (newVal.id) {
+                if (newVal.contactId) {
                     clearTimeout(timer);
                     timer = setTimeout(function () {
                         update(newVal);
@@ -30,12 +30,12 @@ define([
             }
         }, true);
 
-        function update(obj) {
+        function update(contact) {
             var handleSuccess = function(data, status) {
-                var message = 'Save: ' + obj.name;
+                var message = 'Save: ' + contact.name;
                 modal.show(message, false);
             };
-            dataFactory.update(commonTools.param(obj)).success(handleSuccess);
+            dataFactory.update($.param(contact.toBackend())).success(handleSuccess);
         }
 
 
@@ -58,15 +58,6 @@ define([
             }
         };
 
-        $scope.limitString = function(string) {
-            var max = 20;
-            if (string.length > max) {
-                return string.substr(0, max - 3) + '[...]';
-            } else {
-                return string;
-            }
-        };
-
         $scope.filter = {
             search : ''
         };
@@ -83,6 +74,7 @@ define([
                     filtered.push(contact);
                 }
             }
+            // TODO dit kan al op de bootstrap eenmalig met array.sort gebeuren
             sorted = filtered.sort(compare);
             if (sorted.length === 1) {
                 $scope.model.currentContact = sorted[0];
@@ -100,7 +92,6 @@ define([
 
         $scope.$on('bootstrap', function(){
             $scope.newContact = new Contact();
-            $scope.model.currentContact = $scope.newContact;
         })
     }
 

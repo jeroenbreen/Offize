@@ -3,7 +3,7 @@ include ('connect.php');
 
 $type = $_POST['type'];
 if ($type == "project") { $query = updateProject(); }
-else if ($type == "contacts") { $query = updateContact(); }
+else if ($type == "contact") { $query = updateContact(); }
 else if ($type == "team") { $query = updateTeam(); }
 else if ($type == "hours") { $query = updateHours(); }
 else if ($type == "comments") { $query = updateComment(); }

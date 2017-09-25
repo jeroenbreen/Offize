@@ -24,7 +24,9 @@ define([
         $scope.$watch('model.currentProject', function(newVal, oldVal) {
             // todo ignore quotations, invoices, comments, blocks
             if (oldVal && newVal && oldVal.projectId === newVal.projectId && oldVal !== newVal) {
-                update(newVal);
+                if (newVal.projectId) {
+                    update(newVal);
+                }
             }
         }, true);
 
