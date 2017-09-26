@@ -1,7 +1,9 @@
 define([
-   './_BaseModel'
+   './_BaseModel',
+    'ui/ui-tools/common-tools'
 ], function(
-    Parent
+    Parent,
+    commonTools
 ){
     "use strict";
     function Contact(contact) {
@@ -20,6 +22,16 @@ define([
     }
 
     var _p = Contact.prototype = Object.create(Parent.prototype);
+
+    _p.toSlug = function(limitString) {
+        var formattedName = this.name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-'),
+            label = commonTools.digitize(this.contactId) + '-' + formattedName;
+        if (limitString && label.length > limitString) {
+            return label.substr(0,limitString) + '...'
+        } else {
+            return label;
+        }
+    };
 
     return Contact;
 });

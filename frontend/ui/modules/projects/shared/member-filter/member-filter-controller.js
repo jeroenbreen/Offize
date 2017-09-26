@@ -16,10 +16,13 @@ define([
 
         $scope.members = [];
 
-        $scope.$on('bootstrap', function(){
-            $scope.members = $scope.model.members.slice();
-            $scope.members.unshift(filterMemberAllOption);
-            $scope.current = $scope.members[0];
+
+        $scope.$watch('model.members.length', function(newVal, oldVal){
+            if (newVal > 0) {
+                $scope.members = $scope.model.members.slice();
+                $scope.members.unshift(filterMemberAllOption);
+                $scope.current = $scope.members[0];
+            }
         })
     }
 

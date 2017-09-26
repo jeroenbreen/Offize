@@ -92,7 +92,7 @@ define([
                 if (
                     ($scope.filter.year === 'Alle' || project.year === $scope.filter.year) &&
                     ($scope.filter.search === '' || project.projectName.toLocaleLowerCase().indexOf($scope.filter.search.toLocaleLowerCase()) > -1) &&
-                    ($scope.filter.member.memberId === -1 || project.member.memberId === $scope.filter.member.memberId) &&
+                    (!$scope.filter.member || $scope.filter.member.memberId === -1 || project.member.memberId === $scope.filter.member.memberId) &&
                     (!$scope.showOnlyLiveProjects || project.projectStatus < 3)
                 ) {
                     filtered.push(project);

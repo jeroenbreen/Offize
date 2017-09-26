@@ -1,9 +1,9 @@
 define([
    './_BaseModel',
-   './OldDocument'
+   'ui/ui-tools/common-tools'
 ], function(
     Parent,
-    OldDocument
+    commonTools
 ){
     "use strict";
     function Project(project) {
@@ -63,6 +63,13 @@ define([
     };
 
 
+
+    // helpers
+
+    _p.toSlug = function(limitString) {
+        var formattedName = this.projectName.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-');
+        return commonTools.digitize(this.contact.contactId) + '-' + formattedName;
+    };
 
 
     // status

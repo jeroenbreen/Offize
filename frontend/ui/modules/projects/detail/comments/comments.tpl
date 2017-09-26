@@ -14,7 +14,7 @@
 
 <input ng-model="newComment.comment" placeholder="Comment">
 
-<div class="project-detail-action-set">
+<div class="glyph-container">
     <button title="Comment toevoegen" class="glyph fa fa-plus" ng-click="addComment()"></button>
     <span>Notitie toevoegen</span>
 </div>

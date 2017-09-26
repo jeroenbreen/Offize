@@ -1,18 +1,10 @@
 define([
     './_BaseModel',
-    './lines/AmountModel',
-    './lines/CountModel',
-    './lines/EnterModel',
-    './lines/SubtotalModel',
-    './lines/TextModel',
+    'ui/ui-tools/common-tools',
     'jquery'
 ], function(
     Parent,
-    AmountModel,
-    CountModel,
-    EnterModel,
-    SubtotalModel,
-    TextModel,
+    commonTools,
     $
 ){
     "use strict";
@@ -48,8 +40,6 @@ define([
 
     var _p = Document.prototype = Object.create(Parent.prototype);
 
-    // import
-
     _p.importLines = function() {
         for (var i = 0, l = app.store.lines.length; i < l; i++) {
             var line = app.store.lines[i];
@@ -59,82 +49,13 @@ define([
         }
     };
 
-
-
-
-
-
-    _p.exportSettings = function() {
-        return {
-            ignoreProperties: ['parent', '$$hashKey'],
-            children: ['lines']
-        }
+    _p.toSlug = function() {
+        return this.year + '-' + commonTools.digitize(this.nr);
     };
 
-    _p.setProperties = function(document) {
-        this.sender = this.convertSender(document.sender);
-        this.client = this.convertClient(document.client);
-        this.year = document.year;
-        this.nr = document.nr;
-        this.date = this.convertDate(document.date);
-        this.title = document.title;
-        this.paid = document.paid;
-        this.rate = document.rate;
-        this.currency = document.currency;
-        this.locked = document.locked;
-        this.vat = document.vat ? document.vat : 21;
-        this.english = document.english;
-        this.hideTotal = document.hideTotal;
-        this.importLines(document.lines);
+    _p.getPrefix = function() {
+        return this.doctype === 'invoice' ? 'Factuur' : 'Offerte';
     };
-
-    _p.convertClient = function(client) {
-        return {
-            name: client.name ? client.name : client.naam,
-            contactPerson: client.contactPerson ? client.contactPerson : client.contact,
-            address: client.address ? client.address : client.adres,
-            zipcode: client.zipcode ? client.zipcode : client.postcode
-        }
-    };
-
-    _p.convertSender = function(sender) {
-        return {
-            name: sender.name ? sender.name : sender.naam,
-            contactPerson: sender.contactPerson ? sender.contactPerson : sender.contact,
-            address: sender.address ? sender.address : sender.adres,
-            zipcode: sender.zipcode ? sender.zipcode : sender.postcode
-        }
-    };
-
-    _p.convertDate = function(date) {
-        return {
-            day: date.day ? date.day : date.d,
-            month: date.month ? date.month : date.m,
-            year: date.year ? date.year : date.j
-        }
-    };
-
-    _p.addLine = function(type) {
-        var lineModel;
-        switch (type) {
-            case 'amount':
-                lineModel = new AmountModel(this);
-                break;
-            case 'count':
-                lineModel = new CountModel(this);
-                break;
-            case 'enter':
-                lineModel = new EnterModel(this);
-                break;
-            case 'subtotal':
-                lineModel = new SubtotalModel(this);
-                break;
-            case 'text':
-                lineModel = new TextModel(this, {text:''});
-        }
-        this.lines.push(lineModel);
-    };
-
 
 
 

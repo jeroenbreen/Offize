@@ -6,7 +6,8 @@ define([
     "use strict";
     var param,
         clipboard,
-        currencyFormat;
+        currencyFormat,
+        digitize;
 
     param = function(obj) {
         var parameterised = {},
@@ -62,10 +63,23 @@ define([
         return value;
     };
 
+    digitize = function (x) {
+        if (x < 100) {
+            if (x < 10) {
+                return '00' + x;
+            } else {
+                return '0' + x;
+            }
+        } else {
+            return x;
+        }
+    };
+
 
     return {
         param: param,
         clipboard: clipboard,
-        currencyFormat: currencyFormat
+        currencyFormat: currencyFormat,
+        digitize: digitize
     };
 });

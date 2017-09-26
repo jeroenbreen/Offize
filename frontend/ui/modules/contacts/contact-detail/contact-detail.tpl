@@ -8,7 +8,7 @@
         </div>
         <div class="glyph-container">
             <button title="kopieer slug" class="glyph fa fa-paperclip" ng-click="copySlug()"></button>
-            <span>Kopier slug</span>
+            <span>Kopier slug: {{model.toSlug()}}</span>
         </div>
     </div>
 

@@ -1,5 +1,5 @@
-<div class="frame-top small-top">
-    <div class="panel">
+<div id="documents-top">
+    <div class="header-panel">
         <input placeholder="Zoek factuur" type="text" ng-model="filter.search">
         <input type="radio"
                ng-model="filter.doctype"
@@ -15,17 +15,15 @@
     </div>
 </div>
 
-<div class="frame-bottom small-top">
-    <div class="panel panel-spacy">
-        <div class="mini-doc"
-              ng-repeat="document in filterDocs()"
-              ng-class="{
-                'selected': document === model.currentDocument,
-                'paid': document.paid}"
-              ng-click="selectDocument(document)">
-                <b>{{document.doctype}} {{document.year}} - {{document.nr}}</b><br>
-                {{document.title}}
-        </div>
+<div id="documents-bottom">
+    <div class="mini-doc mini-doc--{{document.doctype}}"
+          ng-repeat="document in filterDocs()"
+          ng-class="{
+            'selected': document === model.currentDocument,
+            'paid': document.paid}"
+          ng-click="selectDocument(document)">
+            <b>{{document.getPrefix()}} {{document.toSlug()}}</b><br>
+            {{document.title}}
     </div>
 </div>
 

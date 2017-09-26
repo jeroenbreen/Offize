@@ -2,8 +2,10 @@
     <div class="panel">
         <div class="panel-section">
             <input type="text" title="Projectnaam" ng-model="project.projectName" class="project-detail-project-name"><br>
-            <button title="kopieer slug" class="glyph fa fa-paperclip" ng-click="copySlug()"></button>
-            <span class="detail-slug">{{project.toSlug()}}</span>
+            <div class="glyph-container" ng-if="project.projectStatus < 5">
+                <button title="kopieer slug" class="glyph fa fa-paperclip" ng-click="copySlug()"></button>
+                <span>Kopieer slug: {{project.toSlug()}}</span>
+            </div>
         </div>
 
         <div class="panel-section">
