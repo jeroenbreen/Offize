@@ -18,7 +18,6 @@ define([
     './modules/contacts/contact-detail/contact-detail',
     './modules/document/document',
     './modules/projects/detail/detail',
-    './modules/projects/comments/comments',
     './modules/projects/shared/member-filter/member-filter',
     
     'ngStorage',
@@ -44,7 +43,6 @@ define([
     contactDetailModule,
     documentModule,
     detailModule,
-    commentsModule,
     memberFilterModule,
     
     ngStorage,
@@ -59,7 +57,6 @@ define([
         documentModule.name,
         contactDetailModule.name,
         detailModule.name,
-        commentsModule.name,
          memberFilterModule.name
     ])
     .config(['$routeProvider', function ($routeProvider) {

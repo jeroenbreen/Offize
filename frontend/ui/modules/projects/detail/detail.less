@@ -1,20 +1,41 @@
-.detail {
-    .label {
-        padding: 13px 6px 5px 6px;
-        text-align: right;
-        vertical-align: top;
+@import "comments/comments";
+
+ofc-detail {
+
+    #project-detail-left {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        overflow: auto;
+        padding-right: 20px;
     }
 
-    .label-with-input {
-        padding: 5px 6px 13px 6px;
-        text-align: right;
-        vertical-align: top;
+    #project-detail-right {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        overflow: auto;
     }
 
-    .td-content {
-        vertical-align: top;
-        padding-top: 2px;
+    .glyph {
+        background: #eee;
+    }
 
+    input.project-detail-project-name {
+        width: 100%;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 6px;
+        border: 1px solid #ddd;
+        outline: none;
+
+    }
+
+    #project-detail-hour-information {
         input[type=text] {
             width: 100%;
         }
@@ -26,48 +47,9 @@
         input.input-medium {
             width: 36px;
         }
-
-        select {
-            margin-top: 2px;
-        }
     }
 
-    .distribution-set {
-        padding: 4px;
-
-        .distribution-week {
-            background: #fed401;
-            padding: 4px 6px;
-            color: #555;
-            margin-right: 8px;
-            font-size: 10px;
-            display: inline-block;
-        }
-
-        .distribution-input {
-            width: 30px;
-        }
-
-        .superscript {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            text-align: center;
-            border-radius: 8px;
-            font-size: 8px;
-            background: #ddd;
-            color: #555;
-            top: -3px;
-            margin: -4px 6px 0 -8px;
-            vertical-align: top;
-        }
-
-    }
-
-
-
-    .td-status {
-        padding-top: 5px;
+    #project-detail-status-information {
 
         .status-label {
             width: 16px;
@@ -86,7 +68,114 @@
             display: inline-block;
         }
     }
+
+    .project-detail-action-set {
+        margin-bottom: 5px;
+
+        span {
+            display: inline-block;
+            margin: 10px 0 0 3px;
+            vertical-align: top;
+            font-size: 10px;
+        }
+    }
+
+    .project-detail-docs {
+        margin-bottom: 4px;
+    }
 }
+
+
+
+//.detail {
+//    .label {
+//        padding: 13px 6px 5px 6px;
+//        text-align: right;
+//        vertical-align: top;
+//    }
+//
+//    .label-with-input {
+//        padding: 5px 6px 13px 6px;
+//        text-align: right;
+//        vertical-align: top;
+//    }
+//
+//    .td-content {
+//        vertical-align: top;
+//        padding-top: 2px;
+//
+//        input[type=text] {
+//            width: 100%;
+//        }
+//
+//        input.input-small {
+//            width: 30px;
+//        }
+//
+//        input.input-medium {
+//            width: 36px;
+//        }
+//
+//        select {
+//            margin-top: 2px;
+//        }
+//    }
+//
+//    .distribution-set {
+//        padding: 4px;
+//
+//        .distribution-week {
+//            background: #fed401;
+//            padding: 4px 6px;
+//            color: #555;
+//            margin-right: 8px;
+//            font-size: 10px;
+//            display: inline-block;
+//        }
+//
+//        .distribution-input {
+//            width: 30px;
+//        }
+//
+//        .superscript {
+//            display: inline-block;
+//            width: 16px;
+//            height: 16px;
+//            text-align: center;
+//            border-radius: 8px;
+//            font-size: 8px;
+//            background: #ddd;
+//            color: #555;
+//            top: -3px;
+//            margin: -4px 6px 0 -8px;
+//            vertical-align: top;
+//        }
+//
+//    }
+//
+//
+//
+//    .td-status {
+//        padding-top: 5px;
+//
+//        .status-label {
+//            width: 16px;
+//            height: 16px;
+//            border-radius: 8px;
+//            margin-right: 4px;
+//            display: inline-block;
+//            position: relative;
+//            top: 7px;
+//            border: 1px solid #333;
+//        }
+//
+//        .status-label-text {
+//            position: relative;
+//            top: 4px;
+//            display: inline-block;
+//        }
+//    }
+//}
 
 .detail-slug {
     cursor: default;

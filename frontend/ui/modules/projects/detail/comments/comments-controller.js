@@ -1,6 +1,6 @@
 define([
-    '../../../ui-tools/common-tools',
-    '../../../ui-tools/modal'
+    'ui/ui-tools/common-tools',
+    'ui/ui-tools/modal'
 ], function(
     commonTools,
     modal

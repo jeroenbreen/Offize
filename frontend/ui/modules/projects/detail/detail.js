@@ -1,14 +1,18 @@
 define([
     'angular',
     './detail-controller',
-    './detail-directive'
+    './detail-directive',
+    './comments/comments'
 ], function(
     angular,
     Controller,
-    directive
+    directive,
+    commentsModule
 ) {
     "use strict";
-    return angular.module('ofc.detail', [])
+    return angular.module('ofc.detail', [
+        commentsModule.name
+    ])
         .controller('DetailController', Controller)
         .directive('ofcDetail', directive)
         ;

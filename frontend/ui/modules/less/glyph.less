@@ -1,0 +1,153 @@
+.spacer {
+    width: 26px;
+    display: inline-block;
+}
+
+.icon {
+    font-family: 'glyphs';
+    font-size: 20px;
+    color: #000;
+}
+
+.glyph {
+    text-align: center;
+    vertical-align: top;
+    font-size: 13px;
+    background: #fff;
+    color: #888;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    margin-top: 4px;
+}
+
+.glyph.inactive {
+    color: #ddd;
+}
+
+.glyph:hover {
+    color: #fff;
+    background: #de7070;
+}
+
+.red:hover {
+    color: #fff!important;
+    background: #f00!important;
+}
+
+.grey {
+    background: #fff;
+    color: #000;
+    border: 1px solid rgba(0,0,0,0.5);
+}
+
+.grey:hover {
+    border: 1px solid transparent;
+}
+
+.unlocked:hover {
+    background: red!important;
+    color: #000!important;
+}
+
+.locked {
+    background: red;
+}
+
+.locked:hover {
+    background: #fff!important;
+    color: #000!important;
+}
+
+
+.glyph.glyphhidden {
+    color: #ddd;
+}
+
+.glyph.glyphhidden:hover {
+    color: #fff;
+}
+
+.niet-betaald {
+    color: #f00;
+}
+
+
+.att {
+    position: relative;
+    width: 120px;
+    padding-right: 30px;
+}
+
+.att-frame {
+    display: inline-block;
+    float: right;
+    width: 68px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.att-frame-in {
+    float: right;
+    text-align: left;
+    min-width: 68px;
+    padding-top: 2px;
+}
+
+.remove-att.glyph {
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    z-index: 100;
+    font-size: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    margin-top: 0px;
+}
+
+.att:hover > .remove-att {
+    display: inline-block;
+}
+
+.att-full-name {
+    white-space: nowrap;
+    min-width: 120px;
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    background: #de7070;
+    color: #fff;
+    border: 0;
+    padding: 3px 30px 4px 6px;
+    border-radius: 13px;
+    height: 26px;
+    text-decoration: none;
+    font-family: "Roboto Condensed";
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.att:hover > .att-full-name {
+    display: inline-block;
+}
+
+.content-bar {
+    width: 150px;
+    padding: 10px;
+    margin: 0 8px 8px 0;
+    background: #de7070;
+    display: inline-block;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+}
+
+.content-bar.selected {
+    border-left: 4px solid #000;
+}

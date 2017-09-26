@@ -61,10 +61,9 @@ function() {
         }
 
         var name = this.type === 'contact' ? this.name : this.projectName,
-            nr = this.type === 'contact' ? this.contactId : this.projectId,
+            nr = this.type === 'contact' ? this.contactId : this.contact.contactId,
             formattedName = name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-'),
             label = digitize(nr) + '-' + formattedName;
-
         if (limitString && label.length > limitString) {
             return label.substr(0,limitString) + '...'
         } else {

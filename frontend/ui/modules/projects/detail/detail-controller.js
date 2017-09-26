@@ -41,7 +41,7 @@ define([
         };
 
         $scope.copySlug = function() {
-            commonTools.clipboard(commonTools.toSlug($scope.project.contact.getNumber(), $scope.project.projectName));
+            commonTools.clipboard($scope.project.toSlug());
         };
 
         $scope.addDocument = function(doctype) {
