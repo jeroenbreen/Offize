@@ -1,21 +1,68 @@
-/* contact detail */
+@import "contact-detail/contact-detail";
+
+#contacts {
+    width: 457px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: ~'calc(100% - 20px)';
+
+    #contacts-add,
+    #contacts-search,
+    #contacts-loop {
+        background: #ddd;
+
+        .panel {
+            border: 0;
+
+        }
+    }
+
+    #contacts-add,
+    #contacts-search {
 
 
-.contacts-search {
-    input {
+        input {
+            padding: 10px;
+            font-size: 14px;
+            outline: 0;
+            width: 100%;
+        }
+    }
+
+    #contacts-add {
+
+        input {
+            margin-bottom: 20px;
+        }
+    }
+
+    .contact {
+        padding: 10px;
+        margin: 0 8px 8px 0;
+        background: #eee;
+        display: inline-block;
+        cursor: pointer;
+        width: 126px;
+
+        &.selected,
+        &:hover {
+            background: #fed401;
+        }
+    }
+
+    #contacts-loop {
+        height: ~'calc(100% - 257px)';
+        overflow: auto;
         width: 100%;
     }
 }
 
-.frame-top .panel {
-    margin-bottom: 10px;
+ofc-contact-detail {
+    width: 400px;
+    position: absolute;
+    left: 500px;
+    top: 10px;
+    height: ~'calc(100% - 20px)';
 }
-
-.contacts-add button {
-    margin-top: 0;
-    float: right;
-    background: #ccc;
-}
-
-
 

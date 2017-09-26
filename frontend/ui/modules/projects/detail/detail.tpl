@@ -36,22 +36,22 @@
             </div>
         </div>
 
-        <div class="panel-section">
+        <div class="panel-section" ng-if="project.projectStatus === 2">
             <input type="checkbox" ng-model="project.finished"> Afgerond
         </div>
 
         <div id="project-detail-actions" class="panel-section">
-            <div class="project-detail-action-set" ng-if="project.projectStatus === 5">
+            <div class="glyph-container" ng-if="project.projectStatus === 5">
                 <button title="archiveer opdracht" class="glyph fa fa-paper-plane" ng-click="archiveProject()"></button>
                 <span>Breng terug</span>
             </div>
 
-            <div class="project-detail-action-set" ng-if="project.projectStatus < 5">
+            <div class="glyph-container" ng-if="project.projectStatus < 5">
                 <button title="breng opdracht terug" class="glyph fa fa-reply" ng-click="deArchiveProject()"></button>
                 <span>Archiveren</span>
             </div>
 
-            <div class="project-detail-action-set">
+            <div class="glyph-container">
                 <button title="verwijder opdracht" class="glyph red fa fa-trash" ng-click="removeProject()"></button>
                 <span>Verwijderen</span>
             </div>
@@ -74,7 +74,7 @@
                 {{quotation.year}} - {{quotation.nr}}
             </div>
         </div>
-        <div class="project-detail-action-set">
+        <div class="glyph-container">
             <button title="Offerte toevoegen" class="glyph fa fa-plus" ng-click="addDocument('quotation')"></button>
             <span>Offerte toevoegen</span>
         </div>
@@ -93,7 +93,7 @@
                 <span class="gl fa fa-folder-open"></span> {{invoice.year}} - {{invoice.nr}}
             </div>
         </div>
-        <div class="project-detail-action-set">
+        <div class="glyph-container">
             <button title="Factuur toevoegen" class="glyph fa fa-plus" ng-click="addDocument('invoice')"></button>
             <span>Factuur toevoegen</span>
         </div>
