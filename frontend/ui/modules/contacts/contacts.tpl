@@ -1,13 +1,13 @@
 <div id="contacts">
     <div id="contacts-search">
         <div class="header-panel">
-            <input type="text" placeholder="Search..." ng-model="filter.search">
+            <input type="text" class="big-input" placeholder="Search..." ng-model="filter.search">
         </div>
     </div>
 
     <div id="contacts-add">
         <div class="header-panel">
-            <input type="text" placeholder="Nieuwe relatie..." ng-model="newContact.name">
+            <input type="text" class="big-input" placeholder="Nieuwe relatie..." ng-model="newContact.name">
 
             <div class="glyph-container">
                 <button title="Contact toevoegen" class="glyph fa fa-plus" ng-click="addContact()"></button>

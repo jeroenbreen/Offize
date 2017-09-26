@@ -106,7 +106,7 @@
             Notities
         </h2>
         <ofc-comments
-            ofc-model="project"
+            project="project"
             ofc-office="model"></ofc-comments>
     </div>
 </div>

@@ -1,7 +1,9 @@
 define([
+    'models/Comment',
     'ui/ui-tools/common-tools',
     'ui/ui-tools/modal'
 ], function(
+    Comment,
     commonTools,
     modal
 ) {
@@ -9,9 +11,31 @@ define([
     function CommentsController($scope, dataFactory, $document) {
         this.$scope = $scope;
 
-        // esc key
+        $scope.newComment = new Comment();
 
-        // esc key
+        console.log($scope.newComment);
+
+        $scope.addComment = function() {
+            var message;
+            if ($scope.newComment.comment !== '') {
+                var handleSuccess = function(response, status) {
+                    $scope.newComment.date = 'just now...';
+                    $scope.newComment.id = response.id;
+                    $scope.project.comments.push($scope.newComment);
+                    $scope.newComment = new Comment();
+                    modal.show(response, false);
+                };
+                //$scope.newComment.date = new Date().toLocaleString();
+                $scope.newComment.projectId = $scope.project.projectId;
+                $scope.newComment.contactId = $scope.project.contact.contactId;
+                dataFactory.create($.param($scope.newComment.toBackend())).success(handleSuccess);
+            } else {
+                message = 'Vul wat in.';
+                modal.show(message, true);
+            }
+        };
+
+        // editing
 
         $document.bind('keydown', function (event) {
             $scope.keyManager(event);
@@ -26,29 +50,10 @@ define([
             }
         };
 
-        $scope.newComment = emptyComment();
+
         
         $scope.editing = null;
         var timer = null;
-
-        $scope.addComment = function() {
-            var message;
-            if ($scope.newComment.comment !== '') {
-                var handleSuccess = function(response, status) {
-                    $scope.office.importComment($scope.newComment);
-                    $scope.newComment = emptyComment();
-                    modal.show(response, false);
-                };
-                $scope.newComment.date = new Date().toLocaleString();
-                $scope.newComment.id = $scope.office.getCommentId();
-                $scope.newComment.projectId = $scope.model.projectId;
-                $scope.newComment.contactId = $scope.model.contactId;
-                dataFactory.add(commonTools.param($scope.newComment)).success(handleSuccess);
-            } else {
-                message = 'Vul wat in.';
-                modal.show(message, true);
-            }
-        };
 
         $scope.keydown = function(event) {
             if (event.keyCode === 13) {
@@ -67,12 +72,13 @@ define([
         $scope.removeComment = function(comment) {
             var message = 'Wil je deze comment echt verwijderen?',
                 handleSuccess = function(response, status) {
-                    comment.remove();
+                    var index = $scope.project.comments.indexOf(comment);
+                    $scope.project.comments.splice(index, 1);
                     modal.show(response, false)
                 };
             modal.confirm(message, function(result){
                 if (result) {
-                    dataFactory.remove(commonTools.param(comment)).success(handleSuccess);
+                    dataFactory.delete($.param(comment.toBackend())).success(handleSuccess);
                 }
             });
         };
@@ -84,17 +90,9 @@ define([
                 handleSuccess = function(response, status) {
                     modal.show(response, false);
                 };
-                dataFactory.update(commonTools.param(comment)).success(handleSuccess);
+                dataFactory.update($.param(comment.toBackend())).success(handleSuccess);
             }, 1000);
         };
-
-        function emptyComment() {
-            return {
-                comment : '',
-                type : 'comments'
-            }
-        }
-
     }
 
     CommentsController.$inject = ['$scope', 'dataFactory', '$document'];

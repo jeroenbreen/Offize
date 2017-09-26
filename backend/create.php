@@ -7,7 +7,7 @@ if ($type == "project") { $query = insertProject(); }
 else if ($type == "document") { $query = insertDocument(); }
 else if ($type == "contact") { $query = insertContact(); }
 else if ($type == "team") { $query = insertTeam(); }
-else if ($type == "comments") { $query = insertComment(); }
+else if ($type == "comment") { $query = insertComment(); }
 else if ($type == "hours") { $query = insertHours(); }
 
 

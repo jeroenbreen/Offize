@@ -6,7 +6,7 @@ if ($type == "project") { $query = updateProject(); }
 else if ($type == "contact") { $query = updateContact(); }
 else if ($type == "team") { $query = updateTeam(); }
 else if ($type == "hours") { $query = updateHours(); }
-else if ($type == "comments") { $query = updateComment(); }
+else if ($type == "comment") { $query = updateComment(); }
 else if ($type == "configuration") { $query = updateConfiguration(); }
 
 function updateProject() {

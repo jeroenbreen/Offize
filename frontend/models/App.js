@@ -145,16 +145,7 @@ define([
 
     // };
     //
-    // _p.getCommentId = function() {
-    //     var highest = 0;
-    //     for (var i = 0, l = this.comments.length; i < l; i++){
-    //         var id = this.comments[i].id;
-    //         if (id > highest) {
-    //             highest = id;
-    //         }
-    //     }
-    //     return highest + 1;
-    // };
+
     //
     // _p.getHourId = function() {
     //     var highest = 0;

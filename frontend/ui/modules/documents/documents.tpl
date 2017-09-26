@@ -1,6 +1,6 @@
 <div id="documents-top">
     <div class="header-panel">
-        <input placeholder="Zoek factuur" type="text" ng-model="filter.search">
+        <input placeholder="Zoek factuur" type="text" class="big-input" ng-model="filter.search">
         <input type="radio"
                ng-model="filter.doctype"
                value="'invoice'"
