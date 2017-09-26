@@ -31,9 +31,8 @@ define([
         }, true);
 
         function update(contact) {
-            var handleSuccess = function(data, status) {
-                var message = 'Save: ' + contact.name;
-                modal.show(message, false);
+            var handleSuccess = function(response, status) {
+                modal.show(response, false);
             };
             dataFactory.update($.param(contact.toBackend())).success(handleSuccess);
         }

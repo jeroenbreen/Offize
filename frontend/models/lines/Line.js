@@ -5,9 +5,11 @@ define([
 ){
     "use strict";
     function LineModel(line) {
-        this.type = line && line.type ? line.type: '';
+        this.id = line && line.id ? Number(line.id) : null;
+        this.type = 'line';
+        this.lineType = line && line.lineType ? line.lineType: '';
         this.documentId = line && line.documentId ? Number(line.documentId) : null;
-        this.amount = line && line.amount ? line.amount : 0;
+        this.amount = line && line.amount ? Number(line.amount) : 0;
         this.text = line && line.text ? line.text : '';
         this.hours = line && line.hours ? Number(line.hours) : 0;
         this.arrayOrder = line && line.arrayOrder ? Number(line.arrayOrder) : 0;

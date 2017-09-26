@@ -56,7 +56,7 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
 }
 
 // lines
-$query = "SELECT * FROM documentLines";
+$query = "SELECT * FROM documentLines ORDER BY arrayOrder";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["lines"][] = $record;

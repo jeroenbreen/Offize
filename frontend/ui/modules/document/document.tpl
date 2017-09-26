@@ -70,30 +70,16 @@
             <br>
             <ul ui-sortable="sortableOptions" ng-model="document.lines">
                 <li class="lines-row animation-item-2" ng-repeat="line in document.lines" >
-                    <div ng-if="!document.locked" class="handle" title="posten herordenen">
-                        <img src="assets/img/drag.png">
-                    </div>
-
-                    <ofc-count ofc-model="line" ng-if="line.type === 'count'" class="lines-cell"></ofc-count>
-
-                    <ofc-amount ofc-model="line" ng-if="line.type === 'amount'" class="lines-cell"></ofc-amount>
-
-                    <ofc-text ofc-model="line" ng-if="line.type === 'text'" class="lines-cell"></ofc-text>
-
-                    <ofc-enter ng-if="line.type === 'enter'" class="lines-cell"></ofc-enter>
-
-                    <ofc-subtotal ofc-model="model" ofc-index="$index" ng-if="line.type === 'subtotal'" class="lines-cell subtotal"></ofc-subtotal>
-
-                    <button ng-if="!document.locked" ng-click="removeLine(line)" class="glyph red remove-post fa fa-trash"></button>
+                    <line line="line" ofc-document="document"></line>
                 </li>
             </ul>
 
             <div id="lines-new" ng-if="!document.locked">
-                <button title="rekenmodel toevoegen" class="glyph grey fa fa-ellipsis-h" ng-click="document.addLine('count')"></button>
-                <button title="vast bedrag toevoegen" class="glyph grey fa fa-eur" ng-click="document.addLine('amount')"></button>
-                <button title="subtotal" class="glyph grey fa fa-calculator" ng-click="document.addLine('subtotal')"></button>
-                <button title="beschrijving toevoegen" class="glyph grey fa fa-align-left" ng-click="document.addLine('text')"></button>
-                <button title="enter toevoegen" class="glyph grey fa fa-paragraph" ng-click="document.addLine('enter')"></button>
+                <button title="rekenmodel toevoegen" class="glyph grey fa fa-ellipsis-h" ng-click="addLine('count')"></button>
+                <button title="vast bedrag toevoegen" class="glyph grey fa fa-eur" ng-click="addLine('amount')"></button>
+                <button title="subtotal" class="glyph grey fa fa-calculator" ng-click="addLine('subtotal')"></button>
+                <button title="beschrijving toevoegen" class="glyph grey fa fa-align-left" ng-click="addLine('text')"></button>
+                <button title="enter toevoegen" class="glyph grey fa fa-paragraph" ng-click="addLine('enter')"></button>
             </div>
 
             <div id="lines-total" ng-if="!document.hideTotal">

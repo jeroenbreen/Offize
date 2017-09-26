@@ -8,6 +8,7 @@ else if ($type == "team") { $query = updateTeam(); }
 else if ($type == "hours") { $query = updateHours(); }
 else if ($type == "comment") { $query = updateComment(); }
 else if ($type == "configuration") { $query = updateConfiguration(); }
+else if ($type == "line") { $query = updateLine(); }
 
 function updateProject() {
     $projectId = $_POST['projectId'];
@@ -104,6 +105,28 @@ function updateComment() {
     contactId = '" . $contactId . "' , 
     comment = '" . nlToBreak($comment) . "' 
     WHERE 
+    id = '" . $id. "'";
+    return $query;
+}
+
+function updateLine() {
+    $id = $_POST['id'];
+    $documentId = $_POST['documentId'];
+    $lineType = $_POST['lineType'];
+    $text = $_POST['text'];
+    $hours = $_POST['hours'];
+    $amount = $_POST['amount'];
+    $arrayOrder = $_POST['arrayOrder'];
+    $rate = $_POST['rate'];
+    $query = "UPDATE documentLines SET
+    documentId = '" . $documentId . "' ,
+    lineType = '" . $lineType . "' ,
+    text = '" . $text . "' ,
+    hours = '" . $hours . "' ,
+    amount = '" . $amount . "' ,
+    arrayOrder = '" . $arrayOrder . "' ,
+    rate = '" . $rate . "'
+    WHERE
     id = '" . $id. "'";
     return $query;
 }

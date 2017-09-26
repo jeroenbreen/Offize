@@ -8,6 +8,7 @@ else if ($type == "contact") { $query = deleteContact(); }
 else if ($type == "team") { $query = deleteTeam(); }
 else if ($type == "comment") { $query = deleteComment(); }
 else if ($type == "hours") { $query = deleteHours(); }
+else if ($type == "line") { $query = deleteLines(); }
 
 
 function deleteProject() {
@@ -43,6 +44,12 @@ function deleteComment() {
 function deleteHours() {
     $hourId = $_POST['hourId'];
     $query = "DELETE FROM hours WHERE hourId = '" . $hourId . "'";
+    return $query;
+}
+
+function deleteLines() {
+    $id = $_POST['id'];
+    $query = "DELETE FROM documentLines WHERE id = '" . $id . "'";
     return $query;
 }
 

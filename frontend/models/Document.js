@@ -10,7 +10,7 @@ define([
     "use strict";
     function Document(document) {
         this.type = 'document';
-        this.id = document ? document.id : null;
+        this.id = document ? Number(document.id) : null;
         this.projectId = Number(document.projectId);
         this.doctype = document.doctype;
         this.member = app.getMemberById(Number(document.memberId));

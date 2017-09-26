@@ -9,6 +9,7 @@ else if ($type == "contact") { $query = insertContact(); }
 else if ($type == "team") { $query = insertTeam(); }
 else if ($type == "comment") { $query = insertComment(); }
 else if ($type == "hours") { $query = insertHours(); }
+else if ($type == "line") { $query = insertLines(); }
 
 
 function insertProject() {
@@ -151,6 +152,28 @@ function insertHours() {
     '". $memberId ."'  ,
     '". $description ."',
     '". $time ."'
+    )";
+    return $query;
+}
+
+function insertLines() {
+    $documentId = $_POST['documentId'];
+    $lineType = $_POST['lineType'];
+    $text = $_POST['text'];
+    $hours = $_POST['hours'];
+    $amount = $_POST['amount'];
+    $arrayOrder = $_POST['arrayOrder'];
+    $rate = $_POST['rate'];
+    $query="INSERT INTO documentLines
+    (documentId, lineType , text, hours, amount, arrayOrder, rate)
+    VALUES (
+    '". $documentId ."' ,
+    '". $lineType ."'  ,
+    '". $text ."',
+    '". $hours ."',
+    '". $amount ."',
+    '". $arrayOrder ."',
+    '". $rate ."'
     )";
     return $query;
 }

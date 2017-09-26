@@ -1,7 +1,9 @@
 define([
+    'models/lines/Line',
     'ui/ui-tools/modal',
     'jquery'
 ], function(
+    Line,
     modal,
     $
 ) {
@@ -12,6 +14,31 @@ define([
         $scope.months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
 
 
+
+        // lines
+
+        $scope.addLine = function(lineType) {
+            var data, line, successCallback;
+            data = {
+                lineType: lineType,
+                documentId: $scope.document.id,
+                amount: 0,
+                text: '',
+                hours: '',
+                arrayOrder: $scope.document.lines.length,
+                rate: $scope.document.rate
+            };
+            line = new Line(data);
+
+
+            successCallback = function(response, status) {
+                line.id = response.id;
+                $scope.document.lines.push(line);
+                modal.show(response.message, false);
+            };
+
+            dataFactory.create($.param(line.toBackend())).success(successCallback);
+        };
 
         // menu functions
 
@@ -112,19 +139,15 @@ define([
             var total = 0;
             for (var i = 0; i < $scope.document.lines.length; i++) {
                 var line = $scope.document.lines[i];
-                if (line.type === 'count') {
+                if (line.lineType === 'count') {
                     total += line.rate * line.hours;
-                } else if (line.type === 'amount') {
+                } else if (line.lineType === 'amount') {
                     total += parseFloat(line.amount);
                 }
             }
             total *= multiplier;
             total = Math.round(100 * total) / 100;
             return total;
-        };
-
-        $scope.removeLine = function(line) {
-            $scope.document.lines.splice($scope.document.lines.indexOf(line), 1);
         };
 
         //
