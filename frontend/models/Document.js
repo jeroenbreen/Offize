@@ -10,7 +10,7 @@ define([
     "use strict";
     function Document(document) {
         this.type = 'document';
-        this.id = document && document.id ? Number(document.id) : null;
+        this.id = document ? document.id : null;
         this.projectId = Number(document.projectId);
         this.doctype = document.doctype;
         this.member = app.getMemberById(Number(document.memberId));
@@ -78,6 +78,9 @@ define([
                         break;
                     case 'member':
                         document.memberId = this.member.memberId;
+                        break;
+                    case 'contact':
+                        document.contactId = this.contact.contactId;
                         break;
                     default:
                         document[key] = this[key];

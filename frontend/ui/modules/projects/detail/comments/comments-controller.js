@@ -13,8 +13,6 @@ define([
 
         $scope.newComment = new Comment();
 
-        console.log($scope.newComment);
-
         $scope.addComment = function() {
             var message;
             if ($scope.newComment.comment !== '') {
@@ -43,7 +41,7 @@ define([
 
         $scope.keyManager = function (e) {
             if (e.target.tagName !== "INPUT") {
-                if ($scope.model.popup !== 0 && e.keyCode === 27) {
+                if (!$scope.office.currentDocument && e.keyCode === 27) {
                     $scope.editing = null;
                 }
                 $scope.$apply();

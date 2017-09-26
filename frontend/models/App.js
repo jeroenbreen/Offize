@@ -192,6 +192,19 @@ define([
         return null;
     };
 
+    _p.getDocumentNumber = function(doctype) {
+        var max = 0;
+        for (var i = 0, l = this.documents.length; i < l; i++) {
+            var document = this.documents[i];
+            if (document.doctype === doctype) {
+                if (document.nr > max) {
+                    max = document.nr;
+                }
+            }
+        }
+        return max + 1;
+    };
+
     // refactoring tools
     //
     _p.documentsToCSV = function() {

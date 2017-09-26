@@ -39,7 +39,7 @@ define([
         $scope.removeDocument = function() {
             var name, message, successCallback, confirmCallback;
 
-            name = $scope.document.doctype + ' ' + $scope.document.year + '-' + $scope.document.nr;
+            name = $scope.document.getPrefix() + ' ' + $scope.document.toSlug();
             message = 'Wil je ' + name + ' echt verwijderen?';
             successCallback = function(data, status) {
                 var successMessage = name + ' verwijderd';

@@ -45,38 +45,40 @@ define([
         };
 
         $scope.addDocument = function(doctype) {
-            var d, data, document, backendDocument, message, successCallback;
-            d = new Date();
+            var date, data, document, successCallback;
+            date = new Date();
             data = {
-                    id: null,
-                    type: 'document',
-                    clientName: $scope.project.contact.contactPerson,
-                    projectId: $scope.project.projectId,
-                    doctype: doctype,
-                    currency: $scope.project.currency,
-                    english: 0,
-                    hideTotal: 0,
-                    locked: 0,
-                    nr: $scope.office.getHighestNr(doctype),
-                    paid: 0,
-                    memberId: $scope.project.member.memberId,
-                    title: $scope.project.projectName,
-                    vat: 21,
-                    year: d.getFullYear(),
-                    month: d.getMonth() + 1,
-                    day: d.getDate(),
-                    rate: $scope.project.rate
+                id: null,
+                projectId: $scope.project.projectId,
+                doctype: doctype,
+                memberId: $scope.project.member.memberId,
+                title: $scope.project.projectName,
+                nr: $scope.office.getDocumentNumber(doctype),
+                contactName: $scope.project.contact.contactPerson,
+                contactId: $scope.project.contact.contactId,
+                year: date.getFullYear(),
+                month: date.getMonth() + 1,
+                day: date.getDate(),
+                vat: 21,
+                currency: 'EUR',
+                paid: false,
+                locked: false,
+                english: false,
+                hideTotal: false,
+                rate: $scope.project.contact.rate,
+                lines: []
             };
             document = new Document(data);
 
             successCallback = function(response, status) {
                 document.id = response.id;
                 $scope.project[doctype + 's'].push(document);
+                $scope.office.documents.push(document);
                 $scope.office.currentDocument = document;
                 modal.show(response.message, false);
             };
 
-            dataFactory.create($.param(data)).success(successCallback);
+            dataFactory.create($.param(document.toBackend())).success(successCallback);
         };
     }
 

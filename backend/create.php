@@ -40,7 +40,8 @@ function insertProject() {
 }
 
 function insertDocument() {
-    $clientName = $_POST['clientName'];
+    $contactId = $_POST['contactId'];
+    $contactName = $_POST['contactName'];
     $projectId = $_POST['projectId'];
     $doctype = $_POST['doctype'];
     $currency = $_POST['currency'];
@@ -56,10 +57,11 @@ function insertDocument() {
     $month = $_POST['month'];
     $day = $_POST['day'];
     $rate = $_POST['rate'];
-    $query="INSERT INTO documents
-    (clientName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, memberId, title, vat, year, month, day, rate)
+    $query = "INSERT INTO documents
+    (contactId, contactName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, memberId, title, vat, year, month, day, rate)
     VALUES (
-    '". $clientName ."'  ,
+    '". $contactId ."'  ,
+    '". $contactName ."'  ,
     '". $projectId ."'  ,
     '". $doctype ."'  ,
     '". $currency ."'  ,
@@ -90,7 +92,7 @@ function insertContact() {
     $telephone = $_POST['telephone'];
     $rate = $_POST['rate'];
     $info = $_POST['info'];
-    $query="INSERT INTO contacts 
+    $query = "INSERT INTO contacts
     (name, contactPerson, street, zipcode, city, web, email, telephone, rate, info)
     VALUES (
     '". $name ."'  ,

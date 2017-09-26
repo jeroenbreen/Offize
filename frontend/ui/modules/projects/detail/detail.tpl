@@ -73,7 +73,7 @@
                  ng-repeat="quotation in project.quotations"
                  ng-click="office.currentDocument = quotation;">
                 <span class="gl fa fa-folder-open"></span>
-                {{quotation.year}} - {{quotation.nr}}
+                {{quotation.toSlug()}}
             </div>
         </div>
         <div class="glyph-container">
@@ -92,7 +92,8 @@
                  ng-repeat="invoice in project.invoices"
                  ng-class="{'niet-betaald': !invoice.paid}"
                  ng-click="office.currentDocument = invoice;">
-                <span class="gl fa fa-folder-open"></span> {{invoice.year}} - {{invoice.nr}}
+                <span class="gl fa fa-folder-open"></span>
+                {{invoice.toSlug()}}
             </div>
         </div>
         <div class="glyph-container">
@@ -107,6 +108,6 @@
         </h2>
         <ofc-comments
             project="project"
-            ofc-office="model"></ofc-comments>
+            office="office"></ofc-comments>
     </div>
 </div>

@@ -12,7 +12,7 @@ define([
             template: template,
             scope: {
                 project: '=project',
-                office: '=ofcOffice'
+                office: '=office'
             }
         };
     }
