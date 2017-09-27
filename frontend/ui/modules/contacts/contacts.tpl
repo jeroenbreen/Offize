@@ -17,14 +17,12 @@
     </div>
 
     <div id="contacts-loop">
-        <div class="header-panel">
-            <div class="contact"
-                 ng-repeat="contact in filterContacts(model.contacts)"
-                 ng-class="{'selected': contact === model.currentContact}"
-                 ng-click="model.currentContact = contact">
-                <div class="project-status">
-                    <div class="overlapper">{{contact.toSlug()}}</div>
-                </div>
+        <div class="contact"
+             ng-repeat="contact in filterContacts(model.contacts)"
+             ng-class="{'selected': contact === model.currentContact}"
+             ng-click="model.currentContact = contact">
+            <div class="project-status">
+                <div class="overlapper">{{contact.toSlug()}}</div>
             </div>
         </div>
     </div>
