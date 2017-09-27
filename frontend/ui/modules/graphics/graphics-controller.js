@@ -19,9 +19,9 @@ define([
                         var thisAmount = 0;
                         for (var j = 0, jl = document.lines.length; j < jl; j++) {
                             var line = document.lines[j];
-                            if (line.type === 'count') {
+                            if (line.lineType === 'count') {
                                 thisAmount += parseFloat(line.rate) * parseFloat(line.hours);
-                            } else if (line.type === 'amount') {
+                            } else if (line.lineType === 'amount') {
                                 thisAmount += parseFloat(line.amount);
                             }
 
