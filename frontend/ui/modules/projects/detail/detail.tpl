@@ -58,6 +58,13 @@
                 <span>Verwijderen</span>
             </div>
         </div>
+
+        <div class="panel-section">
+            <div class="glyph-container">
+                <button title="Rapportage" class="glyph fa fa-bar-chart" ng-click="openReport()"></button>
+                <span>Rapportage</span>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -65,7 +72,7 @@
 <div id="project-detail-right">
     <div class="panel">
         <h2>
-            Offertes
+            Offertes {{reportOpen}}
         </h2>
         <div class="project-detail-docs">
             <div title="offerte"
@@ -111,3 +118,5 @@
             office="office"></ofc-comments>
     </div>
 </div>
+
+<report ng-if="report.open" projects="[project]" report="report"></report>

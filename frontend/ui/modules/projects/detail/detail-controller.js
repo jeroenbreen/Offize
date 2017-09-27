@@ -16,6 +16,10 @@ define([
 
         $scope.status = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Gearchiveerd'];
 
+        $scope.report = {
+            open: false
+        };
+
         $scope.removeProject = function() {
             var message = 'Wil je ' + $scope.project.projectName + ' echt verwijderen?',
                 handleSuccess = function(data, status) {
@@ -30,6 +34,10 @@ define([
                     dataFactory.delete($.param($scope.project.toBackend())).success(handleSuccess);
                 }
             });
+        };
+
+        $scope.openReport = function() {
+            $scope.report.open = true;
         };
 
         $scope.archiveProject = function() {

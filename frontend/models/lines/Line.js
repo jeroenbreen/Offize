@@ -18,5 +18,16 @@ define([
 
     var _p = LineModel.prototype = Object.create(Parent.prototype);
 
+    _p.getAmount = function() {
+        switch (this.lineType) {
+            case 'amount':
+                return this.amount;
+                break;
+            case 'count':
+                return this.hours * this.rate;
+                break;
+        }
+    };
+
     return LineModel;
 });

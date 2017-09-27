@@ -1,0 +1,42 @@
+report {
+    position: fixed;
+    left: 30px;
+    top: 30px;
+    width: ~'calc(100% - 60px)';
+    height: ~'calc(100% - 60px)';
+    background: #fff;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    padding: 30px;
+
+    .report-set {
+        margin-bottom: 20px;
+
+        .report-tab {
+            display: inline-block;
+            width: 200px;
+            vertical-align: top;
+
+            &.report-tab--number {
+                width: 60px;
+                text-align: right
+            }
+        }
+
+        .report-row {
+            background: #eee;
+            margin-bottom: 1px;
+            padding: 4px 8px;
+
+            &.report-row--white {
+                background: #fff;
+            }
+        }
+    }
+
+    #report-close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+    }
+}
