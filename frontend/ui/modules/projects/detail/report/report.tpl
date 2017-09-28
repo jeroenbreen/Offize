@@ -43,9 +43,8 @@
     </div>
 </div>
 
-{{reportOpen}}
 
-<div id="report-close" ng-click="closeReport()">
+<div class="window-close" ng-click="closeReport()">
     <img src="assets/img/close.svg">
 </div>
 

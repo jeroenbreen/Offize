@@ -199,6 +199,19 @@ define([
         return null;
     };
 
+    _p.getJobById = function(id) {
+        for (var i = 0, l = this.jobCategories.length; i < l; i++) {
+            var jobCategory = this.jobCategories[i];
+            for (var j = 0, jl = jobCategory.jobs.length; j < jl; j++) {
+                var job = jobCategory.jobs[j];
+                if (job.id === id) {
+                    return job;
+                }
+            }
+        }
+        return null;
+    };
+
     _p.getContactById = function(id) {
         for (var i = 0, l = this.contacts.length; i < l; i++) {
             var contact = this.contacts[i];

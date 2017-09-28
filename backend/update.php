@@ -118,6 +118,7 @@ function updateLine() {
     $amount = $_POST['amount'];
     $arrayOrder = $_POST['arrayOrder'];
     $rate = $_POST['rate'];
+    $jobId = $_POST['jobId'];
     $query = "UPDATE documentLines SET
     documentId = '" . $documentId . "' ,
     lineType = '" . $lineType . "' ,
@@ -125,7 +126,8 @@ function updateLine() {
     hours = '" . $hours . "' ,
     amount = '" . $amount . "' ,
     arrayOrder = '" . $arrayOrder . "' ,
-    rate = '" . $rate . "'
+    rate = '" . $rate . "' ,
+    jobId = '" . $jobId . "'
     WHERE
     id = '" . $id. "'";
     return $query;

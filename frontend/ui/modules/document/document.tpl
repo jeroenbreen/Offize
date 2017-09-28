@@ -69,8 +69,9 @@
             </b>
             <br>
             <ul ui-sortable="sortableOptions" ng-model="document.lines">
-                <li class="lines-row animation-item-2" ng-repeat="line in document.lines" >
+                <li class="lines-row animation-item-2" ng-repeat="line in document.lines" ng-click="selectLine(line)" ng-class="{'current-line' : line === currentLine}">
                     <line line="line" ofc-document="document"></line>
+                    <job-selector line="line" job-categories="office.jobCategories" ng-if="line === currentLine"></job-selector>
                 </li>
             </ul>
 
@@ -121,7 +122,6 @@
     </div>
 
     <div id="paper-buttons">
-        <button class="glyph grey fa fa-remove" ng-click="closeDocument()" title="Esc"></button>
         <button ng-click="printFile()" class="glyph grey fa fa-print" title="Print file"></button>
         <button ng-class="{'locked': document.locked}" ng-click="lockFile()" class="glyph grey unlocked fa fa-lock" title="Lock file"></button>
         <button ng-if="!document.locked" ng-click="removeDocument()" class="glyph grey red fa fa-trash" title="Delete file"></button>
@@ -147,5 +147,9 @@
                 <input type="text" ng-model="document.vat">
             </div>
         </div>
+    </div>
+
+    <div class="window-close" ng-click="closeDocument()">
+        <img src="assets/img/close-white.svg">
     </div>
 </div>

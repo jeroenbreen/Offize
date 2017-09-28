@@ -17,6 +17,12 @@ define([
 
         // lines
 
+        $scope.currentLine = null;
+
+        $scope.selectLine = function(line) {
+            $scope.currentLine = line;
+        };
+
         $scope.addLine = function(lineType) {
             var data, line, successCallback;
             data = {
@@ -34,6 +40,7 @@ define([
             successCallback = function(response, status) {
                 line.id = response.id;
                 $scope.document.lines.push(line);
+                $scope.currentLine = line;
                 modal.show(response.message, false);
             };
 

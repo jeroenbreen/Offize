@@ -1,4 +1,5 @@
 @import './lines/subtotal/subtotal';
+@import './job-selector/job-selector';
 
 ofc-document {
     display: block;
@@ -111,6 +112,15 @@ ofc-document {
                     padding: 0;
                     margin-left: -14px;
                     list-style: none;
+
+                    li {
+                        position: relative;
+                        border-left: 2px solid transparent;
+
+                        &.current-line {
+                            border-left: 2px solid #000;
+                        }
+                    }
                 }
             }
 
