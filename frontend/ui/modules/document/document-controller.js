@@ -101,10 +101,10 @@ define([
 
         $scope.printFile = function() {
             var url,
-                printData = $scope.document.export();
+                printData = $scope.document.toPrint();
             console.log(printData);
             if ($scope.document.english) {
-                url = 'frontend/to-pdf/print_en.php';
+                //url = 'frontend/to-pdf/print_en.php';
             } else {
                 url = 'print/print-adapter.php';
             }

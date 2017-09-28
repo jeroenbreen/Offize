@@ -12,7 +12,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 class PrintManager
 {
-    protected $data, $type, $year, $nr, $address, $hideTotal;
+    protected $data;
+    //, $type, $year, $nr, $address, $hideTotal, $doctype;
 
     public function handlePrint()
     {
@@ -28,7 +29,7 @@ class PrintManager
         $dompdf->set_option( 'dpi' , '150' );
         $dompdf->render();
 
-        $link = "pdf/" . $this->type . "-" . $this->year . "-" . $this->nr . ".pdf";
+        $link = "pdf/" . $this->data->prefix . "-" . $this->data->slug . ".pdf";
 
         file_put_contents($link, $dompdf->output());
         echo $link;
@@ -40,23 +41,7 @@ class PrintManager
         $subtotal = 0;
 
         $months = array("januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december");
-        $this->date_month = $months[$this->data->date->month - 1];
-        $this->year = $this->data->date->year;
-        $this->nr = $this->data->nr;
-
-        $this->address = (isset($this->data->client->address))? $this->data->client->address : '-';
-
-        $doctype = $this->data->{'doctype'};
-        $hideTotal = false;
-        if ($doctype == 'invoices') {
-            $type = 'Factuur';
-            $this->type = $type;
-        } else {
-            $hideTotal = $this->data->{'hideTotal'};
-            $type = 'Offerte';
-            $this->type = $type;
-        }
-
+        $this->month_nice = $months[$this->data->month - 1];
 
         $html = "";
         $html .= $this->getHead();
@@ -96,18 +81,18 @@ class PrintManager
                         </td>
                         <td valign='top' class='half'>
                             <div id='document-info'>
-                                <b>" . $this->type . " " . $this->data->date->year . " - " . $this->data->nr . "</b><br>
-                                  " . $this->data->date->day . " " . $this->date_month . " " . $this->data->date->year . "
+                                <b>" . $this->data->prefix . " " . $this->data->slug . "</b><br>
+                                  " . $this->data->day . " " . $this->month_nice . " " . $this->data->year . "
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div id='client'>
-                                  <b>" . $this->data->client->name . "</b><br>
-                                  " . $this->data->client->contactPerson . "<br>
-                                  " . $this->address  . "<br>
-                                  " . $this->data->client->zipcode . "
+                                  <b>" . $this->data->contact->name . "</b><br>
+                                  " . $this->data->contact->contactName . "<br>
+                                  " . $this->data->contact->address  . "<br>
+                                  " . $this->data->contact->zipcode . " " . $this->data->contact->city . "
                             </div>
                         </td>
                         <td>
@@ -116,9 +101,9 @@ class PrintManager
                         <td>
                             <div id='sender'>
                                   <b>Innouveau</b><br>
-                                  " . $this->data->sender->contactPerson . "<br>
-                                  " . $this->data->sender->address . "<br>
-                                  " . $this->data->sender->zipcode . "
+                                  " . $this->data->member . "<br>
+                                  " . $this->data->company->address . "<br>
+                                  " . $this->data->company->zipcode . " " . $this->data->company->city . "
                             </div>
                         </td>
                     </tr>
@@ -140,7 +125,7 @@ class PrintManager
         $html = "
             <div id='footer'>
                 <div id='footer-text'>";
-                    if ($this->data->{'doctype'} === "invoices") {
+                    if ($this->data->{'doctype'} === "invoice") {
                         $html .= "Gelieve dit bedrag binnen 4 weken over te maken o.v.v. factuurnr en afzender op NL 68 ING B000 657 42 32 t.n.v. Innouveau, te Rotterdam<br>Innouveau | KvK 61118389 | BTW NL854214902B01";
                     } else {
                         $html .= "Handtekening voor akkoord:";
@@ -169,16 +154,19 @@ class PrintManager
                     </tr>";
 
             for ($i = 0; $i < count($this->data->lines); $i++) {
-                if ($this->data->lines[$i]->{'type'} == 'count') {
-                    $title = $this->data->lines[$i]->{'title'};
-                    $hours = $this->data->lines[$i]->{'hours'};
-                    $rate = $this->data->lines[$i]->{'rate'};
+                $line = $this->data->lines[$i];
+                $text = $line->{'text'};
+                $hours = $line->{'hours'};
+                $rate = $line->{'rate'};
+                $lineType = $line->{'lineType'};
+
+                if ($lineType == 'count') {
                     $total += $rate * $hours;
                     $subtotal += $rate * $hours;
                     $html .= "
                     <tr>
                         <td class='cell1'>
-                            " . $title . "
+                            " . $text . "
                         </td>
                         <td class='cell2'>
                             " . $hours . " × " . $rate . " EUR
@@ -188,31 +176,28 @@ class PrintManager
                         </td>
                     </tr>";
                 }
-                else if ($this->data->lines[$i]->{'type'} == 'amount') {
-                    $title = $this->data->lines[$i]->{'title'};
-                    $amount = $this->data->lines[$i]->{'amount'};
+                else if ($lineType == 'amount') {
                     $total += $amount;
                     $subtotal += $amount;
                     $html .= "
                     <tr>
                         <td colspan='2' class='cell4'>
-                            " . $title  . "
+                            " . $text  . "
                         </td>
                         <td class='cell3'>
                             " . $this->nrToCur($amount)  . " EUR
                         </td>
                     </tr>";
                 }
-                else if ($this->data->lines[$i]->{'type'} == 'text') {
-                    $title = $this->data->lines[$i]->{'text'};
+                else if ($lineType == 'text') {
                     $html .= "
                     <tr>
                         <td colspan='3' class='cell5'>
-                            " . $title . "
+                            " . $text . "
                         </td>
                     </tr>";
                 }
-                else if ($this->data->lines[$i]->{'type'} == 'enter') {
+                else if ($lineType == 'enter') {
                     $html .= "
                     <tr>
                         <td colspan='3' class='cell5 spacer'>
@@ -220,7 +205,7 @@ class PrintManager
                         </td>
                     </tr>";
                 }
-                else if ($this->data->lines[$i]->{'type'} == 'subtotal') {
+                else if ($lineType == 'subtotal') {
                     $html .= "
                 <tr class='sub-spacer'>
                     <td colspan='2'></td>
@@ -248,7 +233,7 @@ class PrintManager
                 }
             }
 
-            if (!$hideTotal){
+            if (!$this->data->hideTotal){
                 $html .= "
                         <tr>
                             <td colspan='3' class='cell5 spacer'>
@@ -258,7 +243,7 @@ class PrintManager
                         <tr>
                             <td colspan='2' class='cell4'>
                                 Totaal";
-                if ($this->type == "Offerte") {
+                if ($this->data->doctype == "quotation") {
                     $html .= " (excl. 21% BTW)";
                 }
 
@@ -267,7 +252,7 @@ class PrintManager
                                 " . $this->nrToCur($total) . " EUR
                             </td>
                         </tr>";
-                if ($this->data->{'doctype'} === "invoices") {
+                if ($this->data->doctype === "invoice") {
                     $html .=
                         "<tr>
                             <td colspan='2' class='cell4'>

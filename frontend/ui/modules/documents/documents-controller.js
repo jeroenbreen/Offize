@@ -20,8 +20,7 @@ define([
         };
 
         $scope.filterDocs = function() {
-            var filtered = [],
-                sorted;
+            var filtered = [];
             for (var i = 0, l = $scope.model.documents.length; i < l; i++) {
                 var document = $scope.model.documents[i];
                 if (
@@ -37,22 +36,10 @@ define([
                     filtered.push(document);
                 }
             }
-            sorted = filtered.sort(compare);
-
-            return sorted;
+            return filtered;
         };
 
-        function compare(a,b) {
-            if (combi(a) < combi(b))
-                return 1;
-            if (combi(a) > combi(b))
-                return -1;
-            return 0;
-        }
 
-        function combi(x) {
-            return x.year + '' + x.nr
-        }
 
         $scope.selectDocument = function(document) {
             $scope.model.currentDocument = document;

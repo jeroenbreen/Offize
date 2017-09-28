@@ -61,6 +61,31 @@ define([
 
     // object stuff
 
+    _p.toPrint = function(){
+        var document = {};
+        document.doctype = this.doctype;
+        document.company = app.company;
+        document.member = this.member.name;
+        document.title = this.title;
+        document.prefix = this.getPrefix();
+        document.slug = this.toSlug();
+        document.contact = {
+            name: this.contact.name,
+            contactName: this.contactName,
+            address: this.contact.street,
+            zipcode: this.contact.zipcode,
+            city: this.contact.city
+        };
+        document.year = this.year;
+        document.month = this.month;
+        document.day = this.day;
+        document.vat = this.vat;
+        document.currency = this.currency;
+        document.hideTotal = this.hideTotal;
+        document.lines = this.lines;
+        return document;
+    };
+
     _p.toBackend = function() {
         var document = {};
         for (var key in this) {

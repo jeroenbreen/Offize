@@ -49,7 +49,7 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
 }
 
 // documents
-$query = "SELECT * FROM documents";
+$query = "SELECT * FROM documents ORDER BY YEAR, NR DESC";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["documents"][] = $record;
