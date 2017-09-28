@@ -8,7 +8,9 @@ define([
    './Contact',
    './lines/Line',
    './time-registration/Job-Category',
-   './time-registration/Job'
+   './time-registration/Job',
+   './time-registration/Block',
+   './time-registration/Clock'
 ], function(
     Parent,
     Project,
@@ -19,11 +21,14 @@ define([
     Contact,
     Line,
     JobCategory,
-    Job
+    Job,
+    Block,
+    Clock
 ){
     "use strict";
     function App() {
         this.jobCategories = [];
+        this.blocks = [];
         this.projects = [];
         this.contacts = [];
         this.members = [];
@@ -47,17 +52,19 @@ define([
         this.popup = '';
 
         this.years = ['Alle'];
-        this.memberFilter = [];
+        //this.memberFilter = [];
         this.thisYear = new Date().getFullYear();
       }
 
     var _p = App.prototype = Object.create(Parent.prototype);
 
     _p.bootstrap = function(data) {
+        this.importer(data.members, Member, this.members);
         this.importCompany(data.configuration);
         this.importer(data.jobCategories, JobCategory, this.jobCategories);
         this.importJobs(data.jobs);
-        this.importer(data.members, Member, this.members);
+        this.importer(data.blocks, Block, this.blocks);
+        this.importClocks(data.clocks);
         this.importer(data.comments, Comment, this.store.comments);
         this.importer(data.lines, Line, this.store.lines);
         this.importer(data.contacts, Contact, this.contacts);
@@ -93,6 +100,16 @@ define([
                 jobCategory = this.getJobCategoryById(jobs[i].jobCategoryId);
             if (jobCategory) {
                 jobCategory.jobs.push(job);
+            }
+        }
+    };
+
+    _p.importClocks = function(clocks) {
+        for (var i = 0, l = clocks.length; i < l; i++) {
+            var clock = new Clock(clocks[i]),
+                block = this.getBlockById(Number(clocks[i].blockId));
+            if (block) {
+                block.clocks.push(clock);
             }
         }
     };
@@ -188,6 +205,16 @@ define([
     // };
 
     // getters
+
+    _p.getBlockById = function(id) {
+        for (var i = 0, l = this.blocks.length; i < l; i++) {
+            var block = this.blocks[i];
+            if (block.id === id) {
+                return block;
+            }
+        }
+        return null;
+    };
 
     _p.getJobCategoryById = function(id) {
         for (var i = 0, l = this.jobCategories.length; i < l; i++) {

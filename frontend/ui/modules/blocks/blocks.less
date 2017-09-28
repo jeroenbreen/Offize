@@ -1,0 +1,39 @@
+@import "block/block";
+
+#blocks-tools {
+    height: 60px;
+    padding: 10px;
+
+    #block-tools-week-info {
+        font-weight: 700;
+        font-size: 18px;
+    }
+}
+
+#week-overview {
+    height: ~'calc(100% - 60px)';
+
+    .day-container {
+        width: ~'calc(100% / 5)';
+        height: 100%;
+        overflow: auto;
+        padding: 10px;
+        float: left;
+
+        .day-label {
+            background: #ddd;
+            padding: 3px 10px;
+            height: 40px;
+
+            div {
+                margin-top: 9px;
+                vertical-align: top;
+                display: inline-block;
+            }
+
+            button {
+                float: right;
+            }
+        }
+    }
+}

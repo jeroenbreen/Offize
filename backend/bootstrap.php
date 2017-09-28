@@ -12,7 +12,9 @@ $bootstrap = [
     "documents"     => [],
     "lines"         => [],
     "jobCategories" => [],
-    "jobs"          => []
+    "jobs"          => [],
+    "blocks"        => [],
+    "clocks"        => []
 ];
 
 // read configuration table
@@ -76,6 +78,20 @@ $query = "SELECT * FROM jobs";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["jobs"][] = $record;
+}
+
+// blocks
+$query = "SELECT * FROM blocks";
+$result = $mysqli -> query($query);
+while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
+    $bootstrap["blocks"][] = $record;
+}
+
+// clocks
+$query = "SELECT * FROM clocks";
+$result = $mysqli -> query($query);
+while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
+    $bootstrap["clocks"][] = $record;
 }
 
 $mysqli -> close();

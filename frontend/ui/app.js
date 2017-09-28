@@ -6,6 +6,9 @@ define([
     './modules/projects/projects-controller',
     'require/text!./modules/projects/projects.tpl',
 
+    './modules/blocks/blocks-controller',
+    'require/text!./modules/blocks/blocks.tpl',
+
     './modules/contacts/contacts-controller',
     'require/text!./modules/contacts/contacts.tpl',
 
@@ -19,7 +22,8 @@ define([
     './modules/document/document',
     './modules/projects/detail/detail',
     './modules/projects/shared/member-filter/member-filter',
-    
+    './modules/blocks/block/block',
+
     'ngStorage',
     'ngResource',
     'ngRoute'
@@ -30,6 +34,9 @@ define([
 
     ProjectsController,
     projectsTemplate,
+
+    BlocksController,
+    blocksTemplate,
 
     ContactsController,
     contactsTemplate,
@@ -44,6 +51,7 @@ define([
     documentModule,
     detailModule,
     memberFilterModule,
+    blockModule,
     
     ngStorage,
     ngResource,
@@ -57,7 +65,8 @@ define([
         documentModule.name,
         contactDetailModule.name,
         detailModule.name,
-         memberFilterModule.name
+        memberFilterModule.name,
+        blockModule.name
     ])
     .config(['$routeProvider', function ($routeProvider) {
 
@@ -73,6 +82,9 @@ define([
         }).when('/graphics', {
             template: graphicsTemplate,
             controller: 'GraphicsController'
+        }).when('/blocks', {
+            template: blocksTemplate,
+            controller: 'BlocksController'
         }).otherwise({
             redirectTo : '/'
         });
@@ -85,6 +97,7 @@ define([
     .controller('ContactsController', ContactsController)
     .controller('DocumentsController', DocumentsController)
     .controller('GraphicsController', GraphicsController)
+    .controller('BlocksController', BlocksController)
 
     .factory('dataFactory', ['$resource', '$http', function($resource, $http) {
         var remove = function(obj) {
