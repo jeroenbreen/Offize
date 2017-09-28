@@ -6,7 +6,9 @@ define([
    './Document',
    './Member',
    './Contact',
-   './lines/Line'
+   './lines/Line',
+   './time-registration/Job-Category',
+   './time-registration/Job'
 ], function(
     Parent,
     Project,
@@ -15,10 +17,13 @@ define([
     Document,
     Member,
     Contact,
-    Line
+    Line,
+    JobCategory,
+    Job
 ){
     "use strict";
     function App() {
+        this.jobCategories = [];
         this.projects = [];
         this.contacts = [];
         this.members = [];
@@ -50,6 +55,8 @@ define([
 
     _p.bootstrap = function(data) {
         this.importCompany(data.configuration);
+        this.importer(data.jobCategories, JobCategory, this.jobCategories);
+        this.importJobs(data.jobs);
         this.importer(data.members, Member, this.members);
         this.importer(data.comments, Comment, this.store.comments);
         this.importer(data.lines, Line, this.store.lines);
@@ -78,6 +85,16 @@ define([
             welcome: configuration.welcome
         };
         this.company = new Company(company);
+    };
+
+    _p.importJobs = function(jobs) {
+        for (var i = 0, l = jobs.length; i < l; i++) {
+            var job = new Job(jobs[i]),
+                jobCategory = this.getJobCategoryById(jobs[i].jobCategoryId);
+            if (jobCategory) {
+                jobCategory.jobs.push(job);
+            }
+        }
     };
 
     _p.importer = function (set, Model, destination) {
@@ -171,6 +188,16 @@ define([
     // };
 
     // getters
+
+    _p.getJobCategoryById = function(id) {
+        for (var i = 0, l = this.jobCategories.length; i < l; i++) {
+            var jobCategorty = this.jobCategories[i];
+            if (jobCategorty.id === id) {
+                return jobCategorty;
+            }
+        }
+        return null;
+    };
 
     _p.getContactById = function(id) {
         for (var i = 0, l = this.contacts.length; i < l; i++) {

@@ -10,7 +10,9 @@ $bootstrap = [
     "members"       => [],
     "comments"      => [],
     "documents"     => [],
-    "lines"         => []
+    "lines"         => [],
+    "jobCategories" => [],
+    "jobs"          => []
 ];
 
 // read configuration table
@@ -60,6 +62,20 @@ $query = "SELECT * FROM documentLines ORDER BY arrayOrder";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["lines"][] = $record;
+}
+
+// jobCategories
+$query = "SELECT * FROM jobCategories";
+$result = $mysqli -> query($query);
+while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
+    $bootstrap["jobCategories"][] = $record;
+}
+
+// jobs
+$query = "SELECT * FROM jobs";
+$result = $mysqli -> query($query);
+while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
+    $bootstrap["jobs"][] = $record;
 }
 
 $mysqli -> close();
