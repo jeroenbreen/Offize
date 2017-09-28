@@ -10,7 +10,8 @@ define([
             replace: false,
             template: template,
             scope: {
-                block: '=block'
+                block: '=block',
+                projects: '=projects'
             }
         };
     }

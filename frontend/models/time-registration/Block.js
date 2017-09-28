@@ -25,5 +25,14 @@ define([
         }
     };
 
+    _p.isBig = function() {
+        var time = 0;
+        for (var i = 0, l = this.clocks.length; i < l; i++) {
+            var clock = this.clocks[i];
+            time += clock.time;
+        }
+        return time >= 3;
+    };
+
     return Block;
 });

@@ -9,7 +9,10 @@ define([
             controller: 'ClockController',
             replace: false,
             template: template,
-            scope: {}
+            scope: {
+                clock: '=clock',
+                projects: '=projects'
+            }
         };
     }
 

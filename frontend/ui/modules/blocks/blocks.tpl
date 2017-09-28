@@ -10,7 +10,7 @@
 </div>
 
 <div id="week-overview">
-    <div ng-repeat="day in week" class="day-container">
+    <div ng-repeat="day in week" class="day-container" ng-class="{'today': isToday(day)}">
         <div class="day-label">
             <div>
                 {{dateTool.toString(day)}}
@@ -18,7 +18,7 @@
             <button title="Block toevoegen" class="glyph fa fa-plus" ng-click="addBlock(day)"></button>
         </div>
         <div class="day-blocks">
-            <block ng-repeat="block in getBlocks(day)" block="block"></block>
+            <block ng-repeat="block in getBlocks(day)" block="block" projects="projects" ng-class="{'big-block': block.isBig()}"></block>
         </div>
     </div>
 </div>

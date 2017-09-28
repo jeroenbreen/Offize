@@ -19,6 +19,7 @@
         overflow: auto;
         padding: 10px;
         float: left;
+        opacity: 0.5;
 
         .day-label {
             background: #ddd;
@@ -34,6 +35,11 @@
             button {
                 float: right;
             }
+        }
+
+        &.today,
+        &:hover {
+            opacity: 1;
         }
     }
 }

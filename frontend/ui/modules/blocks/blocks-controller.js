@@ -18,9 +18,18 @@ define([
         $scope.model = OfficeModel;
         $scope.dateTool = dateTool;
 
+        $scope.model.menu = 'blocks';
+
+        var today = new Date();
+
         $scope.$on('bootstrap', function(){
             $scope.currentMember = $scope.model.members[0];
+            $scope.projects = getProjects();
         });
+
+        $scope.isToday = function(day) {
+            return dateTool.matches(day, today);
+        };
 
 
         function update() {
@@ -67,6 +76,18 @@ define([
             }
             return blocks;
         };
+
+        function getProjects() {
+            var projects = [];
+            for (var i = 0, l = $scope.model.projects.length; i < l; i++) {
+                var project = $scope.model.projects[i];
+                if (project.projectStatus === 2) {
+                    projects.push(project);
+                }
+
+            }
+            return projects;
+        }
 
     }
 
