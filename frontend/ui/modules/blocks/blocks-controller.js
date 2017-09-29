@@ -17,14 +17,24 @@ define([
         this.$scope = $scope;
         $scope.model = OfficeModel;
         $scope.dateTool = dateTool;
-
         $scope.model.menu = 'blocks';
 
-        var today = new Date();
 
-        $scope.$on('bootstrap', function(){
-            $scope.projects = getProjects();
-        });
+        // navigation
+
+        var today = new Date();
+        var thisMonday = dateTool.getThisMonday();
+        var delta = 0;
+
+        $scope.prevWeek = function() {
+            delta -= 7;
+            update();
+        };
+
+        $scope.nextWeek = function() {
+            delta += 7;
+            update();
+        };
 
         $scope.isToday = function(day) {
             return dateTool.matches(day, today);
@@ -32,14 +42,17 @@ define([
 
 
         function update() {
+            $scope.date = dateTool.getDateByOffset(thisMonday, delta);
             $scope.week = dateTool.getWeek($scope.date);
         }
 
-        $scope.date = dateTool.getThisMonday();
         update();
 
+
+        // events
+
         $scope.addBlock = function(date) {
-            var blockData, clockData, block, clock, blockSuccessCallback, clockSuccessCallback;
+            var blockData, block, clock, blockSuccessCallback, clockSuccessCallback;
 
             blockSuccessCallback = function(response, status) {
                 block.id = response.id;
@@ -87,6 +100,23 @@ define([
             }
             return projects;
         }
+
+        function getJobs() {
+            var jobs = [];
+            for (var i = 0, l = $scope.model.jobCategories.length; i < l; i++) {
+                var jobCategory = $scope.model.jobCategories[i];
+                for (var j = 0, jl = jobCategory.jobs.length; j < jl; j++) {
+                    var job = jobCategory.jobs[j];
+                    jobs.push(job);
+                }
+            }
+            return jobs;
+        }
+
+        $scope.$on('bootstrap', function(){
+            $scope.projects = getProjects();
+            $scope.jobs = getJobs();
+        });
 
     }
 

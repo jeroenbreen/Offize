@@ -11,7 +11,8 @@ define([
             template: template,
             scope: {
                 clock: '=clock',
-                projects: '=projects'
+                projects: '=projects',
+                jobs: '=jobs'
             }
         };
     }

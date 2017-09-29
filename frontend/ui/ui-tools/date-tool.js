@@ -57,7 +57,7 @@ define([
     };
 
     toString = function(date) {
-        var days = ['ma', 'di', 'wo', 'do', 'vr'],
+        var days = ['Ma', 'Di', 'Wo', 'Do', 'Vr'],
             newDate = dateToProperties(new Date(date));
         return days[newDate.weekDay] + '. ' + newDate.day + '/' + (newDate.month + 1) + '/' + newDate.year;
     };

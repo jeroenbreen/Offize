@@ -5,6 +5,9 @@ define([], function () {
         this.$scope = $scope;
 
         $scope.currentProject = null;
+        $scope.currentLine = null;
+        $scope.currentJob = null;
+
 
         $scope.getLines = function() {
             var lines = [];
@@ -18,6 +21,15 @@ define([], function () {
                 }
             }
             return lines;
+        };
+
+        $scope.limitString = function(string) {
+            var limitString = 28;
+            if (string.length > limitString) {
+                return string.substr(0,limitString) + '...'
+            } else {
+                return string;
+            }
         }
 
     }
