@@ -5,11 +5,12 @@ define([
 ){
     "use strict";
     function Clock(clock) {
-        this.id = clock && clock.id ? clock.id : null;
+        this.id = clock && clock.id ? Number(clock.id) : null;
         this.type = 'clock';
         this.time = clock && clock.time ? Number(clock.time) : 0;
         this.text = clock && clock.text ? clock.text : '';
-        this.job = clock && clock.jobId ? app.getJobById(clock.jobId) : null;
+        this.project = clock && clock.projectId ? app.getProjectById(Number(clock.projectId)) : null;
+        this.line = clock && clock.lineId ? app.getLineById(Number(clock.lineId)) : null;
         this.blockId = clock && clock.blockId ? Number(clock.blockId) : null;
     }
 
@@ -21,7 +22,8 @@ define([
             type: this.type,
             time: this.time,
             text: this.text,
-            jobId: this.job ? this.job.id : null,
+            projectId: this.project ? this.project.projectId : null,
+            lineId: this.line ? this.line.id : null,
             blockId: this.blockId
         }
     };

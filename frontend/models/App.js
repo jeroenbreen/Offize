@@ -32,13 +32,13 @@ define([
         this.projects = [];
         this.contacts = [];
         this.members = [];
+        this.lines = [];
+        this.documents = [];
         this.company = null;
         this.configuration = null;
 
         // gets removed after all wiring from bootstrap is done
         this.store = {
-            documents: [],
-            lines: [],
             comments: []
         };
 
@@ -65,12 +65,13 @@ define([
         this.importer(data.jobCategories, JobCategory, this.jobCategories);
         this.importJobs(data.jobs);
         this.importer(data.blocks, Block, this.blocks);
-        this.importClocks(data.clocks);
+
         this.importer(data.comments, Comment, this.store.comments);
-        this.importer(data.lines, Line, this.store.lines);
+        this.importer(data.lines, Line, this.lines);
         this.importer(data.contacts, Contact, this.contacts);
         this.importer(data.documents, Document, this.documents);
         this.importer(data.projects, Project, this.projects);
+        this.importClocks(data.clocks); // clocks after projects
         this.setConfiguration(data.configuration);
         // after connecting all lines with the documents
         // and all documents and comments with projects
@@ -213,6 +214,16 @@ define([
             var block = this.blocks[i];
             if (block.id === id) {
                 return block;
+            }
+        }
+        return null;
+    };
+
+    _p.getLineById = function(id) {
+        for (var i = 0, l = this.lines.length; i < l; i++) {
+            var line = this.lines[i];
+            if (line.id === id) {
+                return line;
             }
         }
         return null;

@@ -23,6 +23,7 @@ define([
     './modules/projects/detail/detail',
     './modules/projects/shared/member-filter/member-filter',
     './modules/blocks/block/block',
+    './modules/blocks/block-detail/block-detail',
 
     'ngStorage',
     'ngResource',
@@ -52,6 +53,7 @@ define([
     detailModule,
     memberFilterModule,
     blockModule,
+    blockDetailModule,
     
     ngStorage,
     ngResource,
@@ -66,7 +68,8 @@ define([
         contactDetailModule.name,
         detailModule.name,
         memberFilterModule.name,
-        blockModule.name
+        blockModule.name,
+        blockDetailModule.name
     ])
     .config(['$routeProvider', function ($routeProvider) {
 

@@ -195,15 +195,17 @@ function insertBlocks() {
 function insertClocks() {
     $time = $_POST['time'];
     $text = $_POST['text'];
-    $jobId = $_POST['jobId'];
+    $lineId = $_POST['lineId'];
     $blockId = $_POST['blockId'];
+    $projectId = $_POST['projectId'];
     $query="INSERT INTO clocks
-    (time, text, jobId, blockId)
+    (time, text, lineId, blockId, projectId)
     VALUES (
     '". $time ."' ,
     '". $text ."' ,
-    '". $jobId ."' ,
-    '". $blockId ."'
+    '". $lineId ."' ,
+    '". $blockId ."',
+    '". $projectId ."'
     )";
     return $query;
 }

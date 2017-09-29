@@ -50,6 +50,19 @@ define([
 
 
         // events
+        $scope.currentBlock = null;
+
+        $scope.$on('open-block', function(event, block) {
+            $scope.currentBlock = block;
+        });
+
+        $scope.addFullWeek = function(){
+            for (var i = 0, l = $scope.week.length; i < l; i++) {
+                var day = $scope.week[i];
+                $scope.addBlock(day, 3);
+                $scope.addBlock(day, 1);
+            }
+        };
 
         $scope.addBlock = function(date, time) {
             var blockData, block, clock, clockData, blockSuccessCallback, clockSuccessCallback;

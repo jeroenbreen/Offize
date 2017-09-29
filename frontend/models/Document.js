@@ -41,8 +41,8 @@ define([
     var _p = Document.prototype = Object.create(Parent.prototype);
 
     _p.importLines = function() {
-        for (var i = 0, l = app.store.lines.length; i < l; i++) {
-            var line = app.store.lines[i];
+        for (var i = 0, l = app.lines.length; i < l; i++) {
+            var line = app.lines[i];
             if (line.documentId === this.id) {
                 this.lines.push(line);
             }
