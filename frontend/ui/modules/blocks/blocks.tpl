@@ -3,7 +3,7 @@
         Week {{dateTool.dateToProperties(date).week}} - {{dateTool.dateToProperties(date).year}}
 
         <select
-            ng-model="currentMember"
+            ng-model="model.currentMember"
             ng-options="member as member.initials for (index, member) in model.members"
             title="selecteer teamlid" ></select>
     </div>

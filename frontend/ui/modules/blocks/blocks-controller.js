@@ -23,7 +23,6 @@ define([
         var today = new Date();
 
         $scope.$on('bootstrap', function(){
-            $scope.currentMember = $scope.model.members[0];
             $scope.projects = getProjects();
         });
 
@@ -59,7 +58,7 @@ define([
 
             blockData = {
                 date: dateTool.toBackendString(date),
-                memberId: $scope.currentMember.memberId
+                memberId: $scope.model.currentMember.memberId
             };
             block = new Block(blockData);
             clock = new Clock();
@@ -70,7 +69,7 @@ define([
             var blocks = [];
             for (var i = 0, l = $scope.model.blocks.length; i < l; i++) {
                 var block = $scope.model.blocks[i];
-                if (block.member === $scope.currentMember && dateTool.matches(block.date, date)) {
+                if (block.member === $scope.model.currentMember && dateTool.matches(block.date, date)) {
                     blocks.push(block);
                 }
             }

@@ -48,6 +48,7 @@ define([
         this.currentProject = null;
         this.currentContact = null;
         this.currentDocument = null;
+        this.currentMember = null;
         this.menu = '';
         this.popup = '';
 
@@ -78,6 +79,7 @@ define([
         //
         this.currentContact = this.contacts[this.contacts.length - 1];
         this.currentProject = this.projects[this.projects.length - 1];
+        this.currentMember = this.members[0];
     };
 
     _p.importCompany = function (configuration) {
