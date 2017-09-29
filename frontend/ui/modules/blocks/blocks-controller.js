@@ -51,8 +51,8 @@ define([
 
         // events
 
-        $scope.addBlock = function(date) {
-            var blockData, block, clock, blockSuccessCallback, clockSuccessCallback;
+        $scope.addBlock = function(date, time) {
+            var blockData, block, clock, clockData, blockSuccessCallback, clockSuccessCallback;
 
             blockSuccessCallback = function(response, status) {
                 block.id = response.id;
@@ -73,8 +73,11 @@ define([
                 date: dateTool.toBackendString(date),
                 memberId: $scope.model.currentMember.memberId
             };
+            clockData = {
+                time: time
+            };
             block = new Block(blockData);
-            clock = new Clock();
+            clock = new Clock(clockData);
             dataFactory.create($.param(block.toBackend())).success(blockSuccessCallback);
         };
 

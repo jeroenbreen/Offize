@@ -16,7 +16,7 @@
             <div>
                 {{dateTool.toString(day)}}
             </div>
-            <button title="Block toevoegen" class="glyph fa fa-plus" ng-click="addBlock(day)"></button>
+            <button title="Block toevoegen" class="glyph fa fa-plus" ng-click="addBlock(day, 3)"></button>
         </div>
         <div class="day-blocks">
             <block
