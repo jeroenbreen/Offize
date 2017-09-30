@@ -8,6 +8,10 @@ define([], function () {
             $scope.$emit('open-block', $scope.block);
         };
 
+        $scope.updateClock = function(clock) {
+            $scope.$emit('update-clock', clock);
+        };
+
     }
 
     BlockController.$inject = ['$scope', 'dataFactory'];

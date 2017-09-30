@@ -1,6 +1,6 @@
 requirejs.config({
-    baseUrl: 'frontend/'
-  , paths: {
+    baseUrl: 'frontend/',
+    paths: {
         'require/domReady': 'bower_components/requirejs-domready/domReady',
         'require/text': 'bower_components/requirejs-text/text',
         'angular': 'bower_components/angular/angular',

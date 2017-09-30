@@ -2,7 +2,7 @@
     <div class="block-title">
         {{clock.project.toSlug()}}&nbsp;
     </div>
-    <input ng-model="clock.time" placeholder="Uren" class="clock-time-input">
+    <input ng-model="clock.time" placeholder="Uren" class="clock-time-input" ng-change="updateClock(clock)">
 </div>
 
 <div class="block-tools">

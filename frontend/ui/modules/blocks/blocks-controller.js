@@ -1,13 +1,11 @@
 define([
-    'models/time-registration/Block',
-    'models/time-registration/Clock',
     'ui/ui-tools/date-tool',
+    'ui/ui-tools/delay-tool',
     'ui/ui-tools/modal',
     'jquery'
 ], function (
-    Block,
-    Clock,
     dateTool,
+    delayTool,
     modal,
     $
 ) {
@@ -18,6 +16,7 @@ define([
         $scope.model = OfficeModel;
         $scope.dateTool = dateTool;
         $scope.model.menu = 'blocks';
+        $scope.blockSets = [];
 
 
         // navigation
@@ -40,16 +39,35 @@ define([
             return dateTool.matches(day, today);
         };
 
+        function getBlocks (date) {
+            var blocks = [];
+            for (var i = 0, l = $scope.model.blocks.length; i < l; i++) {
+                var block = $scope.model.blocks[i];
+                if (block.member === $scope.model.currentMember && dateTool.matches(block.date, date)) {
+                    console.log("!");
+                    blocks.push(block);
+                }
+            }
+            return blocks;
+        }
 
         function update() {
             $scope.date = dateTool.getDateByOffset(thisMonday, delta);
             $scope.week = dateTool.getWeek($scope.date);
+            $scope.blockSets = [];
+            for (var i = 0, l = $scope.week.length; i < l; i++) {
+                var day = $scope.week[i];
+                $scope.blockSets.push(getBlocks(day))
+            }
         }
 
-        update();
+        $scope.$watch('model.blocks.length', function(){
+            update();
+        });
 
 
         // events
+
         $scope.currentBlock = null;
 
         $scope.$on('open-block', function(event, block) {
@@ -64,46 +82,6 @@ define([
             }
         };
 
-        $scope.addBlock = function(date, time) {
-            var blockData, block, clock, clockData, blockSuccessCallback, clockSuccessCallback;
-
-            blockSuccessCallback = function(response, status) {
-                block.id = response.id;
-                clock.blockId = response.id;
-                block.clocks.push(clock);
-                $scope.model.blocks.push(block);
-                modal.show(response.message, false);
-
-                dataFactory.create($.param(clock.toBackend())).success(clockSuccessCallback);
-            };
-
-            clockSuccessCallback = function(response, status) {
-                clock.id = response.id;
-                modal.show(response.message, false);
-            };
-
-            blockData = {
-                date: dateTool.toBackendString(date),
-                memberId: $scope.model.currentMember.memberId
-            };
-            clockData = {
-                time: time
-            };
-            block = new Block(blockData);
-            clock = new Clock(clockData);
-            dataFactory.create($.param(block.toBackend())).success(blockSuccessCallback);
-        };
-
-        $scope.getBlocks = function(date) {
-            var blocks = [];
-            for (var i = 0, l = $scope.model.blocks.length; i < l; i++) {
-                var block = $scope.model.blocks[i];
-                if (block.member === $scope.model.currentMember && dateTool.matches(block.date, date)) {
-                    blocks.push(block);
-                }
-            }
-            return blocks;
-        };
 
         function getProjects() {
             var projects = [];
@@ -129,10 +107,51 @@ define([
             return jobs;
         }
 
+        // events
+
+        $scope.$on('delete-block', function(event, block) {
+            var index = $scope.model.blocks.indexOf(block);
+            $scope.model.blocks.splice(block, 1);
+            $scope.currentBlock = null;
+        });
+
+        $scope.$on('update-clock', function(event, clock) {
+            function handleSuccess(response, status) {
+                modal.show(response);
+            }
+
+            function callback() {
+                dataFactory.update($.param(clock.toBackend())).success(handleSuccess);
+            }
+
+            delayTool.delay(callback);
+        });
+
         $scope.$on('bootstrap', function(){
             $scope.projects = getProjects();
             $scope.jobs = getJobs();
         });
+
+
+
+        // sortable
+
+        $scope.sortableOptions = {
+            connectWith: '.connectedList',
+
+            receive: function(e, ui) {
+                var job = ui.item.sortable.moved,
+                    time = new Date(),
+                    user = $scope.user,
+                    stage = $scope.stage;
+                job.addStamp(time, user, stage);
+                $rootScope.$emit('reset-timer');
+            },
+
+            stop: function(e, ui){
+                //console.log($scope);
+            }
+        };
 
     }
 

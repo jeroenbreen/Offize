@@ -5,11 +5,12 @@ $type = $_POST['type'];
 if ($type == "project") { $query = deleteProject(); }
 else if ($type == "document") { $query = deleteDocument(); }
 else if ($type == "contact") { $query = deleteContact(); }
-else if ($type == "team") { $query = deleteTeam(); }
+else if ($type == "member") { $query = deleteTeam(); }
 else if ($type == "comment") { $query = deleteComment(); }
-else if ($type == "hours") { $query = deleteHours(); }
-else if ($type == "line") { $query = deleteLine(); }
+else if ($type == "hour") { $query = deleteHour(); }
+//else if ($type == "line") { $query = deleteLine(); }
 else if ($type == "clock") { $query = deleteClock(); }
+else if ($type == "block") { $query = deleteBlock(); }
 
 
 function deleteProject() {
@@ -30,7 +31,7 @@ function deleteContact() {
     return $query;
 }
 
-function deleteTeam() {
+function deleteMember() {
     $memberId = $_POST['memberId'];
     $query = "DELETE FROM team WHERE memberId = '" . $memberId . "'";
     return $query;
@@ -42,7 +43,7 @@ function deleteComment() {
     return $query;
 }
 
-function deleteHours() {
+function deleteHour() {
     $hourId = $_POST['hourId'];
     $query = "DELETE FROM hours WHERE hourId = '" . $hourId . "'";
     return $query;
@@ -57,6 +58,12 @@ function deleteLine() {
 function deleteClock() {
     $id = $_POST['id'];
     $query = "DELETE FROM clocks WHERE id = '" . $id . "'";
+    return $query;
+}
+
+function deleteBlock() {
+    $id = $_POST['id'];
+    $query = "DELETE FROM blocks WHERE id = '" . $id . "'";
     return $query;
 }
 

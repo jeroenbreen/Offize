@@ -1,0 +1,34 @@
+@import "block/block";
+
+
+day {
+    width: ~'calc(100% / 5)';
+    height: 100%;
+    overflow: auto;
+    padding: 10px;
+    float: left;
+    display: block;
+
+    .day-label {
+        background: #ddd;
+        padding: 3px 10px;
+        height: 40px;
+
+        div {
+            margin-top: 9px;
+            vertical-align: top;
+            display: inline-block;
+        }
+
+        button {
+            float: right;
+        }
+    }
+
+    &.today {
+
+        .day-label {
+            background: @yellow;
+        }
+    }
+}

@@ -9,6 +9,7 @@ else if ($type == "hours") { $query = updateHours(); }
 else if ($type == "comment") { $query = updateComment(); }
 else if ($type == "configuration") { $query = updateConfiguration(); }
 else if ($type == "line") { $query = updateLine(); }
+else if ($type == "clock") { $query = updateClock(); }
 
 function updateProject() {
     $projectId = $_POST['projectId'];
@@ -105,6 +106,24 @@ function updateComment() {
     contactId = '" . $contactId . "' , 
     comment = '" . nlToBreak($comment) . "' 
     WHERE 
+    id = '" . $id. "'";
+    return $query;
+}
+
+function updateClock() {
+    $id = $_POST['id'];
+    $time = $_POST['time'];
+    $text = $_POST['text'];
+    $lineId = $_POST['lineId'];
+    $blockId = $_POST['blockId'];
+    $projectId = $_POST['projectId'];
+    $query = "UPDATE clocks SET
+    time = '" . $time . "' ,
+    text = '" . $text . "' ,
+    lineId = '" . $lineId . "' ,
+    blockId = '" . $blockId . "' ,
+    projectId = '" . $projectId . "'
+    WHERE
     id = '" . $id. "'";
     return $query;
 }

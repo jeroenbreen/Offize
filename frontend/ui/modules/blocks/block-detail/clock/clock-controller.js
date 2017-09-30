@@ -30,7 +30,12 @@ define([], function () {
             } else {
                 return string;
             }
-        }
+        };
+
+        $scope.updateClock = function(){
+            $scope.$emit('update-clock', $scope.clock);
+        };
+
 
     }
 

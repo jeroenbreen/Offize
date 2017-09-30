@@ -50,8 +50,21 @@ define([
             });
         };
 
+        $scope.deleteBlock = function() {
+            var message = 'Zeker weten?',
+                handleSuccess = function(response, status) {
+                    $scope.$emit('delete-block', $scope.block);
+                    modal.show(response, false);
+                };
+            modal.confirm(message, function(result){
+                if (result) {
+                    dataFactory.delete($.param($scope.block.toBackend())).success(handleSuccess);
+                }
+            });
+        };
+
         $scope.closeDetail = function() {
-            $scope.$emit('open-block', null)
+            $scope.$emit('open-block', null);
         };
     }
 

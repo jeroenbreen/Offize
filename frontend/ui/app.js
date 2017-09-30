@@ -22,12 +22,13 @@ define([
     './modules/document/document',
     './modules/projects/detail/detail',
     './modules/projects/shared/member-filter/member-filter',
-    './modules/blocks/block/block',
+    './modules/blocks/day/day',
     './modules/blocks/block-detail/block-detail',
 
     'ngStorage',
     'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'sortable'
 ], function(
     angular,
     Controller,
@@ -52,7 +53,7 @@ define([
     documentModule,
     detailModule,
     memberFilterModule,
-    blockModule,
+    dayModule,
     blockDetailModule,
     
     ngStorage,
@@ -64,11 +65,12 @@ define([
         'ngResource',
         'ngRoute',
         'ngStorage',
+        'ui.sortable',
         documentModule.name,
         contactDetailModule.name,
         detailModule.name,
         memberFilterModule.name,
-        blockModule.name,
+        dayModule.name,
         blockDetailModule.name
     ])
     .config(['$routeProvider', function ($routeProvider) {
