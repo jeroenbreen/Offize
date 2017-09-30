@@ -3,12 +3,14 @@ define([
     'models/time-registration/Clock',
     'ui/ui-tools/modal',
     'ui/ui-tools/date-tool',
+    'ui/ui-tools/delay-tool',
     'jquery'
 ], function (
     Block,
     Clock,
     modal,
     dateTool,
+    delayTool,
     $
 ) {
     "use strict";
@@ -45,6 +47,33 @@ define([
             block = new Block(blockData);
             clock = new Clock(clockData);
             dataFactory.create($.param(block.toBackend())).success(blockSuccessCallback);
+        };
+
+        function updateBlock(block) {
+            console.log(block);
+
+            function handleSuccess(response, status) {
+                modal.show(response);
+            }
+
+            function callback() {
+                dataFactory.update($.param(block.toBackend())).success(handleSuccess);
+            }
+
+            delayTool.delay(callback);
+        }
+
+        $scope.sortableOptions = {
+            connectWith: '.day-blocks',
+
+            receive: function(e, ui) {
+                var block = ui.item.sortable.moved;
+                block.date = $scope.day;
+                updateBlock(block);
+            },
+
+            stop: function(e, ui){
+            }
         };
 
     }

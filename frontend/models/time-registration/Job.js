@@ -5,7 +5,7 @@ define([
 ){
     "use strict";
     function Job(job) {
-        this.id = job.id;
+        this.id = Number(job.id);
         this.name = job.name;
     }
 

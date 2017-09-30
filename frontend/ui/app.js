@@ -27,8 +27,7 @@ define([
 
     'ngStorage',
     'ngResource',
-    'ngRoute',
-    'sortable'
+    'ngRoute'
 ], function(
     angular,
     Controller,
@@ -65,7 +64,6 @@ define([
         'ngResource',
         'ngRoute',
         'ngStorage',
-        'ui.sortable',
         documentModule.name,
         contactDetailModule.name,
         detailModule.name,

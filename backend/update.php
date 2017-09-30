@@ -9,6 +9,7 @@ else if ($type == "hours") { $query = updateHours(); }
 else if ($type == "comment") { $query = updateComment(); }
 else if ($type == "configuration") { $query = updateConfiguration(); }
 else if ($type == "line") { $query = updateLine(); }
+else if ($type == "block") { $query = updateBlock(); }
 else if ($type == "clock") { $query = updateClock(); }
 
 function updateProject() {
@@ -110,6 +111,18 @@ function updateComment() {
     return $query;
 }
 
+function updateBlock() {
+    $id = $_POST['id'];
+    $date = $_POST['date'];
+    $memberId = $_POST['memberId'];
+    $query = "UPDATE blocks SET
+    date = '" . $date . "' ,
+    memberId = '" . $memberId . "'
+    WHERE
+    id = '" . $id. "'";
+    return $query;
+}
+
 function updateClock() {
     $id = $_POST['id'];
     $time = $_POST['time'];
@@ -117,12 +130,14 @@ function updateClock() {
     $lineId = $_POST['lineId'];
     $blockId = $_POST['blockId'];
     $projectId = $_POST['projectId'];
+    $jobId = $_POST['jobId'];
     $query = "UPDATE clocks SET
     time = '" . $time . "' ,
     text = '" . $text . "' ,
     lineId = '" . $lineId . "' ,
     blockId = '" . $blockId . "' ,
-    projectId = '" . $projectId . "'
+    projectId = '" . $projectId . "' ,
+    jobId = '" . $jobId . "'
     WHERE
     id = '" . $id. "'";
     return $query;

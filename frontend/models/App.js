@@ -71,7 +71,7 @@ define([
         this.importer(data.contacts, Contact, this.contacts);
         this.importer(data.documents, Document, this.documents);
         this.importer(data.projects, Project, this.projects);
-        this.importClocks(data.clocks); // clocks after projects
+        this.importClocks(data.clocks); // clocks after projects, after jobs
         this.setConfiguration(data.configuration);
         // after connecting all lines with the documents
         // and all documents and comments with projects

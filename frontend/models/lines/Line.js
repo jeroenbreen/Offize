@@ -14,7 +14,7 @@ define([
         this.hours = line && line.hours ? Number(line.hours) : 0;
         this.arrayOrder = line && line.arrayOrder ? Number(line.arrayOrder) : 0;
         this.rate = line && line.rate ? Number(line.rate) : 0;
-        this.job = line && line.jobId ? app.getJobById(line.jobId) : null;
+        this.job = line && line.jobId ? app.getJobById(Number(line.jobId)) : null;
     }
 
     var _p = LineModel.prototype = Object.create(Parent.prototype);

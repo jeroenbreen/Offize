@@ -21,12 +21,20 @@
         <select
             ng-model="clock.line"
             ng-options="line as limitString(line.text) for line in getLines()"
-            ng-change="updateClock()"></select>
+            ng-change="updateClock(); pickDetail()"></select>
     </div>
 
-    of
+    <div class="clock-set" ng-if="clock.line.job">
+        <div class="clock-set-label">
+            Automatisch gekoppelde Categorie
+        </div>
+        <div class="clock-set-select-style">
+            {{clock.job.name}}
+        </div>
+    </div>
 
-    <div class="clock-set">
+
+    <div class="clock-set" ng-if="!clock.line.job">
         <div class="clock-set-label">
             Categorie
         </div>

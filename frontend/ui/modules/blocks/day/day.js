@@ -2,16 +2,19 @@ define([
     'angular',
     './day-controller',
     './day-directive',
-    './block/block'
+    './block/block',
+    'sortable'
 ], function (
-angular,
+    angular,
     Controller,
     directive,
-    blockModule
+    blockModule,
+    sortable
 ) {
     "use strict";
     return angular.module('day', [
-        blockModule.name
+        blockModule.name,
+        'ui.sortable'
     ])
         .controller('DayController', Controller)
         .directive('day', directive)

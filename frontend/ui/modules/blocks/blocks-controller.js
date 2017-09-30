@@ -44,7 +44,6 @@ define([
             for (var i = 0, l = $scope.model.blocks.length; i < l; i++) {
                 var block = $scope.model.blocks[i];
                 if (block.member === $scope.model.currentMember && dateTool.matches(block.date, date)) {
-                    console.log("!");
                     blocks.push(block);
                 }
             }
@@ -131,28 +130,6 @@ define([
             $scope.projects = getProjects();
             $scope.jobs = getJobs();
         });
-
-
-
-        // sortable
-
-        $scope.sortableOptions = {
-            connectWith: '.connectedList',
-
-            receive: function(e, ui) {
-                var job = ui.item.sortable.moved,
-                    time = new Date(),
-                    user = $scope.user,
-                    stage = $scope.stage;
-                job.addStamp(time, user, stage);
-                $rootScope.$emit('reset-timer');
-            },
-
-            stop: function(e, ui){
-                //console.log($scope);
-            }
-        };
-
     }
 
     BlocksController.$inject = ['$scope', 'dataFactory', 'OfficeModel'];

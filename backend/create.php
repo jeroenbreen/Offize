@@ -166,8 +166,9 @@ function insertLines() {
     $amount = $_POST['amount'];
     $arrayOrder = $_POST['arrayOrder'];
     $rate = $_POST['rate'];
+    $jobId = $_POST['jobId'];
     $query="INSERT INTO documentLines
-    (documentId, lineType , text, hours, amount, arrayOrder, rate)
+    (documentId, lineType , text, hours, amount, arrayOrder, rate, jobId)
     VALUES (
     '". $documentId ."' ,
     '". $lineType ."'  ,
@@ -175,7 +176,8 @@ function insertLines() {
     '". $hours ."',
     '". $amount ."',
     '". $arrayOrder ."',
-    '". $rate ."'
+    '". $rate ."' ,
+    '". $jobId ."'
     )";
     return $query;
 }
@@ -198,14 +200,16 @@ function insertClocks() {
     $lineId = $_POST['lineId'];
     $blockId = $_POST['blockId'];
     $projectId = $_POST['projectId'];
+    $jobId = $_POST['jobId'];
     $query="INSERT INTO clocks
-    (time, text, lineId, blockId, projectId)
+    (time, text, lineId, blockId, projectId, jobId)
     VALUES (
     '". $time ."' ,
     '". $text ."' ,
     '". $lineId ."' ,
-    '". $blockId ."',
-    '". $projectId ."'
+    '". $blockId ."' ,
+    '". $projectId ."' ,
+    '". $jobId ."'
     )";
     return $query;
 }

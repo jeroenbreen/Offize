@@ -4,10 +4,6 @@ define([], function () {
     function ClockController($scope) {
         this.$scope = $scope;
 
-        $scope.currentProject = null;
-        $scope.currentLine = null;
-        $scope.currentJob = null;
-
 
         $scope.getLines = function() {
             var lines = [];
@@ -31,6 +27,12 @@ define([], function () {
                 return string;
             }
         };
+
+        $scope.pickDetail = function() {
+            if ($scope.clock.line.job) {
+                $scope.clock.job = $scope.clock.line.job;
+            }
+        }
 
         $scope.updateClock = function(){
             $scope.$emit('update-clock', $scope.clock);

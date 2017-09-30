@@ -11,6 +11,7 @@ define([
         this.text = clock && clock.text ? clock.text : '';
         this.project = clock && clock.projectId ? app.getProjectById(Number(clock.projectId)) : null;
         this.line = clock && clock.lineId ? app.getLineById(Number(clock.lineId)) : null;
+        this.job = clock && clock.jobId ? app.getJobById(Number(clock.jobId)) : null;
         this.blockId = clock && clock.blockId ? Number(clock.blockId) : null;
     }
 
@@ -24,6 +25,7 @@ define([
             text: this.text,
             projectId: this.project ? this.project.projectId : null,
             lineId: this.line ? this.line.id : null,
+            jobId: this.job ? this.job.id : null,
             blockId: this.blockId
         }
     };
