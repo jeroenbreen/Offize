@@ -9,6 +9,36 @@ block-detail {
     height: 600px;
     background: #fff;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    padding: 30px;
-    overflow: auto;
+
+    .block-detail-header {
+        height: 60px;
+        border-bottom: 1px solid #ddd;
+        padding: 25px 30px;
+        font-weight: 700;
+    }
+
+    .block-detail-body {
+        height: ~'calc(100% - 140px)';
+        overflow: auto;
+
+        .block-detail-body-row {
+            display: block;
+            border-bottom: 1px solid @green;
+            margin-bottom: 8px;
+            padding: 30px;
+            position: relative;
+
+            .clock-remove {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+        }
+    }
+
+    .block-detail-footer {
+        height: 80px;
+        border-top: 1px solid#ddd;
+        padding: 23px;
+    }
 }

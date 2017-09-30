@@ -15,7 +15,7 @@ define([
         this.$scope = $scope;
         $scope.dateTool = dateTool;
 
-        $scope.addClock = function() {
+        $scope.createClock = function() {
             var clock, successCallback;
 
             successCallback = function(response, status) {
@@ -27,6 +27,20 @@ define([
             clock = new Clock();
             clock.blockId = $scope.block.id;
             dataFactory.create($.param(clock.toBackend())).success(successCallback);
+        };
+
+        $scope.deleteClock = function(clock) {
+            var message = 'Zeker weten?',
+                handleSuccess = function(response, status) {
+                    var index = $scope.block.clocks.indexOf(clock);
+                    $scope.block.clocks.splice(clock, 1);
+                    modal.show(response, false);
+                };
+            modal.confirm(message, function(result){
+                if (result) {
+                    dataFactory.delete($.param(clock.toBackend())).success(handleSuccess);
+                }
+            });
         };
 
         $scope.closeDetail = function() {

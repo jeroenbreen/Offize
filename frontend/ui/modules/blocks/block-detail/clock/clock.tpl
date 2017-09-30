@@ -30,5 +30,4 @@
             ng-model="clock.job"
             ng-options="job as limitString(job.name) for job in jobs"></select>
     </div>
-
 </div>

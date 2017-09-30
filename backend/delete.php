@@ -8,7 +8,8 @@ else if ($type == "contact") { $query = deleteContact(); }
 else if ($type == "team") { $query = deleteTeam(); }
 else if ($type == "comment") { $query = deleteComment(); }
 else if ($type == "hours") { $query = deleteHours(); }
-else if ($type == "line") { $query = deleteLines(); }
+else if ($type == "line") { $query = deleteLine(); }
+else if ($type == "clock") { $query = deleteClock(); }
 
 
 function deleteProject() {
@@ -47,9 +48,15 @@ function deleteHours() {
     return $query;
 }
 
-function deleteLines() {
+function deleteLine() {
     $id = $_POST['id'];
     $query = "DELETE FROM documentLines WHERE id = '" . $id . "'";
+    return $query;
+}
+
+function deleteClock() {
+    $id = $_POST['id'];
+    $query = "DELETE FROM clocks WHERE id = '" . $id . "'";
     return $query;
 }
 

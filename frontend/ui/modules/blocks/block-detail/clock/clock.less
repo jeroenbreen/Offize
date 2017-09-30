@@ -1,8 +1,9 @@
 clock {
-    display: block;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 8px;
-    padding: 8px;
+
+    &:last-child {
+        margin-bottom: 0;
+        border-bottom: 0;
+    }
 
     input {
         outline: 0;
@@ -20,15 +21,18 @@ clock {
     }
 
     .clock-set-container {
-        margin-bottom: 6px;
+        margin-top: 6px;
 
         .clock-set {
-            border: 1px solid #eff3ef;
+            background: @green;
             padding: 6px;
             margin-right: 6px;
             display: inline-block;
+
+            .clock-set-label {
+                margin-bottom: 3px;
+                color: rgba(0,0,0,0.7);
+            }
         }
     }
-
-
 }
