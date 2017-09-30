@@ -11,9 +11,16 @@ define([
 ) {
     "use strict";
 
-    function BlockDetailController($scope, dataFactory) {
+    function BlockDetailController($scope, $document, dataFactory) {
         this.$scope = $scope;
         $scope.dateTool = dateTool;
+
+        $document.bind('keydown', function (event) {
+            if (event.keyCode === 27) {
+                $scope.closeDetail();
+                $scope.$apply();
+            }
+        });
 
         $scope.createClock = function() {
             var clock, successCallback;
@@ -48,7 +55,7 @@ define([
         };
     }
 
-    BlockDetailController.$inject = ['$scope', 'dataFactory'];
+    BlockDetailController.$inject = ['$scope', '$document', 'dataFactory'];
 
     return BlockDetailController;
 }); 
