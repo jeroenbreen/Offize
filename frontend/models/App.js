@@ -61,7 +61,7 @@ define([
 
     _p.bootstrap = function(data) {
         this.importer(data.members, Member, this.members);
-        this.importCompany(data.configuration);
+        this.importCompany(data.company);
         this.importer(data.jobCategories, JobCategory, this.jobCategories);
         this.importJobs(data.jobs);
 
@@ -84,16 +84,16 @@ define([
         this.currentMember = this.members[0];
     };
 
-    _p.importCompany = function (configuration) {
+    _p.importCompany = function (company) {
         var company = {
-            name: configuration.companyName,
-            address: configuration.companyAddress,
-            city: configuration.companyCity,
-            zipcode: configuration.companyZipcode,
-            standardRate: configuration.standardRate,
-            startingYear: configuration.startingYear,
-            title: configuration.title,
-            welcome: configuration.welcome
+            name: company.companyName,
+            address: company.companyAddress,
+            city: company.companyCity,
+            zipcode: company.companyZipcode,
+            standardRate: company.standardRate,
+            startingYear: company.startingYear,
+            title: company.title,
+            companyNameNice: company.companyNameNice
         };
         this.company = new Company(company);
     };
@@ -125,10 +125,9 @@ define([
         }
     };
 
-    _p.setConfiguration = function(configuration) {
+    _p.setConfiguration = function() {
         var thisYear = new Date().getFullYear() + 1;
-        this.configuration = configuration;
-        for (var i = configuration.startingYear, l = thisYear; i < l; i++) {
+        for (var i = this.company.startingYear, l = thisYear; i < l; i++) {
             this.years.push(i);
         }
     };

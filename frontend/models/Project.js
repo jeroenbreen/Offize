@@ -17,7 +17,7 @@ define([
         this.projectStatus = project ? Number(project.projectStatus) : 0;
         this.currency = project ? project.currency : 'EUR';
         this.discount = project ? Number(project.discount) : 0;
-        this.rate = project ? Number(project.rate) : Number(app.configuration.standardRate);
+        this.rate = project ? Number(project.rate) : app.company.standardRate;
         this.hours = project ? Number(project.hours) : 0;
         this.year = project ? Number(project.year) : new Date().getFullYear();
         this.finished = project && project.finished ? (project.finished === "true" ? true : false) : false;
@@ -91,12 +91,8 @@ define([
         return hours.toFixed(1);
     };
 
-    _p.getBudget = function(autocalc) {
-        if (autocalc) {
-            return this.hours * this.rate - this.discount;
-        } else {
-            return this.fixedTotal;
-        }
+    _p.getBudget = function() {
+        return this.hours * this.rate - this.discount;
     };
 
     _p.getScore = function() {

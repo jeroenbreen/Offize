@@ -4,7 +4,7 @@ header("Content-Type: application/json; charset=UTF-8");
 include ('connect.php');
 
 $bootstrap = [
-    "configuration" => [],
+    "company"     => [],
     "projects"      => [],
     "contacts"      => [],
     "members"       => [],
@@ -17,11 +17,11 @@ $bootstrap = [
     "activities"    => []
 ];
 
-// read configuration table
-$query = "SELECT * FROM configuration ORDER BY id";
+// companies
+$query = "SELECT * FROM companies ORDER BY id";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
-    $bootstrap["configuration"] = $record;
+    $bootstrap["company"] = $record;
 }
 
 // projects

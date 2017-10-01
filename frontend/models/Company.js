@@ -9,10 +9,11 @@ define([
         this.address = company.address;
         this.zipcode = company.zipcode;
         this.city = company.city;
-        this.standardRate = company.standardRate;
-        this.startingYear = company.startingYear;
+        this.standardRate = Number(company.standardRate);
+        this.startingYear = Number(company.startingYear);
         this.title = company.title;
-        this.welcome = company.welcome;
+        this.companyNameNice = company.companyNameNice;
+        console.log(this);
     }
 
     var _p = Company.prototype = Object.create(Parent.prototype);

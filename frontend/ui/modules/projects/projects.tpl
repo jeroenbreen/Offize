@@ -58,7 +58,7 @@
             </div>
             <div class="ofc-cell ofc-cell-3 project-status">
                 <span>
-                    {{commonTools.currencyFormat(project.getBudget(model.configuration.autoCalc))}} {{project.currency}}
+                    {{commonTools.currencyFormat(project.getBudget())}} {{project.currency}}
                 </span>
             </div>
             <div class="ofc-cell ofc-cell-4">

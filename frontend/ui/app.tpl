@@ -1,7 +1,7 @@
 <div id="menu">
     <div class="innouveau-square" ng-click="office.currentProject = null; office.currentContact = null"></div>
     <div class="identity">
-        <b>Innouveau</b> Office
+        <b>{{office.company.companyNameNice}}</b> Office
     </div>
     <div class="menu-select">
         <a ng-repeat="menu in menus"
