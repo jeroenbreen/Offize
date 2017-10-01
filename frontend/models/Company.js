@@ -14,9 +14,16 @@ define([
         this.title = company.title;
         this.companyNameNice = company.companyNameNice;
         this.invoiceText = company.invoiceText;
+        this.color = company.color;
+        this.injectStyle();
     }
 
     var _p = Company.prototype = Object.create(Parent.prototype);
+
+    _p.injectStyle = function() {
+        var sheet = window.document.styleSheets[0];
+        sheet.insertRule('.office-color { background: ' + this.color + '!important; }', sheet.cssRules.length);
+    };
 
     return Company;
 });

@@ -94,7 +94,8 @@ define([
             startingYear: company.startingYear,
             title: company.title,
             companyNameNice: company.companyNameNice,
-            invoiceText: company.invoiceText
+            invoiceText: company.invoiceText,
+            color: company.color
         };
         this.company = new Company(company);
     };

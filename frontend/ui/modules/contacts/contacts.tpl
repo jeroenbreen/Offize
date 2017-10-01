@@ -19,7 +19,7 @@
     <div id="contacts-loop">
         <div class="contact"
              ng-repeat="contact in filterContacts(model.contacts)"
-             ng-class="{'selected': contact === model.currentContact}"
+             ng-class="{'office-color': contact === model.currentContact}"
              ng-click="model.currentContact = contact">
             <div class="project-status">
                 <div class="overlapper">{{contact.toSlug()}}</div>

@@ -19,6 +19,10 @@ define([
         this.$scope = $scope;
         $scope.dateTool = dateTool;
 
+        $scope.isToday = function(day) {
+            return dateTool.matches(day, today);
+        };
+
         $scope.addBlock = function(date, time) {
             var blockData, block, activity, activityData, blockSuccessCallback, activitySuccessCallback;
 

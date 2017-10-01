@@ -8,18 +8,13 @@
             ng-model="model.currentMember"
             ng-options="member as member.initials for (index, member) in model.members"
             title="selecteer teamlid" ></select>
-    <!--<div class="glyph-container">-->
-        <!--<button title="Volle week toevoegen" class="glyph fa fa-shopping-bag" ng-click="addFullWeek()"></button>-->
-        <!--<span>Volle week toevoegen (5x 3+1)</span>-->
-    <!--</div>-->
 </div>
 
 <div id="week-overview">
     <day ng-repeat="day in week"
         day="day"
         blocks="blockSets[$index]"
-        projects="projects"
-        ng-class="{'today': isToday(day)}"></day>
+        projects="projects"></day>
 </div>
 
 <block-detail

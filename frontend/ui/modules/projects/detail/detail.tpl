@@ -76,7 +76,7 @@
         </h2>
         <div class="project-detail-docs">
             <div title="offerte"
-                 class="doc"
+                 class="doc office-color"
                  ng-repeat="quotation in project.quotations"
                  ng-click="office.currentDocument = quotation;">
                 <span class="gl fa fa-folder-open"></span>
@@ -95,7 +95,7 @@
         </h2>
         <div class="project-detail-docs">
             <div title="factuur"
-                 class="doc"
+                 class="doc office-color"
                  ng-repeat="invoice in project.invoices"
                  ng-class="{'niet-betaald': !invoice.paid}"
                  ng-click="office.currentDocument = invoice;">

@@ -35,10 +35,6 @@ define([
             update();
         };
 
-        $scope.isToday = function(day) {
-            return dateTool.matches(day, today);
-        };
-
         function getBlocks (date) {
             var blocks = [];
             for (var i = 0, l = $scope.model.blocks.length; i < l; i++) {

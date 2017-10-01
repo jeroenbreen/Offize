@@ -1,4 +1,4 @@
-<div class="day-label">
+<div class="day-label" ng-class="{'office-color' : isToday(day)}">
     <div>
         {{dateTool.toString(day)}}
     </div>
