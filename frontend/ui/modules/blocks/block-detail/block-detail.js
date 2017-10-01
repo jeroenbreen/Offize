@@ -2,16 +2,16 @@ define([
     'angular',
     './block-detail-controller',
     './block-detail-directive',
-    './clock/clock'
+    './activity/activity'
 ], function (
     angular,
     Controller,
     directive,
-    clockModule
+    activityModule
 ) {
     "use strict";
     return angular.module('blockDetail', [
-        clockModule.name
+        activityModule.name
     ])
         .controller('BlockDetailController', Controller)
         .directive('blockDetail', directive)

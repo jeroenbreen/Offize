@@ -1,13 +1,13 @@
 define([
     'models/time-registration/Block',
-    'models/time-registration/Clock',
+    'models/time-registration/Activity',
     'ui/ui-tools/modal',
     'ui/ui-tools/date-tool',
     'ui/ui-tools/delay-tool',
     'jquery'
 ], function (
     Block,
-    Clock,
+    Activity,
     modal,
     dateTool,
     delayTool,
@@ -20,32 +20,32 @@ define([
         $scope.dateTool = dateTool;
 
         $scope.addBlock = function(date, time) {
-            var blockData, block, clock, clockData, blockSuccessCallback, clockSuccessCallback;
+            var blockData, block, activity, activityData, blockSuccessCallback, activitySuccessCallback;
 
             blockSuccessCallback = function(response, status) {
                 block.id = response.id;
-                clock.blockId = response.id;
-                block.clocks.push(clock);
-                $scope.model.blocks.push(block);
+                activity.blockId = response.id;
+                block.activities.push(activity);
+                app.blocks.push(block);
                 modal.show(response.message, false);
 
-                dataFactory.create($.param(clock.toBackend())).success(clockSuccessCallback);
+                dataFactory.create($.param(activity.toBackend())).success(activitySuccessCallback);
             };
 
-            clockSuccessCallback = function(response, status) {
-                clock.id = response.id;
+            activitySuccessCallback = function(response, status) {
+                activity.id = response.id;
                 modal.show(response.message, false);
             };
 
             blockData = {
                 date: dateTool.toBackendString(date),
-                memberId: $scope.model.currentMember.memberId
+                memberId: app.currentMember.memberId
             };
-            clockData = {
+            activityData = {
                 time: time
             };
             block = new Block(blockData);
-            clock = new Clock(clockData);
+            activity = new Activity(activityData);
             dataFactory.create($.param(block.toBackend())).success(blockSuccessCallback);
         };
 
@@ -75,6 +75,10 @@ define([
             stop: function(e, ui){
             }
         };
+
+        $scope.$on('update-block', function(event, block) {
+            updateBlock(block);
+        })
 
     }
 

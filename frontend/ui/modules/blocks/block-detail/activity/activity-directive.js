@@ -1,21 +1,21 @@
 define([
-    'require/text!./clock.tpl'
+    'require/text!./activity.tpl'
 ], function (template) {
     "use strict";
 
-    function clockDirective() {
+    function activityDirective() {
         return {
             restrict: 'E',
-            controller: 'ClockController',
+            controller: 'ActivityController',
             replace: false,
             template: template,
             scope: {
-                clock: '=clock',
-                projects: '=projects',
+                activity: '=activity',
+                project: '=project',
                 jobs: '=jobs'
             }
         };
     }
 
-    return clockDirective;
+    return activityDirective;
 });

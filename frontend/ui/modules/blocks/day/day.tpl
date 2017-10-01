@@ -8,6 +8,7 @@
     <li ng-repeat="block in blocks">
         <block
             block="block"
+            projects="projects"
             ng-class="{'big-block': block.isBig()}"></block>
     </li>
 </ul>

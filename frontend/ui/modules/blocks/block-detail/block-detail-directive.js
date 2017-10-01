@@ -11,7 +11,6 @@ define([
             template: template,
             scope: {
                 block: '=block',
-                projects: '=projects',
                 jobs: '=jobs'
             }
         };

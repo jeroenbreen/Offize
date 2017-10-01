@@ -47,20 +47,7 @@ define([
             dataFactory.create($.param(line.toBackend())).success(successCallback);
         };
 
-        // menu functions
 
-        $document.bind('keydown', function (event) {
-            $scope.keyManager(event);
-        });
-
-        $scope.keyManager = function (e) {
-            if (e.target.tagName !== 'INPUT') {
-                if (e.keyCode === 27) {
-                    $scope.closeDocument();
-                }
-                $scope.$apply();
-            }
-        };
 
 
 
@@ -169,6 +156,10 @@ define([
                 ui.placeholder.height(ui.item.height());
             }
         };
+
+        $scope.$on('close-popup', function(){
+            $scope.closeDocument();
+        });
     }
 
     DocumentController.$inject = ['$scope', '$document', '$http', 'dataFactory'];

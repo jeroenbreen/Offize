@@ -114,13 +114,13 @@ define([
             $scope.currentBlock = null;
         });
 
-        $scope.$on('update-clock', function(event, clock) {
+        $scope.$on('update-activity', function(event, activity) {
             function handleSuccess(response, status) {
                 modal.show(response);
             }
 
             function callback() {
-                dataFactory.update($.param(clock.toBackend())).success(handleSuccess);
+                dataFactory.update($.param(activity.toBackend())).success(handleSuccess);
             }
 
             delayTool.delay(callback);

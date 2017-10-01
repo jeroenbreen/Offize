@@ -14,7 +14,7 @@ $bootstrap = [
     "jobCategories" => [],
     "jobs"          => [],
     "blocks"        => [],
-    "clocks"        => []
+    "activities"    => []
 ];
 
 // read configuration table
@@ -88,10 +88,10 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
 }
 
 // clocks
-$query = "SELECT * FROM clocks";
+$query = "SELECT * FROM activities";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
-    $bootstrap["clocks"][] = $record;
+    $bootstrap["activities"][] = $record;
 }
 
 $mysqli -> close();

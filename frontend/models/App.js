@@ -10,7 +10,7 @@ define([
    './time-registration/Job-Category',
    './time-registration/Job',
    './time-registration/Block',
-   './time-registration/Clock'
+   './time-registration/Activity'
 ], function(
     Parent,
     Project,
@@ -23,7 +23,7 @@ define([
     JobCategory,
     Job,
     Block,
-    Clock
+    Activity
 ){
     "use strict";
     function App() {
@@ -64,14 +64,15 @@ define([
         this.importCompany(data.configuration);
         this.importer(data.jobCategories, JobCategory, this.jobCategories);
         this.importJobs(data.jobs);
-        this.importer(data.blocks, Block, this.blocks);
+
 
         this.importer(data.comments, Comment, this.store.comments);
         this.importer(data.lines, Line, this.lines);
         this.importer(data.contacts, Contact, this.contacts);
         this.importer(data.documents, Document, this.documents);
         this.importer(data.projects, Project, this.projects);
-        this.importClocks(data.clocks); // clocks after projects, after jobs
+        this.importer(data.blocks, Block, this.blocks); // blocks after projects
+        this.importActivities(data.activities); // activities after jobs
         this.setConfiguration(data.configuration);
         // after connecting all lines with the documents
         // and all documents and comments with projects
@@ -107,12 +108,12 @@ define([
         }
     };
 
-    _p.importClocks = function(clocks) {
-        for (var i = 0, l = clocks.length; i < l; i++) {
-            var clock = new Clock(clocks[i]),
-                block = this.getBlockById(Number(clocks[i].blockId));
+    _p.importActivities = function(activities) {
+        for (var i = 0, l = activities.length; i < l; i++) {
+            var activity = new Activity(activities[i]),
+                block = this.getBlockById(Number(activities[i].blockId));
             if (block) {
-                block.clocks.push(clock);
+                block.activities.push(activity);
             }
         }
     };

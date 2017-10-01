@@ -67,8 +67,13 @@ define([
     // helpers
 
     _p.toSlug = function(limitString) {
-        var formattedName = this.projectName.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-');
-        return commonTools.digitize(this.contact.contactId) + '-' + formattedName;
+        var formattedName = this.projectName.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-'),
+            label = commonTools.digitize(this.contact.contactId) + '-' + formattedName;
+        if (limitString && label.length > limitString) {
+            return label.substr(0,limitString) + '...'
+        } else {
+            return label;
+        }
     };
 
 

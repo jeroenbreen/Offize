@@ -1,6 +1,6 @@
 define([], function() {
     "use strict";
-    function AppController($scope, OfficeModel, $http) {
+    function AppController($scope, $document, OfficeModel, $http) {
         this.$scope = $scope;
         this.$scope.office = this.office = OfficeModel;
 
@@ -15,9 +15,22 @@ define([], function() {
                 $scope.$broadcast('bootstrap');
             });
         }
+
+        $document.bind('keydown', function (event) {
+            $scope.keyManager(event);
+        });
+
+        $scope.keyManager = function (e) {
+            if (e.target.tagName !== 'INPUT') {
+                if (e.keyCode === 27) {
+                    $scope.$broadcast('close-popup');
+                }
+                $scope.$apply();
+            }
+        };
     }
 
-    AppController.$inject = ['$scope', 'OfficeModel', '$http'];
+    AppController.$inject = ['$scope', '$document', 'OfficeModel', '$http'];
 
     return AppController;
 });

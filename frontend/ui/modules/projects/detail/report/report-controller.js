@@ -60,6 +60,10 @@ define([], function () {
             $scope.report.open = false;
         };
 
+        $scope.$on('close-popup', function(){
+            $scope.closeReport();
+        });
+
     }
 
     ReportController.$inject = ['$scope'];

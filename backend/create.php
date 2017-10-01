@@ -11,7 +11,7 @@ else if ($type == "comment") { $query = insertComment(); }
 else if ($type == "hours") { $query = insertHours(); }
 else if ($type == "line") { $query = insertLines(); }
 else if ($type == "block") { $query = insertBlocks(); }
-else if ($type == "clock") { $query = insertClocks(); }
+else if ($type == "activity") { $query = insertActivity(); }
 
 
 function insertProject() {
@@ -185,30 +185,31 @@ function insertLines() {
 function insertBlocks() {
     $date = $_POST['date'];
     $memberId = $_POST['memberId'];
+    $projectId = $_POST['projectId'];
     $query="INSERT INTO blocks
-    (date, memberId)
+    (date, memberId, projectId)
     VALUES (
     '". $date ."' ,
-    '". $memberId ."'
+    '". $memberId ."' ,
+    '". $projectId ."'
     )";
     return $query;
 }
 
-function insertClocks() {
+function insertActivity() {
     $time = $_POST['time'];
     $text = $_POST['text'];
     $lineId = $_POST['lineId'];
     $blockId = $_POST['blockId'];
-    $projectId = $_POST['projectId'];
+
     $jobId = $_POST['jobId'];
-    $query="INSERT INTO clocks
-    (time, text, lineId, blockId, projectId, jobId)
+    $query="INSERT INTO activities
+    (time, text, lineId, blockId, jobId)
     VALUES (
     '". $time ."' ,
     '". $text ."' ,
     '". $lineId ."' ,
     '". $blockId ."' ,
-    '". $projectId ."' ,
     '". $jobId ."'
     )";
     return $query;

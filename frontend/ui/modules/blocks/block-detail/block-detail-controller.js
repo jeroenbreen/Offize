@@ -1,10 +1,10 @@
 define([
-    'models/time-registration/Clock',
+    'models/time-registration/Activity',
     'ui/ui-tools/modal',
     'ui/ui-tools/date-tool',
     'jquery'
 ], function (
-    Clock,
+    Activity,
     modal,
     dateTool,
     $
@@ -15,37 +15,31 @@ define([
         this.$scope = $scope;
         $scope.dateTool = dateTool;
 
-        $document.bind('keydown', function (event) {
-            if (event.keyCode === 27) {
-                $scope.closeDetail();
-                $scope.$apply();
-            }
-        });
 
-        $scope.createClock = function() {
-            var clock, successCallback;
+        $scope.createActivity = function() {
+            var activity, successCallback;
 
             successCallback = function(response, status) {
-                clock.id = response.id;
-                $scope.block.clocks.push(clock);
+                activity.id = response.id;
+                $scope.block.activities.push(activity);
                 modal.show(response.message, false);
             };
 
-            clock = new Clock();
-            clock.blockId = $scope.block.id;
-            dataFactory.create($.param(clock.toBackend())).success(successCallback);
+            activity = new Activity();
+            activity.blockId = $scope.block.id;
+            dataFactory.create($.param(activity.toBackend())).success(successCallback);
         };
 
-        $scope.deleteClock = function(clock) {
+        $scope.deleteActivity = function(activity) {
             var message = 'Zeker weten?',
                 handleSuccess = function(response, status) {
-                    var index = $scope.block.clocks.indexOf(clock);
-                    $scope.block.clocks.splice(clock, 1);
+                    var index = $scope.block.activities.indexOf(activity);
+                    $scope.block.activities.splice(activity, 1);
                     modal.show(response, false);
                 };
             modal.confirm(message, function(result){
                 if (result) {
-                    dataFactory.delete($.param(clock.toBackend())).success(handleSuccess);
+                    dataFactory.delete($.param(activity.toBackend())).success(handleSuccess);
                 }
             });
         };
@@ -66,6 +60,10 @@ define([
         $scope.closeDetail = function() {
             $scope.$emit('open-block', null);
         };
+
+        $scope.$on('close-popup', function(){
+            $scope.closeDetail();
+        });
     }
 
     BlockDetailController.$inject = ['$scope', '$document', 'dataFactory'];
