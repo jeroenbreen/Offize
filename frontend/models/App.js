@@ -85,18 +85,6 @@ define([
     };
 
     _p.importCompany = function (company) {
-        var company = {
-            name: company.companyName,
-            address: company.companyAddress,
-            city: company.companyCity,
-            zipcode: company.companyZipcode,
-            standardRate: company.standardRate,
-            startingYear: company.startingYear,
-            title: company.title,
-            companyNameNice: company.companyNameNice,
-            invoiceText: company.invoiceText,
-            color: company.color
-        };
         this.company = new Company(company);
     };
 
@@ -143,71 +131,7 @@ define([
         }
         return null;
     };
-    //
-    // _p.getContactById = function(contactId) {
-    //     for (var i = 0, l = this.contacts.length; i < l; i++) {
-    //         var contact = this.contacts[i];
-    //         if (contact.contactId === contactId) {
-    //             return contact;
-    //         }
-    //     }
-    //     return null;
-    // };
-    //
-    // _p.getMemberById = function(memberId) {
-    //     for (var i = 0, l = this.team.length; i < l; i++) {
-    //         var member = this.team[i];
-    //         if (member.memberId === memberId) {
-    //             return member;
-    //         }
-    //     }
-    //     return null;
-    // };
-    //
-    _p.getHighestNr = function(doctype) {
-        var highest = 0;
-        for (var i = 0, l = this.documents.length; i < l; i++){
-            var document = this.documents[i];
-            if (document.doctype === doctype) {
-                var nr = document.nr;
-                if (nr > highest) {
-                    highest = nr;
-                }
-            }
 
-        }
-        return highest + 1;
-    };
-    //
-
-    //
-
-    // };
-    //
-
-    //
-    // _p.getHourId = function() {
-    //     var highest = 0;
-    //     for (var i = 0, l = this.hours.length; i < l; i++){
-    //         var id = this.hours[i].id;
-    //         if (id > highest) {
-    //             highest = id;
-    //         }
-    //     }
-    //     return highest + 1;
-    // };
-    //
-    // _p._digitize = function(x) {
-    //     if (x < 100) {
-    //         if (x < 10) {
-    //             return '00' + x;
-    //         } else {
-    //             return '0' + x;
-    //         }
-    //     } else {
-    //         return '' + x;
-    //     }
-    // };
 
     // getters
 

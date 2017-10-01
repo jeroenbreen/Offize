@@ -21,7 +21,6 @@ define([
 
         // navigation
 
-        var today = new Date();
         var thisMonday = dateTool.getThisMonday();
         var delta = 0;
 

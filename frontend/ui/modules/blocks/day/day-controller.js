@@ -19,6 +19,8 @@ define([
         this.$scope = $scope;
         $scope.dateTool = dateTool;
 
+        var today = new Date();
+
         $scope.isToday = function(day) {
             return dateTool.matches(day, today);
         };
