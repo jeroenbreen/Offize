@@ -1,5 +1,5 @@
 <div id="menu">
-    <div class="innouveau-square" ng-click="office.currentProject = null; office.currentContact = null"></div>
+    <div class="office-square" ng-click="office.currentProject = null; office.currentContact = null"></div>
     <div class="identity">
         <b>{{office.company.companyNameNice}}</b> Office
     </div>

@@ -93,7 +93,8 @@ define([
             standardRate: company.standardRate,
             startingYear: company.startingYear,
             title: company.title,
-            companyNameNice: company.companyNameNice
+            companyNameNice: company.companyNameNice,
+            invoiceText: company.invoiceText
         };
         this.company = new Company(company);
     };

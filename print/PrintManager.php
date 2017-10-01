@@ -100,7 +100,7 @@ class PrintManager
                         </td>
                         <td>
                             <div id='sender'>
-                                  <b>Innouveau</b><br>
+                                  <b>" . $this->data->company->name . "</b><br>
                                   " . $this->data->member . "<br>
                                   " . $this->data->company->address . "<br>
                                   " . $this->data->company->zipcode . " " . $this->data->company->city . "
@@ -126,7 +126,7 @@ class PrintManager
             <div id='footer'>
                 <div id='footer-text'>";
                     if ($this->data->{'doctype'} === "invoice") {
-                        $html .= "Gelieve dit bedrag binnen 4 weken over te maken o.v.v. factuurnr en afzender op NL 68 ING B000 657 42 32 t.n.v. Innouveau, te Rotterdam<br>Innouveau | KvK 61118389 | BTW NL854214902B01";
+                        $html .= $this->data->company->invoiceText;
                     } else {
                         $html .= "Handtekening voor akkoord:";
                     }

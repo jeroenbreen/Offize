@@ -13,7 +13,7 @@ define([
         this.startingYear = Number(company.startingYear);
         this.title = company.title;
         this.companyNameNice = company.companyNameNice;
-        console.log(this);
+        this.invoiceText = company.invoiceText;
     }
 
     var _p = Company.prototype = Object.create(Parent.prototype);
