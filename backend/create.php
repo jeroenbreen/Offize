@@ -127,14 +127,12 @@ function insertTeam() {
 }
 
 function insertComment() {
-    $id = $_POST['id'];
     $contactId = $_POST['contactId'];
     $projectId = $_POST['projectId'];
     $comment = $_POST['comment'];
     $query="INSERT INTO comments 
-    (id, contactId, projectId, comment)
+    (contactId, projectId, comment)
     VALUES (
-    '". $id ."' ,
     '". $contactId ."'  ,
     '". $projectId ."' ,
     '". nlToBreak($comment) ."'
