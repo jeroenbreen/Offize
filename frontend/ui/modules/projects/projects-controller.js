@@ -160,6 +160,12 @@ define([
 
         $scope.totals = [];
 
+        $scope.$watch('model.currentMember', function(){
+            if ($scope.model.currentMember) {
+                $scope.filter.member = $scope.model.currentMember;
+            }
+        })
+
     }
 
     ProjectsController.$inject = ['$scope', 'dataFactory', 'OfficeModel'];

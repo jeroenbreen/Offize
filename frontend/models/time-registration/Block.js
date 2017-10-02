@@ -23,7 +23,7 @@ define([
             type: this.type,
             date: dateTool.toBackendString(this.date),
             memberId: this.member.memberId,
-            projectId: this.project ? this.project.projectId : null
+            projectId: this.project ? this.project.projectId : 0
         }
     };
 

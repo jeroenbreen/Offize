@@ -20,7 +20,7 @@ define([
         this.rate = project ? Number(project.rate) : app.company.standardRate;
         this.hours = project ? Number(project.hours) : 0;
         this.year = project ? Number(project.year) : new Date().getFullYear();
-        this.finished = project && project.finished ? (project.finished === "true" ? true : false) : false;
+        this.finished = project && project.finished ? (project.finished === "1" ? true : false) : false;
 
         this.blocks = [];
         this.quotations = [];

@@ -34,8 +34,8 @@ define([
             type: this.type,
             time: this.time,
             text: this.text,
-            lineId: this.line ? this.line.id : null,
-            jobId: this.job ? this.job.id : null,
+            lineId: this.line ? this.line.id : 0,
+            jobId: this.job ? this.job.id : 0,
             blockId: this.blockId
         }
     };
