@@ -1,6 +1,6 @@
 block {
     display: block;
-    background: #fff;
+
     margin: 4px 0 20px 0;
     position: relative;
 
@@ -8,10 +8,11 @@ block {
     }
 
     .block-head {
-        margin-bottom: 6px;
-        border-bottom: 1px solid #ddd;
+        border: 1px solid #ddd;
         padding: 8px;
         position: relative;
+        background: #fff;
+        margin-bottom: -1px;
 
         button {
             position: absolute;
@@ -22,6 +23,9 @@ block {
 
     .block-body {
         padding: 8px;
+        margin-right: 40px;
+        background: #fff;
+        border: 1px solid #ddd;
 
         .block-row {
 
@@ -31,14 +35,17 @@ block {
                 padding: 6px;
                 cursor: pointer;
                 color: #555;
+                font-size: 11px;
             }
 
             input {
                 outline: 0;
-                padding: 6px;
+                padding: 3px;
                 margin-bottom: 2px;
                 width: 40px;
                 text-align: right;
+                background: transparent;
+                border: 1px solid #ddd;
             }
         }
     }
