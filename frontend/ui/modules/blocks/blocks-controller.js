@@ -121,9 +121,13 @@ define([
             delayTool.delay(callback);
         });
 
-        $scope.$on('bootstrap', function(){
-            $scope.projects = getProjects();
-            $scope.jobs = getJobs();
+        var collectProjects = false;
+        $scope.$watch('model.projects.length', function(){
+            if ($scope.model.projects.length > 0 && !collectProjects) {
+                $scope.projects = getProjects();
+                $scope.jobs = getJobs();
+                collectProjects = true;
+            }
         });
     }
 
