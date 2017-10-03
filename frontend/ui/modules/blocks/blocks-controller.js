@@ -86,7 +86,15 @@ define([
                 }
 
             }
-            return projects;
+            return projects.sort(function(a, b){
+                if (a.member.memberId < b.member.memberId) {
+                    return -1;
+                } else if (a.member.memberId > b.member.memberId) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
         }
 
         function getJobs() {
