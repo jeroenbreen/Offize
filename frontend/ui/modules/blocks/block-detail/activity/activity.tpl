@@ -28,7 +28,7 @@
         </div>
         <select
             ng-model="activity.job"
-            ng-options="job as limitString(job.name) for job in jobs"
+            ng-options="job as job.getFullName() for job in jobs"
             ng-change="updateActivity()"></select>
     </div>
 </div>

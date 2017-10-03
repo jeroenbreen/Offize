@@ -7,12 +7,14 @@ define([], function () {
 
         $scope.getLines = function() {
             var lines = [];
-            for (var i = 0, l = $scope.project.quotations.length; i < l; i++) {
-                var quotation = $scope.project.quotations[i];
-                for (var j = 0, jl = quotation.lines.length; j < jl; j++) {
-                    var line = quotation.lines[j];
-                    if (line.lineType === 'count' || line.lineType === 'amount') {
-                        lines.push(line);
+            if ($scope.project) {
+                for (var i = 0, l = $scope.project.quotations.length; i < l; i++) {
+                    var quotation = $scope.project.quotations[i];
+                    for (var j = 0, jl = quotation.lines.length; j < jl; j++) {
+                        var line = quotation.lines[j];
+                        if (line.lineType === 'count' || line.lineType === 'amount') {
+                            lines.push(line);
+                        }
                     }
                 }
             }

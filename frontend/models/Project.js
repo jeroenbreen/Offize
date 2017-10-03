@@ -66,9 +66,12 @@ define([
 
     // helpers
 
-    _p.toSlug = function(limitString) {
+    _p.toSlug = function(limitString, addMember) {
         var formattedName = this.projectName.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-'),
             label = commonTools.digitize(this.contact.contactId) + '-' + formattedName;
+        if (addMember) {
+            label = this.member.initials + ': ' + label;
+        }
         if (limitString && label.length > limitString) {
             return label.substr(0,limitString) + '...'
         } else {

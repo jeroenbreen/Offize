@@ -1,8 +1,9 @@
 <div class="block-head">
     <select
         ng-model="block.project"
-        ng-options="project as project.toSlug(20) for project in projects"
+        ng-options="project as project.toSlug(20, true) for project in projects"
         ng-change="updateBlock()"></select>
+    <button title="Voeg meer info toe" class="glyph fa fa-clone" ng-click="openBlock()"></button>
 </div>
 
 
@@ -13,9 +14,4 @@
         </div>
         <input ng-model="activity.time" placeholder="Uren" class="activity" ng-change="updateActivity(activity)">
     </div>
-</div>
-
-
-<div class="block-footer">
-    <button title="Voeg meer info toe" class="glyph fa fa-clone" ng-click="openBlock()"></button>
 </div>

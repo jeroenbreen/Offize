@@ -21,9 +21,14 @@ define([
             return this.text;
         } else {
             if (this.line) {
-                return this.line.text;
+                return '[LINE] ' + this.line.text;
             } else {
-                return '-';
+                if (this.job) {
+                    return '[CAT] ' + this.job.getFullName();
+                } else {
+                    return '-';
+                }
+
             }
         }
     };

@@ -94,6 +94,7 @@ define([
                 jobCategory = this.getJobCategoryById(jobs[i].jobCategoryId);
             if (jobCategory) {
                 jobCategory.jobs.push(job);
+                job.jobCategory = jobCategory
             }
         }
     };

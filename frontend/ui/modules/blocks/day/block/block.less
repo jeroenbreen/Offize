@@ -11,6 +11,13 @@ block {
         margin-bottom: 6px;
         border-bottom: 1px solid #ddd;
         padding: 8px;
+        position: relative;
+
+        button {
+            position: absolute;
+            right: 8px;
+            top: 0;
+        }
     }
 
     .block-body {
@@ -20,7 +27,7 @@ block {
 
             .block-title {
                 display: inline-block;
-                width: 170px;
+                width: ~'calc(100% - 50px)';
                 padding: 6px;
                 cursor: pointer;
                 color: #555;
@@ -36,8 +43,5 @@ block {
         }
     }
 
-    .block-footer {
-        text-align: right;
-        padding: 8px;
-    }
+
 }
