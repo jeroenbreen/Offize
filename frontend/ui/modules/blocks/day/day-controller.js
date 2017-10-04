@@ -55,36 +55,17 @@ define([
             dataFactory.create($.param(block.toBackend())).success(blockSuccessCallback);
         };
 
-        function updateBlock(block) {
-            console.log(block);
 
-            function handleSuccess(response, status) {
-                modal.show(response);
-            }
-
-            function callback() {
-                dataFactory.update($.param(block.toBackend())).success(handleSuccess);
-            }
-
-            delayTool.delay(callback);
-        }
 
         $scope.sortableOptions = {
-            connectWith: '.day-blocks',
+            connectWith: '.day-blocks, .week-drop',
 
             receive: function(e, ui) {
                 var block = ui.item.sortable.moved;
                 block.date = $scope.day;
-                updateBlock(block);
-            },
-
-            stop: function(e, ui){
+                $scope.$emit('update-block',block);
             }
         };
-
-        $scope.$on('update-block', function(event, block) {
-            updateBlock(block);
-        })
 
     }
 

@@ -21,3 +21,15 @@
     ng-if="currentBlock"
     block="currentBlock"
     jobs="jobs"></block-detail>
+
+<ul id="prev-week-drop" ui-sortable="sortableOptionsPrev" ng-model="prevWeekArray" class="week-drop">
+    <li ng-repeat="block in prevWeekArray"></li>
+    Schuif door naar<br>
+    de vorige week
+</ul>
+
+<ul id="next-week-drop" ui-sortable="sortableOptionsNext" ng-model="nextWeekArray" class="week-drop">
+    <li ng-repeat="block in nextWeekArray"></li>
+    Schuif door naar<br>
+    de volgende week
+</ul>

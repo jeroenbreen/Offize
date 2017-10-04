@@ -27,7 +27,8 @@ define([
 
     'ngStorage',
     'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'sortable'
 ], function(
     angular,
     Controller,
@@ -57,13 +58,15 @@ define([
     
     ngStorage,
     ngResource,
-    ngRoute
+    ngRoute,
+    sortable
 ) {
     "use strict";
     return angular.module('OfficeModel', [
         'ngResource',
         'ngRoute',
         'ngStorage',
+        'ui.sortable',
         documentModule.name,
         contactDetailModule.name,
         detailModule.name,

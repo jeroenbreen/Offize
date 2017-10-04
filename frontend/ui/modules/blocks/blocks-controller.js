@@ -22,6 +22,8 @@ define([
         // navigation
 
         var thisMonday = dateTool.getThisMonday();
+        var nextMonday;
+        var prevMonday;
         var delta = 0;
 
         $scope.prevWeek = function() {
@@ -48,6 +50,8 @@ define([
         function update() {
             $scope.date = dateTool.getDateByOffset(thisMonday, delta);
             $scope.week = dateTool.getWeek($scope.date);
+            prevMonday = dateTool.getDateByOffset($scope.date, -3);
+            nextMonday = dateTool.getDateByOffset($scope.date, 7);
             $scope.blockSets = [];
             for (var i = 0, l = $scope.week.length; i < l; i++) {
                 var day = $scope.week[i];
@@ -137,6 +141,45 @@ define([
                 collectProjects = true;
             }
         });
+
+        // next week
+
+        $scope.prevWeekArray = [];
+        $scope.nextWeekArray = [];
+
+        $scope.sortableOptionsPrev = {
+            receive: function(e, ui) {
+                var block = ui.item.sortable.moved;
+                block.date = prevMonday;
+                updateBlock(block);
+            }
+        };
+
+        $scope.sortableOptionsNext = {
+            receive: function(e, ui) {
+                var block = ui.item.sortable.moved;
+                block.date = nextMonday;
+                updateBlock(block);
+            }
+        };
+
+        function updateBlock(block) {
+            console.log(block);
+
+            function handleSuccess(response, status) {
+                modal.show(response);
+            }
+
+            function callback() {
+                dataFactory.update($.param(block.toBackend())).success(handleSuccess);
+            }
+
+            delayTool.delay(callback);
+        }
+
+        $scope.$on('update-block', function(event, block) {
+            updateBlock(block);
+        })
     }
 
     BlocksController.$inject = ['$scope', 'dataFactory', 'OfficeModel'];
