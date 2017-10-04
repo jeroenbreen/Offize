@@ -61,6 +61,10 @@ define([
             $scope.$emit('open-block', null);
         };
 
+        $scope.updateBlock = function() {
+            $scope.$emit('update-block', $scope.block);
+        };
+
         $scope.$on('close-popup', function(){
             $scope.closeDetail();
         });

@@ -184,12 +184,14 @@ function insertBlocks() {
     $date = $_POST['date'];
     $memberId = $_POST['memberId'];
     $projectId = $_POST['projectId'];
+    $time = $_POST['time'];
     $query="INSERT INTO blocks
-    (date, memberId, projectId)
+    (date, memberId, projectId, time)
     VALUES (
     '". $date ."' ,
     '". $memberId ."' ,
-    '". $projectId ."'
+    '". $projectId ."' ,
+    '". $time ."'
     )";
     return $query;
 }

@@ -116,10 +116,12 @@ function updateBlock() {
     $date = $_POST['date'];
     $memberId = $_POST['memberId'];
     $projectId = $_POST['projectId'];
+    $time = $_POST['time'];
     $query = "UPDATE blocks SET
     date = '" . $date . "' ,
     memberId = '" . $memberId . "' ,
-    projectId = '" . $projectId . "'
+    projectId = '" . $projectId . "' ,
+    time = '" . $time . "'
     WHERE
     id = '" . $id. "'";
     return $query;

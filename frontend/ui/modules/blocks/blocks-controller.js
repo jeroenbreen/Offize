@@ -164,8 +164,6 @@ define([
         };
 
         function updateBlock(block) {
-            console.log(block);
-
             function handleSuccess(response, status) {
                 modal.show(response);
             }

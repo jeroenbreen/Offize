@@ -2,6 +2,7 @@
     {{dateTool.toString(block.date)}}<br>
     <b>{{block.project.toSlug()}}</b>
 
+
     <div class="window-close" ng-click="closeDetail()">
         <img src="assets/img/close.svg">
     </div>
@@ -27,5 +28,9 @@
     <div class="glyph-container">
         <button title="Block verwijderen" class="glyph fa fa-trash red" ng-click="deleteBlock()"></button>
         <span>Block verwijderen</span>
+    </div>
+    <div class="glyph-container">
+        <input ng-model="block.time" placeholder="00:00" ng-change="updateBlock()">
+        <span>Start tijd</span>
     </div>
 </div>

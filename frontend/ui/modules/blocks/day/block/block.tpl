@@ -1,4 +1,7 @@
 <div class="block-head">
+    <div class="block-head-time" ng-if="block.time.length > 0">
+        {{block.time}} - {{block.getEndTime()}}
+    </div>
     <select
         ng-model="block.project"
         ng-options="project as project.toSlug(20, true) for project in projects"
