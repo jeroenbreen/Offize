@@ -81,7 +81,7 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
 }
 
 // blocks
-$query = "SELECT * FROM blocks";
+$query = "SELECT * FROM blocks ORDER BY time";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["blocks"][] = $record;

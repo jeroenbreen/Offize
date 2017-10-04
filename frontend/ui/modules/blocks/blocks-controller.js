@@ -52,12 +52,16 @@ define([
             $scope.week = dateTool.getWeek($scope.date);
             prevMonday = dateTool.getDateByOffset($scope.date, -3);
             nextMonday = dateTool.getDateByOffset($scope.date, 7);
+            $scope.updateBlocks();
+        }
+
+        $scope.updateBlocks = function() {
             $scope.blockSets = [];
             for (var i = 0, l = $scope.week.length; i < l; i++) {
                 var day = $scope.week[i];
                 $scope.blockSets.push(getBlocks(day))
             }
-        }
+        };
 
         $scope.$watch('model.blocks.length', function(){
             update();
@@ -164,6 +168,8 @@ define([
         };
 
         function updateBlock(block) {
+            console.log(block);
+
             function handleSuccess(response, status) {
                 modal.show(response);
             }

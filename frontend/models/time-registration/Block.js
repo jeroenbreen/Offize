@@ -44,7 +44,7 @@ define([
             timeTakenMinutes,
             split = this.time.split(':'),
             startTimeHours = Number(split[0]),
-            startTimeMinutes = Number(split[1]),
+            startTimeMinutes = Number(split[1]) / 60,
             endTimeHours = 0,
             endTimeMinutes = 0,
             minutesString;
@@ -56,7 +56,7 @@ define([
         timeTakenMinutes = timeTaken - timeTakenHours;
         endTimeHours = startTimeHours + timeTakenHours;
         endTimeMinutes = startTimeMinutes + timeTakenMinutes;
-        if (endTimeMinutes > 1) {
+        if (endTimeMinutes >= 1) {
             endTimeMinutes -= 1;
             endTimeHours++;
         }

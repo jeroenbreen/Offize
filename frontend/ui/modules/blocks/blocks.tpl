@@ -7,7 +7,8 @@
     <select
             ng-model="model.currentMember"
             ng-options="member as member.initials for (index, member) in model.members"
-            title="selecteer teamlid" ></select>
+            title="selecteer teamlid"
+            ng-change="updateBlocks()"></select>
 </div>
 
 <div id="week-overview">
