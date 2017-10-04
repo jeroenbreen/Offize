@@ -13,6 +13,7 @@ define([
         this.project = block && block.projectId ? app.getProjectById(Number(block.projectId)) : null;
         this.member = block && block.memberId ? app.getMemberById(Number(block.memberId)) : null;
         this.time = block && block.time ? block.time : '';
+        this.done = block && block.done ? (block.done === "1") : false;
         this.activities = [];
     }
 
@@ -25,7 +26,8 @@ define([
             date: dateTool.toBackendString(this.date),
             memberId: this.member.memberId,
             projectId: this.project ? this.project.projectId : 0,
-            time: this.time
+            time: this.time,
+            done: this.done ? 1 : 0
         }
     };
 

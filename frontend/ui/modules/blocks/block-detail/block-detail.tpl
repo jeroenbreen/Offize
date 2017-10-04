@@ -33,4 +33,8 @@
         <input ng-model="block.time" placeholder="00:00" ng-change="updateBlock()">
         <span>Start tijd</span>
     </div>
+    <div class="glyph-container">
+        <input ng-model="block.done" type="checkbox" ng-change="updateBlock()">
+        <span>Afgerond</span>
+    </div>
 </div>

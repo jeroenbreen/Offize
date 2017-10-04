@@ -9,6 +9,6 @@
         <block
             block="block"
             projects="projects"
-            ng-class="{'big-block': block.isBig()}"></block>
+            ng-class="{'big-block': block.isBig(), 'done': block.done}"></block>
     </li>
 </ul>
