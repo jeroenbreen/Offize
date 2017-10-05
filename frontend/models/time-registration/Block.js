@@ -52,7 +52,7 @@ define([
             minutesString;
         for (var i = 0, l = this.activities.length; i < l; i++) {
             var activity = this.activities[i];
-            timeTaken += activity.time;
+            timeTaken += Number(activity.time);
         }
         timeTakenHours = Math.floor(timeTaken);
         timeTakenMinutes = timeTaken - timeTakenHours;
