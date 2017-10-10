@@ -22,13 +22,15 @@ define([
         var timer;
 
         $scope.$watch('model.currentProject', function(newVal, oldVal) {
-            // todo ignore quotations, invoices, comments, blocks
-            if (oldVal && newVal && oldVal.projectId === newVal.projectId && oldVal !== newVal) {
-                if (newVal.projectId) {
-                    update(newVal);
+            if ($scope.model.currentProject) {
+                // todo ignore quotations, invoices, comments, blocks
+                if (oldVal && newVal && oldVal.projectId === newVal.projectId && oldVal !== newVal) {
+                    if (newVal.projectId) {
+                        update(newVal);
+                    }
                 }
             }
-        }, true);
+        });
 
         function update(project) {
             var handleSuccess;

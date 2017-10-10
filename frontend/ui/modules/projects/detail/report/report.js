@@ -1,12 +1,17 @@
 define([
     'angular',
     './report-controller',
-    './report-directive'
+    './report-directive',
+    './graph/graph'
 ], function (angular,
     Controller,
-    directive) {
+    directive,
+    graphModule
+) {
     "use strict";
-    return angular.module('report', [])
+    return angular.module('report', [
+        graphModule.name
+    ])
         .controller('ReportController', Controller)
         .directive('report', directive)
 });

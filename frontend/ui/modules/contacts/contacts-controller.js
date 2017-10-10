@@ -28,7 +28,7 @@ define([
                     }, 1000);
                 }
             }
-        }, true);
+        });
 
         function update(contact) {
             var handleSuccess = function(response, status) {
