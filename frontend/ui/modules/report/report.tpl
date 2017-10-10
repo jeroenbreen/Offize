@@ -6,12 +6,42 @@
     </h1>
 
     <div class="report-set">
-        <div class="report-row report-row--white">
+        <div class="report-row">
             <div class="report-tab">
-                <b>Opgegeven aantal uren</b>
+                Mode
+            </div>
+            <div class="report-tab">
+                <input type="radio" name="filter-type" ng-model="filter.type" value="description"> Beschrijving
+                <input type="radio" name="filter-type" ng-model="filter.type" value="category"> Categorie
+            </div>
+        </div>
+        <div class="report-row">
+            <div class="report-tab">
+                Toon projecten zonder data
+            </div>
+            <div class="report-tab">
+                <input type="checkbox" ng-model="filter.showEmtptyProjects">
+            </div>
+        </div>
+        <div class="report-row">
+            <div class="report-tab">
+                Jaar
+            </div>
+            <div class="report-tab">
+                <select title="selecteer jaar" ng-options="year as year for year in app.years" ng-model="filter.year"></select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="report-set">
+    <div class="report-row report-row--full">
+        <div class="report-section">
+            <div class="report-tab">
+                Opgegeven aantal uren
             </div>
             <div class="report-tab report-tab--number">
-                <b>{{getSetHours()}}</b>
+                {{getSetHours()}}
             </div>
         </div>
     </div>
@@ -33,7 +63,7 @@
     </div>
 
     <div id="report-main">
-        <div class="report-row" ng-repeat="line in getLines('quotation')">
+        <div ng-if="filter.type === 'description'" class="report-row" ng-repeat="line in getLines('quotation')">
             <div class="report-section">
                 <div class="report-tab">
                     {{line.text}}
@@ -58,17 +88,48 @@
                 </div>
             </div>
         </div>
+
+        <div ng-if="filter.type === 'category' && (countJobInLines(job, 'quotation') > 0 || countJobInActivities(job) > 0)" class="report-row" ng-repeat="job in app.getJobs()">
+            <div class="report-section">
+                <div class="report-tab">
+                    {{job.getFullName()}}
+                </div>
+                <div class="report-tab report-tab--number">
+                    {{countJobInLines(job, 'quotation')}}
+                </div>
+                <div class="report-tab report-tab--graph">
+                    <graph a="countJobInLines(job, 'quotation')" b="countJobInActivities(job)"></graph>
+                </div>
+            </div>
+            <div class="report-section">
+                <div class="report-tab">
+                    {{job.getFullName()}}
+                </div>
+                <div class="report-tab report-tab--number">
+                    {{countJobInActivities(job)}}
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="report-uncategorised">
         <div class="report-row report-row--full">
             <div class="report-section">
                 <div class="report-tab">
-                    <b>Ongecategoriseerd</b>
+                    Ongecategoriseerd
                 </div>
             </div>
             <div class="report-section">
-                <div class="report-sub-row" ng-repeat="activity in activities.unmatched">
+                <div ng-if="filter.type === 'description'" class="report-sub-row" ng-repeat="activity in activities.unmatched">
+                    <div class="report-tab">
+                        {{activity.getDescription()}}
+                    </div>
+                    <div class="report-tab report-tab--number">
+                        {{activity.time}}
+                    </div>
+                </div>
+
+                <div ng-if="filter.type === 'category'" class="report-sub-row" ng-repeat="activity in getActivitiesWithoutJob()">
                     <div class="report-tab">
                         {{activity.getDescription()}}
                     </div>

@@ -4,7 +4,7 @@ define([], function() {
         this.$scope = $scope;
         this.$scope.office = this.office = OfficeModel;
 
-        $scope.menus = ['projects', 'blocks', 'contacts', 'documents', 'graphics'];
+        $scope.menus = ['projects', 'blocks', 'contacts', 'documents'];
 
         importData();
 

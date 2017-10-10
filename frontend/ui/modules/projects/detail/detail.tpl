@@ -119,4 +119,4 @@
     </div>
 </div>
 
-<report ng-if="report.open" projects="[project]" report="report"></report>
+<report ng-if="report.open" projects="[project]" report="report" app="office"></report>

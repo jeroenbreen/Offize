@@ -182,6 +182,18 @@ define([
         return null;
     };
 
+    _p.getJobs = function() {
+        var jobs = [];
+        for (var i = 0, l = this.jobCategories.length; i < l; i++) {
+            var jobCategory = this.jobCategories[i];
+            for (var j = 0, jl = jobCategory.jobs.length; j < jl; j++) {
+                var job = jobCategory.jobs[j];
+                jobs.push(job);
+            }
+        }
+        return jobs;
+    };
+
     _p.getContactById = function(id) {
         for (var i = 0, l = this.contacts.length; i < l; i++) {
             var contact = this.contacts[i];

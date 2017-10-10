@@ -10,6 +10,12 @@ define([], function () {
             unmatched: []
         };
 
+        $scope.filter = {
+            type: 'category',
+            showEmtptyProjects: false,
+            year: new Date().getFullYear()
+        };
+
         $scope.newProjects = [];
 
 
@@ -116,6 +122,40 @@ define([], function () {
             return value;
         };
 
+        $scope.countJobInLines = function(job, doctype) {
+            var value = 0;
+            for (var i = 0, l = $scope.newProjects.length; i < l; i++) {
+                var project = $scope.newProjects[i];
+                for (var j = 0, jl = project[doctype + 's'].length; j < jl; j++) {
+                    var document = project[doctype + 's'][j];
+                    for (var k = 0, kl = document.lines.length; k < kl; k++) {
+                        var line = document.lines[k];
+                        if (line.job && line.job === job && line.lineType === 'count') {
+                            value += line.hours
+                        }
+                    }
+                }
+            }
+            return value;
+        };
+
+        $scope.countJobInActivities = function(job) {
+            var value = 0;
+            for (var i = 0, l = $scope.newProjects.length; i < l; i++) {
+                var project = $scope.newProjects[i];
+                for (var j = 0, jl = project.blocks.length; j < jl; j++) {
+                    var block = project.blocks[j];
+                    for (var k = 0, kl = block.activities.length; k < kl; k++) {
+                        var activity = block.activities[k];
+                        if (activity.job && activity.job === job) {
+                            value += activity.time;
+                        }
+                    }
+                }
+            }
+            return value;
+        };
+
         $scope.getTotalOfActivities = function(){
             var total = 0;
             for (var i = 0, l = $scope.unsortedActivities.length; i < l; i++) {
@@ -123,6 +163,23 @@ define([], function () {
                 total += activity.time;
             }
             return total;
+        };
+
+        $scope.getActivitiesWithoutJob = function() {
+            var activities = [];
+            for (var i = 0, l = $scope.newProjects.length; i < l; i++) {
+                var project = $scope.newProjects[i];
+                for (var j = 0, jl = project.blocks.length; j < jl; j++) {
+                    var block = project.blocks[j];
+                    for (var k = 0, kl = block.activities.length; k < kl; k++) {
+                        var activity = block.activities[k];
+                        if (!activity.job) {
+                            activities.push(activity);
+                        }
+                    }
+                }
+            }
+            return activities;
         };
 
         $scope.closeReport = function() {

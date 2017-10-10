@@ -11,7 +11,8 @@ define([
             template: template,
             scope: {
                 projects: '=projects',
-                report: '=report'
+                report: '=report',
+                app: '=app'
             }
         };
     }
