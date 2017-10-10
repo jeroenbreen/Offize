@@ -24,6 +24,7 @@ define([
     './modules/projects/shared/member-filter/member-filter',
     './modules/blocks/day/day',
     './modules/blocks/block-detail/block-detail',
+    './modules/report/report',
 
     'ngStorage',
     'ngResource',
@@ -55,6 +56,7 @@ define([
     memberFilterModule,
     dayModule,
     blockDetailModule,
+    reportModule,
     
     ngStorage,
     ngResource,
@@ -72,7 +74,8 @@ define([
         detailModule.name,
         memberFilterModule.name,
         dayModule.name,
-        blockDetailModule.name
+        blockDetailModule.name,
+        reportModule.name
     ])
     .config(['$routeProvider', function ($routeProvider) {
 

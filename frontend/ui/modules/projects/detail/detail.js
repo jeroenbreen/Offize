@@ -3,7 +3,7 @@ define([
     './detail-controller',
     './detail-directive',
     './comments/comments',
-    './report/report'
+    '../../report/report'
 ], function(
     angular,
     Controller,

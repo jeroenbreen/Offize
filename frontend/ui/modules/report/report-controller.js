@@ -9,17 +9,31 @@ define([], function () {
             matched: [],
             unmatched: []
         };
-        getActivities();
+
+        $scope.newProjects = [];
 
 
         $scope.getTitle = function() {
-            return $scope.projects.length > 1 ? $scope.projects.length + ' Opdrachten' : $scope.projects[0].projectName;
+            return $scope.projects.length > 1 ? $scope.newProjects.length + ' Opdrachten (' + ($scope.projects.length - $scope.newProjects.length) + ' zonder data)' : $scope.projects[0].projectName;
         };
+
+        $scope.$watch('projects.length', function(){
+            if ($scope.projects.length > 0) {
+                if ($scope.projects.length === 1) {
+                    $scope.newProjects = $scope.projects;
+                } else {
+                    $scope.newProjects = $scope.projects.filter(function (project) {
+                        return project.hasActivities();
+                    })
+                }
+                getActivities();
+            }
+        });
 
         $scope.getSetHours = function() {
             var hours = 0;
-            for (var i = 0, l = $scope.projects.length; i < l; i++) {
-                var project = $scope.projects[i];
+            for (var i = 0, l = $scope.newProjects.length; i < l; i++) {
+                var project = $scope.newProjects[i];
                 hours += project.hours;
             }
             return hours;
@@ -27,8 +41,8 @@ define([], function () {
 
         $scope.getLines = function(doctype) {
             var lines = [];
-            for (var i = 0, l = $scope.projects.length; i < l; i++) {
-                var project = $scope.projects[i];
+            for (var i = 0, l = $scope.newProjects.length; i < l; i++) {
+                var project = $scope.newProjects[i];
                 for (var j = 0, jl = project[doctype + 's'].length; j < jl; j++) {
                     var document = project[doctype + 's'][j];
                     for (var k = 0, kl = document.lines.length; k < kl; k++) {
@@ -44,8 +58,8 @@ define([], function () {
         };
 
         function getActivities() {
-            for (var i = 0, l = $scope.projects.length; i < l; i++) {
-                var project = $scope.projects[i];
+            for (var i = 0, l = $scope.newProjects.length; i < l; i++) {
+                var project = $scope.newProjects[i];
                 for (var j = 0, jl = app.blocks.length; j < jl; j++) {
                     var block = app.blocks[j];
                     if (block.project === project) {
@@ -87,8 +101,8 @@ define([], function () {
 
         $scope.getTotalofLines = function(doctype) {
             var value = 0;
-            for (var i = 0, l = $scope.projects.length; i < l; i++) {
-                var project = $scope.projects[i];
+            for (var i = 0, l = $scope.newProjects.length; i < l; i++) {
+                var project = $scope.newProjects[i];
                 for (var j = 0, jl = project[doctype + 's'].length; j < jl; j++) {
                     var document = project[doctype + 's'][j];
                     for (var k = 0, kl = document.lines.length; k < kl; k++) {

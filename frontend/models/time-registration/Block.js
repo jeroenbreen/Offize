@@ -15,9 +15,16 @@ define([
         this.time = block && block.time ? block.time : '';
         this.done = block && block.done ? (block.done === "1") : false;
         this.activities = [];
+        this.attachToProject();
     }
 
     var _p = Block.prototype = Object.create(Parent.prototype);
+
+    _p.attachToProject = function() {
+        if (this.project) {
+            this.project.blocks.push(this);
+        }
+    };
 
     _p.toBackend = function() {
         return {

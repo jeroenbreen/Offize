@@ -49,6 +49,9 @@ define([
         this.currentContact = null;
         this.currentDocument = null;
         this.currentMember = null;
+        this.report = {
+            open: false
+        };
         this.menu = '';
         this.popup = '';
 

@@ -9,6 +9,9 @@
            href="#/{{menu}}">
             {{menu}}
         </a>
+        <a href="" ng-click="office.report.open = true">
+            report
+        </a>
     </div>
 </div>
 
@@ -26,3 +29,5 @@
     <div class="confirmed confirm-button">JA</div>
     <div class="denied confirm-button">Nee</div>
 </div>
+
+<report ng-if="office.report.open" projects="office.projects" report="office.report"></report>

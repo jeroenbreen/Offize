@@ -26,6 +26,7 @@ define([
         this.quotations = [];
         this.invoices = [];
         this.comments = [];
+        this.blocks = [];
         if (project) {
             this.importChildren();
         }
@@ -81,6 +82,16 @@ define([
 
 
     // status
+
+    _p.hasActivities = function() {
+        for (var i = 0, l = this.blocks.length; i < l; i++) {
+            var block = this.blocks[i];
+            if (block.activities.length > 0) {
+                return true;
+            }
+        }
+        return false;
+    };
 
     _p.hasComments = function() {
         return this.comments.length > 0;
