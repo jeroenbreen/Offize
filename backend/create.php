@@ -12,6 +12,7 @@ else if ($type == "hours") { $query = insertHours(); }
 else if ($type == "line") { $query = insertLines(); }
 else if ($type == "block") { $query = insertBlocks(); }
 else if ($type == "activity") { $query = insertActivity(); }
+else if ($type == "todo") { $query = insertTodos(); }
 
 
 function insertProject() {
@@ -213,6 +214,22 @@ function insertActivity() {
     '". $lineId ."' ,
     '". $blockId ."' ,
     '". $jobId ."'
+    )";
+    return $query;
+}
+
+function insertTodos() {
+    $memberId = $_POST['memberId'];
+    $title = $_POST['title'];
+    $done = $_POST['done'];
+    $date = $_POST['date'];
+    $query = "INSERT INTO todos
+    (memberId, title, done, date)
+    VALUES (
+    '". $memberId ."' ,
+    '". $title ."' ,
+    '". $done ."' ,
+    '". $date ."'
     )";
     return $query;
 }

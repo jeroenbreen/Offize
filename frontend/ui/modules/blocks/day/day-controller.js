@@ -1,5 +1,6 @@
 define([
     'models/time-registration/Block',
+    'models/time-registration/Todo',
     'models/time-registration/Activity',
     'ui/ui-tools/modal',
     'ui/ui-tools/date-tool',
@@ -7,6 +8,7 @@ define([
     'jquery'
 ], function (
     Block,
+    Todo,
     Activity,
     modal,
     dateTool,
@@ -21,11 +23,34 @@ define([
 
         var today = new Date();
 
+        $scope.newTodo = '';
+
+        $scope.createTodo = function(date) {
+            var todo, todoData, todoSuccessCallback;
+
+            todoSuccessCallback = function(response, status) {
+                todo.id = response.id;
+                app.todos.push(todo);
+                modal.show(response.message, false);
+            };
+
+
+            todoData = {
+                date: dateTool.toBackendString(date),
+                memberId: app.currentMember.memberId,
+                title: $scope.newTodo,
+                ready: 0
+            };
+
+            todo = new Todo(todoData);
+            dataFactory.create($.param(todo.toBackend())).success(todoSuccessCallback);
+        };
+
         $scope.isToday = function(day) {
             return dateTool.matches(day, today);
         };
 
-        $scope.addBlock = function(date, time) {
+        $scope.createBlock = function(date, time) {
             var blockData, block, activity, activityData, blockSuccessCallback, activitySuccessCallback;
 
             blockSuccessCallback = function(response, status) {

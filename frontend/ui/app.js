@@ -91,7 +91,7 @@ define([
         }).when('/graphics', {
             template: graphicsTemplate,
             controller: 'GraphicsController'
-        }).when('/blocks', {
+        }).when('/agenda', {
             template: blocksTemplate,
             controller: 'BlocksController'
         }).otherwise({

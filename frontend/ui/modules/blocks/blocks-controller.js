@@ -17,6 +17,7 @@ define([
         $scope.dateTool = dateTool;
         $scope.model.menu = 'blocks';
         $scope.blockSets = [];
+        $scope.todoSets = [];
 
 
         // navigation
@@ -47,6 +48,17 @@ define([
             return blocks;
         }
 
+        function getTodos (date) {
+            var todos = [];
+            for (var i = 0, l = $scope.model.todos.length; i < l; i++) {
+                var todo = $scope.model.todos[i];
+                if (todo.member === $scope.model.currentMember && dateTool.matches(todo.date, date)) {
+                    todos.push(todo);
+                }
+            }
+            return todos;
+        }
+
         function update() {
             $scope.date = dateTool.getDateByOffset(thisMonday, delta);
             $scope.week = dateTool.getWeek($scope.date);
@@ -57,13 +69,19 @@ define([
 
         $scope.updateBlocks = function() {
             $scope.blockSets = [];
+            $scope.todoSets = [];
             for (var i = 0, l = $scope.week.length; i < l; i++) {
                 var day = $scope.week[i];
-                $scope.blockSets.push(getBlocks(day))
+                $scope.blockSets.push(getBlocks(day));
+                $scope.todoSets.push(getTodos(day));
             }
         };
 
         $scope.$watch('model.blocks.length', function(){
+            update();
+        });
+
+        $scope.$watch('model.todos.length', function(){
             update();
         });
 

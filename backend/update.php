@@ -11,6 +11,7 @@ else if ($type == "configuration") { $query = updateConfiguration(); }
 else if ($type == "line") { $query = updateLine(); }
 else if ($type == "block") { $query = updateBlock(); }
 else if ($type == "activity") { $query = updateActivity(); }
+else if ($type == "todo") { $query = updateTodo(); }
 
 function updateProject() {
     $projectId = $_POST['projectId'];
@@ -123,6 +124,22 @@ function updateBlock() {
     memberId = '" . $memberId . "' ,
     projectId = '" . $projectId . "' ,
     time = '" . $time . "' ,
+    done = '" . $done . "'
+    WHERE
+    id = '" . $id. "'";
+    return $query;
+}
+
+function updateTodo() {
+    $id = $_POST['id'];
+    $date = $_POST['date'];
+    $memberId = $_POST['memberId'];
+    $title = $_POST['title'];
+    $done = $_POST['done'];
+    $query = "UPDATE todos SET
+    date = '" . $date . "' ,
+    memberId = '" . $memberId . "' ,
+    title = '" . $title . "' ,
     done = '" . $done . "'
     WHERE
     id = '" . $id. "'";

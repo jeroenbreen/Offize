@@ -14,7 +14,8 @@ $bootstrap = [
     "jobCategories" => [],
     "jobs"          => [],
     "blocks"        => [],
-    "activities"    => []
+    "activities"    => [],
+    "todos"         => []
 ];
 
 // companies
@@ -92,6 +93,13 @@ $query = "SELECT * FROM activities";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["activities"][] = $record;
+}
+
+// todos
+$query = "SELECT * FROM todos";
+$result = $mysqli -> query($query);
+while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
+    $bootstrap["todos"][] = $record;
 }
 
 $mysqli -> close();

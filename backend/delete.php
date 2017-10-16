@@ -11,6 +11,7 @@ else if ($type == "hour") { $query = deleteHour(); }
 //else if ($type == "line") { $query = deleteLine(); }
 else if ($type == "block") { $query = deleteBlock(); }
 else if ($type == "activity") { $query = deleteActivity(); }
+else if ($type == "todos") { $query = deleteTodo(); }
 
 
 function deleteProject() {
@@ -62,6 +63,12 @@ function deleteActivity() {
 }
 
 function deleteBlock() {
+    $id = $_POST['id'];
+    $query = "DELETE FROM blocks WHERE id = '" . $id . "'";
+    return $query;
+}
+
+function deleteTodo() {
     $id = $_POST['id'];
     $query = "DELETE FROM blocks WHERE id = '" . $id . "'";
     return $query;

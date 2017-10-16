@@ -1,0 +1,35 @@
+.todo {
+    display: flex;
+    margin-bottom: 4px;
+
+    .todo-title {
+        width: ~'calc(100% - 30px)';
+        position: relative;
+
+        input {
+            background: transparent;
+            padding: 8px;
+            border: transparent;
+            outline: none;
+            width: 100%;
+        }
+
+    }
+
+    .todo-tools {
+        width: 30px;
+        text-align: center;
+    }
+
+    &.todo--done {
+
+        .todo-title {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+    }
+
+    &.todo--empty {
+        border-bottom: 1px solid #aaa;
+    }
+}

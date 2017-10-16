@@ -10,7 +10,8 @@ define([
    './time-registration/Job-Category',
    './time-registration/Job',
    './time-registration/Block',
-   './time-registration/Activity'
+   './time-registration/Activity',
+   './time-registration/Todo'
 ], function(
     Parent,
     Project,
@@ -23,12 +24,14 @@ define([
     JobCategory,
     Job,
     Block,
-    Activity
+    Activity,
+    Todo
 ){
     "use strict";
     function App() {
         this.jobCategories = [];
         this.blocks = [];
+        this.todos = [];
         this.projects = [];
         this.contacts = [];
         this.members = [];
@@ -65,11 +68,10 @@ define([
 
     _p.bootstrap = function(data) {
         this.importer(data.members, Member, this.members);
+        this.importer(data.todos, Todo, this.todos);
         this.importCompany(data.company);
         this.importer(data.jobCategories, JobCategory, this.jobCategories);
         this.importJobs(data.jobs);
-
-
         this.importer(data.comments, Comment, this.store.comments);
         this.importer(data.lines, Line, this.lines);
         this.importer(data.contacts, Contact, this.contacts);

@@ -1,4 +1,5 @@
 @import "block/block";
+@import "todo/todo";
 
 
 day {
@@ -23,6 +24,34 @@ day {
             float: right;
         }
     }
+
+    .todo-panel {
+        height: 120px;
+        background: #DDE8DD;
+        padding: 10px;
+
+        .todo-container {
+            height: ~'calc(100% - 30px)';
+            overflow: auto;
+        }
+
+        .todo--empty {
+            height: 30px;
+
+            .glyph {
+                background: transparent;
+                border: 1px solid #aaa;
+                margin-top: 7px;
+
+                &:hover {
+                    color: inherit;
+                    background: #fff;
+                }
+            }
+        }
+    }
+
+
 
     .day-blocks {
         padding: 0;

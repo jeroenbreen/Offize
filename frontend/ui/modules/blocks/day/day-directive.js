@@ -12,6 +12,7 @@ define([
             scope: {
                 day: '=day',
                 blocks: '=blocks',
+                todos: '=todos',
                 projects: '=projects'
             }
         };

@@ -15,6 +15,7 @@
     <day ng-repeat="day in week"
         day="day"
         blocks="blockSets[$index]"
+        todos="todoSets[$index]"
         projects="projects"></day>
 </div>
 
