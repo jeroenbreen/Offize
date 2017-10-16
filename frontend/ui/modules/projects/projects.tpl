@@ -48,7 +48,7 @@
             </div>
             <div class="ofc-cell ofc-cell-2 project-status">
                 <div class="project-hours-score">
-                    <div title="totaal gemaakte uren voor deze opdracht" class="worked-hours">{{project.getHours()}} / </div>
+                    <div title="totaal gemaakte uren voor deze opdracht" class="worked-hours">{{project.countTotalInActivities()}} / </div>
                     <div class="total-hours">{{project.hours}}</div>
                     <div title="voortgang uren opdracht" class="score-bg" ng-class="{'score-over': project.isOverHours()}">
                         <div ng-style="{'width': project.getModusScore() + '%'}" class="score-fg">&nbsp;</div>
@@ -75,7 +75,7 @@
     </div>
 
     <div id="project-sums" ng-if="filter.member && filter.member.memberId === -1">
-        <div class="status-total ofc-row" ng-repeat="stat in status">
+        <div class="status-total ofc-row" ng-repeat="stat in office.projectStatusses">
             <div class="ofc-cell ofc-cell-3">
                 {{stat}}
             </div>

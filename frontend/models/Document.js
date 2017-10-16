@@ -82,7 +82,11 @@ define([
         document.vat = this.vat;
         document.currency = this.currency;
         document.hideTotal = this.hideTotal;
-        document.lines = this.lines;
+        document.lines = [];
+        for (var i = 0, l = this.lines.length; i < l; i++) {
+            var line = this.lines[i];
+            document.lines.push(line.toPrint())
+        }
         return document;
     };
 

@@ -17,6 +17,19 @@ report {
     .report-set {
         margin-bottom: 20px;
 
+        .checkobx-set {
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .report-project {
+            display: inline-block;
+            margin-right: 6px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: @green;
+        }
+
 
         &.report-set--main {
             position: relative;
@@ -44,6 +57,10 @@ report {
 
             &.report-tab--graph {
                 height: 100%;
+            }
+
+            &.report-tab--full {
+                width: auto;
             }
         }
 

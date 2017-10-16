@@ -58,6 +58,7 @@ define([
         this.years = ['Alle'];
         //this.memberFilter = [];
         this.thisYear = new Date().getFullYear();
+        this.projectStatusses = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Archief'];
       }
 
     var _p = App.prototype = Object.create(Parent.prototype);

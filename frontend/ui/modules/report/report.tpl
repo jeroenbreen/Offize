@@ -8,6 +8,17 @@
     <div class="report-set">
         <div class="report-row">
             <div class="report-tab">
+
+            </div>
+            <div class="report-tab report-tab--full" ng-repeat="project in newProjects">
+                <div class="report-project">
+                    <b>{{project.toSlug(16)}}</b>
+                    {{project.getRegistrationRate()}}%
+                </div>
+            </div>
+        </div>
+        <div class="report-row">
+            <div class="report-tab">
                 Mode
             </div>
             <div class="report-tab">
@@ -20,7 +31,7 @@
                 Toon projecten zonder data
             </div>
             <div class="report-tab">
-                <input type="checkbox" ng-model="filter.showEmtptyProjects">
+                <input type="checkbox" ng-model="filter.showEmtptyProjects" ng-change="updateProjects()">
             </div>
         </div>
         <div class="report-row">
@@ -28,7 +39,26 @@
                 Jaar
             </div>
             <div class="report-tab">
-                <select title="selecteer jaar" ng-options="year as year for year in app.years" ng-model="filter.year"></select>
+                <select title="selecteer jaar" ng-options="year as year for year in app.years" ng-model="filter.year" ng-change="updateProjects()"></select>
+            </div>
+        </div>
+        <div class="report-row">
+            <div class="report-tab">
+                Status
+            </div>
+            <div class="report-tab report-tab--full">
+                <div class="checkobx-set" ng-repeat="status in app.projectStatusses">
+                    <input type="checkbox" ng-model="filter.status[$index]" ng-change="updateProjects()">
+                    {{status}}
+                </div>
+            </div>
+        </div>
+        <div class="report-row">
+            <div class="report-tab">
+                Invulminimum
+            </div>
+            <div class="report-tab report-tab--full">
+                <input type="text" ng-model="filter.registrationMinimum" ng-change="updateProjects()">
             </div>
         </div>
     </div>
@@ -89,7 +119,7 @@
             </div>
         </div>
 
-        <div ng-if="filter.type === 'category' && (countJobInLines(job, 'quotation') > 0 || countJobInActivities(job) > 0)" class="report-row" ng-repeat="job in app.getJobs()">
+        <div ng-if="filter.type === 'category' && (countJobInLines(job) > 0 || countJobInActivities(job) > 0)" class="report-row" ng-repeat="job in app.getJobs()">
             <div class="report-section">
                 <div class="report-tab">
                     {{job.getFullName()}}

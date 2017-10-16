@@ -65,5 +65,17 @@ define([
         return line;
     };
 
+    _p.toPrint = function() {
+        return {
+            id: this.id,
+            type: this.type,
+            lineType: this.lineType,
+            amount: this.amount,
+            text: this.text,
+            hours: this.hours,
+            rate: this.rate
+        }
+    };
+
     return LineModel;
 });

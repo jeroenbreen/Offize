@@ -1,7 +1,7 @@
 <div id="project-detail-left">
     <div class="panel">
         <div class="panel-section">
-            <input type="text" title="Projectnaam" ng-model="project.projectName" class="project-detail-project-name"><br>
+            <input type="text" title="Projectnaam" ng-model="project.projectName" class="project-detail-project-name" ng-change="updateProject()"><br>
             <div class="glyph-container" ng-if="project.projectStatus < 5">
                 <button title="kopieer slug" class="glyph fa fa-paperclip" ng-click="copySlug()"></button>
                 <span>Kopieer slug: {{project.toSlug()}}</span>
@@ -12,19 +12,21 @@
             <select
                     ng-options="member as member.name for (index, member) in office.members"
                     ng-model="project.member"
+                    ng-change="updateProject()"
                     title="verander teamlid"></select>
 
             <select
                     ng-options="contact as contact.toSlug(20) for (index, contact) in office.contacts"
                     ng-model="project.contact"
+                    ng-change="updateProject()"
                     title="Verander klant"></select>
         </div>
 
         <div id="project-detail-hour-information" class="panel-section">
-            <input class="input-small" title="Projecturen" ng-model="project.hours"> ×
-            <input class="input-small" title="Munt" ng-model="project.currency">
-            <input class="input-small" title="Uurtarief" ng-model="project.rate"> -
-            <input class="input-small" title="Korting / Correctie" ng-model="project.discount">
+            <input class="input-small" title="Projecturen" ng-model="project.hours" ng-change="updateProject()"> ×
+            <input class="input-small" title="Munt" ng-model="project.currency" ng-change="updateProject()">
+            <input class="input-small" title="Uurtarief" ng-model="project.rate" ng-change="updateProject()"> -
+            <input class="input-small" title="Korting / Correctie" ng-model="project.discount" ng-change="updateProject()">
         </div>
 
         <div class="panel-section">
@@ -34,23 +36,23 @@
         <div id="project-detail-status-information" class="panel-section status-{{project.projectStatus}}">
             <div class="status-label project-status"></div>
             <div class="status-label-text">
-                {{status[project.projectStatus]}}
+                {{office.projectStatusses[project.projectStatus]}}
             </div>
         </div>
 
         <div class="panel-section" ng-if="project.projectStatus === 2">
-            <input type="checkbox" ng-model="project.finished"> Afgerond
+            <input type="checkbox" ng-model="project.finished" ng-change="updateProject()"> Afgerond
         </div>
 
         <div id="project-detail-actions" class="panel-section">
-            <div class="glyph-container" ng-if="project.projectStatus === 5">
+            <div class="glyph-container" ng-if="project.projectStatus < 5">
                 <button title="archiveer opdracht" class="glyph fa fa-paper-plane" ng-click="archiveProject()"></button>
-                <span>Breng terug</span>
+                <span>Archiveren</span>
             </div>
 
-            <div class="glyph-container" ng-if="project.projectStatus < 5">
+            <div class="glyph-container" ng-if="project.projectStatus === 5">
                 <button title="breng opdracht terug" class="glyph fa fa-reply" ng-click="deArchiveProject()"></button>
-                <span>Archiveren</span>
+                <span>Breng terug</span>
             </div>
 
             <div class="glyph-container">

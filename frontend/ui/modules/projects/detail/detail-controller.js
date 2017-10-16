@@ -14,8 +14,6 @@ define([
         this.$scope = $scope;
         $scope.commonTools = commonTools;
 
-        $scope.status = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Gearchiveerd'];
-
         $scope.report = {
             open: false
         };
@@ -42,10 +40,12 @@ define([
 
         $scope.archiveProject = function() {
             $scope.project.projectStatus = 5;
+            $scope.updateProject();
         };
 
         $scope.deArchiveProject = function() {
             $scope.project.projectStatus = 0;
+            $scope.updateProject();
         };
 
         $scope.copySlug = function() {
@@ -88,6 +88,10 @@ define([
 
             dataFactory.create($.param(document.toBackend())).success(successCallback);
         };
+
+        $scope.updateProject = function() {
+            $scope.$emit('update-project', $scope.project);
+        }
     }
 
     DetailController.$inject = ['$scope', 'dataFactory'];

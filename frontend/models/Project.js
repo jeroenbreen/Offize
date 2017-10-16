@@ -80,6 +80,60 @@ define([
         }
     };
 
+    _p.getRegistrationRate = function() {
+        var quotation = this.countTotalInQuotation(),
+            activity = this.countTotalInActivities();
+        if (quotation === 0) {
+            if (activity === 0) {
+                return 0;
+            } else {
+                return 100;
+            }
+        } else {
+            return Math.round(100 * activity / quotation);
+        }
+    };
+
+    _p.countJobInQuotation = function(job) {
+        var amount = 0;
+        for (var i = 0, l = this['quotations'].length; i < l; i++) {
+            var document = this['quotations'][i];
+            for (var k = 0, kl = document.lines.length; k < kl; k++) {
+                var line = document.lines[k];
+                if (line.job && line.job === job && line.lineType === 'count') {
+                    amount += line.hours
+                }
+            }
+        }
+        return amount;
+    };
+
+    _p.countTotalInQuotation = function() {
+        var amount = 0;
+        for (var i = 0, l = this['quotations'].length; i < l; i++) {
+            var document = this['quotations'][i];
+            for (var k = 0, kl = document.lines.length; k < kl; k++) {
+                var line = document.lines[k];
+                if (line.lineType === 'count') {
+                    amount += line.hours
+                }
+            }
+        }
+        return amount;
+    };
+
+    _p.countTotalInActivities = function() {
+        var amount = 0;
+        for (var i = 0, l = this.blocks.length; i < l; i++) {
+            var block = this.blocks[i];
+            for (var j = 0, jl = block.activities.length; j < jl; j++) {
+                var activity = block.activities[j];
+                amount += activity.time;
+            }
+        }
+        return amount;
+    };
+
 
     // status
 
@@ -97,13 +151,7 @@ define([
         return this.comments.length > 0;
     };
 
-    _p.getHours = function() {
-        var hours = 0;
-        for (var i = 0, l = this.blocks.length; i < l; i++) {
-            hours += this.blocks[i].hours;
-        }
-        return hours.toFixed(1);
-    };
+
 
     _p.getBudget = function() {
         return this.hours * this.rate - this.discount;
@@ -113,7 +161,7 @@ define([
         if (this.hours === 0) {
             return 0;
         } else {
-            return (this.getHours() / this.hours) * 100;
+            return (this.countTotalInActivities() / this.hours) * 100;
         }
     };
 

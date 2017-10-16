@@ -18,23 +18,16 @@ define([
 
 
         // saving
-
         var timer;
-
-        $scope.$watch('model.currentProject', function(newVal, oldVal) {
-            if ($scope.model.currentProject) {
-                // todo ignore quotations, invoices, comments, blocks
-                if (oldVal && newVal && oldVal.projectId === newVal.projectId && oldVal !== newVal) {
-                    if (newVal.projectId) {
-                        update(newVal);
-                    }
-                }
-            }
+        $scope.$on('update-project', function(event, project){
+            update(project);
         });
 
         function update(project) {
             var handleSuccess;
-            clearTimeout(timer);
+            if (timer) {
+                clearTimeout(timer);
+            }
             timer = setTimeout(function(){
                 handleSuccess = function(response, status) {
                     modal.show(response);
@@ -157,8 +150,6 @@ define([
             project.projectStatus = project.projectStatus + 1;
             update(project);
         };
-
-        $scope.status = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Dood'];
 
         $scope.totals = [];
 
