@@ -158,6 +158,7 @@ class PrintManager
                 $text = $line->{'text'};
                 $hours = $line->{'hours'};
                 $rate = $line->{'rate'};
+                $amount = $line->{'amount'};
                 $lineType = $line->{'lineType'};
 
                 if ($lineType == 'count') {
