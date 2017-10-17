@@ -21,7 +21,27 @@ define([
         this.$scope = $scope;
         $scope.dateTool = dateTool;
 
+        $scope.status = {
+            todo: false
+        };
+
         var today = new Date();
+
+        $scope.toggleTodo = function() {
+            $scope.status.todo = !$scope.status.todo;
+        };
+
+        $scope.todoKeyUp = function(e) {
+            if (e.keyCode === 13) {
+                $scope.createTodo($scope.day);
+            }
+        };
+
+        $scope.getUndoneTodos = function() {
+            return $scope.todos.filter(function(todo){
+                return !todo.done;
+            }).length;
+        };
 
         $scope.newTodo = '';
 

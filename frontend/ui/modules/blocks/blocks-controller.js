@@ -15,7 +15,7 @@ define([
         this.$scope = $scope;
         $scope.model = OfficeModel;
         $scope.dateTool = dateTool;
-        $scope.model.menu = 'blocks';
+        $scope.model.menu = 'agenda';
         $scope.blockSets = [];
         $scope.todoSets = [];
 
@@ -137,9 +137,14 @@ define([
 
         // events
 
+        $scope.$on('delete-todo', function(event, todo) {
+            var index = $scope.model.todos.indexOf(todo);
+            $scope.model.todos.splice(index, 1);
+        });
+
         $scope.$on('delete-block', function(event, block) {
             var index = $scope.model.blocks.indexOf(block);
-            $scope.model.blocks.splice(block, 1);
+            $scope.model.blocks.splice(index, 1);
             $scope.currentBlock = null;
         });
 
@@ -174,6 +179,13 @@ define([
                 var block = ui.item.sortable.moved;
                 block.date = prevMonday;
                 updateBlock(block);
+            },
+
+            over : function(){
+                $(this).addClass('sortable-hover');
+            },
+            out : function(){
+                $(this).removeClass('sortable-hover');
             }
         };
 
@@ -182,6 +194,13 @@ define([
                 var block = ui.item.sortable.moved;
                 block.date = nextMonday;
                 updateBlock(block);
+            },
+
+            over : function(){
+                $(this).addClass('sortable-hover');
+            },
+            out : function(){
+                $(this).removeClass('sortable-hover');
             }
         };
 

@@ -10,12 +10,23 @@ define([
     function TodoController($scope, dataFactory) {
         this.$scope = $scope;
 
-        $scope.updateTodo = function() {
+        $scope.toggleCheckmark = function() {
+            $scope.todo.done = !$scope.todo.done;
+
             function handleSuccess(response, status) {
                 modal.show(response);
             }
 
             dataFactory.update($.param($scope.todo.toBackend())).success(handleSuccess);
+        };
+
+        $scope.deleteTodo = function() {
+            function handleSuccess (response, status) {
+                $scope.$emit('delete-todo', $scope.todo);
+                modal.show(response, false);
+            }
+
+            dataFactory.delete($.param($scope.todo.toBackend())).success(handleSuccess);
         };
 
     }

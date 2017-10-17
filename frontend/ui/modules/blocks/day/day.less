@@ -13,43 +13,74 @@ day {
         background: #ddd;
         padding: 3px 10px;
         height: 40px;
+        position: relative;
 
-        div {
+
+        .day-label-text {
             margin-top: 9px;
             vertical-align: top;
             display: inline-block;
+            width: 50%;
         }
 
-        button {
+        .todo-menu {
+            display: inline-block;
+            padding-top: 4px;
+
+            .todo-menu-label {
+                display: inline-block;
+                margin: 5px 3px 0 0;
+            }
+
+            .glyph {
+                background: transparent;
+                color: #fff;
+                border: 1px solid #fff;
+            }
+        }
+
+        > button {
             float: right;
         }
     }
 
-    .todo-panel {
-        height: 120px;
-        background: #DDE8DD;
-        padding: 10px;
+    .todo-wrapper {
+        position: absolute;
+        left: 1px;
+        top: 100%;
+        width: ~'calc(100% - 2px)';
+        overflow: hidden;
+        height: 0;
+        padding: 0 1px;
+        z-index: 1;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
 
-        .todo-container {
-            height: ~'calc(100% - 30px)';
-            overflow: auto;
+        &.todo-wrapper--open {
+            height: auto;
         }
 
-        .todo--empty {
-            height: 30px;
+        .todo-panel {
+            background: @todo-color;
+            padding: 10px 0 40px 0;
 
-            .glyph {
-                background: transparent;
-                border: 1px solid #aaa;
-                margin-top: 7px;
 
-                &:hover {
-                    color: inherit;
-                    background: #fff;
+            .todo-container {
+                height: ~'calc(100% - 30px)';
+                overflow: auto;
+            }
+
+            .todo--empty {
+                height: 30px;
+
+                .todo-title {
+                    border-bottom: 1px dashed #aaa;
                 }
+
             }
         }
     }
+
+
 
 
 

@@ -22,6 +22,7 @@
     height: 26px;
     border-radius: 13px;
     margin-top: 4px;
+    outline: none;
 
     &.glyph-small {
         width: 16px;
@@ -30,40 +31,52 @@
         padding: 0;
         line-height: 9px;
     }
+
+    &:hover {
+        color: #fff;
+        background: #de7070;
+    }
+
+    // status
+
+    &.inactive {
+        color: #ddd;
+    }
+
+    &.locked {
+        background: red;
+    }
+
+
+    // colors
+
+    &.grey {
+        background: #fff;
+        color: #000;
+        border: 1px solid rgba(0,0,0,0.5);
+
+        &:hover {
+            border: 1px solid transparent;
+        }
+    }
 }
 
-.glyph.inactive {
-    color: #ddd;
-}
 
-.glyph:hover {
-    color: #fff;
-    background: #de7070;
-}
 
 .red:hover {
     color: #fff!important;
     background: #f00!important;
 }
 
-.grey {
-    background: #fff;
-    color: #000;
-    border: 1px solid rgba(0,0,0,0.5);
-}
 
-.grey:hover {
-    border: 1px solid transparent;
-}
+
 
 .unlocked:hover {
     background: red!important;
     color: #000!important;
 }
 
-.locked {
-    background: red;
-}
+
 
 .locked:hover {
     background: #fff!important;
