@@ -1,14 +1,29 @@
 define([
     'ui/ui-tools/common-tools',
+    'ui/ui-tools/delay-tool',
     'ui/ui-tools/modal'
 ], function(
     commonTools,
+    delayTool,
     modal
 ) {
     "use strict";
     function ContactDetailController($scope, dataFactory) {
         this.$scope = $scope;
         $scope.commonTools = commonTools;
+
+        $scope.updateContact = function() {
+            function update() {
+                var handleSuccess = function(response, status) {
+                    modal.show(response, false);
+                };
+                dataFactory.update($.param($scope.model.toBackend())).success(handleSuccess);
+            }
+
+            delayTool.delay(update);
+        };
+
+
 
 
         $scope.removeContact = function() {

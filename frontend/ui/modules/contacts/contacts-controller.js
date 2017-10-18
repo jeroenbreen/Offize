@@ -15,27 +15,6 @@ define([
         $scope.model = OfficeModel;
         $scope.model.menu = 'contacts';
         $scope.commonTools = commonTools;
-        
-        var timer;
-
-
-        $scope.$watch('model.currentContact', function(newVal, oldVal) {
-            if (oldVal && newVal && oldVal.contactId === newVal.contactId && oldVal !== newVal) {
-                if (newVal.contactId) {
-                    clearTimeout(timer);
-                    timer = setTimeout(function () {
-                        update(newVal);
-                    }, 1000);
-                }
-            }
-        });
-
-        function update(contact) {
-            var handleSuccess = function(response, status) {
-                modal.show(response, false);
-            };
-            dataFactory.update($.param(contact.toBackend())).success(handleSuccess);
-        }
 
 
         $scope.addContact = function() {

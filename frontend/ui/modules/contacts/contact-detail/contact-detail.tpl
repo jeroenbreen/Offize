@@ -1,7 +1,7 @@
 <div class="panel">
     <div class="panel-section">
         <div class="contact-detail-set">
-            <input title="Projectnaam" ng-model="model.name">
+            <input title="Projectnaam" ng-model="model.name" ng-change="updateContact()">
             <div class="contact-detail-label">
                 Naam
             </div>
@@ -14,7 +14,7 @@
 
     <div class="panel-section">
         <div class="contact-detail-set">
-            <input title="Contact" ng-model="model.contactPerson">
+            <input title="Contact" ng-model="model.contactPerson" ng-change="updateContact()">
             <div class="contact-detail-label">
                 Contact
             </div>
@@ -23,19 +23,19 @@
 
     <div class="panel-section">
         <div class="contact-detail-set">
-            <input title="Adres" ng-model="model.street">
+            <input title="Adres" ng-model="model.street" ng-change="updateContact()">
             <div class="contact-detail-label">
                 Adres
             </div>
         </div>
         <div class="contact-detail-set">
-            <input title="Postcode" ng-model="model.zipcode">
+            <input title="Postcode" ng-model="model.zipcode" ng-change="updateContact()">
             <div class="contact-detail-label">
                 Postcode
             </div>
         </div>
         <div class="contact-detail-set">
-            <input title="Plaats" ng-model="model.city">
+            <input title="Plaats" ng-model="model.city" ng-change="updateContact()">
             <div class="contact-detail-label">
                 Plaats
             </div>
@@ -44,19 +44,19 @@
 
     <div class="panel-section">
         <div class="contact-detail-set">
-            <input title="Telefoon" ng-model="model.telephone">
+            <input title="Telefoon" ng-model="model.telephone" ng-change="updateContact()">
             <div class="contact-detail-label">
                 Telefoon
             </div>
         </div>
         <div class="contact-detail-set">
-            <input title="Email" ng-model="model.email">
+            <input title="Email" ng-model="model.email" ng-change="updateContact()">
             <div class="contact-detail-label">
                 Email
             </div>
         </div>
         <div class="contact-detail-set">
-            <input title="www" ng-model="model.web">
+            <input title="www" ng-model="model.web" ng-change="updateContact()">
             <div class="contact-detail-label">
                 www
             </div>
@@ -65,7 +65,7 @@
 
     <div class="panel-section">
         <div class="contact-detail-set">
-            <input title="Uurtarief" class="input-small" ng-model="model.rate">
+            <input title="Uurtarief" class="input-small" ng-model="model.rate" ng-change="updateContact()">
             <div class="contact-detail-label">
                 Uurtarief
             </div>
