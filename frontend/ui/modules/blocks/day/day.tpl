@@ -13,16 +13,33 @@
     <div class="todo-wrapper" ng-class="{'todo-wrapper--open': status.todo}">
         <div class="todo-panel">
             <div class="todo-container">
-                <todo ng-repeat="todo in todos" todo="todo" class="todo" ng-class="{'todo--done': todo.done}"></todo>
-            </div>
-            <div class="todo todo--empty">
-                <div class="todo-title">
-                    <input ng-model="newTodo" ng-keyup="todoKeyUp($event)">
+                <div class="todo-container-label">
+                    Todo's vandaag
                 </div>
-                <div class="todo-tools">
-                    <button title="Todo toevoegen" class="glyph glyph-small fa fa-plus" ng-click="createTodo(day)"></button>
+                <todo ng-repeat="todo in todos" todo="todo" class="todo" date="false" ng-class="{'todo--done': todo.done}"></todo>
+            </div>
+
+            <div class="todo-container" ng-if="isToday(day) && getCollectedTodos().length > 0">
+                <div class="todo-container-label">
+                    Misgelopen todo's
+                </div>
+                <todo ng-repeat="todo in getCollectedTodos()" todo="todo" class="todo" date="true" ng-class="{'todo--done': todo.done}"></todo>
+            </div>
+
+            <div class="todo-container">
+                <div class="todo-container-label">
+                    Todo toevoegen
+                </div>
+                <div class="todo todo--empty">
+                    <div class="todo-title">
+                        <input ng-model="newTodo" ng-keyup="todoKeyUp($event)">
+                    </div>
+                    <div class="todo-tools">
+                        <button title="Todo toevoegen" class="glyph glyph-small fa fa-plus" ng-click="createTodo(day)"></button>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 

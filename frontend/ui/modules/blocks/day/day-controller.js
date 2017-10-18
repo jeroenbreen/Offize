@@ -27,6 +27,17 @@ define([
 
         var today = new Date();
 
+        $scope.getCollectedTodos = function() {
+            var todos = [];
+            for (var i = 0, l = app.todos.length; i < l; i++) {
+                var todo = app.todos[i];
+                if (!todo.done && dateTool.biggerThen(today, todo.date)) {
+                    todos.push(todo);
+                }
+            }
+            return todos;
+        };
+
         $scope.toggleTodo = function() {
             $scope.status.todo = !$scope.status.todo;
         };

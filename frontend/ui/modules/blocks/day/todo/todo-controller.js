@@ -1,14 +1,17 @@
 define([
     'ui/ui-tools/modal',
+    'ui/ui-tools/date-tool',
     'jquery'
 ], function (
     modal,
+    dateTool,
     $
 ) {
     "use strict";
 
     function TodoController($scope, dataFactory) {
         this.$scope = $scope;
+        $scope.dateTool = dateTool;
 
         $scope.toggleCheckmark = function() {
             $scope.todo.done = !$scope.todo.done;

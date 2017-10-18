@@ -10,7 +10,8 @@ define([
             replace: false,
             template: template,
             scope: {
-                todo: '=todo'
+                todo: '=todo',
+                date: '=date'
             }
         };
     }

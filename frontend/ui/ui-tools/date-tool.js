@@ -15,7 +15,8 @@ define([
         toString,
         getDateByOffset,
         toBackendString,
-        matches;
+        matches,
+        biggerThen;
 
     Date.prototype.getWeek = function () { return $.datepicker.iso8601Week(this); };
 
@@ -87,6 +88,14 @@ define([
             date1.getFullYear() === date2.getFullYear();
     };
 
+    biggerThen = function(date1, date2) {
+        var a = new Date(date1),
+            b = new Date(date2);
+        a.setHours(0,0,0,0);
+        b.setHours(0,0,0,0);
+        return a.getTime() > b.getTime();
+    };
+
 
     return {
         getThisMonday: getThisMonday,
@@ -96,6 +105,7 @@ define([
         dateToProperties: dateToProperties,
         toString: toString,
         toBackendString: toBackendString,
-        matches: matches
+        matches: matches,
+        biggerThen: biggerThen
     };
 });
