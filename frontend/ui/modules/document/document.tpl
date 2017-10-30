@@ -125,7 +125,7 @@
 
     <div id="paper-buttons">
         <button ng-click="printFile()" class="glyph grey fa fa-print" title="Print file"></button>
-        <button ng-class="{'locked': document.locked}" ng-click="lockFile()" class="glyph grey unlocked fa fa-lock" title="Lock file"></button>
+        <button ng-class="{'locked': document.locked}" ng-click="lockFile()" class="glyph grey fa fa-lock" title="Lock file"></button>
         <button ng-if="!document.locked" ng-click="removeDocument()" class="glyph grey red fa fa-trash" title="Delete file"></button>
 
         <div id="paper-buttons-extra">

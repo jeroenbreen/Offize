@@ -99,7 +99,7 @@
             <div title="factuur"
                  class="doc office-color"
                  ng-repeat="invoice in project.invoices"
-                 ng-class="{'niet-betaald': !invoice.paid}"
+                 ng-class="{'not-paid': !invoice.paid}"
                  ng-click="office.currentDocument = invoice;">
                 <span class="gl fa fa-folder-open"></span>
                 {{invoice.toSlug()}}

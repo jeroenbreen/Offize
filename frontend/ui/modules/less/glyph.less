@@ -44,7 +44,12 @@
     }
 
     &.locked {
-        background: red;
+        background: red!important;
+
+        :hover {
+            background: #fff!important;
+            color: #000!important;
+        }
     }
 
 
@@ -59,105 +64,20 @@
             border: 1px solid transparent;
         }
     }
+
+    &.red {
+
+        &:hover {
+            color: #fff!important;
+            background: #f00!important;
+        }
+    }
 }
 
 
 
-.red:hover {
-    color: #fff!important;
-    background: #f00!important;
-}
 
 
-
-
-.unlocked:hover {
-    background: red!important;
-    color: #000!important;
-}
-
-
-
-.locked:hover {
-    background: #fff!important;
-    color: #000!important;
-}
-
-
-.glyph.glyphhidden {
-    color: #ddd;
-}
-
-.glyph.glyphhidden:hover {
-    color: #fff;
-}
-
-.niet-betaald {
-    color: #f00;
-}
-
-
-.att {
-    position: relative;
-    width: 120px;
-    padding-right: 30px;
-}
-
-.att-frame {
-    display: inline-block;
-    float: right;
-    width: 68px;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.att-frame-in {
-    float: right;
-    text-align: left;
-    min-width: 68px;
-    padding-top: 2px;
-}
-
-.remove-att.glyph {
-    display: none;
-    position: absolute;
-    right: 5px;
-    top: 4px;
-    z-index: 100;
-    font-size: 10px;
-    width: 18px;
-    height: 18px;
-    border-radius: 9px;
-    margin-top: 0px;
-}
-
-.att:hover > .remove-att {
-    display: inline-block;
-}
-
-.att-full-name {
-    white-space: nowrap;
-    min-width: 120px;
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 99;
-    background: #de7070;
-    color: #fff;
-    border: 0;
-    padding: 3px 30px 4px 6px;
-    border-radius: 13px;
-    height: 26px;
-    text-decoration: none;
-    font-family: "Roboto Condensed";
-    font-size: 12px;
-    font-weight: 400;
-}
-
-.att:hover > .att-full-name {
-    display: inline-block;
-}
 
 
 .glyph-container {
