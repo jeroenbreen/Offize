@@ -8,7 +8,7 @@ else if ($type == "contact") { $query = deleteContact(); }
 else if ($type == "member") { $query = deleteTeam(); }
 else if ($type == "comment") { $query = deleteComment(); }
 else if ($type == "hour") { $query = deleteHour(); }
-//else if ($type == "line") { $query = deleteLine(); }
+else if ($type == "line") { $query = deleteLine(); }
 else if ($type == "block") { $query = deleteBlock(); }
 else if ($type == "activity") { $query = deleteActivity(); }
 else if ($type == "todo") { $query = deleteTodo(); }
