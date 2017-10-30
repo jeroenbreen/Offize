@@ -36,15 +36,6 @@ define([
             }, 1000);
         }
 
-
-        // events
-
-        // wait for boostrap, otherwise the app.configuration for the standard rate
-        // is not yet available
-        $scope.$on('bootstrap', function(){
-            $scope.newProject = new Project();
-        });
-
         $scope.addProject = function() {
             var message, project;
             if ($scope.newProject.member !== null && $scope.newProject.contact !== null) {
@@ -156,6 +147,7 @@ define([
         $scope.$watch('model.currentMember', function(){
             if ($scope.model.currentMember) {
                 $scope.filter.member = $scope.model.currentMember;
+                $scope.newProject = new Project();
             }
         })
 

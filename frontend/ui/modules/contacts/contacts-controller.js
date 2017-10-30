@@ -68,8 +68,10 @@ define([
             return 0;
         }
 
-        $scope.$on('bootstrap', function(){
-            $scope.newContact = new Contact();
+        $scope.$watch('model.currentMember', function(){
+            if ($scope.model.currentMember) {
+                $scope.newContact = new Contact();
+            }
         })
     }
 
