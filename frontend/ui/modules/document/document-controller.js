@@ -1,10 +1,12 @@
 define([
     'models/lines/Line',
     'ui/ui-tools/modal',
+    'ui/ui-tools/delay-tool',
     'jquery'
 ], function(
     Line,
     modal,
+    delayTool,
     $
 ) {
     'use strict';
@@ -12,6 +14,18 @@ define([
         this.$scope = $scope;
 
         $scope.months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
+
+
+        $scope.updateDocument = function() {
+            function update() {
+                var handleSuccess = function(response, status) {
+                    modal.show(response, false);
+                };
+                dataFactory.update($.param($scope.document.toBackend())).success(handleSuccess);
+            }
+
+            delayTool.delay(update);
+        };
 
 
 
@@ -114,6 +128,7 @@ define([
 
         $scope.lockFile = function () {
             $scope.document.locked = !$scope.document.locked;
+            $scope.updateDocument();
         };
 
         // document functions

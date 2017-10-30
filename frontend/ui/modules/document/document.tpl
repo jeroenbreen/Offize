@@ -7,18 +7,19 @@
         <div id="paper-info">
             <b>{{document.getPrefix()}}</b>
             <span ng-if="!document.locked">
-                <input class="paper-year input-bold" ng-model="document.year"> -
-                <input class="paper-nr input-bold" ng-model="document.nr">
+                <input class="paper-year input-bold" ng-model="document.year" ng-change="updateDocument()"> -
+                <input class="paper-nr input-bold" ng-model="document.nr" ng-change="updateDocument()">
             </span>
             <span ng-if="document.locked">
                 {{document.year}} - {{document.nr}}
             </span>
             <br>
             <span ng-if="!document.locked">
-                <input class="paper-year" ng-model="document.day">
+                <input class="paper-year" ng-model="document.day" ng-change="updateDocument()">
                 <select ng-model="document.month"
-                        ng-options="(months.indexOf(month) + 1) as month for month in months"></select>
-                <input class="paper-year" ng-model="document.year">
+                        ng-options="(months.indexOf(month) + 1) as month for month in months"
+                        ng-change="updateDocument()"></select>
+                <input class="paper-year" ng-model="document.year" ng-change="updateDocument()">
             </span>
             <span ng-if="document.locked">
                 {{document.day}} {{months[document.month - 1]}} {{document.year}}
@@ -28,7 +29,7 @@
         <div id="paper-contact">
             <div class="paper-contact-left" ng-if="!document.locked">
                 <b>{{document.contact.name}}</b><br>
-                <input ng-model="document.contactName">
+                <input ng-model="document.contactName" ng-change="updateDocument()">
                 {{document.contact.street}}<br>
                 {{document.contact.zipcode}} {{document.contact.city}}
             </div>
@@ -42,7 +43,8 @@
                 <b>{{office.company.name}}</b><br>
                 <select
                     ng-options="member as member.name for member in office.members"
-                    ng-model="document.member"></select><br>
+                    ng-model="document.member"
+                    ng-change="updateDocument()"></select><br>
                 {{office.company.address}}<br>
                 {{office.company.zipcode}} {{office.company.city}}
             </div>
@@ -57,7 +59,7 @@
         <div id="paper-title">
             <b>Betreft:</b>
             <br>
-            <input ng-if="!document.locked" ng-model="document.title">
+            <input ng-if="!document.locked" ng-model="document.title" ng-change="updateDocument()">
             <div ng-if="document.locked">
                 {{document.title}}
             </div>
@@ -127,8 +129,8 @@
         <button ng-if="!document.locked" ng-click="removeDocument()" class="glyph grey red fa fa-trash" title="Delete file"></button>
 
         <div id="paper-buttons-extra">
-            <div ng-if="document.doctype === 'invoices'">
-                <span>Betaald</span><input class="" type="checkbox" value="1" ng-model="document.paid">
+            <div ng-if="document.doctype === 'invoice'">
+                <span>Betaald</span><input class="" type="checkbox" value="1" ng-model="document.paid" ng-change="updateDocument()">
                 <!--<span>PDF Engelstalig</span><input type="checkbox" value="1" ng-model="document.english">-->
                 <!--<div ng-if="document.english">-->
                     <!--<span>Zonder BTW</span><input type="checkbox" value="1" ng-model="document.vat">-->
@@ -138,13 +140,13 @@
                 <span>
                     Verberg total
                 </span>
-                <input type="checkbox" ng-model="document.hideTotal">
+                <input type="checkbox" ng-model="document.hideTotal" ng-change="updateDocument()">
             </div>
             <div>
                 <span>
                     BTW
                 </span>
-                <input type="text" ng-model="document.vat">
+                <input type="text" ng-model="document.vat" ng-change="updateDocument()">
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ else if ($type == "team") { $query = updateTeam(); }
 else if ($type == "hours") { $query = updateHours(); }
 else if ($type == "comment") { $query = updateComment(); }
 else if ($type == "configuration") { $query = updateConfiguration(); }
+else if ($type == "document") { $query = updateDocument(); }
 else if ($type == "line") { $query = updateLine(); }
 else if ($type == "block") { $query = updateBlock(); }
 else if ($type == "activity") { $query = updateActivity(); }
@@ -39,6 +40,48 @@ function updateProject() {
     finished = '" . $finished . "'
     WHERE
     projectId = '" . $projectId. "'";
+    return $query;
+}
+
+function updateDocument() {
+    $id = $_POST['id'];
+    $contactId = $_POST['contactId'];
+    $contactName = $_POST['contactName'];
+    $projectId = $_POST['projectId'];
+    $doctype = $_POST['doctype'];
+    $currency = $_POST['currency'];
+    $english = $_POST['english'];
+    $hideTotal = $_POST['hideTotal'];
+    $locked = $_POST['locked'];
+    $nr = $_POST['nr'];
+    $paid = $_POST['paid'];
+    $memberId = $_POST['memberId'];
+    $title = $_POST['title'];
+    $vat = $_POST['vat'];
+    $year = $_POST['year'];
+    $month = $_POST['month'];
+    $day = $_POST['day'];
+    $rate = $_POST['rate'];
+    $query = "UPDATE documents SET
+    contactId = '" . $contactId . "',
+    contactName = '" . $contactName . "',
+    projectId = '" . $projectId . "',
+    doctype = '" . $doctype . "',
+    currency = '" . $currency . "',
+    english = '" . $english . "',
+    hideTotal = '" . $hideTotal . "',
+    locked = '" . $locked . "',
+    nr = '" . $nr . "',
+    paid = '" . $paid . "',
+    memberId = '" . $memberId . "',
+    title = '" . $title . "',
+    vat = '" . $vat . "',
+    year = '" . $year . "',
+    month = '" . $month . "',
+    day = '" . $day . "',
+    rate = '" . $rate . "'
+    WHERE
+    id = '" . $id. "'";
     return $query;
 }
 
