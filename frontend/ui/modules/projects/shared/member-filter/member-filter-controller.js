@@ -21,6 +21,7 @@ define([
             if (newVal > 0) {
                 $scope.members = $scope.model.members.slice();
                 $scope.members.unshift(filterMemberAllOption);
+                $scope.current = $scope.members[0];
             }
         })
     }

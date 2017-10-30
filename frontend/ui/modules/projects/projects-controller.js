@@ -148,7 +148,6 @@ define([
 
         $scope.$watch('model.currentMember', function(){
             if ($scope.model.currentMember) {
-                $scope.filter.member = $scope.model.currentMember;
                 $scope.newProject = new Project();
             }
         })
