@@ -65,6 +65,7 @@ define([
         $scope.filter = {
             search : '',
             member: null,
+            contact: null,
             year : $scope.model.thisYear
         };
 
@@ -78,6 +79,7 @@ define([
                 if (
                     ($scope.filter.year === 'Alle' || project.year === $scope.filter.year) &&
                     ($scope.filter.search === '' || project.projectName.toLocaleLowerCase().indexOf($scope.filter.search.toLocaleLowerCase()) > -1) &&
+                    (!$scope.filter.contact || $scope.filter.contact.contactId === -1 || project.contact === $scope.filter.contact) &&
                     (!$scope.filter.member || $scope.filter.member.memberId === -1 || project.member.memberId === $scope.filter.member.memberId) &&
                     (!$scope.showOnlyLiveProjects || project.projectStatus < 3)
                 ) {

@@ -22,6 +22,7 @@ define([
     './modules/document/document',
     './modules/projects/detail/detail',
     './modules/projects/shared/member-filter/member-filter',
+    './modules/projects/shared/contact-filter/contact-filter',
     './modules/blocks/day/day',
     './modules/blocks/block-detail/block-detail',
     './modules/report/report',
@@ -54,6 +55,7 @@ define([
     documentModule,
     detailModule,
     memberFilterModule,
+    contactFilterModule,
     dayModule,
     blockDetailModule,
     reportModule,
@@ -73,6 +75,7 @@ define([
         contactDetailModule.name,
         detailModule.name,
         memberFilterModule.name,
+        contactFilterModule.name,
         dayModule.name,
         blockDetailModule.name,
         reportModule.name

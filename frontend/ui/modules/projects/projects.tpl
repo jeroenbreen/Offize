@@ -8,6 +8,7 @@
             </div>
             <div class="ofc-cell ofc-cell-7">
                 <member-filter model="model" current="filter.member"></member-filter>
+                <contact-filter model="model" current="filter.contact"></contact-filter>
                 <input type="checkbox" ng-model="showOnlyLiveProjects"> live proj.
                 <select title="selecteer jaar" ng-options="year as year for year in model.years" ng-model="filter.year"></select>
             </div>

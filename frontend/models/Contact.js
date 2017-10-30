@@ -26,10 +26,14 @@ define([
     _p.toSlug = function(limitString) {
         var formattedName = this.name.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-'),
             label = commonTools.digitize(this.contactId) + '-' + formattedName;
-        if (limitString && label.length > limitString) {
-            return label.substr(0,limitString) + '...'
+        if (this.contactId === -1) {
+            return 'Alle';
         } else {
-            return label;
+            if (limitString && label.length > limitString) {
+                return label.substr(0,limitString) + '...'
+            } else {
+                return label;
+            }
         }
     };
 
