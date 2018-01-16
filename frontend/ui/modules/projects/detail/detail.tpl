@@ -30,7 +30,7 @@
         </div>
 
         <div class="panel-section">
-            <input class="input-medium" title="boekjaar" ng-model="project.year">
+            <input class="input-medium" title="boekjaar" ng-model="project.year" ng-change="updateProject()">
         </div>
 
         <div id="project-detail-status-information" class="panel-section status-{{project.projectStatus}}">
