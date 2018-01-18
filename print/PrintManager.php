@@ -143,7 +143,10 @@ class PrintManager
     }
 
     protected function getBody()
+
     {
+    $total = 0;
+    $subtotal = 0;
         $html = "
             <div id='lines'>
                 <table id='lines-table'>
