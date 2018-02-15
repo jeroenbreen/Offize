@@ -12,8 +12,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 class PrintManager
 {
-    protected $data;
-    //, $type, $year, $nr, $address, $hideTotal, $doctype;
+    protected $data, $total = 0, $subtotal = 0;
 
     public function handlePrint()
     {
@@ -37,16 +36,16 @@ class PrintManager
 
     protected function getHMTL()
     {
-        $total = 0;
-        $subtotal = 0;
 
         $months = array("januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december");
         $this->month_nice = $months[$this->data->month - 1];
 
         $html = "";
         $html .= $this->getHead();
+        //$html .= $this->getGrid();
         $html .= $this->getTop();
         $html .= $this->getBody();
+        $html .= $this->getTotal();
         $html .= $this->getFooter();
         $html .= $this->getClosing();
         return $html;
@@ -59,7 +58,7 @@ class PrintManager
                  <HEAD>
                      <TITLE></TITLE>
                      <meta charset='utf-8'>
-                     <link rel='StyleSheet' href='style.css' type='text/css' media='all'>
+                     <link rel='StyleSheet' href='style-new.css' type='text/css' media='all'>
                  </HEAD>
 
                  <BODY>
@@ -67,56 +66,67 @@ class PrintManager
         return $html;
     }
 
+    protected function getGrid()
+    {
+        $html = "";
+        $width = 9;
+        $height = 8;
+        $space = 20;
+        $widthSz = 104.5;
+        $heightSz = 184;
+
+        for ($x = 0; $x < $width; $x++) {
+
+            for ($y = 0; $y < $height; $y++) {
+                $thisX = $x * ($widthSz + $space);
+                $thisY = $y * ($heightSz + $space);
+                $html .= "
+                    <div class='grid-block' style='width:" . $widthSz . "px; height:" . $heightSz . "px; left:" . $thisX . "px; top:" . $thisY . "px;'></div>
+                ";
+            }
+        }
+        return $html;
+    }
+
     protected function getTop()
     {
         $html = "
             <div id='header'>
-                <table id='header-table'>
-                    <tr>
-                        <td valign='top' class='half'>
-                            <img id='header-logo' src='logo-print.png'>
-                        </td>
-                        <td class='header-table-spacer'>
-                            &nbsp;
-                        </td>
-                        <td valign='top' class='half'>
-                            <div id='document-info'>
-                                <b>" . $this->data->prefix . " " . $this->data->slug . "</b><br>
-                                  " . $this->data->day . " " . $this->month_nice . " " . $this->data->year . "
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div id='client'>
-                                  <b>" . $this->data->contact->name . "</b><br>
-                                  " . $this->data->contact->contactName . "<br>
-                                  " . $this->data->contact->address  . "<br>
-                                  " . $this->data->contact->zipcode . " " . $this->data->contact->city . "
-                            </div>
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            <div id='sender'>
-                                  <b>" . $this->data->company->name . "</b><br>
-                                  " . $this->data->member . "<br>
-                                  " . $this->data->company->address . "<br>
-                                  " . $this->data->company->zipcode . " " . $this->data->company->city . "
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan='3'>
-                            <div id='title'>
-                                  <b>Betreft</b><br>
-                                  " . $this->data->title . "
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <div id='identity'>
+                    <img src='logo-print.png'>
+                </div>
+
+                <div id='document-info'>
+                    <div id='document-date'>
+                        " . $this->data->day . " " . $this->month_nice . " " . $this->data->year . "
+                    </div>
+                    <div id='document-id'>
+                        " . $this->data->prefix . " <b>" . $this->data->slug . "</b>
+                    </div>
+                </div>
+            </div>
+
+            <div id='address-info'>
+                <div class='relative-wrapper'>
+                    <div id='address-receiver'>
+                        <b>" . $this->data->contact->name . "</b><br>
+                        " . $this->data->contact->contactName . "<br>
+                        " . $this->data->contact->address  . "<br>
+                        " . $this->data->contact->zipcode . " " . $this->data->contact->city . "
+                    </div>
+                    <div id='address-sender'>
+                        <b>" . $this->data->company->name . "</b><br>
+                        " . $this->data->member . "<br>
+                        " . $this->data->company->address . "<br>
+                        " . $this->data->company->zipcode . " " . $this->data->company->city . "
+                    </div>
+                </div>
+            </div>
+
+            <div id='document-description'>
+                <b>Betreft:</b> " . $this->data->title . "
             </div>";
+
         return $html;
     }
 
@@ -132,6 +142,12 @@ class PrintManager
                     }
                     $html .= "
                 </div>
+                <div id='footer-slogan'>
+                    <img src='slogan.png'>
+                </div>
+            </div>
+            <div id='legal-info'>
+                Innouveau | KvK 61118389 | BTW NL854214902B01
             </div>";
         return $html;
     }
@@ -142,148 +158,151 @@ class PrintManager
         return $html;
     }
 
-    protected function getBody()
+    protected function printLine($line) {
+        $text = $line->{'text'};
+        $hours = $line->{'hours'};
+        $rate = $line->{'rate'};
+        $amount = $line->{'amount'};
+        $lineType = $line->{'lineType'};
+        $html = "";
+        if ($lineType == 'count') {
+            $this->total += $rate * $hours;
+            $this->subtotal += $rate * $hours;
+            $html .= "
+                <div class='line'>
+                    <div class='line-title'>
+                        " . $text . "
+                    </div>
+                    <div class='line-amount'>
+                        " . $hours . "
+                    </div>
+                    <div class='line-sign'>
+                        ×
+                    </div>
+                    <div class='line-rate'>
+                        " . $rate . "
+                    </div>
+                    <div class='line-sum'>
+                        " . $this->nrToCur($hours * $rate) . " EUR
+                    </div>
+                </div>";
+        }
 
+        else if ($lineType == 'amount') {
+        $this->total += $amount;
+        $this->subtotal += $amount;
+            $html .= "
+                <div class='line'>
+                    <div class='line-title'>
+                        " . $text  . "
+                    </div>
+                    <div class='line-right-part'>
+                        " . $this->nrToCur($amount)  . " EUR
+                    </div>
+                </div>";
+        }
+        else if ($lineType == 'text') {
+            $html .= "
+                <div class='line'>
+                    <div class='line-full'>
+                        " . $text . "
+                    </div>
+                </div>";
+            }
+            else if ($lineType == 'enter') {
+            $html .= "<div class='line-break'></div>";
+        }
+        else if ($lineType == 'subtotal') {
+            $html .= "
+                <div class='subtotal-block'>
+                    <div class='line'>
+                        <div class='line-title'>
+                            Subtotaal
+                        </div>
+                        <div class='line-right-part'>
+                            <b>" . $this->nrToCur($this->subtotal)  . "</b> EUR
+                        </div>
+                    </div>
+                    <div class='line'>
+                        <div class='line-title'>
+                            BTW 21%
+                        </div>
+                        <div class='line-right-part'>
+                            " . $this->nrToCur($this->subtotal * 0.21)  . " EUR
+                        </div>
+                    </div>
+                </div>";
+                $this->subtotal = 0;
+        }
+        return $html;
+    }
+
+    protected function getBody()
     {
     $total = 0;
     $subtotal = 0;
         $html = "
-            <div id='lines'>
-                <table id='lines-table'>
-                    <tr>
-                        <td colspan='3' class='cell5'>
-                            <b>Werkzaamheden</b>
-                        </td>
-                    </tr>";
-
-            for ($i = 0; $i < count($this->data->lines); $i++) {
-                $line = $this->data->lines[$i];
-                $text = $line->{'text'};
-                $hours = $line->{'hours'};
-                $rate = $line->{'rate'};
-                $amount = $line->{'amount'};
-                $lineType = $line->{'lineType'};
-
-                if ($lineType == 'count') {
-                    $total += $rate * $hours;
-                    $subtotal += $rate * $hours;
-                    $html .= "
-                    <tr>
-                        <td class='cell1'>
-                            " . $text . "
-                        </td>
-                        <td class='cell2'>
-                            " . $hours . " × " . $rate . " EUR
-                        </td>
-                        <td class='cell3'>
-                            " . $this->nrToCur($hours * $rate) . " EUR
-                        </td>
-                    </tr>";
-                }
-                else if ($lineType == 'amount') {
-                    $total += $amount;
-                    $subtotal += $amount;
-                    $html .= "
-                    <tr>
-                        <td colspan='2' class='cell4'>
-                            " . $text  . "
-                        </td>
-                        <td class='cell3'>
-                            " . $this->nrToCur($amount)  . " EUR
-                        </td>
-                    </tr>";
-                }
-                else if ($lineType == 'text') {
-                    $html .= "
-                    <tr>
-                        <td colspan='3' class='cell5'>
-                            " . $text . "
-                        </td>
-                    </tr>";
-                }
-                else if ($lineType == 'enter') {
-                    $html .= "
-                    <tr>
-                        <td colspan='3' class='cell5 spacer'>
-                            &nbsp;
-                        </td>
-                    </tr>";
-                }
-                else if ($lineType == 'subtotal') {
-                    $html .= "
-                <tr class='sub-spacer'>
-                    <td colspan='2'></td>
-                </tr>
-                <tr class='subtotal-1'>
-                    <td colspan='2' class='cell4'>
-                        <b>Subtotaal</b>
-                    </td>
-                    <td class='cell3 subtotal-sum'>
-                        <b>" . $this->nrToCur($subtotal)  . "</b> EUR
-                    </td>
-                </tr>
-                <tr class='subtotal-2'>
-                    <td colspan='2' class='cell4'>
-                        BTW 21%
-                    </td>
-                    <td class='cell3'>
-                        " . $this->nrToCur($subtotal * 0.21)  . " EUR
-                    </td>
-                </tr>
-                <tr class='sub-spacer'>
-                    <td colspan='2'></td>
-                </tr>";
-                    $subtotal = 0;
-                }
-            }
-
-            if (!$this->data->hideTotal){
-                $html .= "
-                        <tr>
-                            <td colspan='3' class='cell5 spacer'>
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan='2' class='cell4'>
-                                Totaal";
-                if ($this->data->doctype == "quotation") {
-                    $html .= " (excl. 21% BTW)";
-                }
-
-                $html .= "      </td>
-                            <td class='cell3'>
-                                " . $this->nrToCur($total) . " EUR
-                            </td>
-                        </tr>";
-                if ($this->data->doctype === "invoice") {
-                    $html .=
-                        "<tr>
-                            <td colspan='2' class='cell4'>
-                                BTW " .$this->data->vat . "%
-                            </td>
-                            <td class='cell3'>
-                                " . $this->nrToCur($total * ($this->data->vat / 100)) . " EUR
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan='2' class='cell4'>
-                                <b>Te betalen</b>
-                            </td>
-                            <td class='cell3'>
-                                <b>" . $this->nrToCur($total * (1 + ($this->data->vat / 100))) . " EUR</b>
-                            </td>
-                        </tr>";
-                }
-            }
-
-            $html .= "</table></div>";
+            <div id='document-activities'>";
+        for ($i = 0; $i < count($this->data->lines); $i++) {
+            $line = $this->data->lines[$i];
+                $html .= $this->printLine($line);
+        }
+        $html .= "</div>";
         return $html;
     }
 
-    protected function nrToCur ($nr) {
-        $cur = number_format($nr, 2);
-        return $cur;
+    protected function getTotal()
+    {
+        $html = "";
+        if (!$this->data->hideTotal){
+            $html .= "
+                <div id='total'>
+                    <div class='line'>
+                        <div class='line-title'>
+                            Totaal";
+                        if ($this->data->doctype == "quotation") {
+                            $html .= " (excl. 21% BTW)";
+                        }
+
+                        $html .= "
+                        </div>
+                        <div class='line-right-part'>
+                            " . $this->nrToCur($this->total) . " EUR
+                        </div>
+                    </div>";
+            if ($this->data->doctype === "invoice") {
+                $html .= "
+                    <div class='line'>
+                        <div class='line-title'>
+                            BTW " .$this->data->vat . "%
+                        </div>
+                        <div class='line-right-part'>
+                            " . $this->nrToCur($this->total * ($this->data->vat / 100)) . " EUR
+                        </div>
+                    </div>
+                    <div class='line'>
+                        <div class='line-title'>
+                            <div class='total-labal'>
+                                Te betalen
+                            </div>
+                        </div>
+                        <div class='line-right-part'>
+                            <div class='total-labal'>
+                                " . $this->nrToCur($this->total * (1 + ($this->data->vat / 100))) . " EUR
+                            </div>
+                        </div>
+                    </div>
+                ";
+
+            }
+            $html .= "</div>";
+            return $html;
+        }
+    }
+
+    protected function nrToCur ($value) {
+        setlocale("LC_MONETARY", "de_DE");
+        return money_format("%!n", $value);
     }
 }
 
