@@ -58,7 +58,7 @@ class PrintManager
                  <HEAD>
                      <TITLE></TITLE>
                      <meta charset='utf-8'>
-                     <link rel='StyleSheet' href='style-new.css' type='text/css' media='all'>
+                     <link rel='StyleSheet' href='style.css' type='text/css' media='all'>
                  </HEAD>
 
                  <BODY>
@@ -301,7 +301,7 @@ class PrintManager
     }
 
     protected function nrToCur ($value) {
-        setlocale("LC_MONETARY", "de_DE");
+        //setlocale("LC_MONETARY", "de_DE");
         return money_format("%!n", $value);
     }
 }
