@@ -5,139 +5,203 @@ body {
     width: 100%;
 }
 
-
-
-/* architecture */
-
 .pagewrap {
-    left: 0;
-    top: 0;
+    position: relative;
     width: 100%;
+}
+
+.grid-block {
+    background: rgba(255,0,0,0.1);
+    position: absolute;
+}
+
+.relative-wrapper {
     position: relative;
 }
-
-.half {
-    width: 47%;
-}
-
-.header-table-spacer {
-    width: 6%;
-}
-
-table {
-    width: 100%;
-}
-
-
-
-/* header */
 
 #header {
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 400px;
 }
 
-#header-logo {
-    display: block;
-    height: auto;
-    padding-bottom: 40px;
+#identity {
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 #document-info {
-    text-align: right;
-    padding: 20px;
+    position: absolute;
+    right: 0;
+    top: 10px;
 }
 
-#client {
-    border-top: 0.5px dotted #000;
-    padding: 20px;
+#document-date {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 6px;
 }
 
-#sender {
-    border-top: 0.5px dotted #000;
-    padding: 20px;
+#document-id {
+    display: inline-block;
+    padding: 15px;
+    background: #eee;
+    font-size: 11pt;
+    margin-left: 8px;
 }
 
-#title {
-    padding: 30px 20px 20px 20px;
-}
-
-
-
-/* lines */
-
-#lines {
-    width: 100%;
+#address-info {
     position: absolute;
     left: 0;
-    top: 540px;
-}
-
-#lines-table {
+    top: 388px;
+    border-top: 0.5px solid #333;
+    width: 100%;
     padding: 20px;
-    border-top: 0.5px dotted #000;
 }
 
-.cell1 {
-    width: 60%;
+#address-receiver {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 518px;
 }
 
-.cell2 {
-    width: 20%;
-    text-align: right;
+#address-sender {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 518px;
 }
 
-.cell3 {
-    width: 20%;
-    text-align: right;
+#document-description {
+    position: absolute;
+    left: 0;
+    top: 612px;
+    border-top: 0.5px solid #333;
+    width: 100%;
+    padding: 20px;
 }
 
-.cell4 {
-    width: 80%;
+#document-activities {
+    position: absolute;
+    left: 0;
+    top: 680px;
+    border-top: 0.5px solid #333;
+    width: 100%;
+    padding: 20px;
 }
 
-.cell5 {
+.line {
+    padding: 2px 0;
+    position: relative;
+}
+
+.line-break {
+    height: 20px;
     width: 100%;
 }
 
-.spacer {
-    height: 20px;
+.line-title,
+.line-amount,
+.line-sign,
+.line-rate,
+.line-sum,
+.line-right-part {
+    display: inline-block;
+    vertical-align: top;
 }
 
-#totaal {
-    margin-top: 20px;
+.line-title {
+    width: 538px;
 }
 
-.subtotal-sum {
-    border-top: 0.5px dotted #000;
+.line-full {
+    width: 100%;
 }
 
-.sub-spacer td {
-    height: 20px;
+.line-right-part {
+    position: absolute;
+    right: 0;
+    top: 6px;
+    width: 200px;
+    text-align: right;
 }
 
+.line-amount {
+    width: 30px;
+    text-align: right;
+}
 
+.line-sign {
+    width: 20px;
+    text-align: center;
+}
 
+.line-rate {
+    width: 30px;
+}
 
-/* footer */
+.line-sum {
+    width: 410px;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    top: 6px;
+}
+
+.subtotal-block {
+    padding: 0 0 40px 0;
+}
+
+.subtotal-block .line:first-child .line-right-part {
+    border-top: 0.5px solid #000;
+}
+
+.subtotal-block .line:first-child div {
+    padding-top: 4px;
+}
+
 
 #footer {
-    width: 100%;
     position: absolute;
     left: 0;
-    bottom: 0;
+    top: 1224px;
+    width: 100%;
 }
 
 #footer-text {
+    border-top: 0.5px solid #333;
+    border-bottom: 0.5px solid #333;
+    width: 100%;
     padding: 20px;
-    border-top: 0.5px dotted #000;
-    font-size: 8pt;
+    font-size: 7pt;
+    text-align: center;
 }
 
-.subtotal-1 td {
-    padding-top: 5px;
-    margin-top: 5px;
+#footer-slogan {
+    text-align: center;
+    padding-top: 20px;
+}
+
+#legal-info {
+    position: absolute;
+    left: 0;
+    top: 1590px;
+    width: 100%;
+    text-align: center;
+    font-size: 7pt;
+}
+
+#total {
+    position: absolute;
+    left: 0;
+    top: 1115px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.total-labal {
+    font-size: 13pt;
+    font-weight: 700;
 }
