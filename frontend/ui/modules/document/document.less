@@ -29,6 +29,7 @@ ofc-document {
             padding: 80px 60px;
             margin-right: 10px;
             margin-bottom: 100px;
+            position: relative;
 
             input {
                 border: 0;
@@ -70,8 +71,9 @@ ofc-document {
             #paper-contact {
                 clear: both;
                 width: 100%;
-                padding-top: 20px;
+                padding: 10px;
                 height: 120px;
+                border-top: 1px solid #000;
 
                 input {
                     width: 100%;
@@ -80,16 +82,12 @@ ofc-document {
                 .paper-contact-left {
                     width: ~'calc(50% - 20px)';
                     float: left;
-                    border-top: 1px solid #000;
-                    padding-top: 10px;
                     margin-right: 10px;
                 }
 
                 .paper-contact-right {
                     width: ~'calc(50% - 20px)';
                     float: right;
-                    border-top: 1px solid #000;
-                    padding-top: 10px;
                     margin-left: 10px;
                 }
             }
@@ -98,14 +96,18 @@ ofc-document {
                 margin-top: 20px;
                 width: 100%;
                 clear: both;
+                margin-right: 8px;
+                padding: 10px 0;
+                border-top: 1px solid #000;
+                border-bottom: 1px solid #000;
 
                 input {
-                    width: 100%;
+                    width: ~'calc(100% - 40px)';
                 }
             }
 
             #paper-lines {
-                padding-top: 20px;
+                padding: 10px;
                 width: 100%;
 
                 ul {
@@ -131,7 +133,6 @@ ofc-document {
 
             #lines-total {
                 width: 100%;
-                border-top: 1px solid #000;
                 margin-top: 20px;
                 padding-top: 10px;
 
@@ -144,6 +145,26 @@ ofc-document {
                     float: right;
                     width: 50%;
                     text-align: right;
+                }
+
+                .lines-total-big {
+                    font-size: 150%;
+                    font-weight: 700;
+                    margin-top: 5px;
+                }
+            }
+
+            #paper-footer {
+                position: absolute;
+                left: 50px;
+                bottom: 30px;
+                width: ~'calc(100% - 100px)';
+                text-align: center;
+                border-top: 1px solid #000;
+                padding-top: 20px;
+
+                img {
+                    width: 100px;
                 }
             }
         }

@@ -58,7 +58,6 @@
 
         <div id="paper-title">
             <b>Betreft:</b>
-            <br>
             <input ng-if="!document.locked" ng-model="document.title" ng-change="updateDocument()">
             <div ng-if="document.locked">
                 {{document.title}}
@@ -66,10 +65,6 @@
         </div>
 
         <div id="paper-lines">
-            <b>
-                Werkzaamheden:
-            </b>
-            <br>
             <ul ui-sortable="sortableOptions" ng-model="document.lines">
                 <li class="lines-row animation-item-2" ng-repeat="line in document.lines" ng-click="selectLine(line)" ng-class="{'current-line' : line === currentLine}">
                     <line line="line" ofc-document="document"></line>
@@ -102,12 +97,12 @@
                         {{getTotal((document.vat / 100)) | number:2}}
                         {{document.currency}}
                     </span>
-                    <span class="left">
+                    <span class="left lines-total-big">
                         <b>
                             Te betalen
                         </b>
                     </span>
-                    <span class="right">
+                    <span class="right lines-total-big">
                         <b>
                             {{getTotal((1 + (document.vat / 100))) | number:2}}
                             {{document.currency}}
@@ -120,6 +115,10 @@
                 <b>Let op: engels is aangevinkt.</b><br><br>
                 Het kan zijn dat deze factuur/offerte op een andere manier boekhoudkundig (oa BTW aangifte) moet worden verwerkt, dan dat de getoonde vormgeving doet vermoeden!
             </div>
+        </div>
+
+        <div id="paper-footer">
+            <img ng-src="assets/img/slogan.png">
         </div>
     </div>
 
