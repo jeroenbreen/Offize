@@ -230,6 +230,16 @@ define([
         return max + 1;
     };
 
+    _p.getDocumentById = function(id) {
+        for (var i = 0, l = this.documents.length; i < l; i++) {
+            var document = this.documents[i];
+            if (document.id === id) {
+                return document;
+            }
+        }
+        return null;
+    };
+
     // refactoring tools
     //
     _p.documentsToCSV = function() {

@@ -42,7 +42,7 @@
         <div
             ng-repeat="project in filterProjects(model.projects)"
             ng-class="{'current-project': project === model.currentProject, 'project-finished': project.finished}"
-            ng-click="model.currentProject = project"
+            ng-click="selectProject(project)"
             class="ofc-row status-{{project.projectStatus}}">
             <div class="ofc-cell ofc-cell-1 project-status project-name">
                 <span>{{project.toSlug()}}</span>

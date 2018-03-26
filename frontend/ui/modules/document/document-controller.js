@@ -10,7 +10,7 @@ define([
     $
 ) {
     'use strict';
-    function DocumentController($scope, $document, $http, dataFactory) {
+    function DocumentController($scope, $localStorage, $document, $http, dataFactory) {
         this.$scope = $scope;
 
         $scope.months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
@@ -69,6 +69,7 @@ define([
 
         $scope.closeDocument = function() {
             $scope.office.currentDocument = null;
+            delete $localStorage.office.currentDocument;
         };
 
         $scope.removeDocument = function() {
@@ -177,7 +178,7 @@ define([
         });
     }
 
-    DocumentController.$inject = ['$scope', '$document', '$http', 'dataFactory'];
+    DocumentController.$inject = ['$scope', '$localStorage', '$document', '$http', 'dataFactory'];
 
     return DocumentController;
 }); 

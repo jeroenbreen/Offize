@@ -80,7 +80,7 @@
             <div title="offerte"
                  class="doc office-color"
                  ng-repeat="quotation in project.quotations"
-                 ng-click="office.currentDocument = quotation;">
+                 ng-click="selectDocument(quotation)">
                 <span class="gl fa fa-folder-open"></span>
                 {{quotation.toSlug()}}
             </div>
@@ -100,7 +100,7 @@
                  class="doc office-color"
                  ng-repeat="invoice in project.invoices"
                  ng-class="{'not-paid': !invoice.paid}"
-                 ng-click="office.currentDocument = invoice;">
+                 ng-click="selectDocument(invoice)">
                 <span class="gl fa fa-folder-open"></span>
                 {{invoice.toSlug()}}
             </div>

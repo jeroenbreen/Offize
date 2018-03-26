@@ -10,7 +10,7 @@ define([
     $
 ) {
     "use strict";
-    function DetailController($scope, dataFactory) {
+    function DetailController($scope, $localStorage, dataFactory) {
         this.$scope = $scope;
         $scope.commonTools = commonTools;
 
@@ -91,10 +91,15 @@ define([
 
         $scope.updateProject = function() {
             $scope.$emit('update-project', $scope.project);
+        };
+
+        $scope.selectDocument = function(document) {
+            $scope.office.currentDocument = document;
+            $localStorage.office.currentDocument = document.id;
         }
     }
 
-    DetailController.$inject = ['$scope', 'dataFactory'];
+    DetailController.$inject = ['$scope', '$localStorage', 'dataFactory'];
 
     return DetailController;
 }); 

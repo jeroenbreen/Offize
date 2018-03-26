@@ -10,7 +10,7 @@ define([
     $
 ) {
     "use strict";
-    function ProjectsController($scope, dataFactory, OfficeModel) {
+    function ProjectsController($scope, $localStorage, dataFactory, OfficeModel) {
         this.$scope = $scope;
         $scope.model = OfficeModel;
         $scope.model.menu = 'projects';
@@ -53,6 +53,12 @@ define([
                 message = 'Vul klant en contact in.';
                 modal.show(message, true);
             }
+        };
+
+
+        $scope.selectProject = function(project) {
+            $scope.model.currentProject = project;
+            $localStorage.office.currentProject = project.projectId;
         };
 
 
@@ -154,7 +160,7 @@ define([
 
     }
 
-    ProjectsController.$inject = ['$scope', 'dataFactory', 'OfficeModel'];
+    ProjectsController.$inject = ['$scope', '$localStorage', 'dataFactory', 'OfficeModel'];
 
     return ProjectsController;
 }); 
