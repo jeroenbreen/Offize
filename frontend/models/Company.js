@@ -21,8 +21,12 @@ define([
     var _p = Company.prototype = Object.create(Parent.prototype);
 
     _p.injectStyle = function() {
-        var sheet = window.document.styleSheets[0];
-        sheet.insertRule('.office-color { background: ' + this.color + '!important; }', sheet.cssRules.length);
+        var style, rule;
+        style = document.createElement('style');
+        rule = '.office-color { background: ' + this.color + '!important; }';
+        style.type = 'text/css';
+        style.innerHTML = rule;
+        document.getElementsByTagName('head')[0].appendChild(style);
     };
 
     return Company;
