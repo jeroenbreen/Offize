@@ -93,7 +93,7 @@ class PrintManager
         $html = "
             <div id='header'>
                 <div id='identity'>
-                    <img src='logo-print.png'>
+                    <img src='logo.png'>
                 </div>
 
                 <div id='document-info'>

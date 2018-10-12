@@ -1,7 +1,7 @@
 <div id="paper-container" ng-class="{'locked-file': document.locked}">
     <div id="paper">
         <div id="paper-header">
-            <img ng-src="assets/img/logo.png">
+            <img ng-src="print/logo.png">
         </div>
 
         <div id="paper-info">
