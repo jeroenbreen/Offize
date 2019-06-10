@@ -14,7 +14,8 @@ define([
         this.title = company.title;
         this.companyNameNice = company.companyNameNice;
         this.invoiceText = company.invoiceText;
-        this.color = company.color;
+        this.color1 = company.color1;
+        this.color2 = company.color2;
         this.injectStyle();
     }
 
@@ -23,7 +24,7 @@ define([
     _p.injectStyle = function() {
         var style, rule;
         style = document.createElement('style');
-        rule = '.office-color { background: ' + this.color + '!important; }';
+        rule = '.office-color { background: ' + this.color1 + '!important; color: ' + this.color2 + '; }';
         style.type = 'text/css';
         style.innerHTML = rule;
         document.getElementsByTagName('head')[0].appendChild(style);

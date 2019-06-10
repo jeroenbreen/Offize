@@ -9,9 +9,6 @@
            href="#/{{menu}}">
             {{menu}}
         </a>
-        <a href="" ng-click="office.report.open = true">
-            rapportage
-        </a>
     </div>
 </div>
 
