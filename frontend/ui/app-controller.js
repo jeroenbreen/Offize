@@ -6,7 +6,7 @@ define([], function() {
 
         var cache;
 
-        $scope.menus = ['projects', 'agenda', 'contacts', 'documents'];
+        $scope.menus = ['projects', 'contacts', 'documents'];
 
         importData();
 

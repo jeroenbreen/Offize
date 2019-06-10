@@ -29,4 +29,6 @@ define([
             date: dateTool.toBackendString(this.date)
         }
     };
+
+    return Todo;
 });

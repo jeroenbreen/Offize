@@ -6,9 +6,6 @@ define([
     './modules/projects/projects-controller',
     'require/text!./modules/projects/projects.tpl',
 
-    './modules/blocks/blocks-controller',
-    'require/text!./modules/blocks/blocks.tpl',
-
     './modules/contacts/contacts-controller',
     'require/text!./modules/contacts/contacts.tpl',
 
@@ -23,9 +20,6 @@ define([
     './modules/projects/detail/detail',
     './modules/projects/shared/member-filter/member-filter',
     './modules/projects/shared/contact-filter/contact-filter',
-    './modules/blocks/day/day',
-    './modules/blocks/block-detail/block-detail',
-    './modules/report/report',
 
     'ngStorage',
     'ngResource',
@@ -38,9 +32,6 @@ define([
 
     ProjectsController,
     projectsTemplate,
-
-    BlocksController,
-    blocksTemplate,
 
     ContactsController,
     contactsTemplate,
@@ -56,9 +47,6 @@ define([
     detailModule,
     memberFilterModule,
     contactFilterModule,
-    dayModule,
-    blockDetailModule,
-    reportModule,
 
     ngStorage,
     ngResource,
@@ -75,10 +63,7 @@ define([
         contactDetailModule.name,
         detailModule.name,
         memberFilterModule.name,
-        contactFilterModule.name,
-        dayModule.name,
-        blockDetailModule.name,
-        reportModule.name
+        contactFilterModule.name
     ])
     .config(['$routeProvider', function ($routeProvider) {
 
@@ -94,9 +79,6 @@ define([
         }).when('/graphics', {
             template: graphicsTemplate,
             controller: 'GraphicsController'
-        }).when('/agenda', {
-            template: blocksTemplate,
-            controller: 'BlocksController'
         }).otherwise({
             redirectTo : '/'
         });
@@ -109,7 +91,6 @@ define([
     .controller('ContactsController', ContactsController)
     .controller('DocumentsController', DocumentsController)
     .controller('GraphicsController', GraphicsController)
-    .controller('BlocksController', BlocksController)
 
     .factory('dataFactory', ['$resource', '$http', function($resource, $http) {
         var remove = function(obj) {

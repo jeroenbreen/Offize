@@ -62,14 +62,11 @@ define([
         this.importer(data.members, Member, this.members);
         this.importer(data.todos, Todo, this.todos);
         this.importCompany(data.company);
-        this.importJobs(data.jobs);
         this.importer(data.comments, Comment, this.store.comments);
         this.importer(data.lines, Line, this.lines);
         this.importer(data.contacts, Contact, this.contacts);
         this.importer(data.documents, Document, this.documents);
         this.importer(data.projects, Project, this.projects);
-        this.importer(data.blocks, Block, this.blocks); // blocks after projects
-        this.importActivities(data.activities); // activities after jobs
         this.setConfiguration(data.configuration);
         // after connecting all lines with the documents
         // and all documents and comments with projects
@@ -83,27 +80,6 @@ define([
 
     _p.importCompany = function (company) {
         this.company = new Company(company);
-    };
-
-    _p.importJobs = function(jobs) {
-        for (var i = 0, l = jobs.length; i < l; i++) {
-            var job = new Job(jobs[i]),
-                jobCategory = this.getJobCategoryById(jobs[i].jobCategoryId);
-            if (jobCategory) {
-                jobCategory.jobs.push(job);
-                job.jobCategory = jobCategory
-            }
-        }
-    };
-
-    _p.importActivities = function(activities) {
-        for (var i = 0, l = activities.length; i < l; i++) {
-            var activity = new Activity(activities[i]),
-                block = this.getBlockById(Number(activities[i].blockId));
-            if (block) {
-                block.activities.push(activity);
-            }
-        }
     };
 
     _p.importer = function (set, Model, destination) {
