@@ -7,11 +7,7 @@ define([
    './Member',
    './Contact',
    './lines/Line',
-   './time-registration/Job-Category',
-   './time-registration/Job',
-   './time-registration/Block',
-   './time-registration/Activity',
-   './time-registration/Todo'
+   './Todo'
 ], function(
     Parent,
     Project,
@@ -21,10 +17,6 @@ define([
     Member,
     Contact,
     Line,
-    JobCategory,
-    Job,
-    Block,
-    Activity,
     Todo
 ){
     "use strict";
@@ -70,7 +62,6 @@ define([
         this.importer(data.members, Member, this.members);
         this.importer(data.todos, Todo, this.todos);
         this.importCompany(data.company);
-        this.importer(data.jobCategories, JobCategory, this.jobCategories);
         this.importJobs(data.jobs);
         this.importer(data.comments, Comment, this.store.comments);
         this.importer(data.lines, Line, this.lines);

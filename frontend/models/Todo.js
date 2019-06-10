@@ -1,11 +1,12 @@
 define([
-    './../_BaseModel',
+    './_BaseModel',
     'ui/ui-tools/date-tool'
 ], function(
     Parent,
     dateTool
-){
+) {
     "use strict";
+
     function Todo(todo) {
         this.id = todo && todo.id ? Number(todo.id) : null;
         this.type = 'todo';
@@ -18,7 +19,7 @@ define([
 
     var _p = Todo.prototype = Object.create(Parent.prototype);
 
-    _p.toBackend = function() {
+    _p.toBackend = function () {
         return {
             id: this.id,
             type: this.type,
@@ -28,6 +29,4 @@ define([
             date: dateTool.toBackendString(this.date)
         }
     };
-
-    return Todo;
 });

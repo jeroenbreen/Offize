@@ -67,34 +67,6 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["lines"][] = $record;
 }
 
-// jobCategories
-$query = "SELECT * FROM jobCategories";
-$result = $mysqli -> query($query);
-while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
-    $bootstrap["jobCategories"][] = $record;
-}
-
-// jobs
-$query = "SELECT * FROM jobs";
-$result = $mysqli -> query($query);
-while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
-    $bootstrap["jobs"][] = $record;
-}
-
-// blocks
-$query = "SELECT * FROM blocks ORDER BY time";
-$result = $mysqli -> query($query);
-while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
-    $bootstrap["blocks"][] = $record;
-}
-
-// clocks
-$query = "SELECT * FROM activities";
-$result = $mysqli -> query($query);
-while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
-    $bootstrap["activities"][] = $record;
-}
-
 // todos
 $query = "SELECT * FROM todos";
 $result = $mysqli -> query($query);
