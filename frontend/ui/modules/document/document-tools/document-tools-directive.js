@@ -1,13 +1,14 @@
 define([
-    'require/text!./document.tpl'
-], function(
+    'require/text!./document-tools.tpl'
+], function (
     template
 ) {
     "use strict";
-    function documentDirective() {
+
+    function documentToolsDirective() {
         return {
             restrict: 'E',
-            controller: 'DocumentController',
+            controller: 'DocumentToolsController',
             replace: false,
             template: template,
             scope: {
@@ -16,6 +17,6 @@ define([
             }
         };
     }
-    documentDirective.$inject = [];
-    return documentDirective;
+
+    return documentToolsDirective;
 });

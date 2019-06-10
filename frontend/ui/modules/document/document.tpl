@@ -121,33 +121,9 @@
         </div>
     </div>
 
-    <div id="paper-buttons">
-        <button ng-click="printFile()" class="glyph grey fa fa-print" title="Print file"></button>
-        <button ng-class="{'locked': document.locked}" ng-click="lockFile()" class="glyph grey fa fa-lock" title="Lock file"></button>
-        <button ng-if="!document.locked" ng-click="removeDocument()" class="glyph grey red fa fa-trash" title="Delete file"></button>
-
-        <div id="paper-buttons-extra">
-            <div ng-if="document.doctype === 'invoice'">
-                <span>Betaald</span><input class="" type="checkbox" value="1" ng-model="document.paid" ng-change="updateDocument()">
-                <!--<span>PDF Engelstalig</span><input type="checkbox" value="1" ng-model="document.english">-->
-                <!--<div ng-if="document.english">-->
-                    <!--<span>Zonder BTW</span><input type="checkbox" value="1" ng-model="document.vat">-->
-                <!--</div>-->
-            </div>
-            <div ng-if="!document.locked">
-                <span>
-                    Verberg total
-                </span>
-                <input type="checkbox" ng-model="document.hideTotal" ng-change="updateDocument()">
-            </div>
-            <div>
-                <span>
-                    BTW
-                </span>
-                <input type="text" ng-model="document.vat" ng-change="updateDocument()">
-            </div>
-        </div>
-    </div>
+    <document-tools
+        project="project"
+        document="document"></document-tools>
 
     <div class="window-close" ng-click="closeDocument()">
         <img src="assets/img/close-white.svg">

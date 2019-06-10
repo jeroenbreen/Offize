@@ -3,6 +3,7 @@ define([
     './document-controller',
     './document-directive',
     './lines/line/line',
+    './document-tools/document-tools',
     'jquery',
     'jqueryUi',
     'sortable'
@@ -11,6 +12,7 @@ define([
     Controller,
     directive,
     lineModule,
+    documentTools,
     jquery,
     jqueryUi,
     sortable
@@ -18,9 +20,9 @@ define([
     "use strict";
     return angular.module('ofc.document', [
         lineModule.name,
+        documentTools.name,
         'ui.sortable'
     ])
         .controller('DocumentController', Controller)
-        .directive('ofcDocument', directive)
-        ;
+        .directive('ofcDocument', directive);
 });

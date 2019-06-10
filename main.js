@@ -16,6 +16,8 @@ require([
     var model = new OfficeModel();
     window.app = model;
 
+    angularApp.constant('office', model);
+
     window.office = new Office(model, angularApp);
     domReady(function() {
         angular.bootstrap(document, [angularApp.name]);

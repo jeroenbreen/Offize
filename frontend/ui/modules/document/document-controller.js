@@ -10,8 +10,9 @@ define([
     $
 ) {
     'use strict';
-    function DocumentController($scope, $localStorage, $document, $http, dataFactory) {
+    function DocumentController($scope, $localStorage, $document, dataFactory, office) {
         this.$scope = $scope;
+        $scope.office = office;
 
         $scope.months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
 
@@ -72,65 +73,11 @@ define([
             delete $localStorage.office.currentDocument;
         };
 
-        $scope.removeDocument = function() {
-            var name, message, successCallback, confirmCallback;
-
-            name = $scope.document.getPrefix() + ' ' + $scope.document.toSlug();
-            message = 'Wil je ' + name + ' echt verwijderen?';
-            successCallback = function(data, status) {
-                var successMessage = name + ' verwijderd';
-                modal.show(successMessage, false);
-                removeFromOffice();
-                removeFromProject();
-                $scope.closeDocument();
-            };
-
-            function removeFromOffice() {
-                var index = $scope.office.documents.indexOf($scope.document);
-                $scope.office.documents.splice(index, 1);
-            }
-
-            function removeFromProject() {
-                var index = $scope.project[$scope.document.doctype + 's'].indexOf($scope.document);
-                $scope.project[$scope.document.doctype + 's'].splice(index, 1);
-            }
-
-            confirmCallback = function() {
-                $scope.$apply();
-                dataFactory.delete($.param($scope.document.toBackend())).success(successCallback);
-            };
-
-
-            modal.confirm(message, function(result){
-                if (result) {
-                    confirmCallback();
-                }
-            });
-        };
-
-        $scope.printFile = function() {
-            var url,
-                printData = $scope.document.toPrint();
-            console.log(printData);
-            if ($scope.document.english) {
-                //url = 'frontend/to-pdf/print_en.php';
-            } else {
-                url = 'print/print-adapter.php';
-            }
-
-            $http.post(url, {
-                'data' : printData
-            }).success(function(data, status, headers, config) {
-                window.open(window.config.printLocation + data);
-            }).error(function(data, status, headers, config) { });
-        };
 
 
 
-        $scope.lockFile = function () {
-            $scope.document.locked = !$scope.document.locked;
-            $scope.updateDocument();
-        };
+
+
 
         // document functions
 
@@ -178,7 +125,7 @@ define([
         });
     }
 
-    DocumentController.$inject = ['$scope', '$localStorage', '$document', '$http', 'dataFactory'];
+    DocumentController.$inject = ['$scope', '$localStorage', '$document', 'dataFactory', 'office'];
 
     return DocumentController;
 }); 
