@@ -80,10 +80,16 @@ define([
             var filtered = [],
                 sorted;
             $scope.totals = [0,0,0,0,0,0];
+
+            function isRelevant(project) {
+                return project.projectStatus < 3 || (!$scope.showOnlyLiveProjects && project.projectStatus === 3);
+            }
+
+
             for (var i = 0, l = projects.length; i < l; i++) {
                 var project = projects[i];
                 if (
-                    ($scope.filter.year === 'Alle' || project.year === $scope.filter.year) &&
+                    ($scope.filter.year === 'Alle' || project.year === $scope.filter.year || isRelevant(project)) &&
                     ($scope.filter.search === '' || project.projectName.toLocaleLowerCase().indexOf($scope.filter.search.toLocaleLowerCase()) > -1) &&
                     (!$scope.filter.contact || $scope.filter.contact.contactId === -1 || project.contact === $scope.filter.contact) &&
                     (!$scope.filter.member || $scope.filter.member.memberId === -1 || project.member.memberId === $scope.filter.member.memberId) &&
