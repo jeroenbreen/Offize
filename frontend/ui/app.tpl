@@ -21,10 +21,9 @@
     document="office.currentDocument"></ofc-document>
 
 <div class="modal"></div>
+
 <div class="confirm">
     <span class="confirm-text"></span>
     <div class="confirmed confirm-button">JA</div>
     <div class="denied confirm-button">Nee</div>
 </div>
-
-<report ng-if="office.report.open" projects="office.projects" report="office.report" app="office"></report>

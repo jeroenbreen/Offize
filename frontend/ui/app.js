@@ -25,7 +25,6 @@ define([
     './modules/projects/shared/contact-filter/contact-filter',
     './modules/blocks/day/day',
     './modules/blocks/block-detail/block-detail',
-    './modules/report/report',
 
     'ngStorage',
     'ngResource',
@@ -58,8 +57,7 @@ define([
     contactFilterModule,
     dayModule,
     blockDetailModule,
-    reportModule,
-    
+
     ngStorage,
     ngResource,
     ngRoute,
@@ -77,8 +75,7 @@ define([
         memberFilterModule.name,
         contactFilterModule.name,
         dayModule.name,
-        blockDetailModule.name,
-        reportModule.name
+        blockDetailModule.name
     ])
     .config(['$routeProvider', function ($routeProvider) {
 
