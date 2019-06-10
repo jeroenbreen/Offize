@@ -8,7 +8,7 @@ define([
     function DocumentToolsController($scope, $http, dataFactory, office) {
         this.$scope = $scope;
 
-        $scope.printFile = function() {
+        $scope.print = function() {
             $http.post('print/print-adapter.php', {
                 'data' : $scope.document.toPrint()
             }).success(function(data, status, headers, config) {
@@ -16,12 +16,16 @@ define([
             }).error(function(data, status, headers, config) { });
         };
 
-        $scope.lockFile = function () {
+        $scope.mail = function() {
+            console.log('mail');
+        };
+
+        $scope.lock = function () {
             $scope.document.locked = !$scope.document.locked;
             $scope.update();
         };
 
-        $scope.removeDocument = function() {
+        $scope.delete = function() {
             var name, message, successCallback, confirmCallback;
 
             name = $scope.document.getPrefix() + ' ' + $scope.document.toSlug();

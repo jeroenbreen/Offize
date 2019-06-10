@@ -12,4 +12,9 @@
 
 <ofc-subtotal ofc-model="model" ofc-index="$index" ng-if="line.lineType === 'subtotal'" class="lines-cell subtotal"></ofc-subtotal>
 
-<button ng-if="!document.locked" ng-click="removeLine()" class="glyph red remove-post fa fa-trash"></button>
+<div
+    ng-show="!document.locked"
+    ng-click="removeLine()"
+    class="document-tool document-tool--small document-tool--warning">
+    <i class="fa fa-trash"></i>
+</div>

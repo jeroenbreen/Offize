@@ -9,8 +9,14 @@
         <div class="header-panel">
             <input type="text" class="big-input" placeholder="Nieuwe relatie..." ng-model="newContact.name">
 
-            <div class="glyph-container">
-                <button title="Contact toevoegen" class="glyph fa fa-plus" ng-click="addContact()"></button>
+            <div
+                ng-click="addContact()"
+                class="document-tool__container">
+                <div
+                    class="document-tool"
+                    title="Contact toevoegen">
+                    <i class="fa fa-plus"></i>
+                </div>
                 <span>Relatie toevoegen</span>
             </div>
         </div>

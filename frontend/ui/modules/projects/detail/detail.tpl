@@ -2,8 +2,15 @@
     <div class="panel">
         <div class="panel-section">
             <input type="text" title="Projectnaam" ng-model="project.projectName" class="project-detail-project-name" ng-change="updateProject()"><br>
-            <div class="glyph-container" ng-if="project.projectStatus < 5">
-                <button title="kopieer slug" class="glyph fa fa-paperclip" ng-click="copySlug()"></button>
+
+            <div
+                ng-click="copySlug()"
+                class="document-tool__container">
+                <div
+                    class="document-tool"
+                    title="kopieer slug">
+                    <i class="fa fa-paperclip"></i>
+                </div>
                 <span>Kopieer slug: {{project.toSlug()}}</span>
             </div>
         </div>
@@ -45,19 +52,40 @@
         </div>
 
         <div id="project-detail-actions" class="panel-section">
-            <div class="glyph-container" ng-if="project.projectStatus < 5">
-                <button title="archiveer opdracht" class="glyph fa fa-paper-plane" ng-click="archiveProject()"></button>
+            <div
+                ng-show="project.projectStatus < 5"
+                ng-click="archiveProject()"
+                class="document-tool__container">
+                <div
+                    class="document-tool"
+                    title="archiveer opdracht">
+                    <i class="fas fa-archive"></i>
+                </div>
                 <span>Archiveren</span>
             </div>
 
-            <div class="glyph-container" ng-if="project.projectStatus === 5">
-                <button title="breng opdracht terug" class="glyph fa fa-reply" ng-click="deArchiveProject()"></button>
+
+            <div
+                ng-show="project.projectStatus === 5"
+                ng-click="deArchiveProject()"
+                class="document-tool__container">
+                <div
+                    class="document-tool"
+                    title="Breng opdracht terug">
+                    <i class="fas fa-reply"></i>
+                </div>
                 <span>Breng terug</span>
             </div>
 
-            <div class="glyph-container">
-                <button title="verwijder opdracht" class="glyph red fa fa-trash" ng-click="removeProject()"></button>
-                <span>Verwijderen</span>
+            <div
+                ng-click="removeProject()"
+                class="document-tool__container">
+                <div
+                    class="document-tool document-tool--warning"
+                    title="Verwijder opdracht">
+                    <i class="fas fa-trash"></i>
+                </div>
+                <span>Breng terug</span>
             </div>
         </div>
     </div>
@@ -78,8 +106,13 @@
                 {{quotation.toSlug()}}
             </div>
         </div>
-        <div class="glyph-container">
-            <button title="Offerte toevoegen" class="glyph fa fa-plus" ng-click="addDocument('quotation')"></button>
+
+        <div class="document-tool__container">
+            <div
+                ng-click="addDocument('quotation')"
+                class="document-tool">
+                <i class="fa fa-plus"></i>
+            </div>
             <span>Offerte toevoegen</span>
         </div>
     </div>
@@ -98,8 +131,12 @@
                 {{invoice.toSlug()}}
             </div>
         </div>
-        <div class="glyph-container">
-            <button title="Factuur toevoegen" class="glyph fa fa-plus" ng-click="addDocument('invoice')"></button>
+        <div class="document-tool__container">
+            <div
+                ng-click="addDocument('invoice')"
+                class="document-tool">
+                <i class="fa fa-plus"></i>
+            </div>
             <span>Factuur toevoegen</span>
         </div>
     </div>

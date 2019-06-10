@@ -24,7 +24,8 @@ define([
     'ngStorage',
     'ngResource',
     'ngRoute',
-    'sortable'
+    'sortable',
+    './../../assets/fonts/fontawesome-5.2.0/js/all.min'
 ], function(
     angular,
     Controller,
@@ -51,7 +52,8 @@ define([
     ngStorage,
     ngResource,
     ngRoute,
-    sortable
+    sortable,
+    fontawesome
 ) {
     "use strict";
     return angular.module('OfficeModel', [

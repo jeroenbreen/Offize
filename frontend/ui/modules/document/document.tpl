@@ -72,11 +72,38 @@
             </ul>
 
             <div id="lines-new" ng-if="!document.locked">
-                <button title="rekenmodel toevoegen" class="glyph grey fa fa-ellipsis-h" ng-click="addLine('count')"></button>
-                <button title="vast bedrag toevoegen" class="glyph grey fa fa-eur" ng-click="addLine('amount')"></button>
-                <button title="subtotal" class="glyph grey fa fa-calculator" ng-click="addLine('subtotal')"></button>
-                <button title="beschrijving toevoegen" class="glyph grey fa fa-align-left" ng-click="addLine('text')"></button>
-                <button title="enter toevoegen" class="glyph grey fa fa-paragraph" ng-click="addLine('enter')"></button>
+
+
+                <div
+                    ng-click="addLine('count')"
+                    class="document-tool"
+                    title="rekenmodel toevoegen">
+                    <i class="fa fa-ellipsis-h"></i>
+                </div>
+                <div
+                    ng-click="addLine('amount')"
+                    class="document-tool"
+                    title="vast bedrag toevoegen">
+                    <i class="fa fa-euro-sign"></i>
+                </div>
+                <div
+                    ng-click="addLine('subtotal')"
+                    class="document-tool"
+                    title="subtotal">
+                    <i class="fa fa-calculator"></i>
+                </div>
+                <div
+                    ng-click="addLine('text')"
+                    class="document-tool"
+                    title="beschrijving toevoegen">
+                    <i class="fa fa-align-left"></i>
+                </div>
+                <div
+                    ng-click="addLine('enter')"
+                    class="document-tool"
+                    title="enter toevoegen">
+                    <i class="fa fa-paragraph"></i>
+                </div>
             </div>
 
             <div id="lines-total" ng-if="!document.hideTotal">

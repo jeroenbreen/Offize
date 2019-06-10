@@ -1,20 +1,29 @@
 <div class="document-tools__main">
-    <button
-        ng-click="printFile()"
-        class="glyph grey fa fa-print"
-        title="Print file"></button>
+    <div
+        ng-click="print()"
+        class="document-tool">
+        <i class="fa fa-print"></i>
+    </div>
 
-    <button
-        ng-click="lockFile()"
-        ng-class="{'locked': document.locked}"
-        class="glyph grey fa fa-lock"
-        title="Lock file"></button>
+    <div
+        ng-click="mail()"
+        class="document-tool">
+        <i class="fa fa-paper-plane"></i>
+    </div>
 
-    <button
-        ng-if="!document.locked"
-        ng-click="removeDocument()"
-        class="glyph grey red fa fa-trash"
-        title="Delete file"></button>
+    <div
+        ng-click="lock()"
+        ng-class="{'document-tool--active': document.locked }"
+        class="document-tool">
+        <i class="fa fa-lock"></i>
+    </div>
+
+    <div
+        ng-show="!document.locked"
+        ng-click="delete()"
+        class="document-tool document-tool--warning">
+        <i class="fa fa-trash"></i>
+    </div>
 </div>
 
 

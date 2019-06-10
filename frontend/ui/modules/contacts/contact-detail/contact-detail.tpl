@@ -6,8 +6,15 @@
                 Naam
             </div>
         </div>
-        <div class="glyph-container">
-            <button title="kopieer slug" class="glyph fa fa-paperclip" ng-click="copySlug()"></button>
+
+        <div
+            ng-click="copySlug()"
+            class="document-tool__container">
+            <div
+                class="document-tool"
+                title="kopieer slug">
+                <i class="fa fa-paperclip"></i>
+            </div>
             <span>Kopier slug: {{model.toSlug()}}</span>
         </div>
     </div>
@@ -73,8 +80,14 @@
     </div>
 
     <div class="panel-section">
-        <div class="glyph-container">
-            <button title="Verwijder relatie" class="glyph red fa fa-trash" ng-click="removeContact()"></button>
+        <div
+            ng-click="removeContact()"
+            class="document-tool__container">
+            <div
+                class="document-tool document-tool--warning"
+                title="Verwijder relatie">
+                <i class="fa fa-trash"></i>
+            </div>
             <span>Verwijder relatie</span>
         </div>
     </div>

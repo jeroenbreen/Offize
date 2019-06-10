@@ -23,15 +23,23 @@
                 <input type="text" placeholder="Nieuw project..." ng-model="newProject.projectName">
             </div>
             <div class="ofc-cell ofc-cell-7">
-                <select
-                    ng-model="newProject.member"
-                    ng-options="member as member.initials for (index, member) in model.members"
-                    title="selecteer teamlid" ></select>
-                <select
-                    ng-options="contact as contact.toSlug(20) for contact in model.contacts"
-                    ng-model="newProject.contact"
-                    title="selecteer opdrachtgever" ></select>
-                <button title="opdracht toevoegen" class="glyph fa fa-plus" ng-click="addProject()"></button>
+                <div class="flex-wrapper">
+                    <select
+                        ng-model="newProject.member"
+                        ng-options="member as member.initials for (index, member) in model.members"
+                        title="selecteer teamlid" ></select>
+                    <select
+                        ng-options="contact as contact.toSlug(20) for contact in model.contacts"
+                        ng-model="newProject.contact"
+                        title="selecteer opdrachtgever" ></select>
+
+                    <div
+                        ng-click="addProject()"
+                        class="document-tool"
+                        title="opdracht toevoegen">
+                        <i class="fa fa-plus"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -63,13 +71,26 @@
                 </span>
             </div>
             <div class="ofc-cell ofc-cell-4">
-                <button title="opdrachtstatus terug" class="glyph status-down fa fa-arrow-up" ng-click="prevStatus(project)" ng-if="project.projectStatus > 0"></button>
-                <div class="spacer" ng-if="project.projectStatus == 0">
-                    &nbsp;
-                </div>
-                <button title="opdrachtstatus vooruit" class="glyph status-up fa fa-arrow-down" ng-click="nextStatus(project)" ng-if="project.projectStatus < 5"></button>
-                <div class="spacer" ng-if="project.projectStatus == 5">
-                    &nbsp;
+                <div class="flex-wrapper">
+                    <div
+                        ng-show="project.projectStatus > 0"
+                        ng-click="prevStatus(project)"
+                        class="document-tool document-tool--small"
+                        title="opdrachtstatus terug">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+
+                    <div class="spacer" ng-if="project.projectStatus == 0"></div>
+
+                    <div
+                        ng-show="project.projectStatus < 5"
+                        ng-click="nextStatus(project)"
+                        class="document-tool document-tool--small"
+                        title="opdrachtstatus vooruit">
+                        <i class="fa fa-arrow-down"></i>
+                    </div>
+
+                    <div class="spacer" ng-if="project.projectStatus == 5"></div>
                 </div>
             </div>
         </div>
