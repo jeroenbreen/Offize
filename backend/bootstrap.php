@@ -11,10 +11,6 @@ $bootstrap = [
     "comments"      => [],
     "documents"     => [],
     "lines"         => [],
-    "jobCategories" => [],
-    "jobs"          => [],
-    "blocks"        => [],
-    "activities"    => [],
     "todos"         => []
 ];
 

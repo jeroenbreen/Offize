@@ -68,7 +68,6 @@
             <ul ui-sortable="sortableOptions" ng-model="document.lines">
                 <li class="lines-row animation-item-2" ng-repeat="line in document.lines" ng-click="selectLine(line)" ng-class="{'current-line' : line === currentLine}">
                     <line line="line" ofc-document="document"></line>
-                    <job-selector line="line" job-categories="office.jobCategories" ng-if="line === currentLine"></job-selector>
                 </li>
             </ul>
 
