@@ -57,6 +57,10 @@ define([
         return this.doctype === 'invoice' ? 'Factuur' : 'Offerte';
     };
 
+    _p.getPDFname = function() {
+        return this.getPrefix() + '-' + this.toSlug() + '.pdf';
+    };
+
 
 
     // object stuff

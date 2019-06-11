@@ -17,7 +17,7 @@ define([
         };
 
         $scope.mail = function() {
-            console.log('mail');
+            office.status.mailPopup.active = true;
         };
 
         $scope.lock = function () {

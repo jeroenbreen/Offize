@@ -57,7 +57,7 @@ define([
 
         this.status = {
             mailPopup: {
-                active: true,
+                active: false,
                 documentId: null
             }
         }

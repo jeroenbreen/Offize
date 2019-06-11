@@ -17,6 +17,7 @@ define([
 
     './modules/contacts/contact-detail/contact-detail',
     './modules/document/document',
+    './modules/popups/mail-popup/mail-popup',
     './modules/projects/detail/detail',
     './modules/projects/shared/member-filter/member-filter',
     './modules/projects/shared/contact-filter/contact-filter',
@@ -45,6 +46,7 @@ define([
 
     contactDetailModule,
     documentModule,
+    mailPopupModule,
     detailModule,
     memberFilterModule,
     contactFilterModule,
@@ -62,6 +64,7 @@ define([
         'ngStorage',
         'ui.sortable',
         documentModule.name,
+        mailPopupModule.name,
         contactDetailModule.name,
         detailModule.name,
         memberFilterModule.name,
