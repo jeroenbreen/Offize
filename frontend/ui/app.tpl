@@ -20,6 +20,9 @@
     project="office.currentProject"
     document="office.currentDocument"></ofc-document>
 
+<mail-popup
+    ng-if="office.status.mailPopup.active"></mail-popup>
+
 <div class="modal"></div>
 
 <div class="confirm">

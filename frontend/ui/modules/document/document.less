@@ -1,178 +1,132 @@
+@import './document-info/document-info';
 @import './lines/subtotal/subtotal';
 @import './document-tools/document-tools';
 @import './lines/line/line';
 
-ofc-document {
-    display: block;
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    overflow: auto;
+#paper {
+    float: left;
+    display: inline-block;
+    width: 622px;
+    min-height: 880px;
+    background: #fff;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    border: 1px solid #888;
+    padding: 80px 60px;
+    margin-right: 10px;
+    margin-bottom: 100px;
+    position: relative;
 
-    #paper-container {
-        display: block;
-        padding: 30px;
-        width: 900px;
-        margin: 0 auto;
+    input {
+        background: #f5f5f5;
+    }
 
-        #paper {
+    #paper-header {
+        width: 50%;
+        float: left;
+
+        img {
+            height: 100px;
+        }
+    }
+
+    #paper-contact {
+        clear: both;
+        width: 100%;
+        padding: 10px;
+        height: 120px;
+        border-top: 1px solid #000;
+
+        input {
+            width: 100%;
+        }
+
+        .paper-contact-left {
+            width: ~'calc(50% - 20px)';
             float: left;
-            display: inline-block;
-            width: 622px;
-            min-height: 880px;
-            background: #fff;
-            box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
-            border: 1px solid #888;
-            padding: 80px 60px;
             margin-right: 10px;
-            margin-bottom: 100px;
-            position: relative;
+        }
 
-            input {
-                border: 0;
-                background: #f5f5f5;
-                padding: 4px;
-                margin-bottom: 1px;
-            }
+        .paper-contact-right {
+            width: ~'calc(50% - 20px)';
+            float: right;
+            margin-left: 10px;
+        }
+    }
 
-            .input-bold {
-                font-weight: 700;
-            }
+    #paper-title {
+        margin-top: 20px;
+        width: 100%;
+        clear: both;
+        margin-right: 8px;
+        padding: 10px 0;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
 
-            #paper-header {
-                width: 50%;
-                float: left;
+        input {
+            width: ~'calc(100% - 40px)';
+        }
+    }
 
-                img {
-                    height: 100px;
+    #paper-lines {
+        padding: 10px;
+        width: 100%;
+
+        ul {
+            padding: 0;
+            margin-left: -14px;
+            list-style: none;
+
+            li {
+                position: relative;
+                border-left: 2px solid transparent;
+
+                &.current-line {
+                    border-left: 2px solid #000;
                 }
             }
+        }
+    }
 
-            #paper-info {
-                width: 50%;
-                float: left;
-                text-align: right;
-                padding-top: 8px;
+    #lines-new {
+        clear: both;
+        padding-top: 20px;
+        display: flex;
+    }
 
-                input {
-                    font-family: "Roboto condensed";
-                    font-size: 14px;
-                    text-align: right;
-                }
+    #lines-total {
+        width: 100%;
+        margin-top: 20px;
+        padding-top: 10px;
 
-                .paper-year {
-                    width: 38px;
-                }
+        span.left {
+            float: left;
+            width: 50%;
+        }
 
-                .paper-nr {
-                    width: 30px;
-                }
-            }
+        span.right {
+            float: right;
+            width: 50%;
+            text-align: right;
+        }
 
-            #paper-contact {
-                clear: both;
-                width: 100%;
-                padding: 10px;
-                height: 120px;
-                border-top: 1px solid #000;
+        .lines-total-big {
+            font-size: 150%;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+    }
 
-                input {
-                    width: 100%;
-                }
+    #paper-footer {
+        position: absolute;
+        left: 50px;
+        bottom: 30px;
+        width: ~'calc(100% - 100px)';
+        text-align: center;
+        border-top: 1px solid #000;
+        padding-top: 20px;
 
-                .paper-contact-left {
-                    width: ~'calc(50% - 20px)';
-                    float: left;
-                    margin-right: 10px;
-                }
-
-                .paper-contact-right {
-                    width: ~'calc(50% - 20px)';
-                    float: right;
-                    margin-left: 10px;
-                }
-            }
-
-            #paper-title {
-                margin-top: 20px;
-                width: 100%;
-                clear: both;
-                margin-right: 8px;
-                padding: 10px 0;
-                border-top: 1px solid #000;
-                border-bottom: 1px solid #000;
-
-                input {
-                    width: ~'calc(100% - 40px)';
-                }
-            }
-
-            #paper-lines {
-                padding: 10px;
-                width: 100%;
-
-                ul {
-                    padding: 0;
-                    margin-left: -14px;
-                    list-style: none;
-
-                    li {
-                        position: relative;
-                        border-left: 2px solid transparent;
-
-                        &.current-line {
-                            border-left: 2px solid #000;
-                        }
-                    }
-                }
-            }
-
-            #lines-new {
-                clear: both;
-                padding-top: 20px;
-                display: flex;
-            }
-
-            #lines-total {
-                width: 100%;
-                margin-top: 20px;
-                padding-top: 10px;
-
-                span.left {
-                    float: left;
-                    width: 50%;
-                }
-
-                span.right {
-                    float: right;
-                    width: 50%;
-                    text-align: right;
-                }
-
-                .lines-total-big {
-                    font-size: 150%;
-                    font-weight: 700;
-                    margin-top: 5px;
-                }
-            }
-
-            #paper-footer {
-                position: absolute;
-                left: 50px;
-                bottom: 30px;
-                width: ~'calc(100% - 100px)';
-                text-align: center;
-                border-top: 1px solid #000;
-                padding-top: 20px;
-
-                img {
-                    width: 100px;
-                }
-            }
+        img {
+            width: 100px;
         }
     }
 }

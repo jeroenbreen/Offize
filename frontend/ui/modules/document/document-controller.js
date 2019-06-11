@@ -14,9 +14,6 @@ define([
         this.$scope = $scope;
         $scope.office = office;
 
-        $scope.months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
-
-
         $scope.updateDocument = function() {
             function update() {
                 var handleSuccess = function(response, status) {

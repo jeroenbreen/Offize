@@ -54,6 +54,13 @@ define([
         //this.memberFilter = [];
         this.thisYear = new Date().getFullYear();
         this.projectStatusses = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Archief'];
+
+        this.status = {
+            mailPopup: {
+                active: true,
+                documentId: null
+            }
+        }
       }
 
     var _p = App.prototype = Object.create(Parent.prototype);
