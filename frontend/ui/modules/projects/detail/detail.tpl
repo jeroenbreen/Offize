@@ -31,8 +31,8 @@
 
         <div id="project-detail-hour-information" class="panel-section">
             <input class="input-small" title="Projecturen" ng-model="project.hours" ng-change="updateProject()"> ×
-            <input class="input-small" title="Munt" ng-model="project.currency" ng-change="updateProject()">
-            <input class="input-small" title="Uurtarief" ng-model="project.rate" ng-change="updateProject()"> -
+            <input class="input-small" title="Uurtarief" ng-model="project.rate" ng-change="updateProject()">
+            <input class="input-small" title="Munt" ng-model="project.currency" ng-change="updateProject()">  -
             <input class="input-small" title="Korting / Correctie" ng-model="project.discount" ng-change="updateProject()">
         </div>
 

@@ -14,15 +14,9 @@ define([
     show = function(message, error) {
         var modal = $('.modal');
         if (error) {
-            modal.css({
-                background: 'red',
-                color: '#fff'
-            });
+            modal.addClass('error')
         } else {
-            modal.css({
-                background: '#eee',
-                color: '#333'
-            });
+            modal.removeClass('error')
         }
         _divShow(modal, modal, message);
         clearTimeout(_timer);
@@ -33,11 +27,11 @@ define([
 
     _divShow = function(div, devTxt, message) {
         devTxt.html(message);
-        div.css('top', 0);
+        div.addClass('active')
     };
 
     _divHide = function(div) {
-        div.css('top', '-38px')
+        div.removeClass('active')
     };
 
     confirm = function(message, callback) {

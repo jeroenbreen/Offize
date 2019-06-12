@@ -31,7 +31,7 @@
 
 <input
     ng-model="newComment.comment"
-    class="big-input"
+    class="input--full"
     type="text"
     placeholder="Notitie">
 
