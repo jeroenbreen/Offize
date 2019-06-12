@@ -20,11 +20,12 @@ define([], function () {
         $scope.send = function() {
             $http.post('print/print-adapter.php', {
                 'data' : $scope.document.toPrint()
-            }).success(function(data, status, headers, config) {
+            }).success(function(file, status, headers, config) {
 
                 $http.post('mail/document.php', {
                     'data' : {
-                        document: window.config.printLocation + data,
+                        attachment: window.config.printLocation + file,
+                        attachmentName: $scope.document.getPDFname(),
                         sender: $scope.mail.sender,
                         receiver: $scope.mail.receiver,
                         subject: $scope.mail.subject,
@@ -33,8 +34,7 @@ define([], function () {
                     }
                 }).success(function(data, status, headers, config) {
                     console.log(data);
-                    console.log('gelukt');
-                    $scope.close();
+                    //$scope.close();
                 }).error(function(data, status, headers, config) {
                     console.log(data);
                 });

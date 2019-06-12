@@ -1,3 +1,3 @@
 window.config = {
-    printLocation: './print/'
+    printLocation: 'print/'
 };
