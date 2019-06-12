@@ -1,5 +1,5 @@
 <div class="document-info__document-id">
-    {{document.getPrefix()}}
+    {{document.getPrefix()}}&nbsp;
 
     <div ng-if="!document.locked">
         <input
@@ -14,7 +14,7 @@
     </div>
 
     <div ng-if="document.locked">
-        {{document.year}} - {{document.nr}}
+        {{document.toSlug()}}
     </div>
 </div>
 

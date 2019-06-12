@@ -1,21 +1,21 @@
 define([
-    'require/text!./count.tpl'
-], function(
+    'require/text!./document-addresses.tpl'
+], function (
     template
 ) {
     "use strict";
-    function countDirective() {
+
+    function documentAddressesDirective() {
         return {
             restrict: 'E',
-            controller: 'CountController',
+            controller: 'DocumentAddressesController',
             replace: false,
             template: template,
             scope: {
-                line: '=line',
                 document: '=document'
             }
         };
     }
-    countDirective.$inject = [];
-    return countDirective;
+
+    return documentAddressesDirective;
 });

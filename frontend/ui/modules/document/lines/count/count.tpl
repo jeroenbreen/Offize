@@ -1,16 +1,16 @@
 <div class="lines-row-c1">
-    <input ng-if="!model.parent.locked" placeholder="Post" ng-model="model.text">
-    <span ng-if="model.parent.locked">{{model.text}}</span>
+    <input ng-if="!document.locked" placeholder="Post" ng-model="line.text">
+    <span ng-if="document.locked">{{line.text}}</span>
 </div>
 <div class="lines-row-c2">
-    <input ng-if="!model.parent.locked" ng-model="model.hours">
-    <span ng-if="model.parent.locked">{{model.hours}}</span>
+    <input ng-if="!document.locked" ng-model="line.hours">
+    <span ng-if="document.locked">{{line.hours}}</span>
     ×
 </div>
 <div class="lines-row-c3">
-    <input ng-if="!model.parent.locked" ng-model="model.rate">
-    <span ng-if="model.parent.locked">{{model.rate}}</span>
+    <input ng-if="!document.locked" ng-model="line.rate">
+    <span ng-if="document.locked">{{line.rate}}</span>
 </div>
 <div class="lines-row-c4">
-    {{model.hours * model.rate}} {{model.parent.currency}}
+    {{line.hours * line.rate}} {{document.currency}}
 </div>

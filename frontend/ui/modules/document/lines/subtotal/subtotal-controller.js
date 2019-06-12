@@ -6,8 +6,8 @@ define([], function() {
         $scope.getSubTotal = function(index, multiplier) {
             var total = 0,
                 i = index - 1;
-            while (i > -1 && $scope.model.lines[i].type !== 'subtotal') {
-                var line = $scope.model.lines[i];
+            while (i > -1 && $scope.document.lines[i].type !== 'subtotal') {
+                var line = $scope.document.lines[i];
                 if (line.type === 'count') {
                     total += line.rate * line.hours;
                 } else if (line.type === 'amount') {

@@ -11,38 +11,11 @@
             <document-info
                 document="document"></document-info>
 
-            <div id="paper-contact">
-                <div class="paper-contact-left" ng-if="!document.locked">
-                    <b>{{document.contact.name}}</b><br>
-                    <input ng-model="document.contactName" ng-change="updateDocument()">
-                    {{document.contact.street}}<br>
-                    {{document.contact.zipcode}} {{document.contact.city}}
-                </div>
-                <div class="paper-contact-left" ng-if="document.locked">
-                    <b>{{document.contact.name}}</b><br>
-                    {{document.contactName}}<br>
-                    {{document.contact.street}}<br>
-                    {{document.contact.zipcode}} {{document.contact.city}}
-                </div>
-                <div class="paper-contact-right" ng-if="!document.locked">
-                    <b>{{office.company.name}}</b><br>
-                    <select
-                            ng-options="member as member.name for member in office.members"
-                            ng-model="document.member"
-                            ng-change="updateDocument()"></select><br>
-                    {{office.company.address}}<br>
-                    {{office.company.zipcode}} {{office.company.city}}
-                </div>
-                <div class="paper-contact-right" ng-if="document.locked">
-                    <b>{{office.company.name}}</b><br>
-                    {{document.member.name}}<br>
-                    {{office.company.address}}<br>
-                    {{office.company.zipcode}} {{office.company.city}}
-                </div>
-            </div>
+            <document-addresses
+                document="document"></document-addresses>
 
             <div id="paper-title">
-                <b>Betreft:</b>
+                <b>Betreft:</b>&nbsp;
                 <input ng-if="!document.locked" ng-model="document.title" ng-change="updateDocument()">
                 <div ng-if="document.locked">
                     {{document.title}}
@@ -56,40 +29,9 @@
                     </li>
                 </ul>
 
-                <div id="lines-new" ng-if="!document.locked">
-
-
-                    <div
-                            ng-click="addLine('count')"
-                            class="document-tool"
-                            title="rekenmodel toevoegen">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </div>
-                    <div
-                            ng-click="addLine('amount')"
-                            class="document-tool"
-                            title="vast bedrag toevoegen">
-                        <i class="fa fa-euro-sign"></i>
-                    </div>
-                    <div
-                            ng-click="addLine('subtotal')"
-                            class="document-tool"
-                            title="subtotal">
-                        <i class="fa fa-calculator"></i>
-                    </div>
-                    <div
-                            ng-click="addLine('text')"
-                            class="document-tool"
-                            title="beschrijving toevoegen">
-                        <i class="fa fa-align-left"></i>
-                    </div>
-                    <div
-                            ng-click="addLine('enter')"
-                            class="document-tool"
-                            title="enter toevoegen">
-                        <i class="fa fa-paragraph"></i>
-                    </div>
-                </div>
+                <line-tools
+                    ng-if="!document.locked"
+                    document="document"></line-tools>
 
                 <div id="lines-total" ng-if="!document.hideTotal">
                 <span class="left">
@@ -140,7 +82,7 @@
     </div>
 
     <div
-            ng-click="closeDocument()"
-            class="popup__close">
+        ng-click="closeDocument()"
+        class="popup__close">
     </div>
 </div>

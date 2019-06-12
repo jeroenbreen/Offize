@@ -1,21 +1,21 @@
 define([
-    'require/text!./count.tpl'
-], function(
+    'require/text!./line-tools.tpl'
+], function (
     template
 ) {
     "use strict";
-    function countDirective() {
+
+    function lineToolsDirective() {
         return {
             restrict: 'E',
-            controller: 'CountController',
+            controller: 'LineToolsController',
             replace: false,
             template: template,
             scope: {
-                line: '=line',
                 document: '=document'
             }
         };
     }
-    countDirective.$inject = [];
-    return countDirective;
+
+    return lineToolsDirective;
 });

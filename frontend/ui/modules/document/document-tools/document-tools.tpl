@@ -48,7 +48,7 @@
             ng-change="update()">
     </div>
 
-    <div>
+    <div ng-if="!document.locked">
         <span>
             BTW
         </span>

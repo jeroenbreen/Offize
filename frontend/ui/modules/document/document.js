@@ -3,7 +3,9 @@ define([
     './document-controller',
     './document-directive',
     './document-info/document-info',
+    './document-addresses/document-addresses',
     './lines/line/line',
+    './lines/line-tools/line-tools',
     './document-tools/document-tools',
     'jquery',
     'jqueryUi',
@@ -13,7 +15,9 @@ define([
     Controller,
     directive,
     documentInfoModule,
+    documentAddressesModule,
     lineModule,
+    lineToolsModule,
     documentTools,
     jquery,
     jqueryUi,
@@ -22,7 +26,9 @@ define([
     "use strict";
     return angular.module('ofc.document', [
         documentInfoModule.name,
+        documentAddressesModule.name,
         lineModule.name,
+        lineToolsModule.name,
         documentTools.name,
         'ui.sortable'
     ])

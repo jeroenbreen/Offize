@@ -1,4 +1,16 @@
-input.input--full {
+input, textarea {
+    font-family: "Roboto condensed", serif;
+    font-size: 12px;
+    padding: 6px;
+    background: #eee;
+    border: 1px solid #ddd;
 
-    width: 100%;
+    &:focus {
+        outline: none;
+        border: 1px solid @active-color!important;
+    }
+
+    &.input--full {
+        width: 100%;
+    }
 }

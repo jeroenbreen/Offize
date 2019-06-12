@@ -69,6 +69,9 @@ define([
                     showOnlyLiveProjects: true
                 }
             },
+            document: {
+                currentLine: null
+            },
             mailPopup: {
                 active: false,
                 documentId: null

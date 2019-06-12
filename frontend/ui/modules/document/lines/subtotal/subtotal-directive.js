@@ -11,7 +11,8 @@ define([
             replace: false,
             template: template,
             scope: {
-                model: '=ofcModel',
+                line: '=line',
+                document: '=document',
                 index: '=ofcIndex'
             }
         };

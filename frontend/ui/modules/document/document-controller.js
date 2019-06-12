@@ -1,10 +1,8 @@
 define([
-    'models/lines/Line',
     'ui/ui-tools/modal',
     'ui/ui-tools/delay-tool',
     'jquery'
 ], function(
-    Line,
     modal,
     delayTool,
     $
@@ -29,51 +27,17 @@ define([
 
         // lines
 
-        $scope.currentLine = null;
-
         $scope.selectLine = function(line) {
-            $scope.currentLine = line;
+            office.status.document.currentLine  = line;
         };
-
-        $scope.addLine = function(lineType) {
-            var data, line, successCallback;
-            data = {
-                lineType: lineType,
-                documentId: $scope.document.id,
-                amount: 0,
-                text: '',
-                hours: '',
-                arrayOrder: $scope.document.lines.length,
-                rate: $scope.document.rate
-            };
-            line = new Line(data);
-
-
-            successCallback = function(response, status) {
-                line.id = response.id;
-                $scope.document.lines.push(line);
-                $scope.currentLine = line;
-                modal.show(response.message, false);
-            };
-
-            dataFactory.create($.param(line.toBackend())).success(successCallback);
-        };
-
-
 
 
 
         // events
-
         $scope.closeDocument = function() {
             $scope.office.currentDocument = null;
             delete $localStorage.office.currentDocument;
         };
-
-
-
-
-
 
 
         // document functions
