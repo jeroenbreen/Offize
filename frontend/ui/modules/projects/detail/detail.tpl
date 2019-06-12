@@ -61,7 +61,7 @@
                     title="archiveer opdracht">
                     <i class="fas fa-archive"></i>
                 </div>
-                <span>Archiveren</span>
+                <span>Project archiveren</span>
             </div>
 
 
@@ -85,7 +85,7 @@
                     title="Verwijder opdracht">
                     <i class="fas fa-trash"></i>
                 </div>
-                <span>Breng terug</span>
+                <span>Project verwijderen</span>
             </div>
         </div>
     </div>

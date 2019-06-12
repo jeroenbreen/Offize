@@ -1,5 +1,8 @@
 @import "detail/detail";
 @import "cells";
+@import "project-sums/project-sums";
+@import "projects-filter/projects-filter";
+@import "project/project";
 
 
 #projects {
@@ -9,21 +12,16 @@
     top: 10px;
     height: ~'calc(100% - 20px)';
 
-    #project-filter {
 
-        .ofc-cell-4 {
-            padding-top: 8px;
-        }
-    }
 
     #project-add {
 
     }
 
-    #project-filter,
+    projects-filter,
     #project-add {
 
-        .ofc-cell {
+        .project-cell {
             background: #ddd;
 
             input[type=text] {
@@ -40,20 +38,20 @@
             }
         }
 
-        .ofc-cell-3 {
+        .project-cell--right {
             text-align :left;
             padding-right: 0;
         }
 
-        .ofc-cell-4 {
+        .project-cell--tools {
             border: 0;
         }
 
-        .ofc-cell-6 {
+        .project-cell-6 {
             width: 142px;
         }
 
-        .ofc-cell-7 {
+        .project-cell-7 {
             width: 291px;
 
             button {
@@ -62,7 +60,7 @@
             }
         }
 
-        .ofc-cell-8 {
+        .project-cell-8 {
             width: 147px;
 
             select {
@@ -70,7 +68,7 @@
             }
         }
 
-        .ofc-cell-5, .ofc-cell-1 {
+        .project-cell-5, .project-cell--left {
             padding: 8px;
         }
     }
@@ -80,39 +78,17 @@
         overflow: auto;
         width: 100%;
 
-        .ofc-row {
+        .project-row {
             cursor: pointer;
 
             &.current-project {
 
-                .ofc-cell-1 {
+                .project-cell--left {
                     border-left: 4px solid #000;
                 }
             }
         }
     }
-
-    #project-sums {
-        margin-top: 10px;
-
-        .ofc-row {
-            height: 20px;
-
-            .ofc-cell {
-                padding: 4px;
-            }
-
-            .ofc-cell-3 {
-                text-align: left;
-            }
-        }
-
-
-    }
-
-
-
-
 }
 
 #project-properties {

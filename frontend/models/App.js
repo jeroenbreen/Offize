@@ -20,6 +20,9 @@ define([
     Todo
 ){
     "use strict";
+
+    var thisYear = new Date().getFullYear();
+
     function App() {
         this.jobCategories = [];
         this.blocks = [];
@@ -52,10 +55,19 @@ define([
 
         this.years = ['Alle'];
         //this.memberFilter = [];
-        this.thisYear = new Date().getFullYear();
+        this.thisYear = thisYear
         this.projectStatusses = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Archief'];
 
         this.status = {
+            projects: {
+                filter: {
+                    search : '',
+                    member: null,
+                    contact: null,
+                    year : thisYear,
+                    showOnlyLiveProjects: true
+                }
+            },
             mailPopup: {
                 active: false,
                 documentId: null
@@ -115,6 +127,63 @@ define([
 
 
     // getters
+
+    _p.getProjects = function() {
+        var filtered, sorted, self;
+        filtered = [];
+        self = this;
+
+
+        function isRelevant(project) {
+            return project.projectStatus < 3 || (!self.status.projects.filter.showOnlyLiveProjects && project.projectStatus === 3);
+        }
+
+        function compare(a,b) {
+            if (a.projectStatus < b.projectStatus) {
+                return -1;
+            } else if (a.projectStatus > b.projectStatus) {
+                return 1;
+            } else {
+                if (a.projectStatus === 2 && (a.finished || b.finished)) {
+                    if (a.finished && !b.finished) {
+                        return 1;
+                    } else if (!a.finished && b.finished) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
+                } else {
+
+                    if (a.week > b.week) {
+                        return 1;
+                    } else if (a.week < b.week) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+
+        for (var i = 0, l = this.projects.length; i < l; i++) {
+            var project = this.projects[i];
+            if (
+                (this.status.projects.filter.year === 'Alle' || project.year === this.status.projects.filter.year || isRelevant(project)) &&
+                (this.status.projects.filter.search === '' || project.projectName.toLocaleLowerCase().indexOf(this.status.projects.filter.search.toLocaleLowerCase()) > -1) &&
+                (!this.status.projects.filter.contact || this.status.projects.filter.contact.contactId === -1 || project.contact === this.status.projects.filter.contact) &&
+                (!this.status.projects.filter.member || this.status.projects.filter.member.memberId === -1 || project.member.memberId === this.status.projects.filter.member.memberId) &&
+                (!this.status.projects.filter.showOnlyLiveProjects || project.projectStatus < 3)
+            ) {
+                filtered.push(project);
+            }
+        }
+        sorted = filtered.sort(compare);
+        if (sorted.length === 1) {
+            this.currentProject = sorted[0];
+        }
+        return sorted;
+    };
 
     _p.getBlockById = function(id) {
         for (var i = 0, l = this.blocks.length; i < l; i++) {

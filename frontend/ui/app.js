@@ -3,6 +3,7 @@ define([
     './app-controller',
     './app-directive',
 
+    './modules/projects/projects',
     './modules/projects/projects-controller',
     'require/text!./modules/projects/projects.tpl',
 
@@ -19,8 +20,6 @@ define([
     './modules/document/document',
     './modules/popups/mail-popup/mail-popup',
     './modules/projects/detail/detail',
-    './modules/projects/shared/member-filter/member-filter',
-    './modules/projects/shared/contact-filter/contact-filter',
 
     'ngStorage',
     'ngResource',
@@ -32,6 +31,7 @@ define([
     Controller,
     directive,
 
+    projectsModule,
     ProjectsController,
     projectsTemplate,
 
@@ -48,8 +48,6 @@ define([
     documentModule,
     mailPopupModule,
     detailModule,
-    memberFilterModule,
-    contactFilterModule,
 
     ngStorage,
     ngResource,
@@ -63,12 +61,11 @@ define([
         'ngRoute',
         'ngStorage',
         'ui.sortable',
+        projectsModule.name,
         documentModule.name,
         mailPopupModule.name,
         contactDetailModule.name,
-        detailModule.name,
-        memberFilterModule.name,
-        contactFilterModule.name
+        detailModule.name
     ])
     .config(['$routeProvider', function ($routeProvider) {
 
