@@ -1,8 +1,8 @@
 @import "detail/detail";
-@import "cells";
 @import "project-sums/project-sums";
 @import "projects-filter/projects-filter";
 @import "project/project";
+@import "add-project/add-project";
 
 
 #projects {
@@ -12,82 +12,37 @@
     top: 10px;
     height: ~'calc(100% - 20px)';
 
-
-
-    #project-add {
-
-    }
-
-    projects-filter,
-    #project-add {
-
-        .project-cell {
-            background: #ddd;
-
-            input[type=text] {
-                width: 100%;
-                background: transparent;
-                border: 0;
-                padding: 4px;
-                transition: all 0.5s ease;
-                outline: none;
-            }
-
-            input:focus {
-                background: #fff;
-            }
-        }
-
-        .project-cell--right {
-            text-align :left;
-            padding-right: 0;
-        }
-
-        .project-cell--tools {
-            border: 0;
-        }
-
-        .project-cell-6 {
-            width: 142px;
-        }
-
-        .project-cell-7 {
-            width: 291px;
-
-            button {
-                float: right;
-                margin: -5px 4px 0 0;
-            }
-        }
-
-        .project-cell-8 {
-            width: 147px;
-
-            select {
-                float: right;
-            }
-        }
-
-        .project-cell-5, .project-cell--left {
-            padding: 8px;
-        }
-    }
-
-    #projects-loop {
-        height: ~'calc(100% - 240px)';
-        overflow: auto;
-        width: 100%;
+    .projects__tools {
+        height: 80px;
+        margin-bottom: 10px;
 
         .project-row {
-            cursor: pointer;
+            background: #ddd;
 
-            &.current-project {
+            .project-cell {
+                padding: 6px;
 
-                .project-cell--left {
-                    border-left: 4px solid #000;
+                input[type=text] {
+                    width: 100%;
+                    height: 100%;
+                    background: #fff;
+                }
+
+                select {
+                    margin-right: 5px;
                 }
             }
         }
+    }
+
+    .projects__loop {
+        height: ~'calc(100% - 240px)';
+        overflow: auto;
+        width: 100%;
+    }
+
+    project-sums {
+        height: 160px;
     }
 }
 

@@ -12,7 +12,9 @@
     </div>
 </div>
 
-<div ng-view class="content"></div>
+<div
+    ng-if="office.status.loaded"
+    ng-view class="content"></div>
 
 <ofc-document
     ng-if="office.currentDocument"

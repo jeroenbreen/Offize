@@ -9,14 +9,14 @@ define([
         this.$scope = $scope;
         $scope.commonTools = commonTools;
 
-        $scope.prevStatus = function(project) {
-            project.projectStatus = project.projectStatus - 1;
-            update(project);
+        $scope.prevStatus = function() {
+            $scope.project.projectStatus = $scope.project.projectStatus - 1;
+            $scope.$emit('update-project', $scope.project);
         };
 
-        $scope.nextStatus = function(project) {
-            project.projectStatus = project.projectStatus + 1;
-            update(project);
+        $scope.nextStatus = function() {
+            $scope.project.projectStatus = $scope.project.projectStatus + 1;
+            $scope.$emit('update-project', $scope.project);
         };
 
     }

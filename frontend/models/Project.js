@@ -12,15 +12,15 @@ define([
         this.contact = project ? app.getContactById(Number(project.contactId)) : null;
         this.member = project ? app.getMemberById(Number(project.memberId)) : null;
 
-        this.projectId = project ? Number(project.projectId) : null;
-        this.projectName = project ? project.projectName : '';
-        this.projectStatus = project ? Number(project.projectStatus) : 0;
-        this.currency = project ? project.currency : 'EUR';
-        this.discount = project ? Number(project.discount) : 0;
-        this.rate = project ? Number(project.rate) : app.company.standardRate;
-        this.hours = project ? Number(project.hours) : 0;
-        this.year = project ? Number(project.year) : new Date().getFullYear();
-        this.finished = project && project.finished ? project.finished === '1' : false;
+        this.projectId = project && project.projectId ? Number(project.projectId) : null;
+        this.projectName = project && project.projectName ? project.projectName : '';
+        this.projectStatus = project && project.projectStatus ? Number(project.projectStatus) : 0;
+        this.currency = project && project.currency ? project.currency : 'EUR';
+        this.discount = project && project.discount ? Number(project.discount) : 0;
+        this.rate = project && project.rate ? Number(project.rate) : app.company.standardRate;
+        this.hours = project && project.hours ? Number(project.hours) : 0;
+        this.year = project && project.year ? Number(project.year) : new Date().getFullYear();
+        this.finished = project && project.finished && project.finished ? project.finished === '1' : false;
 
         this.blocks = [];
         this.quotations = [];

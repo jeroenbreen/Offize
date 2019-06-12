@@ -1,23 +1,23 @@
 .project-row {
     display: flex;
-    height: 34px;
+    height: 40px;
     margin-bottom: 4px;
 
     .project-cell {
         height: 100%;
-        padding: 10px 6px;
+        padding: 10px;
         display: flex;
         align-items: center;
 
         &.project-cell--left {
-            width: 146px;
+            width: ~'calc(100% - 290px)';
             border-right: 1px solid #fff;
             white-space: nowrap;
             overflow: hidden;
         }
 
         &.project-cell--middle {
-            width: 144px;
+            width: 150px;
             border-right: 1px solid #fff;
 
             .worked-hours {
@@ -33,17 +33,17 @@
         }
 
         &.project-cell--right {
-            width: 79px;
+            width: 80px;
             text-align: right;
         }
 
 
 
         &.project-cell--tools {
-            width: 68px;
-            background: #fff;
+            width: 60px;
             border-left: 0;
-            justify-content: center;
+            justify-content: flex-end;
+            padding-right: 0;
         }
 
         &.project-cell-5 {

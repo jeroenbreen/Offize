@@ -21,7 +21,7 @@
 <div class="project-cell project-cell--tools">
     <div
         ng-show="project.projectStatus > 0"
-        ng-click="prevStatus(project)"
+        ng-click="prevStatus()"
         class="document-tool document-tool--small"
         title="opdrachtstatus terug">
         <i class="fa fa-arrow-up"></i>
@@ -33,7 +33,7 @@
 
     <div
         ng-show="project.projectStatus < 5"
-        ng-click="nextStatus(project)"
+        ng-click="nextStatus()"
         class="document-tool document-tool--small"
         title="opdrachtstatus vooruit">
         <i class="fa fa-arrow-down"></i>

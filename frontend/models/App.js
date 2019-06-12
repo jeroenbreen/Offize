@@ -55,10 +55,11 @@ define([
 
         this.years = ['Alle'];
         //this.memberFilter = [];
-        this.thisYear = thisYear
+        this.thisYear = thisYear;
         this.projectStatusses = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Archief'];
 
         this.status = {
+            loaded: false,
             projects: {
                 filter: {
                     search : '',
@@ -95,6 +96,7 @@ define([
         this.currentContact = this.contacts[this.contacts.length - 1];
         this.currentProject = this.projects[this.projects.length - 1];
         this.currentMember = this.members[0];
+        this.status.loaded = true;
     };
 
     _p.importCompany = function (company) {

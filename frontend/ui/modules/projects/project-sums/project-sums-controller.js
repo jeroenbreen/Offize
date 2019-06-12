@@ -10,15 +10,33 @@ define([
         $scope.office = office;
         $scope.commonTools = commonTools;
 
-        $scope.sumOfTotals = function() {
-            // var sum = 0;
-            // for (var i = 0, l = totals.length; i < l; i++) {
-            //     sum += totals[i];
-            // }
-            // return sum;
-            return 0;
+        $scope.getTotalForStatus = function(status) {
+            var projects, total;
+            total = 0;
+            projects = office.getProjects().filter(function(project) {
+                if (status === null) {
+                    return true;
+                } else {
+                    return project.projectStatus === status;
+                }
+            });
+            for (var i = 0, l = projects.length; i < l; i++) {
+                var project = projects[i];
+                total += project.getBudget();
+            }
+            return total;
         };
 
+        $scope.getStatusses = function() {
+            if (office.status.projects.filter.showOnlyLiveProjects) {
+                return office.projectStatusses.filter(function(status, index){
+                    return index < 3;
+                })
+            } else {
+                return office.projectStatusses;
+            }
+
+        }
     }
 
     ProjectSumsController.$inject = ['$scope', 'office'];
