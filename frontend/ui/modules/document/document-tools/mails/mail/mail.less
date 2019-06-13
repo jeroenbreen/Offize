@@ -1,0 +1,23 @@
+mail {
+    margin-bottom: 4px;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    display: flex;
+
+    .mail__date {
+        width: 80px;
+    }
+
+    .mail__type {
+        width: 60px;
+        font-weight: 700;
+    }
+
+    .mail__subject {
+        width: ~'calc(100% - 140px)';
+    }
+}

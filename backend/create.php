@@ -13,6 +13,7 @@ else if ($type == "line") { $query = insertLines(); }
 else if ($type == "block") { $query = insertBlocks(); }
 else if ($type == "activity") { $query = insertActivity(); }
 else if ($type == "todo") { $query = insertTodos(); }
+else if ($type == "mail") { $query = insertMails(); }
 
 
 function insertProject() {
@@ -61,8 +62,9 @@ function insertDocument() {
     $month = $_POST['month'];
     $day = $_POST['day'];
     $rate = $_POST['rate'];
+    $mails = $_POST['mails'];
     $query = "INSERT INTO documents
-    (contactId, contactName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, memberId, title, vat, year, month, day, rate)
+    (contactId, contactName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, memberId, title, vat, year, month, day, rate, mails)
     VALUES (
     '". $contactId ."'  ,
     '". $contactName ."'  ,
@@ -80,7 +82,8 @@ function insertDocument() {
     '". $year ."'  ,
     '". $month ."'  ,
     '". $day ."'  ,
-    '". $rate ."'
+    '". $rate ."',
+    '". $mails ."'
     )";
     return $query;
 }
@@ -230,6 +233,30 @@ function insertTodos() {
     '". $title ."' ,
     '". $done ."' ,
     '". $date ."'
+    )";
+    return $query;
+}
+
+function insertMails() {
+    $id = $_POST['id'];
+    $subject = $_POST['subject'];
+    $content = $_POST['content'];
+    $member_id = $_POST['member_id'];
+    $sender = $_POST['sender'];
+    $receiver = $_POST['receiver'];
+    $date = $_POST['date'];
+    $mailType = $_POST['mailType'];
+    $query = "INSERT INTO mails
+    (id, subject, content, member_id, sender, receiver, date, mailType)
+    VALUES (
+    '". $id ."' ,
+    '". $subject ."' ,
+    '". $content ."' ,
+    '". $member_id ."' ,
+    '". $sender ."' ,
+    '". $receiver ."' ,
+    '". $date ."' ,
+    '". $mailType ."'
     )";
     return $query;
 }

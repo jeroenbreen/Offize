@@ -13,6 +13,7 @@ else if ($type == "line") { $query = updateLine(); }
 else if ($type == "block") { $query = updateBlock(); }
 else if ($type == "activity") { $query = updateActivity(); }
 else if ($type == "todo") { $query = updateTodo(); }
+else if ($type == "mail") { $query = updateMail(); }
 
 function updateProject() {
     $projectId = $_POST['projectId'];
@@ -62,6 +63,7 @@ function updateDocument() {
     $month = $_POST['month'];
     $day = $_POST['day'];
     $rate = $_POST['rate'];
+    $mails = $_POST['mails'];
     $query = "UPDATE documents SET
     contactId = '" . $contactId . "',
     contactName = '" . $contactName . "',
@@ -79,7 +81,8 @@ function updateDocument() {
     year = '" . $year . "',
     month = '" . $month . "',
     day = '" . $day . "',
-    rate = '" . $rate . "'
+    rate = '" . $rate . "',
+    mails = '" . $mails . "'
     WHERE
     id = '" . $id. "'";
     return $query;
@@ -184,6 +187,29 @@ function updateTodo() {
     memberId = '" . $memberId . "' ,
     title = '" . $title . "' ,
     done = '" . $done . "'
+    WHERE
+    id = '" . $id. "'";
+    return $query;
+}
+
+function updateMail() {
+    $id = $_POST['id'];
+    $subject = $_POST['subject'];
+    $content = $_POST['content'];
+    $member_id = $_POST['$member_id'];
+    $sender = $_POST['sender'];
+    $receiver = $_POST['receiver'];
+    $date = $_POST['date'];
+    $mailType = $_POST['mailType'];
+    $query = "UPDATE mails SET
+    id = '" . $id . "' ,
+    subject = '" . $subject . "' ,
+    content = '" . $content . "' ,
+    member_id = '" . $member_id . "' ,
+    sender = '" . $sender . "' ,
+    receiver = '" . $receiver . "' ,
+    date = '" . $date . "' ,
+    mailType = '" . $mailType . "'
     WHERE
     id = '" . $id. "'";
     return $query;

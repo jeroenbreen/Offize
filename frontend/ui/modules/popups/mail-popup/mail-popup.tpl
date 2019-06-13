@@ -11,7 +11,11 @@
                         <div class="mail__row-content">
                             <input
                                 ng-model="mail.sender"
+                                ng-if="isUnsent()"
                                 type="text">
+                            <div ng-if="!isUnsent()">
+                                {{mail.sender}}
+                            </div>
                         </div>
                     </div>
                     <div class="mail__info-row">
@@ -21,7 +25,11 @@
                         <div class="mail__row-content">
                             <input
                                 ng-model="mail.receiver"
+                                ng-if="isUnsent()"
                                 type="text">
+                            <div ng-if="!isUnsent()">
+                                {{mail.receiver}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -34,16 +42,23 @@
                         <div class="mail__row-content">
                             <input
                                 ng-model="mail.subject"
+                                ng-if="isUnsent()"
                                 type="text">
+                            <div ng-if="!isUnsent()">
+                                {{mail.subject}}
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="mail__content">
                     <textarea
+                        ng-if="isUnsent()"
                         ng-model="mail.content"></textarea>
 
-                    <div class="member__mail-footer" ng-bind-html="mailFooter()"></div>
+                    <div ng-if="!isUnsent()" ng-bind-html="trustAsHtml(formatContent(mail.content))"></div>
+
+                    <div class="member__mail-footer" ng-bind-html="trustAsHtml(document.member.mailFooter)"></div>
                 </div>
 
                 <div class="mail__attachements">
@@ -61,6 +76,7 @@
 
             <div class="popup__footer" >
                 <div
+                    ng-if="isUnsent()"
                     ng-click="send()"
                     class="mail__button">
                     Verzenden

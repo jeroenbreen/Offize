@@ -1,14 +1,18 @@
 define([
     'angular',
     './document-tools-controller',
-    './document-tools-directive'
+    './document-tools-directive',
+    './mails/mails'
 ], function (
     angular,
     Controller,
-    directive
+    directive,
+    mailsModule
 ) {
     "use strict";
-    return angular.module('documentTools', [])
+    return angular.module('documentTools', [
+        mailsModule.name
+    ])
         .controller('DocumentToolsController', Controller)
         .directive('documentTools', directive)
 });

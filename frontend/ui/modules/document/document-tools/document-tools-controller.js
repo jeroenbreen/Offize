@@ -1,7 +1,11 @@
 define([
-    'ui/ui-tools/modal'
+    'models/Mail',
+    'ui/ui-tools/modal',
+    'ui/ui-tools/date-tool'
 ], function (
-    modal
+    Mail,
+    modal,
+    dateTool
 ) {
     "use strict";
 
@@ -17,7 +21,19 @@ define([
         };
 
         $scope.mail = function() {
+            var mail = {
+                id: null,
+                subject: $scope.document.getPrefix() + ' voor de werkzaamheden m.b.t. ' + $scope.document.title,
+                content: 'Beste ' + $scope.document.contactName + ',\n\nBijgeleverd de ' + $scope.document.getPrefix().toLowerCase() + ' voor de werkzaamheden  m.b.t. ' + $scope.document.title + '.\n\n',
+                member_id: $scope.document.member.memberId,
+                sender: $scope.document.member.email,
+                receiver: $scope.document.contact.email,
+                date: dateTool.toBackendString(new Date()),
+                mailType: 'invoice'
+            };
+
             office.status.mailPopup.active = true;
+            office.status.mailPopup.mail = new Mail(mail);
         };
 
         $scope.lock = function () {

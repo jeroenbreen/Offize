@@ -1,11 +1,9 @@
 define([
     './_BaseModel',
-    'ui/ui-tools/common-tools',
-    'jquery'
+    'ui/ui-tools/common-tools'
 ], function(
     Parent,
-    commonTools,
-    $
+    commonTools
 ){
     "use strict";
     function Document(document) {
@@ -13,8 +11,7 @@ define([
         this.id = document ? Number(document.id) : null;
         this.projectId = Number(document.projectId);
         this.doctype = document.doctype;
-        this.member = app.getMemberById(Number(document.memberId));
-
+        this.member = app.getItemByKeyValue('members', 'memberId', Number(document.memberId));
         this.title = document.title;
         this.nr = Number(document.nr);
         this.contactName = document.contactName;
@@ -30,6 +27,7 @@ define([
         this.english = Boolean(parseInt(document.english));
         this.hideTotal = Boolean(parseInt(document.hideTotal));
         this.rate = Number(document.rate);
+        this.mails = document.mails ? JSON.parse(document.mails) : [];
 
         this.lines = [];
         // skip this for new created documents
@@ -114,6 +112,9 @@ define([
                         break;
                     case 'contact':
                         document.contactId = this.contact.contactId;
+                        break;
+                    case 'mails':
+                        document.mails = JSON.stringify(this.mails);
                         break;
                     default:
                         document[key] = this[key];

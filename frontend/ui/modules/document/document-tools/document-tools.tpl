@@ -58,3 +58,7 @@
             ng-change="update()">
     </div>
 </div>
+
+<mails
+    ng-if="document.mails.length > 0"
+    document="document"></mails>

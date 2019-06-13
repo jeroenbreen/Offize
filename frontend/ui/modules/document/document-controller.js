@@ -12,16 +12,22 @@ define([
         this.$scope = $scope;
         $scope.office = office;
 
+        function handleSuccess(response, status) {
+            modal.show(response, false);
+        }
+
         $scope.updateDocument = function() {
             function update() {
-                var handleSuccess = function(response, status) {
-                    modal.show(response, false);
-                };
+
                 dataFactory.update($.param($scope.document.toBackend())).success(handleSuccess);
             }
 
             delayTool.delay(update);
         };
+
+        $scope.$on('update-document', function(event, document){
+            dataFactory.update($.param(document.toBackend())).success(handleSuccess);
+        });
 
 
 

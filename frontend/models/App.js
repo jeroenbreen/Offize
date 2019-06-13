@@ -7,7 +7,8 @@ define([
    './Member',
    './Contact',
    './lines/Line',
-   './Todo'
+   './Todo',
+   './Mail'
 ], function(
     Parent,
     Project,
@@ -17,7 +18,8 @@ define([
     Member,
     Contact,
     Line,
-    Todo
+    Todo,
+    Mail
 ){
     "use strict";
 
@@ -32,6 +34,7 @@ define([
         this.members = [];
         this.lines = [];
         this.documents = [];
+        this.mails = [];
         this.company = null;
         this.configuration = null;
 
@@ -74,7 +77,8 @@ define([
             },
             mailPopup: {
                 active: false,
-                documentId: null
+                document: null,
+                mail: null
             }
         }
       }
@@ -82,6 +86,7 @@ define([
     var _p = App.prototype = Object.create(Parent.prototype);
 
     _p.bootstrap = function(data) {
+        this.importer(data.mails, Mail, this.mails);
         this.importer(data.members, Member, this.members);
         this.importer(data.todos, Todo, this.todos);
         this.importCompany(data.company);
@@ -132,6 +137,26 @@ define([
 
 
     // getters
+
+    _p.getItemByKeyValue = function(set, key, value) {
+        for (var i = 0, l = this[set].length; i < l; i++) {
+            var item = this[set][i];
+            if (item[key] === value) {
+                return item;
+            }
+        }
+        return null;
+    };
+
+    _p.getItemById = function(key, id) {
+        for (var i = 0, l = this[key].length; i < l; i++) {
+            var item = this[key][i];
+            if (item.id === id) {
+                return item;
+            }
+        }
+        return null;
+    };
 
     _p.getProjects = function() {
         var filtered, sorted, self;

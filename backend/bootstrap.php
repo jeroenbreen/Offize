@@ -11,7 +11,8 @@ $bootstrap = [
     "comments"      => [],
     "documents"     => [],
     "lines"         => [],
-    "todos"         => []
+    "todos"         => [],
+    "mails"         => []
 ];
 
 // companies
@@ -68,6 +69,13 @@ $query = "SELECT * FROM todos";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["todos"][] = $record;
+}
+
+// mails
+$query = "SELECT * FROM mails";
+$result = $mysqli -> query($query);
+while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
+    $bootstrap["mails"][] = $record;
 }
 
 $mysqli -> close();

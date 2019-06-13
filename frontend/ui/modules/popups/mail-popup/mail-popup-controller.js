@@ -1,21 +1,34 @@
-define([], function () {
+define([
+    'ui/ui-tools/modal',
+    'jquery'
+], function (
+    modal,
+    $
+) {
     "use strict";
 
-    function MailPopupController($scope, office, $sce, $http) {
+    function MailPopupController($scope, $rootScope, office, $sce, $http, dataFactory) {
         this.$scope = $scope;
 
         $scope.document = office.currentDocument;
 
-        $scope.mailFooter = function() {
-            return $sce.trustAsHtml($scope.document.member.mailFooter);
+        $scope.mail = office.status.mailPopup.mail;
+
+        $scope.trustAsHtml = function(content) {
+            return $sce.trustAsHtml(content);
         };
 
-        $scope.mail = {
-            sender: $scope.document.member.email,
-            receiver: $scope.document.contact.email,
-            subject: $scope.document.getPrefix() + ' voor de werkzaamheden m.b.t. ' + $scope.document.title,
-            content: 'Beste ' + $scope.document.contactName + ',\n\nBijgeleverd de ' + $scope.document.getPrefix().toLowerCase() + ' voor de werkzaamheden  m.b.t. ' + $scope.document.title + '.\n\n'
+        $scope.isUnsent = function() {
+            // (we have to use Number(id) in Mail because of bad backend
+            // that makes 0 out of a null
+            return $scope.mail.id === null || $scope.mail.id === 0;
         };
+
+        $scope.formatContent = function(content) {
+            return content.replace(/\n/g, "<br />");
+
+        };
+
 
         $scope.send = function() {
             $http.post('print/print-adapter.php', {
@@ -33,8 +46,7 @@ define([], function () {
                         footer: $scope.document.member.mailFooter
                     }
                 }).success(function(data, status, headers, config) {
-                    console.log(data);
-                    //$scope.close();
+                    addMail();
                 }).error(function(data, status, headers, config) {
                     console.log(data);
                 });
@@ -43,12 +55,29 @@ define([], function () {
             }).error(function(data, status, headers, config) { });
         };
 
+        function addMail() {
+            var successCallback = function(response, status) {
+                $scope.mail.id = response.id;
+                office.mails.push($scope.mail);
+                $scope.document.mails.push(response.id);
+                updateDocument();
+                modal.show(response.message, false);
+                $scope.close();
+            };
+
+            dataFactory.create($.param($scope.mail.toBackend())).success(successCallback);
+        }
+
+        function updateDocument() {
+            $rootScope.$broadcast('update-document', $scope.document);
+        }
+
         $scope.close = function() {
             office.status.mailPopup.active = false;
         }
     }
 
-    MailPopupController.$inject = ['$scope', 'office', '$sce', '$http'];
+    MailPopupController.$inject = ['$scope', '$rootScope', 'office', '$sce', '$http', 'dataFactory'];
 
     return MailPopupController;
 }); 
