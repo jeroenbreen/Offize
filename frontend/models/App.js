@@ -86,8 +86,8 @@ define([
     var _p = App.prototype = Object.create(Parent.prototype);
 
     _p.bootstrap = function(data) {
-        this.importer(data.mails, Mail, this.mails);
         this.importer(data.members, Member, this.members);
+        this.importer(data.mails, Mail, this.mails);
         this.importer(data.todos, Todo, this.todos);
         this.importCompany(data.company);
         this.importer(data.comments, Comment, this.store.comments);

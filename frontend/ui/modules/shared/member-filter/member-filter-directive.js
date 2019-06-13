@@ -10,7 +10,6 @@ define([
             replace: false,
             template: template,
             scope: {
-                model: '=model',
                 current: '=current'
             }
         };

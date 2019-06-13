@@ -19,14 +19,14 @@ define([
 
         $scope.$watch('model.members.length', function(newVal, oldVal){
             if (newVal > 0) {
-                $scope.members = $scope.model.members.slice();
+                $scope.members = $scope.office.members.slice();
                 $scope.members.unshift(filterMemberAllOption);
                 $scope.current = $scope.members[0];
             }
         })
     }
 
-    MemberFilterController.$inject = ['$scope'];
+    MemberFilterController.$inject = ['$scope', 'office'];
 
     return MemberFilterController;
 }); 

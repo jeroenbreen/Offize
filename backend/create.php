@@ -242,18 +242,16 @@ function insertMails() {
     $subject = $_POST['subject'];
     $content = $_POST['content'];
     $member_id = $_POST['member_id'];
-    $sender = $_POST['sender'];
     $receiver = $_POST['receiver'];
     $date = $_POST['date'];
     $mailType = $_POST['mailType'];
     $query = "INSERT INTO mails
-    (id, subject, content, member_id, sender, receiver, date, mailType)
+    (id, subject, content, member_id, receiver, date, mailType)
     VALUES (
     '". $id ."' ,
     '". $subject ."' ,
     '". $content ."' ,
     '". $member_id ."' ,
-    '". $sender ."' ,
     '". $receiver ."' ,
     '". $date ."' ,
     '". $mailType ."'

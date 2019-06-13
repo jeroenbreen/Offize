@@ -11,7 +11,6 @@ define([
         this.subject = mail.subject;
         this.content = mail.content;
         this.member = app.getItemByKeyValue('members', 'memberId', Number(mail.member_id));
-        this.sender = mail.sender;
         this.receiver = mail.receiver;
         this.date = new Date(mail.date);
         this.mailType = mail.mailType;
@@ -26,7 +25,6 @@ define([
             subject: this.subject,
             content: this.content,
             member_id: this.member.id,
-            sender: this.sender,
             receiver: this.receiver,
             date: dateTool.toBackendString(this.date),
             mailType: this.mailType

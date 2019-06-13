@@ -197,7 +197,6 @@ function updateMail() {
     $subject = $_POST['subject'];
     $content = $_POST['content'];
     $member_id = $_POST['$member_id'];
-    $sender = $_POST['sender'];
     $receiver = $_POST['receiver'];
     $date = $_POST['date'];
     $mailType = $_POST['mailType'];
@@ -206,7 +205,6 @@ function updateMail() {
     subject = '" . $subject . "' ,
     content = '" . $content . "' ,
     member_id = '" . $member_id . "' ,
-    sender = '" . $sender . "' ,
     receiver = '" . $receiver . "' ,
     date = '" . $date . "' ,
     mailType = '" . $mailType . "'

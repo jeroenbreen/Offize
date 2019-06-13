@@ -1,49 +1,65 @@
-.mail__section {
-    border-bottom: 1px solid #ddd;
-    padding: 6px 0;
-
-    .mail__info-row {
-        display: flex;
-        align-items: center;
-        height: 32px;
-
-        .mail__label {
-            width: 60px;
-            color: #aaa;
-        }
-
-        .mail__row-content {
-            width: ~'calc(100% - 60px)';
-        }
-    }
-}
-
-.mail__content {
-    padding: 6px 0;
-
-    textarea {
-        width: 100%;
-        height: 100px;
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
-
-.mail__attachements {
-    padding: 20px 0;
+.mail__container {
     display: flex;
 
-    .attachement {
-        background: #eee;
-        padding: 10px;
-        display: flex;
-        align-items: center;
+    .mail {
+        background: #fff;
+        padding: 20px;
+        width: ~'calc(100% - 200px)';
 
-        .attachement__icon {
-            margin-right: 8px;
+        .mail__section {
+            border-bottom: 1px solid #ddd;
+            padding: 6px 0;
+
+            .mail__info-row {
+                display: flex;
+                align-items: center;
+                height: 32px;
+
+                .mail__label {
+                    width: 60px;
+                    color: #aaa;
+                }
+
+                .mail__row-content {
+                    width: ~'calc(100% - 60px)';
+                }
+            }
+        }
+
+        .mail__content {
+            padding: 6px 0;
+
+            textarea {
+                width: ~'calc(100% + 4px)';
+                height: 100px;
+                margin-left: -4px;
+            }
+        }
+
+        .mail__attachements {
+            padding: 20px 0;
+            display: flex;
+
+            .attachement {
+                background: #eee;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+
+                .attachement__icon {
+                    margin-right: 8px;
+                }
+            }
         }
     }
+
+    .mail__tools {
+        width: 200px;
+        padding-left: 20px;
+    }
 }
+
+
 
 .popup__footer {
     margin-top: 40px;
