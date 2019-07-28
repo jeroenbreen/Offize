@@ -19,6 +19,7 @@ define([
     './modules/contacts/contact-detail/contact-detail',
     './modules/document/document',
     './modules/popups/mail-popup/mail-popup',
+    './modules/popups/settings/settings',
     './modules/projects/detail/detail',
 
     'ngStorage',
@@ -47,6 +48,7 @@ define([
     contactDetailModule,
     documentModule,
     mailPopupModule,
+    settingsModule,
     detailModule,
 
     ngStorage,
@@ -64,6 +66,7 @@ define([
         projectsModule.name,
         documentModule.name,
         mailPopupModule.name,
+        settingsModule.name,
         contactDetailModule.name,
         detailModule.name
     ])
@@ -94,7 +97,7 @@ define([
     .controller('DocumentsController', DocumentsController)
     .controller('GraphicsController', GraphicsController)
 
-    .factory('dataFactory', ['$resource', '$http', function($resource, $http) {
+    .factory('api', ['$resource', '$http', function($resource, $http) {
         var remove = function(obj) {
             return request(obj, 'delete');
         }, 

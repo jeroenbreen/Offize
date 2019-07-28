@@ -7,13 +7,13 @@ else if ($type == "contact") { $query = updateContact(); }
 else if ($type == "team") { $query = updateTeam(); }
 else if ($type == "hours") { $query = updateHours(); }
 else if ($type == "comment") { $query = updateComment(); }
-else if ($type == "configuration") { $query = updateConfiguration(); }
 else if ($type == "document") { $query = updateDocument(); }
 else if ($type == "line") { $query = updateLine(); }
 else if ($type == "block") { $query = updateBlock(); }
 else if ($type == "activity") { $query = updateActivity(); }
 else if ($type == "todo") { $query = updateTodo(); }
 else if ($type == "mail") { $query = updateMail(); }
+else if ($type == "company") { $query = updateCompany(); }
 
 function updateProject() {
     $projectId = $_POST['projectId'];
@@ -255,34 +255,33 @@ function updateLine() {
     return $query;
 }
 
-function updateConfiguration() {
-    $addTenders = $_POST['addTenders'];
-    $addInvoices = $_POST['addInvoices'];
+function updateCompany() {
+    $id = $_POST['id'];
     $startingYear = $_POST['startingYear'];
-    $showTotals = $_POST['showTotals'];
-    $autoCalc = $_POST['autoCalc'];
     $title = $_POST['title'];
-    $welcome = $_POST['welcome'];
-    $companyName = $_POST['companyName'];
-    $companyAddress = $_POST['companyAddress'];
-    $companyZipcode = $_POST['companyZipcode'];
-    $companyCity = $_POST['companyCity'];
+    $name = $_POST['name'];
+    $companyNameNice = $_POST['companyNameNice'];
+    $address = $_POST['address'];
+    $zipcode = $_POST['zipcode'];
+    $city = $_POST['city'];
     $standardRate = $_POST['standardRate'];
-    $query = "UPDATE configuration SET 
-    addTenders = '" . $addTenders . "' , 
-    addInvoices = '" . $addInvoices . "' ,
+    $invoiceText = $_POST['invoiceText'];
+    $color1 = $_POST['color1'];
+    $color2 = $_POST['color2'];
+    $query = "UPDATE companies SET
     startingYear = '" . $startingYear . "' ,
-    showTotals = '" . $showTotals . "',
-    autoCalc = '" . $autoCalc . "',
     title = '" . $title . "' ,
-    welcome = '" . $welcome . "',
-    companyName = '" . $companyName . "',
-    companyAddress = '" . $companyAddress . "' , 
-    companyZipcode = '" . $companyZipcode . "' ,
-    companyCity = '" . $companyCity . "' ,
-    standardRate = " . $standardRate . "
-    WHERE 
-    id = 1";
+    name = '" . $name . "',
+    companyNameNice = '" . $companyNameNice . "',
+    address = '" . $address . "' ,
+    zipcode = '" . $zipcode . "' ,
+    city = '" . $city . "' ,
+    standardRate = '" . $standardRate . "' ,
+    invoiceText = '" . $invoiceText . "' ,
+    color1 = '" . $color1 . "' ,
+    color2 = '" . $color2 . "'
+    WHERE
+    id = '" . $id. "'";
     return $query;
 }
 

@@ -10,7 +10,7 @@ define([
     $
 ) {
     "use strict";
-    function DetailController($scope, $localStorage, dataFactory) {
+    function DetailController($scope, $localStorage, api) {
         this.$scope = $scope;
         $scope.commonTools = commonTools;
 
@@ -29,7 +29,7 @@ define([
                 };
             modal.confirm(message, function(result){
                 if (result) {
-                    dataFactory.delete($.param($scope.project.toBackend())).success(handleSuccess);
+                    api.delete($.param($scope.project.toBackend())).success(handleSuccess);
                 }
             });
         };
@@ -86,7 +86,7 @@ define([
                 modal.show(response.message, false);
             };
 
-            dataFactory.create($.param(document.toBackend())).success(successCallback);
+            api.create($.param(document.toBackend())).success(successCallback);
         };
 
         $scope.updateProject = function() {
@@ -99,7 +99,7 @@ define([
         }
     }
 
-    DetailController.$inject = ['$scope', '$localStorage', 'dataFactory'];
+    DetailController.$inject = ['$scope', '$localStorage', 'api'];
 
     return DetailController;
 }); 

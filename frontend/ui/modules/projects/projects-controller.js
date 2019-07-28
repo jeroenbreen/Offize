@@ -8,7 +8,7 @@ define([
     $
 ) {
     "use strict";
-    function ProjectsController($scope, $localStorage, dataFactory, office) {
+    function ProjectsController($scope, $localStorage, api, office) {
         this.$scope = $scope;
         $scope.office = office;
         $scope.office.menu = 'projects';
@@ -28,7 +28,7 @@ define([
                 handleSuccess = function(response, status) {
                     modal.show(response);
                 };
-                dataFactory.update($.param(project.toBackend())).success(handleSuccess);
+                api.update($.param(project.toBackend())).success(handleSuccess);
             }, 1000);
         }
 
@@ -39,7 +39,7 @@ define([
         };
     }
 
-    ProjectsController.$inject = ['$scope', '$localStorage', 'dataFactory', 'office'];
+    ProjectsController.$inject = ['$scope', '$localStorage', 'api', 'office'];
 
     return ProjectsController;
 }); 

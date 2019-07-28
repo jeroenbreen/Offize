@@ -9,7 +9,7 @@ define([
 ) {
     "use strict";
 
-    function DocumentToolsController($scope, $http, dataFactory, office) {
+    function DocumentToolsController($scope, $http, api, office) {
         this.$scope = $scope;
 
         $scope.print = function() {
@@ -66,7 +66,7 @@ define([
 
             confirmCallback = function() {
                 $scope.$apply();
-                dataFactory.delete($.param($scope.document.toBackend())).success(successCallback);
+                api.delete($.param($scope.document.toBackend())).success(successCallback);
             };
 
             modal.confirm(message, function(result){
@@ -82,7 +82,7 @@ define([
 
     }
 
-    DocumentToolsController.$inject = ['$scope', '$http', 'dataFactory', 'office'];
+    DocumentToolsController.$inject = ['$scope', '$http', 'api', 'office'];
 
     return DocumentToolsController;
 }); 

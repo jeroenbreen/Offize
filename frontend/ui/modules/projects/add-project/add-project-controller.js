@@ -7,7 +7,7 @@ define([
 ) {
     "use strict";
 
-    function AddProjectController($scope, office, dataFactory) {
+    function AddProjectController($scope, office, api) {
         this.$scope = $scope;
         $scope.office = office;
 
@@ -26,7 +26,7 @@ define([
                 };
 
                 project = $scope.newProject.toBackend();
-                dataFactory.create($.param(project)).success(successCallback);
+                api.create($.param(project)).success(successCallback);
             } else {
                 message = 'Vul klant en contact in...';
                 modal.show(message, true);
@@ -34,7 +34,7 @@ define([
         };
     }
 
-    AddProjectController.$inject = ['$scope', 'office', 'dataFactory'];
+    AddProjectController.$inject = ['$scope', 'office', 'api'];
 
     return AddProjectController;
 }); 

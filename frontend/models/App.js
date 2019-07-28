@@ -57,7 +57,6 @@ define([
         this.popup = '';
 
         this.years = ['Alle'];
-        //this.memberFilter = [];
         this.thisYear = thisYear;
         this.projectStatusses = ['Pijplijn', 'Offerte', 'Lopend', 'Factuur', 'Betaald', 'Archief'];
 
@@ -79,6 +78,9 @@ define([
                 active: false,
                 document: null,
                 mail: null
+            },
+            settingsPopup: {
+                active: true
             }
         }
       }

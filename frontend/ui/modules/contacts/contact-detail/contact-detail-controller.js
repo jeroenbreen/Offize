@@ -8,7 +8,7 @@ define([
     modal
 ) {
     "use strict";
-    function ContactDetailController($scope, dataFactory) {
+    function ContactDetailController($scope, api) {
         this.$scope = $scope;
         $scope.commonTools = commonTools;
 
@@ -17,7 +17,7 @@ define([
                 var handleSuccess = function(response, status) {
                     modal.show(response, false);
                 };
-                dataFactory.update($.param($scope.model.toBackend())).success(handleSuccess);
+                api.update($.param($scope.model.toBackend())).success(handleSuccess);
             }
 
             delayTool.delay(update);
@@ -37,7 +37,7 @@ define([
                 };
             modal.confirm(message, function(result){
                 if (result) {
-                    dataFactory.delete($.param($scope.model.toBackend())).success(handleSuccess);
+                    api.delete($.param($scope.model.toBackend())).success(handleSuccess);
                 }
             });
         };
@@ -47,7 +47,7 @@ define([
         };
     }
 
-    ContactDetailController.$inject = ['$scope', 'dataFactory'];
+    ContactDetailController.$inject = ['$scope', 'api'];
 
     return ContactDetailController;
 }); 

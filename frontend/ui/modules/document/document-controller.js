@@ -8,7 +8,7 @@ define([
     $
 ) {
     'use strict';
-    function DocumentController($scope, $localStorage, $document, dataFactory, office) {
+    function DocumentController($scope, $localStorage, $document, api, office) {
         this.$scope = $scope;
         $scope.office = office;
 
@@ -18,15 +18,14 @@ define([
 
         $scope.updateDocument = function() {
             function update() {
-
-                dataFactory.update($.param($scope.document.toBackend())).success(handleSuccess);
+                api.update($.param($scope.document.toBackend())).success(handleSuccess);
             }
 
             delayTool.delay(update);
         };
 
         $scope.$on('update-document', function(event, document){
-            dataFactory.update($.param(document.toBackend())).success(handleSuccess);
+            api.update($.param(document.toBackend())).success(handleSuccess);
         });
 
 
@@ -92,7 +91,7 @@ define([
         });
     }
 
-    DocumentController.$inject = ['$scope', '$localStorage', '$document', 'dataFactory', 'office'];
+    DocumentController.$inject = ['$scope', '$localStorage', '$document', 'api', 'office'];
 
     return DocumentController;
 }); 

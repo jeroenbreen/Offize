@@ -3,7 +3,7 @@
         <div class="popup">
             <div class="popup__body">
                 <div class="mail__container">
-                    <div class="mail">
+                    <div class="popup__content mail">
                         <div class="mail__addresses mail__section">
                             <div class="mail__info-row">
                                 <div class="mail__label">

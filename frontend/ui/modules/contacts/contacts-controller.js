@@ -10,7 +10,7 @@ define([
     $
 ) {
     "use strict";
-    function ContactsController($scope, dataFactory, OfficeModel) {
+    function ContactsController($scope, api, OfficeModel) {
         this.$scope = $scope;
         $scope.model = OfficeModel;
         $scope.model.menu = 'contacts';
@@ -29,7 +29,7 @@ define([
                     modal.show(message, false);
                 };
 
-                dataFactory.create($.param($scope.newContact.toBackend())).success(handleSuccess);
+                api.create($.param($scope.newContact.toBackend())).success(handleSuccess);
             } else {
                 message = 'Vul een naam in.';
                 modal.show(message, true);
@@ -75,7 +75,7 @@ define([
         })
     }
 
-    ContactsController.$inject = ['$scope', 'dataFactory', 'OfficeModel'];
+    ContactsController.$inject = ['$scope', 'api', 'OfficeModel'];
 
     return ContactsController;
 }); 

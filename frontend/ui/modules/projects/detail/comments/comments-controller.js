@@ -8,7 +8,7 @@ define([
     modal
 ) {
     "use strict";
-    function CommentsController($scope, dataFactory, $document) {
+    function CommentsController($scope, api, $document) {
         this.$scope = $scope;
 
         $scope.newComment = new Comment();
@@ -26,7 +26,7 @@ define([
                 //$scope.newComment.date = new Date().toLocaleString();
                 $scope.newComment.projectId = $scope.project.projectId;
                 $scope.newComment.contactId = $scope.project.contact.contactId;
-                dataFactory.create($.param($scope.newComment.toBackend())).success(handleSuccess);
+                api.create($.param($scope.newComment.toBackend())).success(handleSuccess);
             } else {
                 message = 'Vul wat in.';
                 modal.show(message, true);
@@ -76,7 +76,7 @@ define([
                 };
             modal.confirm(message, function(result){
                 if (result) {
-                    dataFactory.delete($.param(comment.toBackend())).success(handleSuccess);
+                    api.delete($.param(comment.toBackend())).success(handleSuccess);
                 }
             });
         };
@@ -88,12 +88,12 @@ define([
                 handleSuccess = function(response, status) {
                     modal.show(response, false);
                 };
-                dataFactory.update($.param(comment.toBackend())).success(handleSuccess);
+                api.update($.param(comment.toBackend())).success(handleSuccess);
             }, 1000);
         };
     }
 
-    CommentsController.$inject = ['$scope', 'dataFactory', '$document'];
+    CommentsController.$inject = ['$scope', 'api', '$document'];
 
     return CommentsController;
 }); 

@@ -7,7 +7,7 @@ define([
 ) {
     "use strict";
 
-    function LineController($scope, dataFactory) {
+    function LineController($scope, api) {
         this.$scope = $scope;
 
         var timer;
@@ -21,7 +21,7 @@ define([
                 modal.show(response, false);
             };
 
-            dataFactory.delete($.param($scope.line.toBackend())).success(successCallback);
+            api.delete($.param($scope.line.toBackend())).success(successCallback);
         };
 
         // TODO also fires the first time, when nothing is changed yet
@@ -40,12 +40,12 @@ define([
             var handleSuccess = function(response, status) {
                 modal.show(response, false);
             };
-            dataFactory.update($.param(line.toBackend())).success(handleSuccess);
+            api.update($.param(line.toBackend())).success(handleSuccess);
         }
 
     }
 
-    LineController.$inject = ['$scope', 'dataFactory'];
+    LineController.$inject = ['$scope', 'api'];
 
     return LineController;
 }); 

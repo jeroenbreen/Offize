@@ -5,6 +5,8 @@ define([
 ){
     "use strict";
     function Company(company) {
+        this.type = 'company';
+        this.id = company.id;
         this.name = company.name;
         this.address = company.address;
         this.zipcode = company.zipcode;

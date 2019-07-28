@@ -25,6 +25,9 @@
 <mail-popup
     ng-if="office.status.mailPopup.active"></mail-popup>
 
+<settings
+    ng-if="office.status.settingsPopup.active"></settings>
+
 <div class="modal"></div>
 
 <div class="confirm">

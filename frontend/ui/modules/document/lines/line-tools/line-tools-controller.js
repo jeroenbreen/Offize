@@ -7,7 +7,7 @@ define([
 ) {
     "use strict";
 
-    function LineToolsController($scope, dataFactory, office) {
+    function LineToolsController($scope, api, office) {
         this.$scope = $scope;
 
         $scope.addLine = function(lineType) {
@@ -31,12 +31,12 @@ define([
                 modal.show(response.message, false);
             };
 
-            dataFactory.create($.param(line.toBackend())).success(successCallback);
+            api.create($.param(line.toBackend())).success(successCallback);
         };
 
     }
 
-    LineToolsController.$inject = ['$scope', 'dataFactory', 'office'];
+    LineToolsController.$inject = ['$scope', 'api', 'office'];
 
     return LineToolsController;
 }); 

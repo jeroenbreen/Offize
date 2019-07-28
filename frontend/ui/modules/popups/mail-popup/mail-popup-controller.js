@@ -7,7 +7,7 @@ define([
 ) {
     "use strict";
 
-    function MailPopupController($scope, $rootScope, office, $sce, $http, dataFactory) {
+    function MailPopupController($scope, $rootScope, office, $sce, $http, api) {
         this.$scope = $scope;
 
         $scope.document = office.currentDocument;
@@ -78,7 +78,7 @@ define([
                 $scope.close();
             };
 
-            dataFactory.create($.param($scope.mail.toBackend())).success(successCallback);
+            api.create($.param($scope.mail.toBackend())).success(successCallback);
         }
 
         function updateDocument() {
@@ -90,7 +90,7 @@ define([
         }
     }
 
-    MailPopupController.$inject = ['$scope', '$rootScope', 'office', '$sce', '$http', 'dataFactory'];
+    MailPopupController.$inject = ['$scope', '$rootScope', 'office', '$sce', '$http', 'api'];
 
     return MailPopupController;
 }); 
