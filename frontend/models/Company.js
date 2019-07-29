@@ -5,6 +5,7 @@ define([
 ){
     "use strict";
     function Company(company) {
+        console.log(company);
         this.type = 'company';
         this.id = company.id;
         this.name = company.name;
@@ -18,6 +19,13 @@ define([
         this.invoiceText = company.invoiceText;
         this.color1 = company.color1;
         this.color2 = company.color2;
+        this.logoUrl = company.logoUrl;
+        this.footerImageUrl = company.footerImageUrl;
+        this.usesMail = company.usesMail === "1";
+        this.usesGoogleDrive = company.usesGoogleDrive === "1";
+        this.usesAcumulus = company.usesAcumulus === "1";
+        this.coc = company.coc;
+        this.vat = company.vat;
         this.injectStyle();
     }
 
@@ -30,6 +38,19 @@ define([
         style.type = 'text/css';
         style.innerHTML = rule;
         document.getElementsByTagName('head')[0].appendChild(style);
+    };
+
+    _p.toBackend = function() {
+        var company = {};
+        for (var key in this) {
+            if (this.hasOwnProperty(key)) {
+                company[key] = this[key];
+            }
+        }
+        company.usesMail = this.usesMail ? '1' : '0';
+        company.usesGoogleDrive = this.usesGoogleDrive ? '1' : '0';
+        company.usesAcumulus = this.usesAcumulus ? '1' : '0';
+        return company;
     };
 
     return Company;

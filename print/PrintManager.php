@@ -93,7 +93,7 @@ class PrintManager
         $html = "
             <div id='header'>
                 <div id='identity'>
-                    <img src='logo.png'>
+                    <img src='" . $this->data->company->logoUrl . "'>
                 </div>
 
                 <div id='document-info'>
@@ -143,11 +143,11 @@ class PrintManager
                     $html .= "
                 </div>
                 <div id='footer-slogan'>
-                    <img src='slogan.png'>
+                    <img src='" . $this->data->company->footerImageUrl . "'>
                 </div>
             </div>
             <div id='legal-info'>
-                Innouveau | KvK 61118389 | BTW NL854214902B01
+                " . $this->data->company->name . " | KvK " . $this->data->company->coc . " | BTW " . $this->data->company->vat . "
             </div>";
         return $html;
     }

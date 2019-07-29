@@ -12,6 +12,8 @@ define([
     function DocumentToolsController($scope, $http, api, office) {
         this.$scope = $scope;
 
+        $scope.office = office;
+
         $scope.print = function() {
             $http.post('print/print-adapter.php', {
                 'data' : $scope.document.toPrint()

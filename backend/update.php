@@ -272,6 +272,13 @@ function updateCompany() {
     $invoiceText = $_POST['invoiceText'];
     $color1 = $_POST['color1'];
     $color2 = $_POST['color2'];
+    $logoUrl = $_POST['logoUrl'];
+    $footerImageUrl = $_POST['footerImageUrl'];
+    $usesMail = $_POST['usesMail'];
+    $usesGoogleDrive = $_POST['usesGoogleDrive'];
+    $usesAcumulus = $_POST['usesAcumulus'];
+    $coc = $_POST['coc'];
+    $vat = $_POST['vat'];
     $query = "UPDATE companies SET
     startingYear = '" . $startingYear . "' ,
     title = '" . $title . "' ,
@@ -283,7 +290,14 @@ function updateCompany() {
     standardRate = '" . $standardRate . "' ,
     invoiceText = '" . $invoiceText . "' ,
     color1 = '" . $color1 . "' ,
-    color2 = '" . $color2 . "'
+    color2 = '" . $color2 . "' ,
+    logoUrl = '" . $logoUrl . "' ,
+    footerImageUrl = '" . $footerImageUrl . "' ,
+    usesMail = '" . $usesMail . "' ,
+    usesGoogleDrive = '" . $usesGoogleDrive . "' ,
+    usesAcumulus = '" . $usesAcumulus . "' ,
+    coc = '" . $coc . "' ,
+    vat = '" . $vat . "'
     WHERE
     id = '" . $id. "'";
     return $query;

@@ -6,6 +6,7 @@
     </div>
 
     <div
+        ng-if="office.company.usesMail"
         ng-click="mail()"
         class="document-tool">
         <i class="fa fa-paper-plane"></i>

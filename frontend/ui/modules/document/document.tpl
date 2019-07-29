@@ -5,7 +5,7 @@
 
         <div id="paper">
             <div id="paper-header">
-                <img ng-src="print/logo.png">
+                <img ng-src="{{office.company.logoUrl}}">
             </div>
 
             <document-info
@@ -71,7 +71,7 @@
             </div>
 
             <div id="paper-footer">
-                <img ng-src="assets/img/slogan.png">
+                <img ng-src="{{office.company.footerImageUrl}}">
             </div>
         </div>
 

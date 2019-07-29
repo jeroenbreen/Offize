@@ -62,6 +62,26 @@
                                         ng-keyup="update()">
                                 </div>
                             </div>
+                            <div class="settings__row">
+                                <div class="settings__cell">
+                                    KvK nummer
+                                </div>
+                                <div class="settings__cell">
+                                    <input
+                                        ng-model="office.company.coc"
+                                        ng-keyup="update()">
+                                </div>
+                            </div>
+                            <div class="settings__row">
+                                <div class="settings__cell">
+                                    BTW nummer
+                                </div>
+                                <div class="settings__cell">
+                                    <input
+                                        ng-model="office.company.vat"
+                                        ng-keyup="update()">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="settings__set">
@@ -105,6 +125,29 @@
                                         ng-keyup="update()"></textarea>
                                 </div>
                             </div>
+                            <div class="settings__row">
+                                <div class="settings__cell">
+                                    Url logo
+                                </div>
+                                <div class="settings__cell">
+                                    <input
+                                        ng-model="office.company.logoUrl"
+                                        ng-keyup="update()">
+                                    <img class="settings-image-preview" ng-src="{{office.company.logoUrl}}">
+                                </div>
+                            </div>
+                            <div class="settings__row">
+                                <div class="settings__cell">
+                                    Url footer image
+                                </div>
+                                <div class="settings__cell">
+                                    <input
+                                        ng-model="office.company.footerImageUrl"
+                                        ng-keyup="update()">
+
+                                    <img class="settings-image-preview" ng-src="{{office.company.footerImageUrl}}">
+                                </div>
+                            </div>
                         </div>
                         <div class="settings__set">
                             <h5>
@@ -130,6 +173,45 @@
                                         ng-model="office.company.color2"
                                         ng-keyup="update()"
                                         class="input--numbers">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings__set">
+                            <h5>
+                                Koppelingen
+                            </h5>
+                            <div class="settings__row">
+                                <div class="settings__cell">
+                                    Mailen
+                                </div>
+                                <div class="settings__cell">
+                                    <input
+                                        ng-model="office.company.usesMail"
+                                        ng-change="update()"
+                                        type="checkbox">
+                                </div>
+                            </div>
+                            <div class="settings__row">
+                                <div class="settings__cell">
+                                    Google Drive
+                                </div>
+                                <div class="settings__cell">
+                                    <input
+                                        ng-model="office.company.usesGoogleDrive"
+                                        ng-change="update()"
+                                        type="checkbox">
+                                </div>
+                            </div>
+                            <div class="settings__row">
+                                <div class="settings__cell">
+                                    Acumulus
+                                </div>
+                                <div class="settings__cell">
+                                    <input
+                                        ng-model="office.company.usesAcumulus"
+                                        ng-change="update()"
+                                        type="checkbox">
                                 </div>
                             </div>
                         </div>

@@ -83,7 +83,7 @@ define([
                 active: false
             },
             membersPopup: {
-                active: true
+                active: false
             }
         }
       }
