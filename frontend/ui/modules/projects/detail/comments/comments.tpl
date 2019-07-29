@@ -35,10 +35,10 @@
     type="text"
     placeholder="Notitie">
 
-<div class="document-tool__container">
-    <div
-        ng-click="addComment()"
-        class="document-tool">
+<div
+    ng-click="addComment()"
+    class="document-tool__container">
+    <div class="document-tool">
         <i class="fa fa-plus"></i>
     </div>
     <span>Notitie toevoegen</span>

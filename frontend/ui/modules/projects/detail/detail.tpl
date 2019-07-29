@@ -6,9 +6,7 @@
             <div
                 ng-click="copySlug()"
                 class="document-tool__container">
-                <div
-                    class="document-tool"
-                    title="kopieer slug">
+                <div class="document-tool">
                     <i class="fa fa-paperclip"></i>
                 </div>
                 <span>Kopieer slug: {{project.toSlug()}}</span>
@@ -107,10 +105,10 @@
             </div>
         </div>
 
-        <div class="document-tool__container">
-            <div
-                ng-click="addDocument('quotation')"
-                class="document-tool">
+        <div
+            ng-click="addDocument('quotation')"
+            class="document-tool__container">
+            <div class="document-tool">
                 <i class="fa fa-plus"></i>
             </div>
             <span>Offerte toevoegen</span>
@@ -131,10 +129,10 @@
                 {{invoice.toSlug()}}
             </div>
         </div>
-        <div class="document-tool__container">
-            <div
-                ng-click="addDocument('invoice')"
-                class="document-tool">
+        <div
+            ng-click="addDocument('invoice')"
+            class="document-tool__container">
+            <div class="document-tool">
                 <i class="fa fa-plus"></i>
             </div>
             <span>Factuur toevoegen</span>
