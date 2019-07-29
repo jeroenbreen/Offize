@@ -20,6 +20,7 @@ define([
     './modules/document/document',
     './modules/popups/mail-popup/mail-popup',
     './modules/popups/settings/settings',
+    './modules/popups/members/members',
     './modules/projects/detail/detail',
 
     'ngStorage',
@@ -49,6 +50,7 @@ define([
     documentModule,
     mailPopupModule,
     settingsModule,
+    membersModule,
     detailModule,
 
     ngStorage,
@@ -67,6 +69,7 @@ define([
         documentModule.name,
         mailPopupModule.name,
         settingsModule.name,
+        membersModule.name,
         contactDetailModule.name,
         detailModule.name
     ])

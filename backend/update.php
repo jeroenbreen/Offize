@@ -4,7 +4,7 @@ include ('connect.php');
 $type = $_POST['type'];
 if ($type == "project") { $query = updateProject(); }
 else if ($type == "contact") { $query = updateContact(); }
-else if ($type == "team") { $query = updateTeam(); }
+else if ($type == "member") { $query = updateMember(); }
 else if ($type == "hours") { $query = updateHours(); }
 else if ($type == "comment") { $query = updateComment(); }
 else if ($type == "document") { $query = updateDocument(); }
@@ -116,14 +116,18 @@ function updateContact() {
     return $query;
 }
 
-function updateTeam() {
+function updateMember() {
     $memberId = $_POST['memberId'];
     $name = $_POST['name'];
     $initials = $_POST['initials'];
-    $query = "UPDATE team SET 
+    $email = $_POST['email'];
+    $mailFooter = $_POST['mailFooter'];
+    $query = "UPDATE team SET
     name = '" . $name . "' , 
-    initials = '" . $initials . "' 
-    WHERE 
+    initials = '" . $initials . "' ,
+    email = '" . $email . "' ,
+    mail_footer = '" . $mailFooter . "'
+    WHERE
     memberId = '" . $memberId. "'";
     return $query;
 }

@@ -4,10 +4,13 @@
             <div class="popup__body">
                 <div class="popup__content settings">
                     <h4>
-                        Settings
+                        Instellingen
                     </h4>
                     <div class="settings__table">
                         <div class="settings__set">
+                            <h5>
+                                Bedrijfsinformatie
+                            </h5>
                             <div class="settings__row">
                                 <div class="settings__cell">
                                     Bedrijfsnaam
@@ -60,7 +63,11 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="settings__set">
+                            <h5>
+                                Overige
+                            </h5>
                             <div class="settings__row">
                                 <div class="settings__cell">
                                     Standaardtarief
@@ -68,8 +75,8 @@
                                 <div class="settings__cell">
                                     <input
                                         ng-model="office.company.standardRate"
-                                        class="input--numbers"
-                                        ng-keyup="update()">
+                                        ng-keyup="update()"
+                                        class="input--numbers">
                                 </div>
                             </div>
                             <div class="settings__row">
@@ -85,6 +92,9 @@
                             </div>
                         </div>
                         <div class="settings__set">
+                            <h5>
+                                Template (factuur / offerte)
+                            </h5>
                             <div class="settings__row">
                                 <div class="settings__cell">
                                     Tekst onder factuur
@@ -97,6 +107,9 @@
                             </div>
                         </div>
                         <div class="settings__set">
+                            <h5>
+                                Interface
+                            </h5>
                             <div class="settings__row">
                                 <div class="settings__cell">
                                     Kleur 1

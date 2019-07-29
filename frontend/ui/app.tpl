@@ -14,8 +14,14 @@
 
     <div
         ng-click="openSettings()"
-        class="open-settings">
+        class="menu-tools open-settings">
         <i class="fas fa-cog"></i>
+    </div>
+
+    <div
+        ng-click="openMembers()"
+        class="menu-tools open-members">
+        <i class="fas fa-user-friends"></i>
     </div>
 </div>
 
@@ -34,6 +40,9 @@
 
 <settings
     ng-if="office.status.settingsPopup.active"></settings>
+
+<members
+    ng-if="office.status.membersPopup.active"></members>
 
 <div class="modal"></div>
 

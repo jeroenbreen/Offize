@@ -11,7 +11,7 @@ define([
         this.$scope = $scope;
 
         $scope.office = office;
-        
+
         $scope.update = function() {
             function handleSuccess(response, status) {
                 modal.show(response, false);
@@ -27,7 +27,7 @@ define([
 
         $scope.close = function() {
             office.status.settingsPopup.active = false;
-        }
+        };
     }
 
     SettingsController.$inject = ['$scope', 'office', 'api'];

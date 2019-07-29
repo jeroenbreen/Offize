@@ -6,7 +6,7 @@ $type = $_POST['type'];
 if ($type == "project") { $query = insertProject(); }
 else if ($type == "document") { $query = insertDocument(); }
 else if ($type == "contact") { $query = insertContact(); }
-else if ($type == "team") { $query = insertTeam(); }
+else if ($type == "member") { $query = insertMember(); }
 else if ($type == "comment") { $query = insertComment(); }
 else if ($type == "hours") { $query = insertHours(); }
 else if ($type == "line") { $query = insertLines(); }
@@ -116,16 +116,20 @@ function insertContact() {
     return $query;
 }
 
-function insertTeam() {
+function insertMember() {
     $memberId = $_POST['memberId'];
     $name = $_POST['name'];
     $initials = $_POST['initials'];
-    $query="INSERT INTO team 
-    (memberId, name, initials)
+    $email = $_POST['email'];
+    $mailFooter = $_POST['mailFooter'];
+    $query= "INSERT INTO team
+    (memberId, name, initials, email, mail_footer)
     VALUES (
     '". $memberId ."' ,
     '". $name ."'  ,
-    '". $initials ."'
+    '". $initials ."' ,
+    '". $email ."' ,
+    '". $mailFooter ."'
     )";
     return $query;
 }

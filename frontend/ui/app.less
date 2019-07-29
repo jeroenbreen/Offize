@@ -36,19 +36,33 @@
         }
     }
 
-    .open-settings {
+    .menu-tools {
         position: absolute;
-        right: 16px;
         top: 50%;
         transform: translateY(-50%);
         color: #888;
         cursor: pointer;
-        padding: 4px;
-        font-size: 16px;
+        font-size: 12px;
+        width: 24px;
+        height: 24px;
+        border: 1px solid #888;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
             color: #000;
+            border: 1px solid #000;
         }
+    }
+
+    .open-settings {
+        right: 16px;
+    }
+
+    .open-members {
+        right: 44px;
     }
 }
 

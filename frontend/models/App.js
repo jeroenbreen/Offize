@@ -81,6 +81,9 @@ define([
             },
             settingsPopup: {
                 active: false
+            },
+            membersPopup: {
+                active: true
             }
         }
       }

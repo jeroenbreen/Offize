@@ -10,6 +10,10 @@ define([], function() {
             office.status.settingsPopup.active = true;
         };
 
+        $scope.openMembers = function() {
+            office.status.membersPopup.active = true;
+        };
+
         importData();
 
         function importData() {

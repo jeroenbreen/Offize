@@ -8,7 +8,8 @@ define([
     directive
 ) {
     "use strict";
-    return angular.module('settings', [])
+    return angular.module('settings', [
+    ])
         .controller('SettingsController', Controller)
         .directive('settings', directive)
 });
