@@ -3,12 +3,19 @@
     <div class="identity">
         <b>{{office.company.companyNameNice}}</b> Office
     </div>
+
     <div class="menu-select">
         <a ng-repeat="menu in menus"
            ng-class="{'current': office.menu === menu}"
            href="#/{{menu}}">
             {{menu}}
         </a>
+    </div>
+
+    <div
+        ng-click="openSettings()"
+        class="open-settings">
+        <i class="fas fa-cog"></i>
     </div>
 </div>
 

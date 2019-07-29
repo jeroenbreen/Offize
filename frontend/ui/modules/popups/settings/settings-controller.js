@@ -7,36 +7,30 @@ define([
 ) {
     "use strict";
 
-    function SettingsController($scope, office, api, $timeout) {
+    function SettingsController($scope, office, api) {
         this.$scope = $scope;
 
         $scope.office = office;
-
-        $scope.$watch('office.company', function(newValue, oldValue){
+        
+        $scope.update = function() {
             function handleSuccess(response, status) {
-                $timeout(function(){
-                    modal.show(response, false);
-                })
-
+                modal.show(response, false);
             }
 
             function update() {
                 api.update($.param($scope.office.company.toBackend())).success(handleSuccess);
             }
 
-            if (newValue && oldValue) {
-                delayTool.delay(update);
-            }
-        }, true);
+            delayTool.delay(update);
+        };
 
 
         $scope.close = function() {
             office.status.settingsPopup.active = false;
         }
-
     }
 
-    SettingsController.$inject = ['$scope', 'office', 'api', '$timeout'];
+    SettingsController.$inject = ['$scope', 'office', 'api'];
 
     return SettingsController;
 }); 

@@ -58,7 +58,7 @@ define([
     fontawesome
 ) {
     "use strict";
-    return angular.module('OfficeModel', [
+    return angular.module('office', [
         'ngResource',
         'ngRoute',
         'ngStorage',

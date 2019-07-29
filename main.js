@@ -9,11 +9,11 @@ require([
     angular,
     angularApp,
     Office,
-    OfficeModel
+    office
 ) {
     "use strict";
 
-    var model = new OfficeModel();
+    var model = new office();
     window.app = model;
 
     angularApp.constant('office', model);

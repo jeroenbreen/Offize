@@ -6,9 +6,9 @@ define([
     modal
 ) {
     'use strict';
-    function DocumentsController($scope, OfficeModel) {
+    function DocumentsController($scope, office) {
         this.$scope = $scope;
-        $scope.model = OfficeModel;
+        $scope.model = office;
 
         $scope.model.menu = 'documents';
 
@@ -48,7 +48,7 @@ define([
 
     }
 
-    DocumentsController.$inject = ['$scope', 'OfficeModel'];
+    DocumentsController.$inject = ['$scope', 'office'];
 
     return DocumentsController;
 }); 

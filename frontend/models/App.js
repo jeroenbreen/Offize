@@ -80,7 +80,7 @@ define([
                 mail: null
             },
             settingsPopup: {
-                active: true
+                active: false
             }
         }
       }

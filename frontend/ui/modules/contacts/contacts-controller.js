@@ -10,9 +10,9 @@ define([
     $
 ) {
     "use strict";
-    function ContactsController($scope, api, OfficeModel) {
+    function ContactsController($scope, api, office) {
         this.$scope = $scope;
-        $scope.model = OfficeModel;
+        $scope.model = office;
         $scope.model.menu = 'contacts';
         $scope.commonTools = commonTools;
 
@@ -75,7 +75,7 @@ define([
         })
     }
 
-    ContactsController.$inject = ['$scope', 'api', 'OfficeModel'];
+    ContactsController.$inject = ['$scope', 'api', 'office'];
 
     return ContactsController;
 }); 

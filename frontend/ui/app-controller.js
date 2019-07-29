@@ -1,12 +1,14 @@
 define([], function() {
     "use strict";
-    function AppController($scope, $document, $localStorage, OfficeModel, $http) {
+    function AppController($scope, $document, $localStorage, office, $http) {
         this.$scope = $scope;
-        this.$scope.office = this.office = OfficeModel;
-
-        var cache;
+        this.$scope.office = this.office = office;
 
         $scope.menus = ['projects', 'contacts', 'documents'];
+
+        $scope.openSettings = function() {
+            office.status.settingsPopup.active = true;
+        };
 
         importData();
 
@@ -54,7 +56,7 @@ define([], function() {
         };
     }
 
-    AppController.$inject = ['$scope', '$document', '$localStorage', 'OfficeModel', '$http'];
+    AppController.$inject = ['$scope', '$document', '$localStorage', 'office', '$http'];
 
     return AppController;
 });

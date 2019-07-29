@@ -2,9 +2,9 @@ define([
 ], function(
 ) {
     'use strict';
-    function GraphicsController($scope, OfficeModel) {
+    function GraphicsController($scope, office) {
         this.$scope = $scope;
-        $scope.model = OfficeModel;
+        $scope.model = office;
 
         $scope.model.menu = 'graphics';
 
@@ -34,7 +34,7 @@ define([
         };
     }
 
-    GraphicsController.$inject = ['$scope', 'OfficeModel'];
+    GraphicsController.$inject = ['$scope', 'office'];
 
     return GraphicsController;
 }); 

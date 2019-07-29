@@ -13,7 +13,9 @@
                                     Bedrijfsnaam
                                 </div>
                                 <div class="settings__cell">
-                                    <input ng-model="office.company.name">
+                                    <input
+                                        ng-model="office.company.name"
+                                        ng-keyup="update()">
                                 </div>
                             </div>
                             <div class="settings__row">
@@ -21,7 +23,9 @@
                                     Afkorting
                                 </div>
                                 <div class="settings__cell">
-                                    <input ng-model="office.company.companyNameNice">
+                                    <input
+                                        ng-model="office.company.companyNameNice"
+                                        ng-keyup="update()">
                                 </div>
                             </div>
                             <div class="settings__row">
@@ -29,7 +33,9 @@
                                     Straatnaam
                                 </div>
                                 <div class="settings__cell">
-                                    <input ng-model="office.company.address">
+                                    <input
+                                        ng-model="office.company.address"
+                                        ng-keyup="update()">
                                 </div>
                             </div>
                             <div class="settings__row">
@@ -37,7 +43,10 @@
                                     Postcode
                                 </div>
                                 <div class="settings__cell">
-                                    <input class="input--numbers" ng-model="office.company.zipcode">
+                                    <input
+                                        ng-model="office.company.zipcode"
+                                        ng-keyup="update()"
+                                        class="input--numbers">
                                 </div>
                             </div>
                             <div class="settings__row">
@@ -45,7 +54,9 @@
                                     Plaatsnaam
                                 </div>
                                 <div class="settings__cell">
-                                    <input ng-model="office.company.city">
+                                    <input
+                                        ng-model="office.company.city"
+                                        ng-keyup="update()">
                                 </div>
                             </div>
                         </div>
@@ -55,7 +66,10 @@
                                     Standaardtarief
                                 </div>
                                 <div class="settings__cell">
-                                    <input class="input--numbers" ng-model="office.company.standardRate">
+                                    <input
+                                        ng-model="office.company.standardRate"
+                                        class="input--numbers"
+                                        ng-keyup="update()">
                                 </div>
                             </div>
                             <div class="settings__row">
@@ -63,7 +77,10 @@
                                     Aanvangsjaar
                                 </div>
                                 <div class="settings__cell">
-                                    <input class="input--numbers" ng-model="office.company.startingYear">
+                                    <input
+                                        ng-model="office.company.startingYear"
+                                        class="input--numbers"
+                                        ng-keyup="update()">
                                 </div>
                             </div>
                         </div>
@@ -73,7 +90,9 @@
                                     Tekst onder factuur
                                 </div>
                                 <div class="settings__cell">
-                                    <textarea ng-model="office.company.invoiceText"></textarea>
+                                    <textarea
+                                        ng-model="office.company.invoiceText"
+                                        ng-keyup="update()"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +102,10 @@
                                     Kleur 1
                                 </div>
                                 <div class="settings__cell">
-                                    <input class="input--numbers" ng-model="office.company.color1">
+                                    <input
+                                        ng-model="office.company.color1"
+                                        ng-keyup="update()"
+                                        class="input--numbers">
                                 </div>
                             </div>
                             <div class="settings__row">
@@ -91,7 +113,10 @@
                                     Kleur 2
                                 </div>
                                 <div class="settings__cell">
-                                    <input class="input--numbers" ng-model="office.company.color2">
+                                    <input
+                                        ng-model="office.company.color2"
+                                        ng-keyup="update()"
+                                        class="input--numbers">
                                 </div>
                             </div>
                         </div>
