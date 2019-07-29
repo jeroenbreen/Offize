@@ -7,6 +7,7 @@
  */
 
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -20,7 +21,10 @@ class PrintManager
         $this->data = json_decode($data);
         $this->data = $this->data->data;
 
-        $dompdf = new Dompdf();
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+
+        $dompdf = new Dompdf($options);
 
         $dompdf->loadHtml($this->getHMTL());
 
