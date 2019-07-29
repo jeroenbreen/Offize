@@ -17,7 +17,8 @@
         </project>
     </div>
 
-    <project-sums ng-if="office.status.projects.filter.member && office.status.projects.filter.member.memberId === -1"></project-sums>
+    <project-sums
+        ng-if="office.status.projects.filter.member && office.status.projects.filter.member.memberId === -1"></project-sums>
 </div>
 
 <div

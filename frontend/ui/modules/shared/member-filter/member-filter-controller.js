@@ -5,7 +5,7 @@ define([
 ) {
     "use strict";
 
-    function MemberFilterController($scope) {
+    function MemberFilterController($scope, office) {
         this.$scope = $scope;
 
         var filterMemberAllOption = new Member({
@@ -17,11 +17,12 @@ define([
         $scope.members = [];
 
 
-        $scope.$watch('model.members.length', function(newVal, oldVal){
-            if (newVal > 0) {
-                $scope.members = $scope.office.members.slice();
+        $scope.$watch('office.members.length', function(newVal, oldVal){
+            if (office.members.length > 0) {
+                $scope.members = office.members.slice();
                 $scope.members.unshift(filterMemberAllOption);
                 $scope.current = $scope.members[0];
+                console.log($scope.members);
             }
         })
     }

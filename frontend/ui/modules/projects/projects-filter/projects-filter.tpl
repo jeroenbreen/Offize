@@ -7,20 +7,19 @@
     <div class="project-cell project-cell-7">
 
         <member-filter
-            model="office"
             current="office.status.projects.filter.member"></member-filter>
 
         <contact-filter
             model="office"
             current="office.status.projects.filter.contact"></contact-filter>
 
-        <input
-            ng-model="office.status.projects.filter.showOnlyLiveProjects"
-            type="checkbox"> live proj.
-
         <select
             ng-options="year as year for year in office.years"
             ng-model="office.status.projects.filter.year"
             title="selecteer jaar"></select>
+
+        <input
+            ng-model="office.status.projects.filter.showOnlyLiveProjects"
+            type="checkbox"> live proj.
     </div>
 </div>
