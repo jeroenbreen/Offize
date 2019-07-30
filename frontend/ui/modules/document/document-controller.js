@@ -12,6 +12,68 @@ define([
         this.$scope = $scope;
         $scope.office = office;
 
+
+        // template
+
+        $scope.scale = 0.5;
+
+
+        $scope.template = {
+            paper: {
+                width: 1220,
+                height: null,
+                padding: 60,
+                fontSize: 24
+            },
+            logo: {
+                height: 200
+            },
+            info: {
+                top: 10
+            },
+            addresses: {
+                top: 388,
+                padding: 20
+            },
+            title: {
+                top: 612,
+                padding: 20,
+                height: 90
+            },
+            lines: {
+                top: 680,
+                padding: 20
+            },
+            total: {
+                top: 1115,
+                padding: 20
+            },
+            footer: {
+                top: 1260,
+                invoiceText: {
+                    padding: 20,
+                    fontSize: 18
+                },
+                image: {
+                    width: 210,
+                    marginTop: 10
+                }
+            },
+            legal :{
+                top: 1590,
+                fontSize: 18
+            }
+        };
+
+        $scope.template.paper.height = Math.round($scope.template.paper.width / 21 * 29.7);
+
+        $scope.getSize = function (size) {
+            return size * $scope.scale + 'px';
+        };
+
+
+        //
+
         function handleSuccess(response, status) {
             modal.show(response, false);
         }

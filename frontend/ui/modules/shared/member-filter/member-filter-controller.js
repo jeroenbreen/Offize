@@ -22,7 +22,6 @@ define([
                 $scope.members = office.members.slice();
                 $scope.members.unshift(filterMemberAllOption);
                 $scope.current = $scope.members[0];
-                console.log($scope.members);
             }
         })
     }

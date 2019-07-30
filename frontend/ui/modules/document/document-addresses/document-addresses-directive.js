@@ -9,10 +9,13 @@ define([
         return {
             restrict: 'E',
             controller: 'DocumentAddressesController',
-            replace: false,
+            replace: true,
             template: template,
             scope: {
-                document: '=document'
+                document: '=document',
+                template: '=template',
+                scale: '=scale',
+                getSize: '=getSize'
             }
         };
     }

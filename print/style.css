@@ -2,12 +2,19 @@ body {
     font-family: 'Helvetica';
     font-size: 9pt;
     margin: 0;
-    width: 100%;
+    width: 1100px;
+    height: 1200px;
+    position: absolute;
+    left: 36px;
+    top: 36px;
 }
 
 .pagewrap {
-    position: relative;
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
+
 }
 
 .grid-block {
@@ -29,6 +36,10 @@ body {
     position: absolute;
     left: 0;
     top: 0;
+}
+
+#identity img {
+    height: 200px;
 }
 
 #document-info {
@@ -182,6 +193,10 @@ body {
 #footer-slogan {
     text-align: center;
     padding-top: 20px;
+}
+
+#footer-slogan img {
+    width: 210px;
 }
 
 #legal-info {

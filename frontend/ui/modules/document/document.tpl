@@ -3,44 +3,80 @@
         ng-class="{'locked-file': document.locked}"
         class="popup__container">
 
-        <div id="paper">
-            <div id="paper-header">
-                <img ng-src="{{office.company.logoUrl}}">
-            </div>
+        <div
+            class="paper"
+            ng-style="{
+                'width': getSize(template.paper.width),
+                'height': getSize(template.paper.height),
+                'padding': getSize(template.paper.padding),
+                'font-size': getSize(template.paper.fontSize)
+            }">
 
-            <document-info
-                document="document"></document-info>
-
-            <document-addresses
-                document="document"></document-addresses>
-
-            <div id="paper-title">
-                <b>Betreft:</b>&nbsp;
-                <input ng-if="!document.locked" ng-model="document.title" ng-change="updateDocument()">
-                <div ng-if="document.locked">
-                    {{document.title}}
+            <div class="paper__container">
+                <div class="paper__header">
+                    <img
+                        ng-style="{ 'height': getSize(template.logo.height)}"
+                        ng-src="{{office.company.logoUrl}}">
                 </div>
-            </div>
 
-            <div id="paper-lines">
-                <ul ui-sortable="sortableOptions" ng-model="document.lines">
-                    <li class="lines-row animation-item-2" ng-repeat="line in document.lines" ng-click="selectLine(line)" ng-class="{'current-line' : line === currentLine}">
-                        <line line="line" ofc-document="document"></line>
-                    </li>
-                </ul>
+                <document-info
+                        document="document"
+                        template="template"
+                        get-size="getSize"
+                        scale="scale"></document-info>
 
-                <line-tools
-                    ng-if="!document.locked"
-                    document="document"></line-tools>
+                <document-addresses
+                        document="document"
+                        template="template"
+                        get-size="getSize"
+                        scale="scale"></document-addresses>
 
-                <div id="lines-total" ng-if="!document.hideTotal">
-                <span class="left">
-                    Totaal
-                </span>
+                <div
+                    ng-style="{
+                        'top': getSize(template.title.top),
+                        'height': getSize(template.title.height),
+                        'padding': getSize(template.title.padding)
+                    }"
+                    class="document__title">
+                    <b>Betreft:</b>&nbsp;
+                    <input ng-if="!document.locked" ng-model="document.title" ng-change="updateDocument()">
+                    <div ng-if="document.locked">
+                        {{document.title}}
+                    </div>
+                </div>
+
+                <div
+                    ng-style="{
+                        'top': getSize(template.lines.top),
+                        'padding': getSize(template.lines.padding)
+                    }"
+                    class="document__lines">
+                    <ul ui-sortable="sortableOptions" ng-model="document.lines">
+                        <li class="lines-row animation-item-2" ng-repeat="line in document.lines" ng-click="selectLine(line)" ng-class="{'current-line' : line === currentLine}">
+                            <line line="line" ofc-document="document"></line>
+                        </li>
+                    </ul>
+
+                    <line-tools
+                            ng-if="!document.locked"
+                            document="document"></line-tools>
+
+                </div>
+
+                <div
+                        ng-if="!document.hideTotal"
+                        ng-style="{
+                        'top': getSize(template.total.top),
+                        'padding': getSize(template.total.padding)
+                    }"
+                        class="document__total" >
+                    <span class="left">
+                        Totaal
+                    </span>
                     <span class="right">
-                    {{getTotal(1) | number:2}}
-                    {{document.currency}}
-                </span>
+                        {{getTotal(1) | number:2}}
+                        {{document.currency}}
+                    </span>
                     <br>
                     <div ng-if="!document.btw">
                     <span class="left">
@@ -64,14 +100,37 @@
                     </div>
                 </div>
 
-                <div id="dollar-warning" ng-if="document.english">
-                    <b>Let op: engels is aangevinkt.</b><br><br>
-                    Het kan zijn dat deze factuur/offerte op een andere manier boekhoudkundig (oa BTW aangifte) moet worden verwerkt, dan dat de getoonde vormgeving doet vermoeden!
-                </div>
-            </div>
+                <div
+                    ng-style="{
+                        'top': getSize(template.footer.top)
+                    }"
+                    class="document__footer">
+                    <div
+                        ng-if="document.doctype === 'invoice'"
+                        ng-style="{
+                            'padding': getSize(template.footer.invoiceText.padding),
+                            'font-size': getSize(template.footer.invoiceText.fontSize)
+                        }"
+                        class="document__invoice-text">
+                        {{office.company.invoiceText}}
+                    </div>
 
-            <div id="paper-footer">
-                <img ng-src="{{office.company.footerImageUrl}}">
+                    <img
+                        ng-style="{
+                            'width': getSize(template.footer.image.width),
+                            'margin-top': getSize(template.footer.image.marginTop)
+                        }"
+                        ng-src="{{office.company.footerImageUrl}}">
+                </div>
+
+                <div
+                    ng-style="{
+                        'top': getSize(template.legal.top),
+                        'font-size': getSize(template.legal.fontSize)
+                    }"
+                    class="document__legal">
+                    {{office.company.name}} | KvK {{office.company.coc}} | BTW {{office.company.vat}}
+                </div>
             </div>
         </div>
 

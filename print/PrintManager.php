@@ -45,7 +45,6 @@ class PrintManager
         $this->month_nice = $months[$this->data->month - 1];
 
         $html = "";
-        $html .= $this->getHead();
         //$html .= $this->getGrid();
         $html .= $this->getTop();
         $html .= $this->getBody();
@@ -55,7 +54,7 @@ class PrintManager
         return $html;
     }
 
-    protected function getHead()
+    protected function getTop()
     {
         $html = "
              <HTML>
@@ -66,7 +65,43 @@ class PrintManager
                  </HEAD>
 
                  <BODY>
-                     <div class='pagewrap'>";
+                     <div class='pagewrap'>
+                        <div id='header'>
+                             <div id='identity'>
+                                 <img src='" . $this->data->company->logoUrl . "'>
+                             </div>
+
+                             <div id='document-info'>
+                                 <div id='document-date'>
+                                     " . $this->data->day . " " . $this->month_nice . " " . $this->data->year . "
+                                 </div>
+                                 <div id='document-id'>
+                                     " . $this->data->prefix . " <b>" . $this->data->slug . "</b>
+                                 </div>
+                             </div>
+                        </div>
+
+                        <div id='address-info'>
+                            <div class='relative-wrapper'>
+                                 <div id='address-receiver'>
+                                     <b>" . $this->data->contact->name . "</b><br>
+                                     " . $this->data->contact->contactName . "<br>
+                                     " . $this->data->contact->address  . "<br>
+                                     " . $this->data->contact->zipcode . " " . $this->data->contact->city . "
+                                 </div>
+                                 <div id='address-sender'>
+                                     <b>" . $this->data->company->name . "</b><br>
+                                     " . $this->data->member . "<br>
+                                     " . $this->data->company->address . "<br>
+                                     " . $this->data->company->zipcode . " " . $this->data->company->city . "
+                                 </div>
+                             </div>
+                         </div>
+
+                         <div id='document-description'>
+                             <b>Betreft:</b> " . $this->data->title . "
+                         </div>
+         ";
         return $html;
     }
 
@@ -92,47 +127,6 @@ class PrintManager
         return $html;
     }
 
-    protected function getTop()
-    {
-        $html = "
-            <div id='header'>
-                <div id='identity'>
-                    <img src='" . $this->data->company->logoUrl . "'>
-                </div>
-
-                <div id='document-info'>
-                    <div id='document-date'>
-                        " . $this->data->day . " " . $this->month_nice . " " . $this->data->year . "
-                    </div>
-                    <div id='document-id'>
-                        " . $this->data->prefix . " <b>" . $this->data->slug . "</b>
-                    </div>
-                </div>
-            </div>
-
-            <div id='address-info'>
-                <div class='relative-wrapper'>
-                    <div id='address-receiver'>
-                        <b>" . $this->data->contact->name . "</b><br>
-                        " . $this->data->contact->contactName . "<br>
-                        " . $this->data->contact->address  . "<br>
-                        " . $this->data->contact->zipcode . " " . $this->data->contact->city . "
-                    </div>
-                    <div id='address-sender'>
-                        <b>" . $this->data->company->name . "</b><br>
-                        " . $this->data->member . "<br>
-                        " . $this->data->company->address . "<br>
-                        " . $this->data->company->zipcode . " " . $this->data->company->city . "
-                    </div>
-                </div>
-            </div>
-
-            <div id='document-description'>
-                <b>Betreft:</b> " . $this->data->title . "
-            </div>";
-
-        return $html;
-    }
 
     protected function getFooter()
     {

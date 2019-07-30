@@ -5,7 +5,6 @@ define([], function () {
         this.$scope = $scope;
 
         $scope.office = office;
-
     }
 
     DocumentAddressesController.$inject = ['$scope', 'office'];
