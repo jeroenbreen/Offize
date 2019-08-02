@@ -1,0 +1,35 @@
+.panel {
+    background: #fff;
+    position: relative;
+    margin-bottom: 10px;
+
+    .panel-section {
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+    }
+
+    .panel__tools {
+        margin-top: 20px;
+    }
+
+    &.panel--solo {
+        padding: 12px;
+        background: #ddd;
+
+        input {
+            background: #eee;
+        }
+    }
+}
+
+
+
+
