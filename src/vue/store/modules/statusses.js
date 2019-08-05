@@ -1,7 +1,6 @@
 import _base from './_base-module';
-import Document from '@classes/Document';
 
-const Model = Document;
+const Model = Object;
 
 const state = {
     all: [],
@@ -10,12 +9,7 @@ const state = {
 };
 
 const getters = {
-    ..._base.getters,
-    getDocumentsForProjectOfType: (state) => (payload) => {
-        return state.all.filter((document) => {
-            return document.doctype === payload.doctype && document.projectId === payload.projectId;
-        })
-    }
+    ..._base.getters
 };
 
 const actions = {

@@ -27,7 +27,8 @@
                 return this.$store.state.employees.all;
             },
             status() {
-                return 'status' + this.clone.projectStatus;
+                let status = this.$store.getters['statusses/getItemById'](this.clone.projectStatus);
+                return status ? status.title : '-';
             }
         },
         methods: {
@@ -53,10 +54,16 @@
                 });
                 //}
                 //});
+            },
+            archiveProject() {
+                this.clone.projectStatus = 5;
+            },
+            deArchiveProject() {
+                this.clone.projectStatus = 0;
             }
         },
         watch: {
-            project: function (val) {
+            project: function (val, val2) {
                 this.updateClone();
             }
         }
@@ -71,8 +78,7 @@
                 <input
                     type="text"
                     v-model="clone.projectName"
-                    class="project-detail-project-name"
-                    @keyup="update()"><br>
+                    class="project-details__project-name"><br>
 
                 <div
                     @click="copySlug()"
@@ -87,8 +93,7 @@
             <div class="panel-section">
                 <md-field>
                     <md-select
-                            v-model="clone.contactId"
-                            @change="update()"
+                            v-model="clone.clientId"
                             placeholder="Client">
                         <md-option
                                 v-for="(client, index) in clients"
@@ -97,50 +102,61 @@
                     </md-select>
                 </md-field>
             </div>
+            <div class="panel-section">
+                <md-field>
+                    <md-select
+                            v-model="clone.employeeId"
+                            placeholder="Employee">
+                        <md-option
+                                v-for="(employee, index) in employees"
+                                :value="employee.id"
+                                :key="index">{{employee.name}}</md-option>
+                    </md-select>
+                </md-field>
+            </div>
 
             <div id="project-detail-hour-information" class="panel-section">
                 <input class="input-small"
                     title="Projecturen"
-                    v-model="clone.hours"
-                    @keyup="update()"> ×
+                    v-model="clone.hours"> ×
 
                 <input class="input-small"
                     title="Uurtarief"
-                    v-model="clone.rate"
-                    @keyup="update()">
+                    v-model="clone.rate">
 
                 <input
                     class="input-small"
                     title="Munt"
-                    v-model="clone.currency"
-                    @keyup="update()">  -
+                    v-model="clone.currency">  -
 
                 <input
                     class="input-small"
                     title="Korting / Correctie"
-                    v-model="clone.discount"
-                    @keyup="update()">
+                    v-model="clone.discount">
             </div>
 
             <div class="panel-section">
                 <input
                     class="input-medium"
                     title="boekjaar"
-                    v-model="clone.year"
-                    @keyup="update()">
+                    v-model="clone.year">
             </div>
 
-            <div
-                id="project-detail-status-information"
-                class="'panel-section status-' + clone.projectStatus">
-                <div class="status-label project-status"></div>
-                <div class="status-label-text">
-                    {{status}}
+            <div class="panel-section">
+                <div class="status-indicator">
+                    <div
+                        :class="'status-' + clone.projectStatus"
+                        class="status-indicator__icon project-status"></div>
+                    <div class="status-indicator__label">
+                        {{status}}
+                    </div>
                 </div>
             </div>
 
+
+
             <div class="panel-section" ng-if="clone.projectStatus === 2">
-                <input type="checkbox" v-model="clone.finished" @keyup="update()"> Afgerond
+                <md-checkbox v-model="clone.finished">Afgerond</md-checkbox>
             </div>
         </div>
 
@@ -159,9 +175,9 @@
 
 
             <div
-                    v-show="clone.projectStatus === 5"
-                    @click="deArchiveProject()"
-                    class="document-tool__container">
+                v-show="clone.projectStatus === 5"
+                @click="deArchiveProject()"
+                class="document-tool__container">
                 <div
                         class="document-tool"
                         title="Breng opdracht terug">
@@ -194,6 +210,24 @@
     @import '@styles/variables.scss';
 
     .project-details {
+        width: 450px;
 
+        .project-details__project-name {
+            font-size: 150%;
+            padding: 12px;
+            width: 100%;
+        }
+
+        input {
+            width: 50px;
+        }
+
+        .project-details__tools {
+            padding: 12px;
+
+            .document-tool__container {
+                margin-bottom: 16px;
+            }
+        }
     }
 </style>

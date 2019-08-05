@@ -20,7 +20,7 @@ function insertProject() {
     $projectName = $_POST['projectName'];
     $projectStatus = $_POST['projectStatus'];
     $id = $_POST['id'];
-    $memberId = $_POST['memberId'];
+    $employeeId = $_POST['employeeId'];
     $hours = $_POST['hours'];
     $rate = $_POST['rate'];
     $discount = $_POST['discount'];
@@ -28,12 +28,12 @@ function insertProject() {
     $year = $_POST['year'];
     $finished = $_POST['finished'];
     $query="INSERT INTO projects
-    (projectName, projectStatus, id, memberId, hours, rate, discount, currency, year, finished)
+    (projectName, projectStatus, id, employeeId, hours, rate, discount, currency, year, finished)
     VALUES (
     '". $projectName ."'  ,
     '". $projectStatus ."' ,
     '". $id ."'  ,
-    '". $memberId ."' ,
+    '". $employeeId ."' ,
     '". $hours ."'  ,
     '". $rate ."' ,
     '". $discount ."'  ,
@@ -55,16 +55,15 @@ function insertDocument() {
     $locked = $_POST['locked'];
     $nr = $_POST['nr'];
     $paid = $_POST['paid'];
-    $memberId = $_POST['memberId'];
+    $employeeId = $_POST['employeeId'];
     $title = $_POST['title'];
     $vat = $_POST['vat'];
     $year = $_POST['year'];
     $month = $_POST['month'];
     $day = $_POST['day'];
     $rate = $_POST['rate'];
-    $mails = $_POST['mails'];
     $query = "INSERT INTO documents
-    (id, contactName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, memberId, title, vat, year, month, day, rate, mails)
+    (id, contactName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, employeeId, title, vat, year, month, day, rate)
     VALUES (
     '". $id ."'  ,
     '". $contactName ."'  ,
@@ -76,14 +75,13 @@ function insertDocument() {
     '". $locked ."'  ,
     '". $nr ."'  ,
     '". $paid ."'  ,
-    '". $memberId ."'  ,
+    '". $employeeId ."'  ,
     '". $title ."'  ,
     '". $vat ."'  ,
     '". $year ."'  ,
     '". $month ."'  ,
     '". $day ."'  ,
-    '". $rate ."',
-    '". $mails ."'
+    '". $rate ."'
     )";
     return $query;
 }
@@ -117,15 +115,15 @@ function insertContact() {
 }
 
 function insertMember() {
-    $memberId = $_POST['memberId'];
+    $employeeId = $_POST['employeeId'];
     $name = $_POST['name'];
     $initials = $_POST['initials'];
     $email = $_POST['email'];
     $mailFooter = $_POST['mailFooter'];
     $query= "INSERT INTO team
-    (memberId, name, initials, email, mail_footer)
+    (employeeId, name, initials, email, mail_footer)
     VALUES (
-    '". $memberId ."' ,
+    '". $employeeId ."' ,
     '". $name ."'  ,
     '". $initials ."' ,
     '". $email ."' ,
@@ -150,14 +148,14 @@ function insertComment() {
 
 function insertHours() {
     $projectId = $_POST['projectId'];
-    $memberId = $_POST['memberId'];
+    $employeeId = $_POST['employeeId'];
     $description = $_POST['description'];
     $time = $_POST['time'];
     $query="INSERT INTO hours
-    (projectId, memberId , description, time)
+    (projectId, employeeId , description, time)
     VALUES (
     '". $projectId ."' ,
-    '". $memberId ."'  ,
+    '". $employeeId ."'  ,
     '". $description ."',
     '". $time ."'
     )";
@@ -190,15 +188,15 @@ function insertLines() {
 
 function insertBlocks() {
     $date = $_POST['date'];
-    $memberId = $_POST['memberId'];
+    $employeeId = $_POST['employeeId'];
     $projectId = $_POST['projectId'];
     $time = $_POST['time'];
     $done = $_POST['done'];
     $query="INSERT INTO blocks
-    (date, memberId, projectId, time, done)
+    (date, employeeId, projectId, time, done)
     VALUES (
     '". $date ."' ,
-    '". $memberId ."' ,
+    '". $employeeId ."' ,
     '". $projectId ."' ,
     '". $time ."' ,
     '". $done ."'
@@ -226,14 +224,14 @@ function insertActivity() {
 }
 
 function insertTodos() {
-    $memberId = $_POST['memberId'];
+    $employeeId = $_POST['employeeId'];
     $title = $_POST['title'];
     $done = $_POST['done'];
     $date = $_POST['date'];
     $query = "INSERT INTO todos
-    (memberId, title, done, date)
+    (employeeId, title, done, date)
     VALUES (
-    '". $memberId ."' ,
+    '". $employeeId ."' ,
     '". $title ."' ,
     '". $done ."' ,
     '". $date ."'

@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 
 import projects from '@components/pages/projects/projects';
 import clients from '@components/pages/clients/clients';
+//import documents from '@components/pages/documents/documents';
 
 
 // routing

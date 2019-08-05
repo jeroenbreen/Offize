@@ -21,8 +21,8 @@
                 let client = this.$store.getters['clients/getItemById'](this.project.clientId);
                 return client ? client.name : '';
             },
-            currentProject() {
-                return this.$store.state.projects.current === this.project;
+            isCurrent() {
+                return this.$store.state.projects.current && this.$store.state.projects.current.id === this.project.id;
             },
             budget() {
                 return commonTools.currencyFormat(this.project.getBudget());
@@ -39,11 +39,13 @@
             },
             update() {
                 this.$store.dispatch('projects/update', this.clone).then((response) => {
+                    console.log('update ' + this.clone.projectName);
                     console.log('client update');
                 })
             },
             setCurrent() {
-                this.$store.commit('projects/setCurrent', this.project)
+                this.$store.commit('projects/setCurrent', this.project);
+                localStorage.currentProject = this.project.id;
             }
         }
     }
@@ -54,7 +56,7 @@
     <div
         @click="setCurrent()"
         :class="{
-            'project-label--current': currentProject,
+            'project-label--current': isCurrent,
             'project-label--finished': project.finished}"
     class="project-label">
 

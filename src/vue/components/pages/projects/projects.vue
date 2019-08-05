@@ -3,11 +3,12 @@
     import projectDetails from './project-details';
     import projectCreate from './project-create';
     import projectLabel from './project-label';
+    import projectDocuments from './project-documents';
 
     export default {
         name: 'projects',
         components: {
-            projectSearch, projectCreate, projectDetails, projectLabel
+            projectSearch, projectCreate, projectDetails, projectLabel, projectDocuments
         },
         props: {},
         computed: {
@@ -39,6 +40,21 @@
         <project-details
             v-if="currentProject"
             :project="currentProject"/>
+
+        <div
+            v-if="currentProject"
+            class="project__relations">
+            <project-documents
+                    :doctype="'quotation'"
+                    :label="['Offertes', 'Offerte']"
+                    :project="currentProject"/>
+
+            <project-documents
+                :doctype="'invoice'"
+                :label="['Facturen', 'Factuur']"
+                :project="currentProject"/>
+
+        </div>
     </div>
 </template>
 
@@ -52,12 +68,12 @@
         .projects__tools {
             width: 50%;
             max-width: 500px;
-            padding-right: 20px;
+            margin-right: 20px;
             height: 100%;
         }
 
         .project-details {
-
+            margin-right: 20px;
         }
     }
 </style>

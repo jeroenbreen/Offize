@@ -63,7 +63,7 @@ define([
                 title: $scope.project.projectName,
                 nr: $scope.office.getDocumentNumber(doctype),
                 contactName: $scope.project.contact.contactPerson,
-                id: $scope.project.contact.id,
+                contactId: $scope.project.contact.id,
                 year: date.getFullYear(),
                 month: date.getMonth() + 1,
                 day: date.getDate(),

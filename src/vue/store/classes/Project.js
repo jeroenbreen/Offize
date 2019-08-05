@@ -6,8 +6,8 @@ class Project extends _Base {
     constructor(project) {
         super(project);
         this.type = 'project';
-        this.contactId = project ? Number(project.id) : null;
-        this.member = project ? Number(project.memberId) : null;
+        this.clientId = project ? Number(project.clientId) : null;
+        this.employeeId = project ? Number(project.employeeId) : null;
         this.projectName = project && project.projectName ? project.projectName : '';
         this.projectStatus = project && project.projectStatus ? Number(project.projectStatus) : 0;
         this.currency = project && project.currency ? project.currency : 'EUR';

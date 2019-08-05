@@ -5,7 +5,7 @@ $type = $_POST['type'];
 
 if ($type == "project") { $query = updateProject(); }
 else if ($type == "contact") { $query = updateContact(); }
-else if ($type == "member") { $query = updateMember(); }
+else if ($type == "member") { $query = updateEmployee(); }
 else if ($type == "hours") { $query = updateHours(); }
 else if ($type == "comment") { $query = updateComment(); }
 else if ($type == "document") { $query = updateDocument(); }
@@ -21,8 +21,8 @@ function updateProject() {
     $id = $_POST['id'];
     $projectName = $_POST['projectName'];
     $projectStatus = $_POST['projectStatus'];
-    $id = $_POST['id'];
-    $memberId = $_POST['memberId'];
+    $clientId = $_POST['clientId'];
+    $employeeId = $_POST['employeeId'];
     $hours = $_POST['hours'];
     $rate = $_POST['rate'];
     $discount = $_POST['discount'];
@@ -33,8 +33,8 @@ function updateProject() {
     id = '" . $id . "' ,
     projectName = '" . $projectName . "' ,
     projectStatus = '" . $projectStatus . "' ,
-    id = '" . $id . "' ,
-    memberId = '" . $memberId . "' ,
+    clientId = '" . $clientId . "' ,
+    employeeId = '" . $employeeId . "' ,
     hours = '" . $hours . "' ,
     rate = '" . $rate . "' ,
     discount = '" . $discount . "' ,
@@ -48,7 +48,6 @@ function updateProject() {
 
 function updateDocument() {
     $id = $_POST['id'];
-    $id = $_POST['id'];
     $contactName = $_POST['contactName'];
     $projectId = $_POST['projectId'];
     $doctype = $_POST['doctype'];
@@ -58,14 +57,13 @@ function updateDocument() {
     $locked = $_POST['locked'];
     $nr = $_POST['nr'];
     $paid = $_POST['paid'];
-    $memberId = $_POST['memberId'];
+    $employeeId = $_POST['employeeId'];
     $title = $_POST['title'];
     $vat = $_POST['vat'];
     $year = $_POST['year'];
     $month = $_POST['month'];
     $day = $_POST['day'];
     $rate = $_POST['rate'];
-    $mails = $_POST['mails'];
     $query = "UPDATE documents SET
     id = '" . $id . "',
     contactName = '" . $contactName . "',
@@ -77,14 +75,13 @@ function updateDocument() {
     locked = '" . $locked . "',
     nr = '" . $nr . "',
     paid = '" . $paid . "',
-    memberId = '" . $memberId . "',
+    employeeId = '" . $employeeId . "',
     title = '" . $title . "',
     vat = '" . $vat . "',
     year = '" . $year . "',
     month = '" . $month . "',
     day = '" . $day . "',
     rate = '" . $rate . "',
-    mails = '" . $mails . "'
     WHERE
     id = '" . $id. "'";
     return $query;
@@ -118,8 +115,8 @@ function updateContact() {
     return $query;
 }
 
-function updateMember() {
-    $memberId = $_POST['memberId'];
+function updateEmployee() {
+    $id = $_POST['id'];
     $name = $_POST['name'];
     $initials = $_POST['initials'];
     $email = $_POST['email'];
@@ -130,19 +127,19 @@ function updateMember() {
     email = '" . $email . "' ,
     mail_footer = '" . $mailFooter . "'
     WHERE
-    memberId = '" . $memberId. "'";
+    id = '" . $id. "'";
     return $query;
 }
 
 function updateHours() {
     $hourId = $_POST['hourId'];
     $projectId = $_POST['projectId'];
-    $memberId = $_POST['memberId'];
+    $employeeId = $_POST['employeeId'];
     $description = $_POST['description'];
     $time = $_POST['time'];
     $query = "UPDATE hours SET
     projectId = '" . $projectId . "' ,
-    memberId = '" . $memberId . "' ,
+    employeeId = '" . $employeeId . "' ,
     description = '" . $description . "' ,
     time = '" . $time . "' ,
     WHERE
@@ -167,13 +164,13 @@ function updateComment() {
 function updateBlock() {
     $id = $_POST['id'];
     $date = $_POST['date'];
-    $memberId = $_POST['memberId'];
+    $employeeId = $_POST['employeeId'];
     $projectId = $_POST['projectId'];
     $time = $_POST['time'];
     $done = $_POST['done'];
     $query = "UPDATE blocks SET
     date = '" . $date . "' ,
-    memberId = '" . $memberId . "' ,
+    employeeId = '" . $employeeId . "' ,
     projectId = '" . $projectId . "' ,
     time = '" . $time . "' ,
     done = '" . $done . "'
@@ -185,12 +182,12 @@ function updateBlock() {
 function updateTodo() {
     $id = $_POST['id'];
     $date = $_POST['date'];
-    $memberId = $_POST['memberId'];
+    $employeeId = $_POST['employeeId'];
     $title = $_POST['title'];
     $done = $_POST['done'];
     $query = "UPDATE todos SET
     date = '" . $date . "' ,
-    memberId = '" . $memberId . "' ,
+    employeeId = '" . $employeeId . "' ,
     title = '" . $title . "' ,
     done = '" . $done . "'
     WHERE

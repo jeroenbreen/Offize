@@ -37,7 +37,7 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
 }
 
 // members
-$query = "SELECT * FROM team ORDER BY memberId";
+$query = "SELECT * FROM team ORDER BY id";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["members"][] = $record;

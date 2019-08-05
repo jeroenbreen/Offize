@@ -20,7 +20,8 @@ module.exports = {
             '@store': path.resolve('src/vue/store'),
             '@styles': path.resolve('src/styles'),
             '@root': path.resolve('src'),
-            '@tools': path.resolve('src/vue/tools')
+            '@tools': path.resolve('src/vue/tools'),
+            '@data': path.resolve('src/data')
         },
         extensions: ['*', '.js', '.vue', '.json']
     },

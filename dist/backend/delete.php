@@ -5,7 +5,7 @@ $type = $_POST['type'];
 if ($type == "project") { $query = deleteProject(); }
 else if ($type == "document") { $query = deleteDocument(); }
 else if ($type == "contact") { $query = deleteContact(); }
-else if ($type == "member") { $query = deleteMember(); }
+else if ($type == "member") { $query = deleteEmployee(); }
 else if ($type == "comment") { $query = deleteComment(); }
 else if ($type == "hour") { $query = deleteHour(); }
 else if ($type == "line") { $query = deleteLine(); }
@@ -33,9 +33,9 @@ function deleteContact() {
     return $query;
 }
 
-function deleteMember() {
-    $memberId = $_POST['memberId'];
-    $query = "DELETE FROM team WHERE memberId = '" . $memberId . "'";
+function deleteEmployee() {
+    $id = $_POST['id'];
+    $query = "DELETE FROM team WHERE id = '" . $id . "'";
     return $query;
 }
 
