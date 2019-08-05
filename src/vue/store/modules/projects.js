@@ -1,7 +1,7 @@
 import _base from './_base-module';
-import Client from '@classes/Client';
+import Project from '@classes/Project';
 
-const Model = Client;
+const Model = Project;
 
 const state = {
     all: [],

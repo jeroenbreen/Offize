@@ -2,8 +2,9 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import _base from "./modules/_base-module";
 
-import clients from './modules/clients'
 import settings from './modules/settings'
+import projects from './modules/projects'
+import clients from './modules/clients'
 
 Vue.use(Vuex);
 
@@ -29,7 +30,7 @@ export default new Vuex.Store({
     mutations,
     actions,
     modules: {
-        clients,
+        projects, clients,
         settings
     },
     strict: true

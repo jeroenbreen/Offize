@@ -1,20 +1,20 @@
 <script>
-    import Client from '@classes/Client';
+    import Project from '@classes/Project';
 
     export default {
-        name: 'client-create',
+        name: 'project-create',
         components: {},
         props: {},
         data() {
             return {
-                client: new Client()
+                project: new Project()
             }
         },
         computed: {},
         methods: {
             create() {
-                this.$store.dispatch('clients/create', {...this.client}).then((response) => {
-                    console.log('client created');
+                this.$store.dispatch('projects/create', {...this.project}).then((response) => {
+                    console.log('project created');
                 });
             }
         }
@@ -23,13 +23,13 @@
 
 
 <template>
-    <div class="client-create">
+    <div class="project-create">
         <div class="panel panel--solo">
             <input
-                type="text"
-                placeholder="Name"
-                v-model="client.name"
-                class="input--full">
+                    type="text"
+                    placeholder="Projectname"
+                    v-model="project.projectName"
+                    class="input--full">
 
             <div class="panel__tools">
                 <div
@@ -38,7 +38,7 @@
                     <div class="document-tool">
                         <i class="fa fa-plus"></i>
                     </div>
-                    <span>Add a client</span>
+                    <span>Add Project</span>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
 <style lang="scss">
     @import '@styles/variables.scss';
 
-    .client-create {
+    .project-create {
 
     }
 </style>

@@ -9,7 +9,8 @@
         },
         methods: {
             bootstrap(data) {
-                this.$store.commit('clients/init', data.contacts)
+                this.$store.commit('clients/init', data.contacts);
+                this.$store.commit('projects/init', data.projects);
             }
         },
         mounted() {

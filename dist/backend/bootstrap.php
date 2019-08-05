@@ -23,7 +23,7 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
 }
 
 // projects
-$query = "SELECT * FROM projects ORDER BY projectId";
+$query = "SELECT * FROM projects ORDER BY id";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["projects"][] = $record;

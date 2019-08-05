@@ -18,6 +18,9 @@
         },
         computed: {},
         methods: {
+            updateClone() {
+                this.clone = new Client({...this.client});
+            },
             updateClient() {
                 const callback = () => {
                     this.$store.dispatch('clients/update', this.clone).then((response) => {
@@ -37,6 +40,11 @@
                         });
                     //}
                 //});
+            }
+        },
+        watch: {
+            client: function (val) {
+                this.updateClone();
             }
         }
     }

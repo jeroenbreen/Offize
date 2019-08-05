@@ -61,6 +61,7 @@
     .navigation {
         display: flex;
         position: relative;
+        align-items: center;
 
         ul {
             padding: 0;
@@ -76,12 +77,12 @@
                     color: #000;
                     text-decoration: none;
                     border-bottom: 0.5px solid transparent;
-                }
 
-                &:hover,
-                &.current {
-                    text-decoration: none;
-                    border-bottom: 0.5px solid #000;
+                    &:hover,
+                    &.router-link-active {
+                        text-decoration: none;
+                        border-bottom: 0.5px solid #000;
+                    }
                 }
             }
         }

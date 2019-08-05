@@ -15,7 +15,7 @@
                 return this.$store.state.clients.current;
             },
             clients() {
-                return this.$store.getters['clients/getClients'];
+                return this.$store.getters['clients/getFiltered'](['name']);
             }
         },
         methods: {}

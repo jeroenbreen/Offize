@@ -13,6 +13,17 @@ const getters = {
     },
     getItemByProperty: (state) => (property, value) => {
         return state.all.find(item => item[property] === value);
+    },
+    getFiltered: (state) => (keys) => {
+        return state.all.filter((item) => {
+            let hit = false;
+            for (let key of keys) {
+                if (item[key].toLowerCase().indexOf(state.search.toLowerCase()) > -1) {
+                    hit = true;
+                }
+            }
+            return hit;
+        })
     }
 };
 
