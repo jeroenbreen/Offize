@@ -54,13 +54,13 @@
 
 <template>
     <div
-        @click="setCurrent()"
         :class="{
             'project-label--current': isCurrent,
             'project-label--finished': project.finished}"
     class="project-label">
 
         <div
+            @click="setCurrent()"
             :class="'status-' + project.projectStatus"
             class="project-label__properties">
             <div class="project-label__name">
@@ -112,7 +112,7 @@
 
     .project-label {
         display: flex;
-        height: 60px;
+        height: 40px;
 
         &:first-child {
 
@@ -163,7 +163,7 @@
             width: 80px;
             display: flex;
             align-items: center;
-            padding: 8px;
+            justify-content: center;
 
             .spacer {
                 width: 26px;

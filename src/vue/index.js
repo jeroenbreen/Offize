@@ -5,7 +5,7 @@ import VueRouter from 'vue-router';
 
 import projects from '@components/pages/projects/projects';
 import clients from '@components/pages/clients/clients';
-//import documents from '@components/pages/documents/documents';
+import documents from '@components/pages/documents/documents';
 
 
 // routing
@@ -14,6 +14,7 @@ const routes = [
     { path: '/', component: projects },
     { path: '/projects', component: projects },
     { path: '/clients', component: clients },
+    { path: '/documents', component: documents },
 ];
 const router = new VueRouter({
     routes

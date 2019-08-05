@@ -1,30 +1,26 @@
 import _base from './_base-module';
-import Document from '@classes/Document';
+import Comment from '@classes/Comment';
 
-const Model = Document;
+const Model = Comment;
 
 const state = {
     all: [],
     current: null,
-    searchString: '',
-    searchType: 'invoice',
-    searchYear: 'Alle'
+    search: ''
 };
 
 const getters = {
     ..._base.getters,
-    getDocumentsForProjectOfType: (state) => (payload) => {
-        return state.all.filter((document) => {
-            return document.doctype === payload.doctype && document.projectId === payload.projectId;
-        })
-    },
-    getFiltered(state) {
-        return state.all.filter((item) => {
-            return (state.searchString === '' || item.title.toLowerCase().indexOf(state.searchString.toLocaleLowerCase()) > -1) &&
-                (item.doctype ===  state.searchType) &&
-                (state.searchYear === 'Alle' || item.year ===  state.searchYear);
-        })
-    },
+    getCommentsByProjectId: (state) => (projectId) => {
+        return state.all.filter((comment) => {
+            return comment.projectId === projectId;
+        }).sort((a,b) => {
+            let a0, b0;
+            a0 = a.date.getTime();
+            b0 = b.date.getTime();
+            return (a0 > b0) ? 1 : ((b0 > a0) ? -1 : 0)
+        });
+    }
 };
 
 const actions = {

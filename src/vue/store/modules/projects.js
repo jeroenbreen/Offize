@@ -6,13 +6,24 @@ const Model = Project;
 const state = {
     all: [],
     current: null,
-    search: ''
+    searchString: '',
+    searchEmployee: -1,
+    searchClient: -1,
+    searchYear: 'Alle'
 };
 
 const getters = {
     ..._base.getters,
+    getFiltered(state) {
+        return state.all.filter((item) => {
+            return (state.searchString === '' || item.projectName.toLowerCase().indexOf(state.searchString.toLocaleLowerCase()) > -1) &&
+                (state.searchEmployee === -1 || item.employeeId ===  state.searchEmployee) &&
+                (state.searchClient === -1 || item.clientId ===  state.searchClient) &&
+                (state.searchYear === 'Alle' || item.year ===  state.searchYear);
+        })
+    },
     ordered(state, getters) {
-        return getters.getFiltered(['projectName']).sort((a,b) => {
+        return getters.getFiltered.sort((a,b) => {
             return (a.projectStatus > b.projectStatus) ? 1 : ((b.projectStatus > a.projectStatus) ? -1 : 0)
         });
     }

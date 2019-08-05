@@ -5,13 +5,13 @@
         props: {},
         data() {
             return {
-                search: this.$store.state.clients.search
+                searchString: this.$store.state.clients.searchString
             }
         },
         computed: {},
         methods: {
             updateSearch() {
-                this.$store.commit('clients/updateProperty', {key: 'search', value: this.search})
+                this.$store.commit('clients/updateProperty', {key: 'searchString', value: this.searchString})
             }
         }
     }
@@ -19,12 +19,12 @@
 
 
 <template>
-    <div class="client-search">
+    <div class="client-search page-search">
         <div class="panel panel--solo">
             <input
                 type="text"
                 placeholder="Search for clients..."
-                v-model="search"
+                v-model="searchString"
                 @keyup="updateSearch()"
                 class="input--full">
         </div>

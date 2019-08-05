@@ -75,6 +75,11 @@
     <div class="project-details">
         <div class="panel">
             <div class="panel-section">
+                <h2>
+                    Details
+                </h2>
+            </div>
+            <div class="panel-section">
                 <input
                     type="text"
                     v-model="clone.projectName"
@@ -210,12 +215,12 @@
     @import '@styles/variables.scss';
 
     .project-details {
-        width: 450px;
 
         .project-details__project-name {
             font-size: 150%;
             padding: 12px;
             width: 100%;
+            margin-bottom: 6px;
         }
 
         input {

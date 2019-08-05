@@ -1,14 +1,13 @@
 <script>
     import projectSearch from './project-search';
-    import projectDetails from './project-details';
     import projectCreate from './project-create';
     import projectLabel from './project-label';
-    import projectDocuments from './project-documents';
+    import project from './project';
 
     export default {
         name: 'projects',
         components: {
-            projectSearch, projectCreate, projectDetails, projectLabel, projectDocuments
+            projectSearch, projectCreate, projectLabel, project
         },
         props: {},
         computed: {
@@ -26,10 +25,11 @@
 
 <template>
     <div class="projects">
-        <div class="projects__tools">
-            <project-create/>
+        <project-create/>
+
+        <div class="page__list">
             <project-search/>
-            <div class="projects__search-results">
+            <div class="page__search-results">
                 <project-label
                         v-for="(project, index) in projects"
                         :key="index"
@@ -37,24 +37,9 @@
             </div>
         </div>
 
-        <project-details
+        <project
             v-if="currentProject"
             :project="currentProject"/>
-
-        <div
-            v-if="currentProject"
-            class="project__relations">
-            <project-documents
-                    :doctype="'quotation'"
-                    :label="['Offertes', 'Offerte']"
-                    :project="currentProject"/>
-
-            <project-documents
-                :doctype="'invoice'"
-                :label="['Facturen', 'Factuur']"
-                :project="currentProject"/>
-
-        </div>
     </div>
 </template>
 
@@ -63,17 +48,26 @@
     @import '@styles/variables.scss';
 
     .projects {
+        height: 100%;
         display: flex;
 
-        .projects__tools {
-            width: 50%;
-            max-width: 500px;
+        .project-create {
+            width: 400px;
             margin-right: 20px;
-            height: 100%;
         }
 
-        .project-details {
-            margin-right: 20px;
+        .projects__list {
+            width: calc(100% - 420px);
+            height: 100%;
+
+            .project-search {
+                height: 80px;
+            }
+
+            .projects__search-results {
+                height: calc(100% - 80px);
+                overflow: auto;
+            }
         }
     }
 </style>

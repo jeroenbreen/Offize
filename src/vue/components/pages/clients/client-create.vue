@@ -15,6 +15,7 @@
             create() {
                 this.$store.dispatch('clients/create', {...this.client}).then((response) => {
                     console.log('client created');
+                    this.client = new Client();
                 });
             }
         }
@@ -24,14 +25,17 @@
 
 <template>
     <div class="client-create">
-        <div class="panel panel--solo">
-            <input
-                type="text"
-                placeholder="Name"
-                v-model="client.name"
-                class="input--full">
+        <div class="panel">
+            <div class="panel-section">
+                <input
+                        type="text"
+                        placeholder="Name"
+                        v-model="client.name"
+                        class="input--full">
+            </div>
 
-            <div class="panel__tools">
+
+            <div class="panel-section">
                 <div
                         @click="create()"
                         class="document-tool__container">

@@ -18,7 +18,7 @@ const getters = {
         return state.all.filter((item) => {
             let hit = false;
             for (let key of keys) {
-                if (item[key].toLowerCase().indexOf(state.search.toLowerCase()) > -1) {
+                if (item[key].toLowerCase().indexOf(state.searchString.toLowerCase()) > -1) {
                     hit = true;
                 }
             }

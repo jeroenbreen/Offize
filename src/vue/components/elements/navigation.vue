@@ -74,7 +74,7 @@
 
                 a {
                     padding: 4px 8px;
-                    color: #000;
+                    color: #000!important;
                     text-decoration: none;
                     border-bottom: 0.5px solid transparent;
 

@@ -10,12 +10,24 @@
                 project: new Project()
             }
         },
-        computed: {},
+        computed: {
+            clients() {
+                return this.$store.state.clients.all;
+            },
+            employees() {
+                return this.$store.state.employees.all;
+            }
+        },
         methods: {
             create() {
-                this.$store.dispatch('projects/create', this.project.toBackend()).then((response) => {
-                    console.log('project created');
-                });
+                if (this.project.employeeId && this.project.clientId) {
+                    this.$store.dispatch('projects/create', this.project.toBackend()).then((response) => {
+                        console.log('project created');
+                        this.project = new Project();
+                    });
+                } else {
+                    console.log('Kies klant en werknemer');
+                }
             }
         }
     }
@@ -24,14 +36,39 @@
 
 <template>
     <div class="project-create">
-        <div class="panel panel--solo">
-            <input
-                    type="text"
-                    placeholder="Projectname"
-                    v-model="project.projectName"
-                    class="input--full">
+        <div class="panel">
+            <div class="panel-section">
+                <input
+                        type="text"
+                        placeholder="Projectname"
+                        v-model="project.projectName"
+                        class="input--full">
 
-            <div class="panel__tools">
+                <md-field>
+                    <md-select
+                            v-model="project.clientId"
+                            placeholder="Client">
+                        <md-option
+                                v-for="(client, index) in clients"
+                                :value="client.id"
+                                :key="index">{{client.name}}</md-option>
+                    </md-select>
+                </md-field>
+
+                <md-field>
+                    <md-select
+                            v-model="project.employeeId"
+                            placeholder="Employee">
+                        <md-option
+                                v-for="(employee, index) in employees"
+                                :value="employee.id"
+                                :key="index">{{employee.name}}</md-option>
+                    </md-select>
+                </md-field>
+            </div>
+
+
+            <div class="panel-section">
                 <div
                         @click="create()"
                         class="document-tool__container">
@@ -51,5 +88,15 @@
 
     .project-create {
 
+        .panel-section {
+
+            > * {
+                margin-bottom: 6px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
     }
 </style>

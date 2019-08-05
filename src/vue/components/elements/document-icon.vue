@@ -11,13 +11,19 @@
             }
         },
         computed: {},
-        methods: {}
+        methods: {
+            setCurrent() {
+                this.$store.commit('documents/setCurrent', this.document);
+            }
+        }
     }
 </script>
 
 
 <template>
-    <div class="document-icon">
+    <div
+        @click="setCurrent()"
+        class="document-icon">
         <div class="document-icon__icon">
             <i class="fa fa-folder-open"></i>
         </div>
@@ -43,7 +49,7 @@
         font-size: 11px;
         cursor: pointer;
         border: 1px solid transparent;
-        background: #e6ecf2;
+        background: $grey-soft;
         box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 
         .document-icon__icon {

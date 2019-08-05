@@ -25,10 +25,12 @@
 
 <template>
     <div class="clients">
-        <div class="client__tools">
-            <client-create/>
+        <client-create/>
+
+        <div class="page__list">
             <client-search/>
-            <div class="clients__search-results">
+
+            <div class="page__search-results">
                 <client-label
                     v-for="(client, index) in clients"
                     :key="index"
@@ -50,24 +52,9 @@
         display: flex;
         height: 100%;
 
-        .client__tools {
-            width: 50%;
-            max-width: 500px;
-            padding-right: 20px;
-            height: 100%;
-
-            .client-create {
-                height: 120px;
-            }
-
-            .client-search {
-                height: 70px;
-            }
-
-            .clients__search-results {
-                height: calc(100% - 190px);
-                overflow: auto;
-            }
+        .client-create {
+            width: 400px;
+            margin-right: 20px;
         }
     }
 </style>

@@ -8,6 +8,11 @@
         components: {
             navigation
         },
+        computed: {
+            isBootstrapped() {
+                return this.$store.state.settings.bootstrapped;
+            }
+        },
         methods: {
             bootstrap(data) {
                 this.$store.commit('statusses/init', statusses);
@@ -15,6 +20,9 @@
                 this.$store.commit('projects/init', data.projects);
                 this.$store.commit('employees/init', data.members);
                 this.$store.commit('documents/init', data.documents);
+                this.$store.commit('comments/init', data.comments);
+                this.$store.commit('company/init', data.company);
+                this.$store.commit('settings/updateProperty', {key: 'bootstrapped', value: true});
             },
             readCache() {
                 if (!localStorage) {
@@ -25,6 +33,13 @@
                     let project = this.$store.getters['projects/getItemById'](Number(localStorage.currentProject));
                     if (project) {
                         this.$store.commit('projects/setCurrent', project);
+                    }
+                }
+
+                if (localStorage.currentClient) {
+                    let client = this.$store.getters['clients/getItemById'](Number(localStorage.currentClient));
+                    if (client) {
+                        this.$store.commit('clients/setCurrent', client);
                     }
                 }
             }
@@ -42,7 +57,9 @@
 <template>
     <div class="app">
         <navigation/>
-        <div class="content">
+        <div
+            v-if="isBootstrapped"
+            class="content">
             <router-view/>
         </div>
     </div>

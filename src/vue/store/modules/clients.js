@@ -6,7 +6,7 @@ const Model = Client;
 const state = {
     all: [],
     current: null,
-    search: ''
+    searchString: ''
 };
 
 const getters = {
