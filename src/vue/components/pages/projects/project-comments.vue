@@ -34,7 +34,9 @@
                         this.comment = new Comment();
                     });
                 } else {
-                    console.log('Vul wat in');
+                    this.$store.commit('modal/message', {
+                        message: 'Vul wat in'
+                    });
                 }
             }
         }

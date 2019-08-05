@@ -1,6 +1,5 @@
 <script>
     import Project from '@classes/Project';
-    import delayTool from '@tools/delay-tool';
     import autoSaver from '@components/elements/auto-saver';
 
     export default {
@@ -35,25 +34,20 @@
             updateClone() {
                 this.clone = new Project(this.project.toBackend());
             },
-            update() {
-                // const callback = () => {
-                //     this.$store.dispatch('projects/update', this.clone).then((response) => {
-                //         console.log('project update');
-                //     })
-                // };
-                // delayTool.delay(callback);
-            },
             remove() {
-                var message = 'Wil je ' + this.clone.projectName + ' echt verwijderen?';
+                var message, callback;
+                message = 'Wil je ' + this.clone.projectName + ' echt verwijderen?';
+                callback = () => {
+                    this.$store.dispatch('projects/delete', this.clone).then((response) => {
+                        this.$store.commit('projects/unsetCurrent');
+                        console.log('project removed');
+                    });
+                };
 
-                //modal.confirm(message, (result) => {
-                //if (result) {
-                this.$store.dispatch('projects/delete', this.clone).then((response) => {
-                    this.$store.commit('projects/unsetCurrent');
-                    console.log('project removed');
+                this.$store.commit('modal/confirm', {
+                    message: message,
+                    callback: callback
                 });
-                //}
-                //});
             },
             archiveProject() {
                 this.clone.projectStatus = 5;

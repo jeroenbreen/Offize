@@ -22,11 +22,12 @@
             create() {
                 if (this.project.employeeId && this.project.clientId) {
                     this.$store.dispatch('projects/create', this.project.toBackend()).then((response) => {
-                        console.log('project created');
                         this.project = new Project();
                     });
                 } else {
-                    console.log('Kies klant en werknemer');
+                    this.$store.commit('modal/message', {
+                        message: 'Kies klant en werknemer'
+                    });
                 }
             }
         }

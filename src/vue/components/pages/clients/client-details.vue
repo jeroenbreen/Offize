@@ -1,10 +1,13 @@
 <script>
     import Client from '@classes/Client';
     import delayTool from '@tools/delay-tool';
+    import autoSaver from '@components/elements/auto-saver';
 
     export default {
         name: 'client-details',
-        components: {},
+        components: {
+            autoSaver
+        },
         props: {
             client: {
                 type: Client,
@@ -21,25 +24,20 @@
             updateClone() {
                 this.clone = new Client({...this.client});
             },
-            update() {
-                const callback = () => {
-                    this.$store.dispatch('clients/update', this.clone).then((response) => {
-                        console.log('client update');
-                    })
-                };
-                delayTool.delay(callback);
-            },
             remove() {
-                var message = 'Wil je ' + this.clone.name + ' echt verwijderen?';
+                var message, callback;
+                message = 'Wil je ' + this.clone.name + ' echt verwijderen?';
+                callback = () => {
+                    this.$store.dispatch('clients/delete', this.clone).then((response) => {
+                        this.$store.commit('clients/unsetCurrent');
+                        console.log('client removed');
+                    });
+                };
 
-                //modal.confirm(message, (result) => {
-                    //if (result) {
-                        this.$store.dispatch('clients/delete', this.clone).then((response) => {
-                            this.$store.commit('clients/unsetCurrent');
-                            console.log('client removed');
-                        });
-                    //}
-                //});
+                this.$store.commit('modal/confirm', {
+                    message: message,
+                    callback: callback
+                });
             },
             close() {
                 this.$store.commit('clients/unsetCurrent');
@@ -63,9 +61,8 @@
                     <div class="panel-section">
                         <div class="contact-detail__set">
                             <input
-                                    v-model="clone.name"
-                                    @keyup="update()"
-                                    class="client-details__name">
+                                v-model="clone.name"
+                                class="client-details__name">
                             <div class="contact-detail__label">
                                 Naam
                             </div>
@@ -86,8 +83,7 @@
                     <div class="panel-section">
                         <div class="contact-detail__set">
                             <input title="Contact"
-                                   v-model="clone.contactPerson"
-                                   @keyup="update()">
+                                   v-model="clone.contactPerson">
                             <div class="contact-detail__label">
                                 Contact
                             </div>
@@ -97,24 +93,21 @@
                     <div class="panel-section">
                         <div class="contact-detail__set">
                             <input title="Adres"
-                                   v-model="clone.street"
-                                   @keyup="update()">
+                                   v-model="clone.street">
                             <div class="contact-detail__label">
                                 Adres
                             </div>
                         </div>
                         <div class="contact-detail__set">
                             <input title="Postcode"
-                                   v-model="clone.zipcode"
-                                   @keyup="update()">
+                                   v-model="clone.zipcode">
                             <div class="contact-detail__label">
                                 Postcode
                             </div>
                         </div>
                         <div class="contact-detail__set">
                             <input title="Plaats"
-                                   v-model="clone.city"
-                                   @keyup="update()">
+                                   v-model="clone.city">
                             <div class="contact-detail__label">
                                 Plaats
                             </div>
@@ -124,24 +117,21 @@
                     <div class="panel-section">
                         <div class="contact-detail__set">
                             <input title="Telefoon"
-                                   v-model="clone.telephone"
-                                   @keyup="update()">
+                                   v-model="clone.telephone">
                             <div class="contact-detail__label">
                                 Telefoon
                             </div>
                         </div>
                         <div class="contact-detail__set">
                             <input title="Email"
-                                   v-model="clone.email"
-                                   @keyup="update()">
+                                   v-model="clone.email">
                             <div class="contact-detail__label">
                                 Email
                             </div>
                         </div>
                         <div class="contact-detail__set">
                             <input title="www"
-                                   v-model="clone.web"
-                                   @keyup="update()">
+                                   v-model="clone.web">
                             <div class="contact-detail__label">
                                 www
                             </div>
@@ -151,8 +141,7 @@
                     <div class="panel-section">
                         <div class="contact-detail__set">
                             <input title="Uurtarief" class="input-small"
-                                   v-model="clone.rate"
-                                   @keyup="update()">
+                                   v-model="clone.rate">
                             <div class="contact-detail__label">
                                 Uurtarief
                             </div>
@@ -178,6 +167,11 @@
                 class="popup__close">
             </div>
         </div>
+
+        <auto-saver
+                :watch="clone"
+                :store-get="'clients/getItemById'"
+                :store-update="'clients/update'"/>
     </div>
 </template>
 

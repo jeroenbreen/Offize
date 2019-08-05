@@ -1,12 +1,13 @@
 // todo replace 'contact' with 'client'
 
 import commonTools from '@tools/common-tools';
+import _Base from './_Base';
 
-class Client {
+class Client extends _Base {
 
     constructor(client) {
+        super(client);
         this.type = 'contact';
-        this.id = client ? Number(client.id) : null;
         this.name = client ? client.name : '';
         this.clientPerson = client ? client.contactPerson : '';
         this.street = client ? client.street : '';

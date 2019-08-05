@@ -2,15 +2,19 @@
     import $ from 'jquery';
     import navigation from '@components/elements/navigation';
     import statusses from '@data/statusses';
+    import modal from '@components/elements/modal';
 
     export default {
         name: 'app',
         components: {
-            navigation
+            navigation, modal
         },
         computed: {
             isBootstrapped() {
                 return this.$store.state.settings.bootstrapped;
+            },
+            showModal() {
+                return this.$store.state.modal.show;
             }
         },
         methods: {
@@ -62,6 +66,8 @@
             class="content">
             <router-view/>
         </div>
+
+        <modal v-if="showModal"></modal>
     </div>
 </template>
 
