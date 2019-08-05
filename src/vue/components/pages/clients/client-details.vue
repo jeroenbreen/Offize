@@ -21,7 +21,7 @@
             updateClone() {
                 this.clone = new Client({...this.client});
             },
-            updateClient() {
+            update() {
                 const callback = () => {
                     this.$store.dispatch('clients/update', this.clone).then((response) => {
                         console.log('client update');
@@ -29,7 +29,7 @@
                 };
                 delayTool.delay(callback);
             },
-            deleteClient() {
+            remove() {
                 var message = 'Wil je ' + this.clone.name + ' echt verwijderen?';
 
                 //modal.confirm(message, (result) => {
@@ -58,7 +58,7 @@
                 <div class="contact-detail__set">
                     <input
                             v-model="clone.name"
-                            @keyup="updateClient()">
+                            @keyup="update()">
                     <div class="contact-detail__label">
                         Naam
                     </div>
@@ -80,7 +80,7 @@
                 <div class="contact-detail__set">
                     <input title="Contact"
                         v-model="clone.contactPerson"
-                        @keyup="updateClient()">
+                        @keyup="update()">
                     <div class="contact-detail__label">
                         Contact
                     </div>
@@ -91,7 +91,7 @@
                 <div class="contact-detail__set">
                     <input title="Adres"
                         v-model="clone.street"
-                        @keyup="updateClient()">
+                        @keyup="update()">
                     <div class="contact-detail__label">
                         Adres
                     </div>
@@ -99,7 +99,7 @@
                 <div class="contact-detail__set">
                     <input title="Postcode"
                         v-model="clone.zipcode"
-                        @keyup="updateClient()">
+                        @keyup="update()">
                     <div class="contact-detail__label">
                         Postcode
                     </div>
@@ -107,7 +107,7 @@
                 <div class="contact-detail__set">
                     <input title="Plaats"
                         v-model="clone.city"
-                        @keyup="updateClient()">
+                        @keyup="update()">
                     <div class="contact-detail__label">
                         Plaats
                     </div>
@@ -118,7 +118,7 @@
                 <div class="contact-detail__set">
                     <input title="Telefoon"
                         v-model="clone.telephone"
-                        @keyup="updateClient()">
+                        @keyup="update()">
                     <div class="contact-detail__label">
                         Telefoon
                     </div>
@@ -126,7 +126,7 @@
                 <div class="contact-detail__set">
                     <input title="Email"
                         v-model="clone.email"
-                        @keyup="updateClient()">
+                        @keyup="update()">
                     <div class="contact-detail__label">
                         Email
                     </div>
@@ -134,7 +134,7 @@
                 <div class="contact-detail__set">
                     <input title="www"
                         v-model="clone.web"
-                        @keyup="updateClient()">
+                        @keyup="update()">
                     <div class="contact-detail__label">
                         www
                     </div>
@@ -145,7 +145,7 @@
                 <div class="contact-detail__set">
                     <input title="Uurtarief" class="input-small"
                         v-model="clone.rate"
-                        @keyup="updateClient()">
+                        @keyup="update()">
                     <div class="contact-detail__label">
                         Uurtarief
                     </div>
@@ -155,7 +155,7 @@
 
         <div class="client-details__tools">
             <div
-                    @click="deleteClient()"
+                    @click="remove()"
                     class="document-tool__container">
                 <div
                         class="document-tool document-tool--warning"

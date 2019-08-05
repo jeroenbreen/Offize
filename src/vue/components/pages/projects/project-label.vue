@@ -11,9 +11,15 @@
                 required: true
             }
         },
+        data() {
+            return {
+                clone: new Project(this.project.toBackend())
+            }
+        },
         computed: {
             clientName() {
-                return '';
+                let client = this.$store.getters['clients/getItemById'](this.project.clientId);
+                return client ? client.name : '';
             },
             currentProject() {
                 return this.$store.state.projects.current === this.project;
@@ -22,13 +28,31 @@
                 return commonTools.currencyFormat(this.project.getBudget());
             }
         },
-        methods: {}
+        methods: {
+            prevStatus() {
+                this.clone.projectStatus -= 1;
+                this.update();
+            },
+            nextStatus() {
+                this.clone.projectStatus += 1;
+                this.update();
+            },
+            update() {
+                this.$store.dispatch('projects/update', this.clone).then((response) => {
+                    console.log('client update');
+                })
+            },
+            setCurrent() {
+                this.$store.commit('projects/setCurrent', this.project)
+            }
+        }
     }
 </script>
 
 
 <template>
     <div
+        @click="setCurrent()"
         :class="{
             'project-label--current': currentProject,
             'project-label--finished': project.finished}"
@@ -88,6 +112,13 @@
         display: flex;
         height: 60px;
 
+        &:first-child {
+
+            .project-label__properties {
+                border-top: 1px solid rgba(0,0,0,0.2);
+            }
+        }
+
         .project-label__properties {
             height: 100%;
             width: calc(100% - 80px);
@@ -95,12 +126,34 @@
             cursor: pointer;
             border-left: 4px solid transparent;
             box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+            border-left: 1px solid rgba(0,0,0,0.2);
 
             div {
                 height: 100%;
                 display: flex;
                 align-items: center;
                 padding: 8px;
+                border-right: 1px solid rgba(0,0,0,0.2);
+                white-space: nowrap;
+                overflow: hidden;
+
+                &:last-child {
+                    //border-right: 0;
+                }
+            }
+
+            .project-label__name {
+                width: calc(50% - 50px);
+                border-left: 4px solid transparent;
+            }
+
+            .project-label__client {
+                width: calc(50% - 50px);
+            }
+
+            .project-label__budget {
+                width: 100px;
             }
         }
 
@@ -109,12 +162,21 @@
             display: flex;
             align-items: center;
             padding: 8px;
+
+            .spacer {
+                width: 26px;
+                display: inline-block;
+            }
         }
 
         &.project-label--current {
 
             .project-label__properties {
-                border-left: 4px solid #000;
+
+                .project-label__name {
+                    border-left: 4px solid #000;
+                }
+
             }
         }
 

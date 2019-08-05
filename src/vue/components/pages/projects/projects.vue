@@ -15,7 +15,7 @@
                 return this.$store.state.projects.current;
             },
             projects() {
-                return this.$store.getters['projects/getFiltered'](['projectName']);
+                return this.$store.getters['projects/ordered'];
             }
         },
         methods: {}
@@ -47,12 +47,17 @@
     @import '@styles/variables.scss';
 
     .projects {
+        display: flex;
 
         .projects__tools {
             width: 50%;
             max-width: 500px;
             padding-right: 20px;
             height: 100%;
+        }
+
+        .project-details {
+
         }
     }
 </style>

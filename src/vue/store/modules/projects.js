@@ -10,7 +10,12 @@ const state = {
 };
 
 const getters = {
-    ..._base.getters
+    ..._base.getters,
+    ordered(state, getters) {
+        return getters.getFiltered(['projectName']).sort((a,b) => {
+            return (a.projectStatus > b.projectStatus) ? 1 : ((b.projectStatus > a.projectStatus) ? -1 : 0)
+        });
+    }
 };
 
 const actions = {

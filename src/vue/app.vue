@@ -11,6 +11,7 @@
             bootstrap(data) {
                 this.$store.commit('clients/init', data.contacts);
                 this.$store.commit('projects/init', data.projects);
+                this.$store.commit('employees/init', data.members);
             }
         },
         mounted() {

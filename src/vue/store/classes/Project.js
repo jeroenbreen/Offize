@@ -1,10 +1,11 @@
 import commonTools from '@tools/common-tools';
+import _Base from '@classes/_Base';
 
-class Project {
+class Project extends _Base {
 
     constructor(project) {
+        super(project);
         this.type = 'project';
-        this.id = project && project.id ? Number(project.id) : null;
         this.contactId = project ? Number(project.id) : null;
         this.member = project ? Number(project.memberId) : null;
         this.projectName = project && project.projectName ? project.projectName : '';
@@ -88,23 +89,6 @@ class Project {
         return amount;
     }
 
-
-    hasActivities() {
-        for (var i = 0, l = this.blocks.length; i < l; i++) {
-            var block = this.blocks[i];
-            if (block.activities.length > 0) {
-                return true;
-            }
-        }
-        return false;
-    };
-
-    hasComments() {
-        return this.comments.length > 0;
-    }
-
-
-
     getBudget() {
         return this.hours * this.rate - this.discount;
     }
@@ -133,40 +117,6 @@ class Project {
     isOverHours() {
         return this.getScore() > 100;
     }
-
-
-    // object stuff
-
-    toBackend() {
-        var project = {};
-        for (var key in this) {
-            if (this.hasOwnProperty(key)) {
-                switch (key) {
-                    case 'contact':
-                        project.id = this.contact.id;
-                        break;
-                    case 'member':
-                        project.memberId = this.member.memberId;
-                        break;
-                    case 'quotations':
-                    case 'invoices':
-                    case 'comments':
-                    case 'blocks':
-                        // skip
-                        break;
-                    case 'finished':
-                        project.finished = this.finished ? 1 : 0;
-                        break;
-                    default:
-                        project[key] = this[key];
-                        break;
-                }
-            }
-        }
-
-        return project;
-    }
-
 }
 
 export default Project

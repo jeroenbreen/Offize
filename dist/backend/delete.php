@@ -16,8 +16,8 @@ else if ($type == "mail") { $query = deleteMail(); }
 
 
 function deleteProject() {
-    $projectId = $_POST['projectId'];
-    $query = "DELETE FROM projects WHERE projectId = '" . $projectId . "'";
+    $id = $_POST['id'];
+    $query = "DELETE FROM projects WHERE id = '" . $id . "'";
     return $query;
 }
 

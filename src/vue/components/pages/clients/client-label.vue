@@ -17,7 +17,7 @@
         },
         methods: {
             setCurrent() {
-                this.$store.commit('clients/setCurrent', this.client)
+                this.$store.commit('clients/setCurrent', this.client);
             }
         }
     }

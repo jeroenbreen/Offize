@@ -13,7 +13,7 @@
         computed: {},
         methods: {
             create() {
-                this.$store.dispatch('projects/create', {...this.project}).then((response) => {
+                this.$store.dispatch('projects/create', this.project.toBackend()).then((response) => {
                     console.log('project created');
                 });
             }

@@ -18,7 +18,7 @@ else if ($type == "company") { $query = updateCompany(); }
 
 
 function updateProject() {
-    $projectId = $_POST['projectId'];
+    $id = $_POST['id'];
     $projectName = $_POST['projectName'];
     $projectStatus = $_POST['projectStatus'];
     $id = $_POST['id'];
@@ -30,7 +30,7 @@ function updateProject() {
     $year = $_POST['year'];
     $finished = $_POST['finished'];
     $query = "UPDATE projects SET
-    projectId = '" . $projectId . "' ,
+    id = '" . $id . "' ,
     projectName = '" . $projectName . "' ,
     projectStatus = '" . $projectStatus . "' ,
     id = '" . $id . "' ,
@@ -42,7 +42,7 @@ function updateProject() {
     year = '" . $year . "' ,
     finished = '" . $finished . "'
     WHERE
-    projectId = '" . $projectId. "'";
+    id = '" . $id. "'";
     return $query;
 }
 

@@ -4,6 +4,7 @@ import _base from "./modules/_base-module";
 
 import settings from './modules/settings'
 import projects from './modules/projects'
+import employees from './modules/employees'
 import clients from './modules/clients'
 
 Vue.use(Vuex);
@@ -30,8 +31,8 @@ export default new Vuex.Store({
     mutations,
     actions,
     modules: {
-        projects, clients,
-        settings
+        settings,
+        projects, employees, clients
     },
     strict: true
 })

@@ -19,8 +19,8 @@ const router = new VueRouter({
 });
 
 // google material for Vue
-// import VueMaterial from 'vue-material'
-// Vue.use(VueMaterial);
+import VueMaterial from 'vue-material'
+Vue.use(VueMaterial);
 
 new Vue({
     el: '#app',
