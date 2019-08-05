@@ -59,11 +59,11 @@
             <div class="popup">
                 <div class="panel">
                     <div class="panel-section">
-                        <div class="contact-detail__set">
+                        <div class="object-properties__set">
                             <input
                                 v-model="clone.name"
                                 class="client-details__name">
-                            <div class="contact-detail__label">
+                            <div class="object-properties__label">
                                 Naam
                             </div>
                         </div>
@@ -81,68 +81,68 @@
                     </div>
 
                     <div class="panel-section">
-                        <div class="contact-detail__set">
+                        <div class="object-properties__set">
                             <input title="Contact"
                                    v-model="clone.contactPerson">
-                            <div class="contact-detail__label">
+                            <div class="object-properties__label">
                                 Contact
                             </div>
                         </div>
                     </div>
 
                     <div class="panel-section">
-                        <div class="contact-detail__set">
+                        <div class="object-properties__set">
                             <input title="Adres"
                                    v-model="clone.street">
-                            <div class="contact-detail__label">
+                            <div class="object-properties__label">
                                 Adres
                             </div>
                         </div>
-                        <div class="contact-detail__set">
+                        <div class="object-properties__set">
                             <input title="Postcode"
                                    v-model="clone.zipcode">
-                            <div class="contact-detail__label">
+                            <div class="object-properties__label">
                                 Postcode
                             </div>
                         </div>
-                        <div class="contact-detail__set">
+                        <div class="object-properties__set">
                             <input title="Plaats"
                                    v-model="clone.city">
-                            <div class="contact-detail__label">
+                            <div class="object-properties__label">
                                 Plaats
                             </div>
                         </div>
                     </div>
 
                     <div class="panel-section">
-                        <div class="contact-detail__set">
+                        <div class="object-properties__set">
                             <input title="Telefoon"
                                    v-model="clone.telephone">
-                            <div class="contact-detail__label">
+                            <div class="object-properties__label">
                                 Telefoon
                             </div>
                         </div>
-                        <div class="contact-detail__set">
+                        <div class="object-properties__set">
                             <input title="Email"
                                    v-model="clone.email">
-                            <div class="contact-detail__label">
+                            <div class="object-properties__label">
                                 Email
                             </div>
                         </div>
-                        <div class="contact-detail__set">
+                        <div class="object-properties__set">
                             <input title="www"
                                    v-model="clone.web">
-                            <div class="contact-detail__label">
+                            <div class="object-properties__label">
                                 www
                             </div>
                         </div>
                     </div>
 
                     <div class="panel-section">
-                        <div class="contact-detail__set">
+                        <div class="object-properties__set">
                             <input title="Uurtarief" class="input-small"
                                    v-model="clone.rate">
-                            <div class="contact-detail__label">
+                            <div class="object-properties__label">
                                 Uurtarief
                             </div>
                         </div>
@@ -170,7 +170,6 @@
 
         <auto-saver
                 :watch="clone"
-                :store-get="'clients/getItemById'"
                 :store-update="'clients/update'"/>
     </div>
 </template>
@@ -183,27 +182,6 @@
 
         .client-details__name {
             margin-bottom: 6px;
-        }
-
-        .contact-detail__set {
-            margin-bottom: 4px;
-
-            input {
-                padding: 6px;
-                font-size: 13px;
-                outline: none;
-                width: 250px;
-
-                &.input-small {
-                    width: 60px;
-                    margin-right: 190px;
-                }
-            }
-
-            .contact-detail__label {
-                display: inline-block;
-                margin-left: 8px;
-            }
         }
     }
 </style>

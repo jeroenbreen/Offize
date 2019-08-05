@@ -1,6 +1,7 @@
 <script>
     import Client from '@classes/Client';
     import Project from '@classes/Project';
+    import Company from '@classes/Company';
 
     let saveBuffer = null;
 
@@ -11,12 +12,8 @@
                 type: Object,
                 required: true,
                 validator: function (value) {
-                    return value.constructor === Client || value.constructor === Project;
+                    return value.constructor === Client || value.constructor === Project || value.constructor === Company;
                 }
-            },
-            storeGet: {
-                type: String,
-                required: true
             },
             storeUpdate: {
                 type: String,

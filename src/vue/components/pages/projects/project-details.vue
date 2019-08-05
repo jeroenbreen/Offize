@@ -199,7 +199,6 @@
 
         <auto-saver
             :watch="clone"
-            :store-get="'projects/getItemById'"
             :store-update="'projects/update'"/>
     </div>
 </template>

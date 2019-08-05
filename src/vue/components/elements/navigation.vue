@@ -15,7 +15,7 @@
         computed: {},
         methods: {
             openSettings() {
-
+                this.$store.commit('settings/updateProperty', {key: 'showSettings', value: true});
             },
             openMembers() {
 

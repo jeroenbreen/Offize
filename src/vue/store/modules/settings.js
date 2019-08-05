@@ -1,7 +1,8 @@
 import _base from "./_base-module";
 
 const state = {
-    bootstrapped: false
+    bootstrapped: false,
+    showSettings: false
 };
 
 

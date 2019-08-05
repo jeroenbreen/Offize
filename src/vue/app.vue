@@ -1,13 +1,14 @@
 <script>
     import $ from 'jquery';
     import navigation from '@components/elements/navigation';
+    import settings from '@components/pages/settings/settings';
     import statusses from '@data/statusses';
     import modal from '@components/elements/modal';
 
     export default {
         name: 'app',
         components: {
-            navigation, modal
+            navigation, settings, modal
         },
         computed: {
             isBootstrapped() {
@@ -15,6 +16,9 @@
             },
             showModal() {
                 return this.$store.state.modal.show;
+            },
+            showSettings() {
+                return this.$store.state.settings.showSettings;
             }
         },
         methods: {
@@ -65,6 +69,8 @@
             v-if="isBootstrapped"
             class="content">
             <router-view/>
+            <settings
+                v-if="isBootstrapped && showSettings"/>
         </div>
 
         <modal v-if="showModal"></modal>

@@ -4,6 +4,7 @@ import Company from '@classes/Company';
 const Model = Object;
 
 const state = {
+    all: [],
     current: null
 };
 
@@ -18,10 +19,15 @@ const actions = {
 
 const mutations = {
     init(state, company) {
-        state.current = new Company(company);
+        let c = new Company(company);
+        state.all.push(c);
+        state.current = c;
     },
     updateProperty(state, payload) {
         state.current[payload.key] = payload.value;
+    },
+    update(state, item) {
+        return _base.mutations.update(state, item, Model);
     }
 };
 

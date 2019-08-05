@@ -1,0 +1,20 @@
+.object-properties__set {
+    margin-bottom: 4px;
+
+    input {
+        padding: 6px;
+        font-size: 13px;
+        outline: none;
+        width: 250px;
+
+        &.input-small {
+            width: 60px;
+            margin-right: 190px;
+        }
+    }
+
+    .object-properties__label {
+        display: inline-block;
+        margin-left: 8px;
+    }
+}
