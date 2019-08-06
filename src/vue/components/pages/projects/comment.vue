@@ -13,7 +13,6 @@
         },
         computed: {
             date() {
-                console.log(this.comment.date);
                 return dateTool.toString(this.comment.date);
             }
         },

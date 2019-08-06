@@ -48,7 +48,7 @@ function updateProject() {
 
 function updateDocument() {
     $id = $_POST['id'];
-    $contactName = $_POST['contactName'];
+    $clientName = $_POST['clientName'];
     $projectId = $_POST['projectId'];
     $doctype = $_POST['doctype'];
     $currency = $_POST['currency'];
@@ -66,7 +66,7 @@ function updateDocument() {
     $rate = $_POST['rate'];
     $query = "UPDATE documents SET
     id = '" . $id . "',
-    contactName = '" . $contactName . "',
+    clientName = '" . $clientName . "',
     projectId = '" . $projectId . "',
     doctype = '" . $doctype . "',
     currency = '" . $currency . "',
@@ -81,7 +81,7 @@ function updateDocument() {
     year = '" . $year . "',
     month = '" . $month . "',
     day = '" . $day . "',
-    rate = '" . $rate . "',
+    rate = '" . $rate . "'
     WHERE
     id = '" . $id. "'";
     return $query;

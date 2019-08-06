@@ -46,7 +46,7 @@ function createProject() {
 
 function createDocument() {
     $id = $_POST['id'];
-    $contactName = $_POST['contactName'];
+    $clientName = $_POST['clientName'];
     $projectId = $_POST['projectId'];
     $doctype = $_POST['doctype'];
     $currency = $_POST['currency'];
@@ -63,10 +63,10 @@ function createDocument() {
     $day = $_POST['day'];
     $rate = $_POST['rate'];
     $query = "INSERT INTO documents
-    (id, contactName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, employeeId, title, vat, year, month, day, rate)
+    (id, clientName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, employeeId, title, vat, year, month, day, rate)
     VALUES (
     '". $id ."'  ,
-    '". $contactName ."'  ,
+    '". $clientName ."'  ,
     '". $projectId ."'  ,
     '". $doctype ."'  ,
     '". $currency ."'  ,

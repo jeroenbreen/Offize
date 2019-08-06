@@ -22,6 +22,12 @@
             company() {
                 return this.$store.state.company.current;
             },
+            employee() {
+                let employee = this.$store.getters['employees/getItemById'](this.document.employeeId);
+                if (employee) {
+                    return employee;
+                }
+            },
             client() {
                 let project, client;
                 project = this.$store.getters['projects/getItemById'](this.document.projectId);
@@ -62,7 +68,7 @@
 
         <div class="document__addresses--left" v-if="document.locked">
             <b>{{client.name}}</b><br>
-            {{clientName}}<br>
+            {{document.clientName}}<br>
             {{client.street}}<br>
             {{client.zipcode}} {{client.city}}
         </div>
@@ -85,7 +91,7 @@
 
         <div class="document__addresses--right" v-if="document.locked">
             <b>{{company.name}}</b><br>
-            {{document.member.name}}<br>
+            {{employee.name}}<br>
             {{company.address}}<br>
             {{company.zipcode}} {{company.city}}
         </div>

@@ -19,8 +19,7 @@
         data() {
             return {
                 template: template,
-                scale: 0.5,
-                clone: new Document(this.document.toBackend())
+                scale: 0.5
             }
         },
         computed: {
@@ -70,12 +69,12 @@
             </div>
 
             <document-info
-                :document="clone"
+                :document="document"
                 :template="template"
                 :scale="scale"/>
 
             <document-addresses
-                :document="clone"
+                :document="document"
                 :template="template"
                 :scale="scale"/>
 
@@ -89,9 +88,9 @@
                 <b>Betreft:</b>&nbsp;
                 <input
                     v-if="!document.locked"
-                    v-model="clone.title">
+                    v-model="document.title">
                 <div v-if="document.locked">
-                    {{clone.title}}
+                    {{document.title}}
                 </div>
             </div>
 
@@ -116,7 +115,7 @@
                 </span>
                 <span class="right">
                         {{getTotal(1)}}
-                        {{clone.currency}}
+                        {{document.currency}}
                     </span>
                 <br>
                 <div>

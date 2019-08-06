@@ -9,7 +9,7 @@ class Document {
         this.employeeId = document ? Number(document.employeeId) : null;
         this.title = document ? document.title : '';
         this.nr = document ? Number(document.nr) : null;
-        this.contactName = document ? document.contactName : '';
+        this.clientName = document ? document.clientName : '';
         this.year = document ? Number(document.year) : new Date().getFullYear();
         this.month = document ? Number(document.month) : (new Date().getMonth() + 1);
         this.day = document ? Number(document.day) : new Date().getDate();

@@ -17,7 +17,7 @@
         },
         data() {
             return {
-                clone: new Document({...this.document})
+                clone: new Document(this.document.toBackend())
             }
         },
         computed: {},
@@ -37,10 +37,10 @@
             <div class="popup">
                 <div class="document__container">
                     <document
-                        :document="document"/>
+                        :document="clone"/>
 
                     <document-tools
-                        :document="document"/>
+                        :document="clone"/>
                 </div>
             </div>
             <div

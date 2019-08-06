@@ -1,17 +1,128 @@
 <script>
+    import Document from '@classes/Document';
+
     export default {
         name: 'document-tools',
         components: {},
-        props: {},
-        computed: {},
-        methods: {}
+        props: {
+            document: {
+                type: Document,
+                required: true
+            }
+        },
+        computed: {
+            company() {
+                return this.$store.state.company.current;
+            }
+        },
+        methods: {
+            print() {
+                // $http.post('print/print-adapter.php', {
+                //     'data' : document.toPrint()
+                // }).success(function(data, status, headers, config) {
+                //     window.open(window.config.printLocation + data);
+                // }).error(function(data, status, headers, config) { });
+            },
+            mail() {
+                // var mail = {
+                //     id: null,
+                //     subject: document.getPrefix() + ' voor de werkzaamheden m.b.t. ' + document.title,
+                //     content: 'Beste ' + document.contactName + ',\n\nBijgeleverd de ' + document.getPrefix().toLowerCase() + ' voor de werkzaamheden  m.b.t. ' + document.title + '.\n\n',
+                //     member_id: document.member.memberId,
+                //     sender: document.member.email,
+                //     receiver: document.contact.email,
+                //     date: dateTool.toBackendString(new Date()),
+                //     mailType: 'invoice'
+                // };
+                //
+                // status.mailPopup.active = true;
+                // status.mailPopup.mail = new Mail(mail);
+            },
+            lock () {
+                this.document.locked = !this.document.locked;
+            },
+            deleteDocument() {
+                let name, message, callback;
+                name = document.getPrefix() + ' ' + document.toSlug();
+                message = 'Wil je ' + name + ' echt verwijderen?';
+
+                callback = () => {
+                    this.$store.dispatch('documents/delete', this.document).then((response) => {
+                        this.$store.commit('documents/unsetCurrent');
+                        console.log('document removed');
+                    });
+                };
+
+                this.$store.commit('modal/confirm', {
+                    message: message,
+                    callback: callback
+                });
+            }
+        }
     }
 </script>
 
 
 <template>
     <div class="document-tools">
-        document-tools
+        <div class="document-tools__main">
+            <div
+                @click="print()"
+                class="document-tool">
+                <i class="fa fa-print"></i>
+            </div>
+
+            <div
+                v-if="company.usesMail"
+                @click="mail()"
+                class="document-tool">
+                <i class="fa fa-paper-plane"></i>
+            </div>
+
+            <div
+                @click="lock()"
+                :class="{'document-tool--active': document.locked }"
+                class="document-tool">
+                <i class="fa fa-lock"></i>
+            </div>
+
+            <div
+                    v-show="!document.locked"
+                    @click="deleteDocument()"
+                    class="document-tool document-tool--warning">
+                <i class="fa fa-trash"></i>
+            </div>
+        </div>
+
+
+        <div class="document-tools__extra">
+            <div v-if="document.doctype === 'invoice'">
+                <span>Betaald</span>
+                <input
+                        type="checkbox"
+                        class=""
+                        value="1"
+                        v-model="document.paid">
+            </div>
+
+            <div v-if="!document.locked">
+                <span>
+                    Verberg total
+                </span>
+                <input
+                        type="checkbox"
+                        v-model="document.hideTotal">
+            </div>
+
+            <div v-if="!document.locked">
+                <span>
+                    BTW
+                </span>
+                <input
+                        type="text"
+                        v-model="document.vat">
+            </div>
+        </div>
     </div>
 </template>
 
@@ -20,6 +131,26 @@
     @import '@styles/variables.scss';
 
     .document-tools {
+        width: 170px;
+        margin-left: 20px;
 
+        .document-tools__main {
+            display: flex;
+            padding-top: 5px;
+        }
+
+        .document-tools__extra {
+            margin-top: 20px;
+            color: #fff;
+
+            input {
+                width: 30px;
+            }
+
+            span {
+                width: 120px;
+                display: inline-block;
+            }
+        }
     }
 </style>
