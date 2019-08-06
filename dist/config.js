@@ -1,1 +1,3 @@
-const config = {};
+window.config = {
+    printLocation: 'print/'
+};

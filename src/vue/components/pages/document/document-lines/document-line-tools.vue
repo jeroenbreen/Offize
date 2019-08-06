@@ -76,5 +76,6 @@
 
     .document-line-tools {
         display: flex;
+        margin-top: 20px;
     }
 </style>

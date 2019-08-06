@@ -13,7 +13,9 @@ const getters = {
     getLinesForDocument: (state) => (documentId) => {
         return state.all.filter((documentLine) => {
             return documentLine.documentId === documentId;
-        })
+        }).sort((a,b) => {
+            return (a.arrayOrder > b.arrayOrder) ? 1 : ((b.arrayOrder > a.arrayOrder) ? -1 : 0)
+        });
     }
 };
 

@@ -1,4 +1,6 @@
 <script>
+    import {ElementMixin, HandleDirective} from "vue-slicksort";
+
     import DocumentLine from '@classes/DocumentLine';
     import Document from '@classes/Document';
 
@@ -16,6 +18,8 @@
             documentLineCount, documentLineAmount, documentLineText, documentLineEnter, documentLineSubtotal,
             autoSaver
         },
+        mixins: [ElementMixin],
+        directives: { handle: HandleDirective },
         props: {
             documentLine: {
                 type: DocumentLine,
@@ -47,6 +51,14 @@
                     callback: callback
                 });
             }
+        },
+        watch: {
+            documentLine: {
+                handler: function() {
+                    this.clone = new DocumentLine(this.documentLine.toBackend())
+                },
+                deep: false
+            }
         }
     }
 </script>
@@ -57,6 +69,7 @@
 
         <div
             v-if="!document.locked"
+            v-handle
             class="handle">
             <img src="assets/img/drag.png">
         </div>

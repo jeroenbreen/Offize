@@ -1,5 +1,6 @@
 <script>
     import Document from '@classes/Document';
+    import $ from 'jquery';
 
     export default {
         name: 'document-tools',
@@ -17,11 +18,33 @@
         },
         methods: {
             print() {
-                // $http.post('print/print-adapter.php', {
-                //     'data' : document.toPrint()
-                // }).success(function(data, status, headers, config) {
-                //     window.open(window.config.printLocation + data);
-                // }).error(function(data, status, headers, config) { });
+                let document, project, client, documentLines, employee;
+                document = this.document.toPrint();
+                project = this.$store.getters['projects/getItemById'](this.document.projectId);
+                if (project) {
+                    client = this.$store.getters['clients/getItemById'](project.clientId);
+                }
+                document.company = this.company.toBackend();
+                document.client = client.toBackend();
+                document.client.clientName = this.document.clientName;
+                employee = this.$store.getters['employees/getItemById'](this.document.employeeId);
+                document.employee = employee.name;
+                documentLines = this.$store.getters['documentLines/getLinesForDocument'](this.document.id);
+                document.documentLines = [...documentLines];
+                console.log(document);
+                $.ajax({
+                    type: 'POST',
+                    url: 'print/print-adapter.php',
+                    data: JSON.stringify({data: document}),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    success: function(response){
+                        console.log(response);
+                        window.open(window.config.printLocation + response);
+                    }
+                });
             },
             mail() {
                 // var mail = {

@@ -43,18 +43,9 @@ class Document {
     toPrint(){
         var document = {};
         document.doctype = this.doctype;
-        document.company = app.company;
-        document.member = this.member.name;
         document.title = this.title;
         document.prefix = this.getPrefix();
         document.slug = this.toSlug();
-        document.contact = {
-            name: this.contact.name,
-            contactName: this.contactName,
-            address: this.contact.street,
-            zipcode: this.contact.zipcode,
-            city: this.contact.city
-        };
         document.year = this.year;
         document.month = this.month;
         document.day = this.day;
@@ -62,10 +53,6 @@ class Document {
         document.currency = this.currency;
         document.hideTotal = this.hideTotal;
         document.lines = [];
-        for (var i = 0, l = this.lines.length; i < l; i++) {
-            var line = this.lines[i];
-            document.lines.push(line.toPrint())
-        }
         return document;
     };
 

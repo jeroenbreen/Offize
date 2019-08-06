@@ -1,0 +1,222 @@
+body {
+    font-family: 'Helvetica';
+    font-size: 9pt;
+    margin: 0;
+    width: 1100px;
+    height: 1200px;
+    position: absolute;
+    left: 36px;
+    top: 36px;
+}
+
+.pagewrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+
+}
+
+.grid-block {
+    background: rgba(255,0,0,0.1);
+    position: absolute;
+}
+
+.relative-wrapper {
+    position: relative;
+}
+
+#header {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#identity {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#identity img {
+    height: 200px;
+}
+
+#document-info {
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+#document-date {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 6px;
+}
+
+#document-id {
+    display: inline-block;
+    padding: 15px;
+    background: #eee;
+    font-size: 11pt;
+    margin-left: 8px;
+}
+
+#address-info {
+    position: absolute;
+    left: 0;
+    top: 388px;
+    border-top: 0.5px solid #333;
+    width: 100%;
+    padding: 20px;
+}
+
+#address-receiver {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 518px;
+}
+
+#address-sender {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 518px;
+}
+
+#document-description {
+    position: absolute;
+    left: 0;
+    top: 612px;
+    border-top: 0.5px solid #333;
+    width: 100%;
+    padding: 20px;
+}
+
+#document-activities {
+    position: absolute;
+    left: 0;
+    top: 680px;
+    border-top: 0.5px solid #333;
+    width: 100%;
+    padding: 20px;
+}
+
+.line {
+    padding: 2px 0;
+    position: relative;
+}
+
+.line-break {
+    height: 20px;
+    width: 100%;
+}
+
+.line-title,
+.line-amount,
+.line-sign,
+.line-rate,
+.line-sum,
+.line-right-part {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.line-title {
+    width: 538px;
+}
+
+.line-full {
+    width: 100%;
+}
+
+.line-right-part {
+    position: absolute;
+    right: 0;
+    top: 6px;
+    width: 200px;
+    text-align: right;
+}
+
+.line-amount {
+    width: 30px;
+    text-align: right;
+}
+
+.line-sign {
+    width: 20px;
+    text-align: center;
+}
+
+.line-rate {
+    width: 30px;
+}
+
+.line-sum {
+    width: 410px;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    top: 6px;
+}
+
+.subtotal-block {
+    padding: 0 0 40px 0;
+}
+
+.subtotal-block .line:first-child .line-right-part {
+    border-top: 0.5px solid #000;
+}
+
+.subtotal-block .line:first-child div {
+    padding-top: 4px;
+}
+
+
+#footer {
+    position: absolute;
+    left: 0;
+    top: 1224px;
+    width: 100%;
+}
+
+#footer-text {
+    border-top: 0.5px solid #333;
+    border-bottom: 0.5px solid #333;
+    width: 100%;
+    padding: 20px;
+    font-size: 7pt;
+    text-align: center;
+}
+
+#footer-slogan {
+    text-align: center;
+    padding-top: 20px;
+}
+
+#footer-slogan img {
+    width: 210px;
+}
+
+#legal-info {
+    position: absolute;
+    left: 0;
+    top: 1590px;
+    width: 100%;
+    text-align: center;
+    font-size: 7pt;
+}
+
+#total {
+    position: absolute;
+    left: 0;
+    top: 1115px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.total-labal {
+    font-size: 13pt;
+    font-weight: 700;
+}

@@ -21,7 +21,7 @@ const template = {
         height: 90
     },
     lines: {
-        top: 680,
+        top: 700,
         padding: 20
     },
     total: {

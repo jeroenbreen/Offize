@@ -5,18 +5,19 @@
     import documentTitle from './document-title';
     import documentInfo from './document-info';
     import documentAddresses from './document-addresses';
-    import documentLine from './document-lines/document-line';
-    import documentLineTools from './document-lines/document-line-tools';
     import documentTotal from './document-total';
     import documentFooter from './document-footer';
     import documentLegal from './document-legal';
+    import DocumentLines from "./document-lines/document-lines";
+
+
 
 
     export default {
         name: 'document',
         components: {
             documentHeader, documentTitle, documentInfo, documentAddresses,
-            documentLine, documentLineTools, documentTotal, documentFooter, documentLegal
+            DocumentLines, documentTotal, documentFooter, documentLegal
         },
         props: {
             document: {
@@ -33,9 +34,6 @@
         computed: {
             company() {
                 return this.$store.state.company.current;
-            },
-            documentLines() {
-                return this.$store.getters['documentLines/getLinesForDocument'](this.document.id);
             }
         },
         methods: {
@@ -78,22 +76,10 @@
                 :template="template"
                 :scale="scale"/>
 
-            <div
-                :style="{
-                    'top': getSize(template.lines.top),
-                    'padding': getSize(template.lines.padding)
-                }"
-                class="document__lines">
-                <ul>
-                    <document-line
-                        v-for="(documentLine, index) in documentLines"
-                        :key="index"
-                        :document-line="documentLine"
-                        :document="document"/>
-                </ul>
-                <document-line-tools
-                    :document="document"/>
-            </div>
+            <document-lines
+                :document="document"
+                :template="template"
+                :scale="scale"/>
 
             <document-total
                 v-if="!document.hideTotal"
@@ -245,10 +231,11 @@
                 width: 100%;
                 position: absolute;
                 left: 0;
+                padding: 10px;
 
                 ul {
                     padding: 0;
-                    margin-left: -14px;
+                    margin: 0;
                     list-style: none;
 
                     li {
@@ -338,15 +325,18 @@
 
         .handle {
             display: inline-block;
-            margin: 4px 8px;
             cursor: move;
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .lines-cell {
             display: flex;
             align-items: center;
 
-            width: calc(100% - 30px);
+            width: 100%;
 
             .lines-row-c1 {
                 width: calc(52% - 30px);
