@@ -6,12 +6,11 @@ include ('connect.php');
 $bootstrap = [
     "company"     => [],
     "projects"      => [],
-    "contacts"      => [],
-    "members"       => [],
+    "clients"      => [],
+    "employees"       => [],
     "comments"      => [],
     "documents"     => [],
     "lines"         => [],
-    "todos"         => [],
     "mails"         => []
 ];
 
@@ -29,18 +28,18 @@ while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["projects"][] = $record;
 }
 
-// contacts
-$query = "SELECT * FROM contacts ORDER BY id";
+// clients
+$query = "SELECT * FROM clients ORDER BY id";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
-    $bootstrap["contacts"][] = $record;
+    $bootstrap["clients"][] = $record;
 }
 
-// members
-$query = "SELECT * FROM team ORDER BY id";
+// employees
+$query = "SELECT * FROM employees ORDER BY id";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
-    $bootstrap["members"][] = $record;
+    $bootstrap["employees"][] = $record;
 }
 
 // comments
@@ -62,13 +61,6 @@ $query = "SELECT * FROM documentLines ORDER BY arrayOrder";
 $result = $mysqli -> query($query);
 while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
     $bootstrap["lines"][] = $record;
-}
-
-// todos
-$query = "SELECT * FROM todos";
-$result = $mysqli -> query($query);
-while ($record = $result -> fetch_array(MYSQLI_ASSOC)) {
-    $bootstrap["todos"][] = $record;
 }
 
 // mails

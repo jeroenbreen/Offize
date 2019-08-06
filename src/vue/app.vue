@@ -30,9 +30,9 @@
             bootstrap(data) {
                 this.$store.commit('pages/init', pages);
                 this.$store.commit('statusses/init', statusses);
-                this.$store.commit('clients/init', data.contacts);
+                this.$store.commit('clients/init', data.clients);
                 this.$store.commit('projects/init', data.projects);
-                this.$store.commit('employees/init', data.members);
+                this.$store.commit('employees/init', data.employees);
                 this.$store.commit('documents/init', data.documents);
                 this.$store.commit('documentLines/init', data.lines);
                 this.$store.commit('comments/init', data.comments);

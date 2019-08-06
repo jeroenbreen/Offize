@@ -6,10 +6,12 @@ const Model = Project;
 const state = {
     all: [],
     current: null,
+    currentLight: null,
     searchString: '',
     searchEmployee: -1,
     searchClient: -1,
-    searchYear: 'Alle'
+    searchYear: new Date().getFullYear(),
+    searchLiveProjects: true
 };
 
 const getters = {
@@ -19,12 +21,29 @@ const getters = {
             return (state.searchString === '' || item.projectName.toLowerCase().indexOf(state.searchString.toLocaleLowerCase()) > -1) &&
                 (state.searchEmployee === -1 || item.employeeId ===  state.searchEmployee) &&
                 (state.searchClient === -1 || item.clientId ===  state.searchClient) &&
-                (state.searchYear === 'Alle' || item.year ===  state.searchYear);
+                (state.searchYear === 'Alle' || item.year ===  state.searchYear) &&
+                (state.searchLiveProjects === false || item.projectStatus < 3);
         })
     },
     ordered(state, getters) {
         return getters.getFiltered.sort((a,b) => {
-            return (a.projectStatus > b.projectStatus) ? 1 : ((b.projectStatus > a.projectStatus) ? -1 : 0)
+            if (a.projectStatus > b.projectStatus) {
+                return 1;
+            } else {
+                if (b.projectStatus > a.projectStatus) {
+                    return -1;
+                } else {
+                    if (a.finished && !b.finished) {
+                        return 1;
+                    } else {
+                        if (!a.finished && b.finished) {
+                            return -1;
+                        } else {
+                            return 0;
+                        }
+                    }
+                }
+            }
         });
     }
 };
@@ -47,6 +66,9 @@ const mutations = {
     },
     setCurrent(state, item) {
         return _base.mutations.setCurrent(state, item)
+    },
+    setCurrentLight(state, item) {
+        return state.currentLight = item;
     },
     unsetCurrent(state) {
         return _base.mutations.unsetCurrent(state)

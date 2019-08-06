@@ -8,7 +8,8 @@
                 searchString: this.$store.state.projects.searchString,
                 searchEmployee: this.$store.state.projects.searchEmployee,
                 searchClient: this.$store.state.projects.searchClient,
-                searchYear: this.$store.state.projects.searchYear
+                searchYear: this.$store.state.projects.searchYear,
+                searchLiveProjects: this.$store.state.projects.searchLiveProjects
             }
         },
         computed: {
@@ -40,6 +41,9 @@
             },
             updateYear() {
                 this.$store.commit('projects/updateProperty', {key: 'searchYear', value: this.searchYear})
+            },
+            updateLiveProjects() {
+                this.$store.commit('projects/updateProperty', {key: 'searchLiveProjects', value: this.searchLiveProjects})
             }
         }
     }
@@ -91,6 +95,10 @@
                             :key="index">{{year}}</md-option>
                 </md-select>
             </md-field>
+
+            <md-checkbox
+                v-model="searchLiveProjects"
+                @change="updateLiveProjects()">Live projects</md-checkbox>
         </div>
     </div>
 </template>
@@ -100,5 +108,12 @@
     @import '@styles/variables.scss';
 
     .project-search {
+
+        label {
+            white-space: nowrap;
+            padding-left: 6px!important;
+            font-size: 10px;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
     }
 </style>

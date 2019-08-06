@@ -24,6 +24,9 @@
             isCurrent() {
                 return this.$store.state.projects.current && this.$store.state.projects.current.id === this.project.id;
             },
+            isCurrentLight() {
+                return this.$store.state.projects.currentLight && this.$store.state.projects.currentLight.id === this.project.id;
+            },
             budget() {
                 return commonTools.currencyFormat(this.project.getBudget());
             }
@@ -31,10 +34,12 @@
         methods: {
             prevStatus() {
                 this.clone.projectStatus -= 1;
+                this.$store.commit('projects/setCurrentLight', this.project);
                 this.update();
             },
             nextStatus() {
                 this.clone.projectStatus += 1;
+                this.$store.commit('projects/setCurrentLight', this.project);
                 this.update();
             },
             update() {
@@ -47,6 +52,14 @@
                 this.$store.commit('projects/setCurrent', this.project);
                 localStorage.currentProject = this.project.id;
             }
+        },
+        watch: {
+            project: {
+                handler: function() {
+                    this.clone = new Project(this.project.toBackend())
+                },
+                deep: false
+            }
         }
     }
 </script>
@@ -56,7 +69,8 @@
     <div
         :class="{
             'project-label--current': isCurrent,
-            'project-label--finished': project.finished}"
+            'project-label--current': isCurrentLight,
+            'project-label--finished': project.finished && project.projectStatus === 2}"
     class="project-label">
 
         <div
@@ -112,7 +126,7 @@
 
     .project-label {
         display: flex;
-        height: 40px;
+        height: 32px;
 
         &:first-child {
 
@@ -156,6 +170,7 @@
 
             .project-label__budget {
                 width: 100px;
+                justify-content: flex-end;
             }
         }
 
@@ -184,6 +199,9 @@
 
         &.project-label--finished {
 
+            .project-label__properties {
+                opacity: 0.5;
+            }
         }
     }
 </style>

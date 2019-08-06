@@ -8,8 +8,15 @@
         },
         props: {},
         computed: {
+            liveStatusses() {
+                if (this.$store.state.projects.searchLiveProjects) {
+                    return [...this.$store.state.statusses.all].splice(0, 3);
+                } else {
+                    return this.$store.state.statusses.all;
+                }
+            },
             statusses() {
-                return [...this.$store.state.statusses.all, {id: -1, title: 'Totaal'}];
+                return [...this.liveStatusses, {id: -1, title: 'Totaal'}];
             }
         },
         methods: {}

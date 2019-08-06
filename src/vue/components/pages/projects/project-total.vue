@@ -1,4 +1,6 @@
 <script>
+    import commonTools from '@tools/common-tools';
+
     export default {
         name: 'project-total',
         components: {},
@@ -11,7 +13,7 @@
         computed: {
             projects() {
                 return this.$store.getters['projects/ordered'].filter((project) => {
-                    return project.projectStatus === this.status.id;
+                    return this.status.id === -1 || project.projectStatus === this.status.id;
                 });
             },
             getTotal() {
@@ -19,7 +21,7 @@
                 for (let project of this.projects) {
                     total += project.getBudget();
                 }
-                return total;
+                return commonTools.currencyFormat(total);
             }
         },
         methods: {}
@@ -28,7 +30,9 @@
 
 
 <template>
-    <div class="project-total">
+    <div
+        :class="{'project-total--total': status.id === -1}"
+        class="project-total">
         <div class="project-total__status">
             {{status.title}}
         </div>
@@ -45,6 +49,10 @@
     .project-total {
         display: flex;
         justify-content: space-between;
+
+        &.project-total--total {
+            font-weight: 700;
+        }
 
         .project-total__amount {
             text-align: right;

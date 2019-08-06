@@ -8,7 +8,7 @@ const state = {
     current: null,
     searchString: '',
     searchType: 'invoice',
-    searchYear: 'Alle'
+    searchYear: new Date().getFullYear()
 };
 
 const getters = {
