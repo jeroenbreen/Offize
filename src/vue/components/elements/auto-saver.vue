@@ -2,6 +2,8 @@
     import Client from '@classes/Client';
     import Project from '@classes/Project';
     import Company from '@classes/Company';
+    import Employee from '@classes/Employee';
+    import Document from '@classes/Document';
 
     let saveBuffer = null;
 
@@ -12,7 +14,7 @@
                 type: Object,
                 required: true,
                 validator: function (value) {
-                    return value.constructor === Client || value.constructor === Project || value.constructor === Company;
+                    return value.constructor === Client || value.constructor === Project || value.constructor === Company || value.constructor === Employee || value.constructor === Document;
                 }
             },
             storeUpdate: {

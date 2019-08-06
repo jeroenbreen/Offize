@@ -5,7 +5,7 @@ $type = $_POST['type'];
 
 if ($type == "project") { $query = updateProject(); }
 else if ($type == "contact") { $query = updateContact(); }
-else if ($type == "member") { $query = updateEmployee(); }
+else if ($type == "employee") { $query = updateEmployee(); }
 else if ($type == "hours") { $query = updateHours(); }
 else if ($type == "comment") { $query = updateComment(); }
 else if ($type == "document") { $query = updateDocument(); }
@@ -125,7 +125,7 @@ function updateEmployee() {
     name = '" . $name . "' ,
     initials = '" . $initials . "' ,
     email = '" . $email . "' ,
-    mail_footer = '" . $mailFooter . "'
+    mailFooter = '" . $mailFooter . "'
     WHERE
     id = '" . $id. "'";
     return $query;

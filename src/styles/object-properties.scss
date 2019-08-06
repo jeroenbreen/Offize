@@ -1,7 +1,9 @@
 .object-properties__set {
     margin-bottom: 4px;
+    display: flex;
 
-    input {
+    input,
+    textarea {
         padding: 6px;
         font-size: 13px;
         outline: none;
@@ -13,8 +15,20 @@
         }
     }
 
+    textarea {
+        height: 180px;
+        resize: none;
+    }
+
     .object-properties__label {
         display: inline-block;
         margin-left: 8px;
+    }
+
+    .html-rendered {
+        border: 1px dotted #ddd;
+        padding: 4px;
+        margin-left: 30px;
+        width: 200px;
     }
 }

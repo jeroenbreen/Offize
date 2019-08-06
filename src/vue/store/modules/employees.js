@@ -1,11 +1,12 @@
 import _base from './_base-module';
+import Employee from '@classes/Employee';
 
-const Model = Object;
+const Model = Employee;
 
 const state = {
     all: [],
     current: null,
-    search: ''
+    searchString: ''
 };
 
 const getters = {

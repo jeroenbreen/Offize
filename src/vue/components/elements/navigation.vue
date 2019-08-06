@@ -6,19 +6,15 @@
         components: {
             identity
         },
-        data() {
-            return {
-                pages: ['Projects', 'Clients', 'Documents']
+        props: {},
+        computed: {
+            pages() {
+                return this.$store.state.pages.all;
             }
         },
-        props: {},
-        computed: {},
         methods: {
             openSettings() {
                 this.$store.commit('settings/updateProperty', {key: 'showSettings', value: true});
-            },
-            openMembers() {
-
             }
         }
     }
@@ -33,8 +29,8 @@
             <li
                 v-for="page in pages">
                 <router-link
-                    :to="page">
-                    {{page}}
+                    :to="page.tag">
+                    {{page.title}}
                 </router-link>
             </li>
         </ul>
@@ -44,12 +40,6 @@
             @click="openSettings()"
             class="menu-tools open-settings">
             <i class="fas fa-cog"></i>
-        </div>
-
-        <div
-            @click="openMembers()"
-            class="menu-tools open-members">
-            <i class="fas fa-user-friends"></i>
         </div>
     </div>
 </template>
@@ -110,10 +100,6 @@
 
         .open-settings {
             right: 10px;
-        }
-
-        .open-members {
-            right: 38px;
         }
     }
 </style>

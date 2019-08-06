@@ -14,6 +14,7 @@
         methods: {
             setCurrent() {
                 this.$store.commit('documents/setCurrent', this.document);
+                localStorage.currentDocument = this.document.id;
             }
         }
     }

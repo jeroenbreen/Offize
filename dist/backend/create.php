@@ -3,20 +3,20 @@ include ('connect.php');
 
 
 $type = $_POST['type'];
-if ($type == "project") { $query = insertProject(); }
-else if ($type == "document") { $query = insertDocument(); }
-else if ($type == "contact") { $query = insertContact(); }
-else if ($type == "member") { $query = insertMember(); }
-else if ($type == "comment") { $query = insertComment(); }
-else if ($type == "hours") { $query = insertHours(); }
-else if ($type == "line") { $query = insertLines(); }
-else if ($type == "block") { $query = insertBlocks(); }
-else if ($type == "activity") { $query = insertActivity(); }
-else if ($type == "todo") { $query = insertTodos(); }
-else if ($type == "mail") { $query = insertMails(); }
+if ($type == "project") { $query = createProject(); }
+else if ($type == "document") { $query = createDocument(); }
+else if ($type == "contact") { $query = createContact(); }
+else if ($type == "employee") { $query = createEmployee(); }
+else if ($type == "comment") { $query = createComment(); }
+else if ($type == "hours") { $query = createHours(); }
+else if ($type == "line") { $query = createLines(); }
+else if ($type == "block") { $query = createBlocks(); }
+else if ($type == "activity") { $query = createActivity(); }
+else if ($type == "todo") { $query = createTodos(); }
+else if ($type == "mail") { $query = createMails(); }
 
 
-function insertProject() {
+function createProject() {
     $projectName = $_POST['projectName'];
     $projectStatus = $_POST['projectStatus'];
     $id = $_POST['id'];
@@ -44,7 +44,7 @@ function insertProject() {
     return $query;
 }
 
-function insertDocument() {
+function createDocument() {
     $id = $_POST['id'];
     $contactName = $_POST['contactName'];
     $projectId = $_POST['projectId'];
@@ -86,7 +86,7 @@ function insertDocument() {
     return $query;
 }
 
-function insertContact() {
+function createContact() {
     $name = $_POST['name'];
     $contactPerson = $_POST['contactPerson'];
     $street = $_POST['street'];
@@ -114,16 +114,16 @@ function insertContact() {
     return $query;
 }
 
-function insertMember() {
-    $employeeId = $_POST['employeeId'];
+function createEmployee() {
+    $id = $_POST['id'];
     $name = $_POST['name'];
     $initials = $_POST['initials'];
     $email = $_POST['email'];
     $mailFooter = $_POST['mailFooter'];
     $query= "INSERT INTO team
-    (employeeId, name, initials, email, mail_footer)
+    (id, name, initials, email, mailFooter)
     VALUES (
-    '". $employeeId ."' ,
+    '". $id ."' ,
     '". $name ."'  ,
     '". $initials ."' ,
     '". $email ."' ,
@@ -132,7 +132,7 @@ function insertMember() {
     return $query;
 }
 
-function insertComment() {
+function createComment() {
     $id = $_POST['id'];
     $projectId = $_POST['projectId'];
     $comment = $_POST['comment'];
@@ -146,7 +146,7 @@ function insertComment() {
     return $query;
 }
 
-function insertHours() {
+function createHours() {
     $projectId = $_POST['projectId'];
     $employeeId = $_POST['employeeId'];
     $description = $_POST['description'];
@@ -162,7 +162,7 @@ function insertHours() {
     return $query;
 }
 
-function insertLines() {
+function createLines() {
     $documentId = $_POST['documentId'];
     $lineType = $_POST['lineType'];
     $text = $_POST['text'];
@@ -186,7 +186,7 @@ function insertLines() {
     return $query;
 }
 
-function insertBlocks() {
+function createBlocks() {
     $date = $_POST['date'];
     $employeeId = $_POST['employeeId'];
     $projectId = $_POST['projectId'];
@@ -204,7 +204,7 @@ function insertBlocks() {
     return $query;
 }
 
-function insertActivity() {
+function createActivity() {
     $time = $_POST['time'];
     $text = $_POST['text'];
     $lineId = $_POST['lineId'];
@@ -223,7 +223,7 @@ function insertActivity() {
     return $query;
 }
 
-function insertTodos() {
+function createTodos() {
     $employeeId = $_POST['employeeId'];
     $title = $_POST['title'];
     $done = $_POST['done'];
@@ -239,7 +239,7 @@ function insertTodos() {
     return $query;
 }
 
-function insertMails() {
+function createMails() {
     $id = $_POST['id'];
     $subject = $_POST['subject'];
     $content = $_POST['content'];

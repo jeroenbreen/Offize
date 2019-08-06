@@ -1,24 +1,24 @@
 <script>
-    import Client from '@classes/Client';
+    import Employee from '@classes/Employee';
 
     export default {
-        name: 'client-label',
+        name: 'employee-label',
         components: {},
         props: {
-            client: {
-                type: Client,
+            employee: {
+                type: Employee,
                 required: true
             }
         },
         computed: {
             isCurrent() {
-                return this.$store.state.clients.current && this.client.id === this.$store.state.clients.current.id;
+                return this.$store.state.employees.current && this.employee.id === this.$store.state.employees.current.id;
             }
         },
         methods: {
             setCurrent() {
-                this.$store.commit('clients/setCurrent', this.client);
-                localStorage.currentClient = this.client.id;
+                this.$store.commit('employees/setCurrent', this.employee);
+                localStorage.currentEmployee = this.employee.id;
             }
         }
     }
@@ -29,8 +29,8 @@
     <div
         @click="setCurrent()"
         :class="{'page-standard-item--current': isCurrent}"
-        class="client-label page-standard-item">
-        {{client.toSlug()}}
+        class="employee-label page-standard-item">
+        {{employee.name}}
     </div>
 </template>
 
@@ -38,7 +38,7 @@
 <style lang="scss">
     @import '@styles/variables.scss';
 
-    .client-label {
+    .employee-label {
 
     }
 </style>

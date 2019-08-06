@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import _base from "./modules/_base-module";
 
 import settings from './modules/settings'
+import pages from './modules/pages';
 import statusses from './modules/statusses';
 import company from './modules/company'
 import projects from './modules/projects'
@@ -36,7 +37,7 @@ export default new Vuex.Store({
     mutations,
     actions,
     modules: {
-        settings, statusses, company,
+        settings, pages, statusses, company,
         projects, employees, clients, documents, comments,
         modal
     },

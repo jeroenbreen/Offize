@@ -1,6 +1,5 @@
 <script>
     import Client from '@classes/Client';
-    import delayTool from '@tools/delay-tool';
     import autoSaver from '@components/elements/auto-saver';
 
     export default {
@@ -21,9 +20,6 @@
         },
         computed: {},
         methods: {
-            updateClone() {
-                this.clone = new Client({...this.client});
-            },
             remove() {
                 var message, callback;
                 message = 'Wil je ' + this.clone.name + ' echt verwijderen?';
@@ -42,11 +38,6 @@
             close() {
                 this.$store.commit('clients/unsetCurrent');
                 localStorage.currentClient = null;
-            }
-        },
-        watch: {
-            client: function (val) {
-                this.updateClone();
             }
         }
     }
