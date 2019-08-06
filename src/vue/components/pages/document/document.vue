@@ -1,14 +1,22 @@
 <script>
     import template from './template';
-    import Document from '@classes/Document'
-    import documentInfo from './document-info'
-    import documentAddresses from './document-addresses'
+    import Document from '@classes/Document';
+    import documentHeader from './document-header';
+    import documentTitle from './document-title';
+    import documentInfo from './document-info';
+    import documentAddresses from './document-addresses';
+    import documentLine from './document-lines/document-line';
+    import documentLineTools from './document-lines/document-line-tools';
+    import documentTotal from './document-total';
+    import documentFooter from './document-footer';
+    import documentLegal from './document-legal';
 
 
     export default {
         name: 'document',
         components: {
-            documentInfo, documentAddresses
+            documentHeader, documentTitle, documentInfo, documentAddresses,
+            documentLine, documentLineTools, documentTotal, documentFooter, documentLegal
         },
         props: {
             document: {
@@ -25,26 +33,14 @@
         computed: {
             company() {
                 return this.$store.state.company.current;
+            },
+            documentLines() {
+                return this.$store.getters['documentLines/getLinesForDocument'](this.document.id);
             }
         },
         methods: {
             getSize(size) {
                 return size * this.scale + 'px';
-            },
-            getTotal(multiplier) {
-                // let total = 0;
-                // for (let i = 0; i < this.document.lines.length; i++) {
-                //     let line = this.document.lines[i];
-                //     if (line.lineType === 'count') {
-                //         total += line.rate * line.hours;
-                //     } else if (line.lineType === 'amount') {
-                //         total += parseFloat(line.amount);
-                //     }
-                // }
-                // total *= multiplier;
-                // total = Math.round(100 * total) / 100;
-                // return total;
-                return 0;
             }
         }
     }
@@ -61,12 +57,11 @@
             'font-size': getSize(template.paper.fontSize)
         }">
 
-        <div class="paper__container">
-            <div class="paper__header">
-                <img
-                    :style="{ 'height': getSize(template.logo.height)}"
-                    :src="company.logoUrl">
-            </div>
+        <div class="document__container">
+            <document-header
+                :document="document"
+                :template="template"
+                :scale="scale"/>
 
             <document-info
                 :document="document"
@@ -78,21 +73,10 @@
                 :template="template"
                 :scale="scale"/>
 
-            <div
-                :style="{
-                    'top': getSize(template.title.top),
-                    'height': getSize(template.title.height),
-                    'padding': getSize(template.title.padding)
-                }"
-                class="document__title">
-                <b>Betreft:</b>&nbsp;
-                <input
-                    v-if="!document.locked"
-                    v-model="document.title">
-                <div v-if="document.locked">
-                    {{document.title}}
-                </div>
-            </div>
+            <document-title
+                :document="document"
+                :template="template"
+                :scale="scale"/>
 
             <div
                 :style="{
@@ -100,77 +84,32 @@
                     'padding': getSize(template.lines.padding)
                 }"
                 class="document__lines">
-                lines
+                <ul>
+                    <document-line
+                        v-for="(documentLine, index) in documentLines"
+                        :key="index"
+                        :document-line="documentLine"
+                        :document="document"/>
+                </ul>
+                <document-line-tools
+                    :document="document"/>
             </div>
 
-            <div
+            <document-total
                 v-if="!document.hideTotal"
-                :style="{
-                    'top': getSize(template.total.top),
-                    'padding': getSize(template.total.padding)
-                }"
-                class="document__total" >
-                <span class="left">
-                    Totaal
-                </span>
-                <span class="right">
-                        {{getTotal(1)}}
-                        {{document.currency}}
-                    </span>
-                <br>
-                <div>
-                    <span class="left">
-                        BTW {{document.vat}}%
-                    </span>
-                    <span class="right">
-                        {{getTotal((document.vat / 100))}}
-                        {{document.currency}}
-                    </span>
-                    <span class="left lines-total-big">
-                        <b>
-                            Te betalen
-                        </b>
-                    </span>
-                    <span class="right lines-total-big">
-                        <b>
-                            {{getTotal((1 + (document.vat / 100)))}}
-                            {{document.currency}}
-                        </b>
-                    </span>
-                </div>
-            </div>
+                :document="document"
+                :template="template"
+                :scale="scale"/>
 
-            <div
-                :style="{
-                    'top': getSize(template.footer.top)
-                }"
-                class="document__footer">
-                <div
-                    v-if="document.doctype === 'invoice'"
-                    :style="{
-                        'padding': getSize(template.footer.invoiceText.padding),
-                        'font-size': getSize(template.footer.invoiceText.fontSize)
-                    }"
-                    class="document__invoice-text">
-                    {{company.invoiceText}}
-                </div>
+            <document-footer
+                :document="document"
+                :template="template"
+                :scale="scale"/>
 
-                <img
-                    :style="{
-                        'width': getSize(template.footer.image.width),
-                        'margin-top': getSize(template.footer.image.marginTop)
-                    }"
-                    :src="company.footerImageUrl">
-            </div>
-
-            <div
-                :style="{
-                    'top': getSize(template.legal.top),
-                    'font-size': getSize(template.legal.fontSize)
-                }"
-                class="document__legal">
-                {{company.name}} | KvK {{company.coc}} | BTW {{company.vat}}
-            </div>
+            <document-legal
+                :document="document"
+                :template="template"
+                :scale="scale"/>
         </div>
     </div>
 </template>
@@ -219,10 +158,10 @@
 
 
 
-        .paper__container {
+        .document__container {
             position: relative;
 
-            .paper__header {
+            .document__header {
                 position: absolute;
                 left: 0;
                 top: 0;
@@ -393,24 +332,23 @@
 
     li.lines-row, .ui-sortable-helper {
         width: 100%;
-        clear: both;
         position: relative;
         min-height: 24px;
+        display: flex;
 
         .handle {
             display: inline-block;
-            float: left;
             margin: 4px 8px;
             cursor: move;
         }
 
         .lines-cell {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+
             width: calc(100% - 30px);
-            float: right;
 
             .lines-row-c1 {
-                float: left;
                 width: calc(52% - 30px);
 
                 input {
@@ -419,7 +357,6 @@
             }
 
             .lines-row-c2 {
-                float: left;
                 width: 12%;
 
                 input {
@@ -429,7 +366,6 @@
             }
 
             .lines-row-c3 {
-                float: left;
                 width: 12%;
 
                 input {
@@ -438,9 +374,9 @@
             }
 
             .lines-row-c4 {
-                float: right;
                 width: 24%;
                 text-align: right;
+                margin-left: auto;
 
                 input {
                     width: 50%;
@@ -449,12 +385,12 @@
             }
         }
 
-        .remove-post {
+        .document-tool {
             position: absolute;
             right: -32px;
-            top: -6px;
+            top: 50%;
+            transform: translateY(-50%);
             margin-top: 0!important;
-            background: transparent;
         }
     }
 </style>

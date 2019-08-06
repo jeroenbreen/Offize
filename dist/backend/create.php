@@ -170,9 +170,8 @@ function createLines() {
     $amount = $_POST['amount'];
     $arrayOrder = $_POST['arrayOrder'];
     $rate = $_POST['rate'];
-    $jobId = $_POST['jobId'];
     $query="INSERT INTO documentLines
-    (documentId, lineType , text, hours, amount, arrayOrder, rate, jobId)
+    (documentId, lineType , text, hours, amount, arrayOrder, rate)
     VALUES (
     '". $documentId ."' ,
     '". $lineType ."'  ,
@@ -180,8 +179,7 @@ function createLines() {
     '". $hours ."',
     '". $amount ."',
     '". $arrayOrder ."',
-    '". $rate ."' ,
-    '". $jobId ."'
+    '". $rate ."'
     )";
     return $query;
 }

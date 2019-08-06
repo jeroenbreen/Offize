@@ -34,6 +34,7 @@
                 this.$store.commit('projects/init', data.projects);
                 this.$store.commit('employees/init', data.members);
                 this.$store.commit('documents/init', data.documents);
+                this.$store.commit('documentLines/init', data.lines);
                 this.$store.commit('comments/init', data.comments);
                 this.$store.commit('company/init', data.company);
                 this.$store.commit('settings/updateProperty', {key: 'bootstrapped', value: true});

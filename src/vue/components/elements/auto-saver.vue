@@ -4,6 +4,7 @@
     import Company from '@classes/Company';
     import Employee from '@classes/Employee';
     import Document from '@classes/Document';
+    import DocumentLine from '@classes/DocumentLine';
 
     let saveBuffer = null;
 
@@ -14,7 +15,12 @@
                 type: Object,
                 required: true,
                 validator: function (value) {
-                    return value.constructor === Client || value.constructor === Project || value.constructor === Company || value.constructor === Employee || value.constructor === Document;
+                    return value.constructor === Client ||
+                    value.constructor === Project ||
+                    value.constructor === Company ||
+                    value.constructor === Employee ||
+                    value.constructor === Document ||
+                    value.constructor === DocumentLine;
                 }
             },
             storeUpdate: {

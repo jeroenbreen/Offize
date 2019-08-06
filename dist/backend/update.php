@@ -216,24 +216,6 @@ function updateMail() {
     return $query;
 }
 
-function updateActivity() {
-    $id = $_POST['id'];
-    $time = $_POST['time'];
-    $text = $_POST['text'];
-    $lineId = $_POST['lineId'];
-    $blockId = $_POST['blockId'];
-    $jobId = $_POST['jobId'];
-    $query = "UPDATE activities SET
-    time = '" . $time . "' ,
-    text = '" . $text . "' ,
-    lineId = '" . $lineId . "' ,
-    blockId = '" . $blockId . "' ,
-    jobId = '" . $jobId . "'
-    WHERE
-    id = '" . $id. "'";
-    return $query;
-}
-
 function updateLine() {
     $id = $_POST['id'];
     $documentId = $_POST['documentId'];
@@ -243,7 +225,6 @@ function updateLine() {
     $amount = $_POST['amount'];
     $arrayOrder = $_POST['arrayOrder'];
     $rate = $_POST['rate'];
-    $jobId = $_POST['jobId'];
     $query = "UPDATE documentLines SET
     documentId = '" . $documentId . "' ,
     lineType = '" . $lineType . "' ,
@@ -251,8 +232,7 @@ function updateLine() {
     hours = '" . $hours . "' ,
     amount = '" . $amount . "' ,
     arrayOrder = '" . $arrayOrder . "' ,
-    rate = '" . $rate . "' ,
-    jobId = '" . $jobId . "'
+    rate = '" . $rate . "'
     WHERE
     id = '" . $id. "'";
     return $query;
