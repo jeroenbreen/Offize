@@ -1,6 +1,7 @@
 .object-properties__set {
     margin-bottom: 4px;
     display: flex;
+    align-items: flex-start;
 
     input,
     textarea {
@@ -23,6 +24,8 @@
     .object-properties__label {
         display: inline-block;
         margin-left: 8px;
+        width: 200px;
+        padding-top: 6px;
     }
 
     .html-rendered {
@@ -30,5 +33,12 @@
         padding: 4px;
         margin-left: 30px;
         width: 200px;
+    }
+
+    .html-rendered-img {
+        border: 1px dotted #ddd;
+        margin-left: 30px;
+        width: 100px;
+        height: auto;
     }
 }

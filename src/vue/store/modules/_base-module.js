@@ -33,7 +33,7 @@ const actions = {
             $.post('backend/create.php', $.param(item), (response) => {
                 item.id = JSON.parse(response).id;
                 context.commit('create', item);
-                resolve();
+                resolve(JSON.parse(response));
             });
         })
     },

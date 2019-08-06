@@ -66,12 +66,13 @@
             },
             deleteDocument() {
                 let name, message, callback;
-                name = document.getPrefix() + ' ' + document.toSlug();
+                name = this.document.getPrefix() + ' ' + this.document.toSlug();
                 message = 'Wil je ' + name + ' echt verwijderen?';
 
                 callback = () => {
                     this.$store.dispatch('documents/delete', this.document).then((response) => {
                         this.$store.commit('documents/unsetCurrent');
+                        localStorage.currentDocument = null;
                         console.log('document removed');
                     });
                 };

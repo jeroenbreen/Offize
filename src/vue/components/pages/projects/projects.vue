@@ -1,13 +1,14 @@
 <script>
     import projectSearch from './project-search';
     import projectCreate from './project-create';
+    import projectTotals from './project-totals';
     import projectLabel from './project-label';
     import project from './project';
 
     export default {
         name: 'projects',
         components: {
-            projectSearch, projectCreate, projectLabel, project
+            projectSearch, projectCreate, projectTotals, projectLabel, project
         },
         props: {},
         computed: {
@@ -25,7 +26,11 @@
 
 <template>
     <div class="projects">
-        <project-create/>
+        <div class="project__tools">
+            <project-create/>
+            <project-totals/>
+        </div>
+
 
         <div class="page__list">
             <project-search/>
@@ -51,7 +56,7 @@
         height: 100%;
         display: flex;
 
-        .project-create {
+        .project__tools {
             width: 400px;
             margin-right: 20px;
         }

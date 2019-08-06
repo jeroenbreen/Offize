@@ -24,8 +24,10 @@
 <template>
     <div
         @click="setCurrent()"
+        :class="{'mini-document--paid': document.paid}"
         class="mini-document">
-        <b>{{document.getPrefix()}} {{document.toSlug()}}</b><br>
+        <b>{{document.getPrefix()}}
+        {{document.toSlug()}}</b><br>
         {{document.title}}
     </div>
 </template>
@@ -60,7 +62,7 @@
             height: 12px;
         }
 
-        &.paid {
+        &.mini-document--paid {
 
             &:after {
                 background: #fff;

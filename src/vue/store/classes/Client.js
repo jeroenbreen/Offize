@@ -9,7 +9,7 @@ class Client extends _Base {
         super(client);
         this.type = 'contact';
         this.name = client ? client.name : '';
-        this.clientPerson = client ? client.contactPerson : '';
+        this.contactPerson = client ? client.contactPerson : '';
         this.street = client ? client.street : '';
         this.zipcode = client ? client.zipcode : '';
         this.city = client ? client.city : '';

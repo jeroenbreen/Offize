@@ -29,17 +29,21 @@
         },
         methods: {
             create() {
-                let document, data;
+                let document, client, data;
                 document = new Document();
                 document.projectId = this.project.id;
                 document.employeeId = this.project.employeeId;
                 document.doctype = this.doctype;
                 document.title = this.project.projectName;
                 document.clientId = this.project.clientId;
+                document.year = new Date().getFullYear();
+                document.nr = this.$store.getters['documents/getNr'](this.doctype);
+                client = this.$store.getters['clients/getItemById'](this.project.clientId);
+                document.clientName = client.contactPerson;
                 data = document.toBackend();
-
                 this.$store.dispatch('documents/create', data).then((response) => {
-                    console.log('documents created');
+                    let doc = this.$store.getters['documents/getItemById'](Number(response.id));
+                    this.$store.commit('documents/setCurrent', doc);
                 });
             }
         }

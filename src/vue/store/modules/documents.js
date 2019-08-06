@@ -25,6 +25,17 @@ const getters = {
                 (state.searchYear === 'Alle' || item.year ===  state.searchYear);
         })
     },
+    getNr: (state) => (doctype) => {
+        let max = 0;
+        for (let document of state.all) {
+            if (document.doctype === doctype) {
+                if (document.nr > max) {
+                    max = document.nr;
+                }
+            }
+        }
+        return max + 1;
+    }
 };
 
 const actions = {

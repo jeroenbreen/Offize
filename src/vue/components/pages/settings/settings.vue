@@ -30,33 +30,114 @@
                 <div class="panel">
                     <div class="panel-section">
                         <div class="object-properties__set">
-                            <input title="Contact"
-                                   v-model="clone.name">
+                            <input v-model="clone.name">
                             <div class="object-properties__label">
                                 Name
                             </div>
                         </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.companyNameNice">
+                            <div class="object-properties__label">
+                                Afkorting
+                            </div>
+                        </div>
                     </div>
+
                     <div class="panel-section">
                         <div class="object-properties__set">
-                            <input title="Contact"
-                                   v-model="clone.address">
+                            <input v-model="clone.address">
                             <div class="object-properties__label">
                                 Address
                             </div>
                         </div>
                         <div class="object-properties__set">
-                            <input title="Contact"
-                                   v-model="clone.zipcode">
+                            <input v-model="clone.zipcode">
                             <div class="object-properties__label">
                                 Postcode
                             </div>
                         </div>
                         <div class="object-properties__set">
-                            <input title="Contact"
-                                   v-model="clone.city">
+                            <input v-model="clone.city">
                             <div class="object-properties__label">
                                 City
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <input title="Contact"
+                                   v-model="clone.coc">
+                            <div class="object-properties__label">
+                                KvK
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.vat">
+                            <div class="object-properties__label">
+                                BTW nr
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <div class="object-properties__set">
+                            <textarea v-model="clone.invoiceText"></textarea>
+                            <div class="object-properties__label">
+                                Tekst onder factuur
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.logoUrl">
+                            <div class="object-properties__label">
+                                URL logo
+                            </div>
+                            <img class="html-rendered-img" :src="clone.logoUrl">
+                        </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.footerImageUrl">
+                            <div class="object-properties__label">
+                                URL footer
+                            </div>
+                            <img class="html-rendered-img" :src="clone.footerImageUrl">
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <div class="object-properties__set">
+                            <input v-model="clone.standardRate">
+                            <div class="object-properties__label">
+                                Standaardtarief
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.startingYear">
+                            <div class="object-properties__label">
+                                Aanvangsjaar
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <div class="object-properties__set">
+                            <md-checkbox v-model="clone.usesMail"> Mail</md-checkbox>
+                        </div>
+                        <div class="object-properties__set">
+                            <md-checkbox v-model="clone.usesGoogleDrive"> Google Drive</md-checkbox>
+                        </div>
+                        <div class="object-properties__set">
+                            <md-checkbox v-model="clone.usesAcumulus"> Acumulus</md-checkbox>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <div class="object-properties__set">
+                            <input v-model="clone.color1">
+                            <div class="object-properties__label">
+                                Kleur 1
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.color2">
+                            <div class="object-properties__label">
+                                Kleur 2
                             </div>
                         </div>
                     </div>
