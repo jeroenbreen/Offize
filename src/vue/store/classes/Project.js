@@ -15,7 +15,7 @@ class Project extends _Base {
         this.rate = project && project.rate ? Number(project.rate) : 0; //app.company.standardRate;
         this.hours = project && project.hours ? Number(project.hours) : 0;
         this.year = project && project.year ? Number(project.year) : new Date().getFullYear();
-        this.finished = project && project.finished && project.finished ? project.finished === '1' : false;
+        this.finished = project && project.finished && project.finished ? Boolean(parseInt(project.finished)) : false;
     }
 
 
@@ -116,6 +116,12 @@ class Project extends _Base {
 
     isOverHours() {
         return this.getScore() > 100;
+    }
+
+    toBackend() {
+        let project = {...this};
+        project.finished = this.finished ? 1 : 0;
+        return project;
     }
 }
 
