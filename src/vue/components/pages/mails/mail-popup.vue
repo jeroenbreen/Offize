@@ -36,6 +36,12 @@
             },
             formatContent(content) {
                 return content.replace(/\n/g, "<br />");
+            },
+            send() {
+                this.$store.dispatch('mails/create', this.clone.toBackend()).then((response) => {
+                    console.log('mail created');
+                    this.close();
+                });
             }
         }
     }
@@ -133,6 +139,15 @@
                                 v-model="clone.mailType"></select>
                     </div>
                 </div>
+
+                <div class="popup__footer" >
+                    <div
+                            v-if="isUnsent"
+                            @click="send()"
+                            class="mail__button">
+                        Verzenden
+                    </div>
+                </div>
             </div>
             <div
                 @click="close()"
@@ -209,6 +224,24 @@
             .mail__tools {
                 width: 200px;
                 padding-left: 20px;
+            }
+        }
+
+        .popup__footer {
+            margin-top: 40px;
+
+            .mail__button {
+                cursor: pointer;
+                color: #fff;
+                border-radius: 5px;
+                padding: 12px 24px;
+                background: #0f77e6;
+                display: inline-block;
+                font-size: 16px;
+
+                &:hover {
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+                }
             }
         }
     }

@@ -4,6 +4,7 @@ import dateTool from '@tools/date-tool';
 class Mail extends _Base {
     constructor(mail) {
         super(mail);
+        this.type = 'mail';
         this.subject = mail.subject;
         this.content = mail.content;
         this.employeeId = Number(mail.employeeId);
