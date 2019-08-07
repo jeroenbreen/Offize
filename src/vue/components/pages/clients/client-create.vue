@@ -13,10 +13,17 @@
         computed: {},
         methods: {
             create() {
-                this.$store.dispatch('clients/create', {...this.client}).then((response) => {
-                    console.log('client created');
-                    this.client = new Client();
-                });
+                if (this.client.name.length > 0) {
+                    this.$store.dispatch('clients/create', this.client.toBackend()).then((response) => {
+                        console.log('client created');
+                        this.client = new Client();
+                    });
+                } else {
+                    this.$store.commit('modal/message', {
+                        message: 'Vul een naam in.'
+                    });
+                }
+
             }
         }
     }

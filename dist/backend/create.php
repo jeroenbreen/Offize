@@ -41,7 +41,6 @@ function createProject() {
 }
 
 function createDocument() {
-    $id = $_POST['id'];
     $clientName = $_POST['clientName'];
     $projectId = $_POST['projectId'];
     $doctype = $_POST['doctype'];
@@ -59,9 +58,8 @@ function createDocument() {
     $day = $_POST['day'];
     $rate = $_POST['rate'];
     $query = "INSERT INTO documents
-    (id, clientName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, employeeId, title, vat, year, month, day, rate)
+    (clientName, projectId, doctype, currency, english, hideTotal, locked, nr, paid, employeeId, title, vat, year, month, day, rate)
     VALUES (
-    '". $id ."'  ,
     '". $clientName ."'  ,
     '". $projectId ."'  ,
     '". $doctype ."'  ,
@@ -111,15 +109,13 @@ function createClient() {
 }
 
 function createEmployee() {
-    $id = $_POST['id'];
     $name = $_POST['name'];
     $initials = $_POST['initials'];
     $email = $_POST['email'];
     $mailFooter = $_POST['mailFooter'];
     $query= "INSERT INTO employees
-    (id, name, initials, email, mailFooter)
+    (name, initials, email, mailFooter)
     VALUES (
-    '". $id ."' ,
     '". $name ."'  ,
     '". $initials ."' ,
     '". $email ."' ,
@@ -129,13 +125,11 @@ function createEmployee() {
 }
 
 function createComment() {
-    $id = $_POST['id'];
     $projectId = $_POST['projectId'];
     $comment = $_POST['comment'];
     $query="INSERT INTO comments 
-    (id, projectId, comment)
+    (projectId, comment)
     VALUES (
-    '". $id ."'  ,
     '". $projectId ."' ,
     '". nlToBreak($comment) ."'
     )";
@@ -165,7 +159,6 @@ function createLines() {
 }
 
 function createMails() {
-    $id = $_POST['id'];
     $subject = $_POST['subject'];
     $content = $_POST['content'];
     $employeeId = $_POST['employeeId'];
@@ -174,9 +167,8 @@ function createMails() {
     $mailType = $_POST['mailType'];
     $documentId = $_POST['documentId'];
     $query = "INSERT INTO mails
-    (id, subject, content, employeeId, receiver, date, mailType, documentId)
+    (subject, content, employeeId, receiver, date, mailType, documentId)
     VALUES (
-    '". $id ."' ,
     '". $subject ."' ,
     '". $content ."' ,
     '". $employeeId ."' ,

@@ -1,5 +1,3 @@
-// todo replace 'contact' with 'client'
-
 import commonTools from '@tools/common-tools';
 import _Base from './_Base';
 
