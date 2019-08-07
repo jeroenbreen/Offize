@@ -39,6 +39,11 @@
                     });
                 }
             }
+        },
+        mounted() {
+            this.$store.dispatch('comments/read', this.project.id).then((response) => {
+
+            });
         }
     }
 </script>

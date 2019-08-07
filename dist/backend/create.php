@@ -5,22 +5,18 @@ include ('connect.php');
 $type = $_POST['type'];
 if ($type == "project") { $query = createProject(); }
 else if ($type == "document") { $query = createDocument(); }
-else if ($type == "contact") { $query = createContact(); }
+else if ($type == "client") { $query = createClient(); }
 else if ($type == "employee") { $query = createEmployee(); }
 else if ($type == "comment") { $query = createComment(); }
-else if ($type == "hours") { $query = createHours(); }
 else if ($type == "line") { $query = createLines(); }
-else if ($type == "block") { $query = createBlocks(); }
-else if ($type == "activity") { $query = createActivity(); }
-else if ($type == "todo") { $query = createTodos(); }
 else if ($type == "mail") { $query = createMails(); }
 
 
 function createProject() {
     $projectName = $_POST['projectName'];
     $projectStatus = $_POST['projectStatus'];
-    $id = $_POST['id'];
     $employeeId = $_POST['employeeId'];
+    $clientId = $_POST['clientId'];
     $hours = $_POST['hours'];
     $rate = $_POST['rate'];
     $discount = $_POST['discount'];
@@ -28,12 +24,12 @@ function createProject() {
     $year = $_POST['year'];
     $finished = $_POST['finished'];
     $query="INSERT INTO projects
-    (projectName, projectStatus, id, employeeId, hours, rate, discount, currency, year, finished)
+    (projectName, projectStatus, employeeId, clientId, hours, rate, discount, currency, year, finished)
     VALUES (
     '". $projectName ."'  ,
     '". $projectStatus ."' ,
-    '". $id ."'  ,
     '". $employeeId ."' ,
+    '". $clientId ."' ,
     '". $hours ."'  ,
     '". $rate ."' ,
     '". $discount ."'  ,
@@ -86,7 +82,7 @@ function createDocument() {
     return $query;
 }
 
-function createContact() {
+function createClient() {
     $name = $_POST['name'];
     $contactPerson = $_POST['contactPerson'];
     $street = $_POST['street'];
@@ -97,7 +93,7 @@ function createContact() {
     $telephone = $_POST['telephone'];
     $rate = $_POST['rate'];
     $info = $_POST['info'];
-    $query = "INSERT INTO contacts
+    $query = "INSERT INTO clients
     (name, contactPerson, street, zipcode, city, web, email, telephone, rate, info)
     VALUES (
     '". $name ."'  ,
@@ -120,7 +116,7 @@ function createEmployee() {
     $initials = $_POST['initials'];
     $email = $_POST['email'];
     $mailFooter = $_POST['mailFooter'];
-    $query= "INSERT INTO team
+    $query= "INSERT INTO employees
     (id, name, initials, email, mailFooter)
     VALUES (
     '". $id ."' ,
@@ -146,22 +142,6 @@ function createComment() {
     return $query;
 }
 
-function createHours() {
-    $projectId = $_POST['projectId'];
-    $employeeId = $_POST['employeeId'];
-    $description = $_POST['description'];
-    $time = $_POST['time'];
-    $query="INSERT INTO hours
-    (projectId, employeeId , description, time)
-    VALUES (
-    '". $projectId ."' ,
-    '". $employeeId ."'  ,
-    '". $description ."',
-    '". $time ."'
-    )";
-    return $query;
-}
-
 function createLines() {
     $documentId = $_POST['documentId'];
     $lineType = $_POST['lineType'];
@@ -180,59 +160,6 @@ function createLines() {
     '". $amount ."',
     '". $arrayOrder ."',
     '". $rate ."'
-    )";
-    return $query;
-}
-
-function createBlocks() {
-    $date = $_POST['date'];
-    $employeeId = $_POST['employeeId'];
-    $projectId = $_POST['projectId'];
-    $time = $_POST['time'];
-    $done = $_POST['done'];
-    $query="INSERT INTO blocks
-    (date, employeeId, projectId, time, done)
-    VALUES (
-    '". $date ."' ,
-    '". $employeeId ."' ,
-    '". $projectId ."' ,
-    '". $time ."' ,
-    '". $done ."'
-    )";
-    return $query;
-}
-
-function createActivity() {
-    $time = $_POST['time'];
-    $text = $_POST['text'];
-    $lineId = $_POST['lineId'];
-    $blockId = $_POST['blockId'];
-
-    $jobId = $_POST['jobId'];
-    $query="INSERT INTO activities
-    (time, text, lineId, blockId, jobId)
-    VALUES (
-    '". $time ."' ,
-    '". $text ."' ,
-    '". $lineId ."' ,
-    '". $blockId ."' ,
-    '". $jobId ."'
-    )";
-    return $query;
-}
-
-function createTodos() {
-    $employeeId = $_POST['employeeId'];
-    $title = $_POST['title'];
-    $done = $_POST['done'];
-    $date = $_POST['date'];
-    $query = "INSERT INTO todos
-    (employeeId, title, done, date)
-    VALUES (
-    '". $employeeId ."' ,
-    '". $title ."' ,
-    '". $done ."' ,
-    '". $date ."'
     )";
     return $query;
 }

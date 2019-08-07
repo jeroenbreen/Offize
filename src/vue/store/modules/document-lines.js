@@ -23,6 +23,9 @@ const actions = {
     create(context, item){
         return _base.actions.create(context, item);
     },
+    read(context, id){
+        return _base.actions.read(context, id, 'documentLines');
+    },
     update(context, item){
         return _base.actions.update(context, item);
     },
@@ -43,6 +46,9 @@ const mutations = {
     },
     create(state, item) {
         return _base.mutations.create(state, item, Model);
+    },
+    read(state, set) {
+        return _base.mutations.read(state, set, Model);
     },
     update(state, item) {
         return _base.mutations.update(state, item, Model);

@@ -28,14 +28,13 @@
         },
         methods: {
             bootstrap(data) {
-                this.$store.commit('pages/init', pages);
                 this.$store.commit('statusses/init', statusses);
                 this.$store.commit('clients/init', data.clients);
                 this.$store.commit('projects/init', data.projects);
                 this.$store.commit('employees/init', data.employees);
                 this.$store.commit('documents/init', data.documents);
-                this.$store.commit('documentLines/init', data.lines);
-                this.$store.commit('comments/init', data.comments);
+                //this.$store.commit('documentLines/init', data.lines);
+                //this.$store.commit('comments/init', data.comments);
                 this.$store.commit('company/init', data.company);
                 this.$store.commit('settings/updateProperty', {key: 'bootstrapped', value: true});
             },
@@ -75,6 +74,7 @@
         },
         mounted() {
             $.get('backend/bootstrap.php', (response) => {
+                this.$store.commit('pages/init', pages);
                 this.bootstrap(response);
                 this.readCache();
             });

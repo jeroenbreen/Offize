@@ -12,7 +12,7 @@ class Project extends _Base {
         this.projectStatus = project && project.projectStatus ? Number(project.projectStatus) : 0;
         this.currency = project && project.currency ? project.currency : 'EUR';
         this.discount = project && project.discount ? Number(project.discount) : 0;
-        this.rate = project && project.rate ? Number(project.rate) : 0; //app.company.standardRate;
+        this.rate = project && project.rate ? Number(project.rate) : 0;
         this.hours = project && project.hours ? Number(project.hours) : 0;
         this.year = project && project.year ? Number(project.year) : new Date().getFullYear();
         this.finished = project && project.finished && project.finished ? Boolean(parseInt(project.finished)) : false;

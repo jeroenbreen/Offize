@@ -20,7 +20,7 @@ class Document {
         this.locked = document ? Boolean(parseInt(document.locked)) : false;
         this.english = document ? Boolean(parseInt(document.english)) : false;
         this.hideTotal = document ? Boolean(parseInt(document.hideTotal)) : false;
-        this.rate = document ? Number(document.rate) : 100;
+        this.rate = document ? Number(document.rate) : 0;
         //this.mails = document ? document.mails ? JSON.parse(document.mails) : [];
     }
 

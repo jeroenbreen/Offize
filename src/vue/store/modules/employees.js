@@ -42,6 +42,7 @@ const mutations = {
         return _base.mutations.update(state, item, Model);
     },
     delete(state, item) {
+        console.log(item);
         return _base.mutations.delete(state, item);
     },
     updateProperty(state, payload) {

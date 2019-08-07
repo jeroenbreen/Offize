@@ -2,16 +2,13 @@
 include ('connect.php');
 
 $type = $_POST['type'];
+
 if ($type == "project") { $query = deleteProject(); }
 else if ($type == "document") { $query = deleteDocument(); }
-else if ($type == "contact") { $query = deleteContact(); }
+else if ($type == "client") { $query = deleteClient(); }
 else if ($type == "employee") { $query = deleteEmployee(); }
 else if ($type == "comment") { $query = deleteComment(); }
-else if ($type == "hour") { $query = deleteHour(); }
 else if ($type == "line") { $query = deleteLine(); }
-else if ($type == "block") { $query = deleteBlock(); }
-else if ($type == "activity") { $query = deleteActivity(); }
-else if ($type == "todo") { $query = deleteTodo(); }
 else if ($type == "mail") { $query = deleteMail(); }
 
 
@@ -27,15 +24,15 @@ function deleteDocument() {
     return $query;
 }
 
-function deleteContact() {
+function deleteClient() {
     $id = $_POST['id'];
-    $query = "DELETE FROM contacts WHERE id = '" . $id . "'";
+    $query = "DELETE FROM clients WHERE id = '" . $id . "'";
     return $query;
 }
 
 function deleteEmployee() {
     $id = $_POST['id'];
-    $query = "DELETE FROM team WHERE id = '" . $id . "'";
+    $query = "DELETE FROM employees WHERE id = '" . $id . "'";
     return $query;
 }
 
@@ -45,33 +42,9 @@ function deleteComment() {
     return $query;
 }
 
-function deleteHour() {
-    $hourId = $_POST['hourId'];
-    $query = "DELETE FROM hours WHERE hourId = '" . $hourId . "'";
-    return $query;
-}
-
 function deleteLine() {
     $id = $_POST['id'];
     $query = "DELETE FROM documentLines WHERE id = '" . $id . "'";
-    return $query;
-}
-
-function deleteActivity() {
-    $id = $_POST['id'];
-    $query = "DELETE FROM activities WHERE id = '" . $id . "'";
-    return $query;
-}
-
-function deleteBlock() {
-    $id = $_POST['id'];
-    $query = "DELETE FROM blocks WHERE id = '" . $id . "'";
-    return $query;
-}
-
-function deleteTodo() {
-    $id = $_POST['id'];
-    $query = "DELETE FROM todos WHERE id = '" . $id . "'";
     return $query;
 }
 

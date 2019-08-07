@@ -38,6 +38,7 @@
                 document.clientId = this.project.clientId;
                 document.year = new Date().getFullYear();
                 document.nr = this.$store.getters['documents/getNr'](this.doctype);
+                document.rate = this.project.rate;
                 client = this.$store.getters['clients/getItemById'](this.project.clientId);
                 document.clientName = client.contactPerson;
                 data = document.toBackend();

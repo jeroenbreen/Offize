@@ -40,6 +40,11 @@
             getSize(size) {
                 return size * this.scale + 'px';
             }
+        },
+        mounted() {
+            this.$store.dispatch('documentLines/read', this.document.id).then((response) => {
+
+            });
         }
     }
 </script>

@@ -37,6 +37,14 @@ const actions = {
             });
         })
     },
+    read(context, id, type) {
+        return new Promise((resolve, reject) => {
+            $.post('backend/read.php', $.param({id: id, type: type}), (response) => {
+                context.commit('read', response);
+                resolve();
+            });
+        })
+    },
     update(context, item) {
         return new Promise((resolve, reject) => {
             $.post('backend/update.php', $.param(item), (response) => {
@@ -71,10 +79,25 @@ const mutations = {
     create(state, item, Model) {
         state.all.push(new Model(item));
     },
+    read(state, set, Model) {
+        function doesExist(item) {
+            for (let theItem of state.all) {
+                if (Number(item.id) === theItem.id) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        for (let item of set) {
+            if (!doesExist(item)) {
+                state.all.push(new Model(item));
+            }
+        }
+    },
     update(state, item, Model) {
         let newState = [];
         for (let thisItem of state.all) {
-            // TODO use id for clients
             if (thisItem.id === item.id) {
                 // the cloning is needed otherwise we could be editing directly the state
                 newState.push(new Model({...item}));
@@ -86,7 +109,6 @@ const mutations = {
     },
     delete(state, item) {
         state.all = state.all.filter(function(thisItem) {
-            // TODO use id for clients
             return thisItem.id !== item.id;
         });
     },

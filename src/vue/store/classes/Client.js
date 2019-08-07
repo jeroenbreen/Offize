@@ -7,7 +7,7 @@ class Client extends _Base {
 
     constructor(client) {
         super(client);
-        this.type = 'contact';
+        this.type = 'client';
         this.name = client ? client.name : '';
         this.contactPerson = client ? client.contactPerson : '';
         this.street = client ? client.street : '';

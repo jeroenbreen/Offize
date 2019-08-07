@@ -4,15 +4,11 @@ include ('connect.php');
 $type = $_POST['type'];
 
 if ($type == "project") { $query = updateProject(); }
-else if ($type == "contact") { $query = updateContact(); }
+else if ($type == "client") { $query = updateClient(); }
 else if ($type == "employee") { $query = updateEmployee(); }
-else if ($type == "hours") { $query = updateHours(); }
 else if ($type == "comment") { $query = updateComment(); }
 else if ($type == "document") { $query = updateDocument(); }
 else if ($type == "line") { $query = updateLine(); }
-else if ($type == "block") { $query = updateBlock(); }
-else if ($type == "activity") { $query = updateActivity(); }
-else if ($type == "todo") { $query = updateTodo(); }
 else if ($type == "mail") { $query = updateMail(); }
 else if ($type == "company") { $query = updateCompany(); }
 
@@ -87,7 +83,7 @@ function updateDocument() {
     return $query;
 }
 
-function updateContact() {
+function updateClient() {
     $id = $_POST['id'];
     $name = $_POST['name'];
     $contactPerson = $_POST['contactPerson'];
@@ -99,7 +95,7 @@ function updateContact() {
     $telephone = $_POST['telephone'];
     $rate = $_POST['rate'];
     $info = $_POST['info'];
-    $query = "UPDATE contacts SET
+    $query = "UPDATE clients SET
     name = '" . $name . "' ,
     contactPerson = '" . $contactPerson . "' ,
     street = '" . $street . "' ,
@@ -121,7 +117,7 @@ function updateEmployee() {
     $initials = $_POST['initials'];
     $email = $_POST['email'];
     $mailFooter = $_POST['mailFooter'];
-    $query = "UPDATE team SET
+    $query = "UPDATE employees SET
     name = '" . $name . "' ,
     initials = '" . $initials . "' ,
     email = '" . $email . "' ,
