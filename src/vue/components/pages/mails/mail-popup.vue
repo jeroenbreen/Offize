@@ -1,9 +1,11 @@
 <script>
     import Mail from '@classes/Mail';
+    import closeMixin from '@mixins/close';
 
     export default {
         name: 'mail-popup',
         components: {},
+        mixins: [closeMixin],
         props: {
             mail: {
                 type: Mail,
@@ -26,7 +28,6 @@
                 return this.$store.state.employees.all;
             },
             document() {
-                console.log(this.$store.getters['documents/getItemById'](this.clone.documentId));
                 return this.$store.getters['documents/getItemById'](this.clone.documentId);
             }
         },

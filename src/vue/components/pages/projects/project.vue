@@ -3,12 +3,14 @@
     import projectDetails from './project-details';
     import projectDocuments from './project-documents';
     import projectComments from './project-comments';
+    import closeMixin from '@mixins/close';
 
     export default {
         name: 'project',
         components: {
             projectDetails, projectDocuments, projectComments
         },
+        mixins: [closeMixin],
         props: {
             project: {
                 type: Project,

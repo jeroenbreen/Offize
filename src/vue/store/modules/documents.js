@@ -23,7 +23,25 @@ const getters = {
             return (state.searchString === '' || item.title.toLowerCase().indexOf(state.searchString.toLocaleLowerCase()) > -1) &&
                 (item.doctype ===  state.searchType) &&
                 (state.searchYear === 'Alle' || item.year ===  state.searchYear);
-        })
+        }).sort((a,b) => {
+            if (a.year > b.year) {
+                return -1;
+            } else {
+                if (b.year > a.year) {
+                    return 1;
+                } else {
+                    if (a.nr > b.nr) {
+                        return -1;
+                    } else {
+                        if (a.nr < b.nr) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    }
+                }
+            }
+        });
     },
     getNr: (state) => (doctype) => {
         let max = 0;

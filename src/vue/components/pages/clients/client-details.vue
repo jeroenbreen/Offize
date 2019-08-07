@@ -1,12 +1,14 @@
 <script>
     import Client from '@classes/Client';
     import autoSaver from '@components/elements/auto-saver';
+    import closeMixin from '@mixins/close';
 
     export default {
         name: 'client-details',
         components: {
             autoSaver
         },
+        mixins: [closeMixin],
         props: {
             client: {
                 type: Client,

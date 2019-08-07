@@ -1,12 +1,14 @@
 <script>
     import Employee from '@classes/Employee';
     import autoSaver from '@components/elements/auto-saver';
+    import closeMixin from '@mixins/close';
 
     export default {
         name: 'employee-details',
         components: {
             autoSaver
         },
+        mixins: [closeMixin],
         props: {
             employee: {
                 type: Employee,

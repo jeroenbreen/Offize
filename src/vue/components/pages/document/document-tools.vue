@@ -41,7 +41,6 @@
                 document.employee = employee.name;
                 documentLines = this.$store.getters['documentLines/getLinesForDocument'](this.document.id);
                 document.documentLines = [...documentLines];
-                console.log(document);
                 $.ajax({
                     type: 'POST',
                     url: 'print/print-adapter.php',
@@ -51,14 +50,12 @@
                         'Content-Type': 'application/json'
                     },
                     success: function(response){
-                        console.log(response);
                         window.open(window.config.printLocation + response);
                     }
                 });
             },
             mail() {
                 var mail;
-                console.log(this.employee);
                 mail = {
                     id: null,
                     subject: this.document.getPrefix() + ' voor de werkzaamheden m.b.t. ' + this.document.title,
@@ -69,7 +66,6 @@
                     date: dateTool.toBackendString(new Date()),
                     mailType: 'invoice'
                 };
-                console.log(new Mail(mail));
                 this.$store.commit('mails/setCurrent', new Mail(mail));
             },
             lock () {

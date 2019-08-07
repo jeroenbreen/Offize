@@ -3,12 +3,14 @@
     import autoSaver from '@components/elements/auto-saver';
     import document from './document';
     import documentTools from './document-tools';
+    import closeMixin from '@mixins/close';
 
     export default {
         name: 'document-popup',
         components: {
             document, documentTools, autoSaver
         },
+        mixins: [closeMixin],
         props: {
             document: {
                 type: Document,

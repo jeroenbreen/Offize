@@ -1,6 +1,7 @@
 <script>
     import Company from '@classes/Company';
     import autoSaver from '@components/elements/auto-saver';
+    import closeMixin from '@mixins/close';
 
     export default {
         name: 'settings',
@@ -8,6 +9,7 @@
         components: {
             autoSaver
         },
+        mixins: [closeMixin],
         data() {
             return {
                 clone: new Company(this.$store.state.company.current.toBackend())
