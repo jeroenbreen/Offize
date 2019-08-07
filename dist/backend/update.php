@@ -127,22 +127,6 @@ function updateEmployee() {
     return $query;
 }
 
-function updateHours() {
-    $hourId = $_POST['hourId'];
-    $projectId = $_POST['projectId'];
-    $employeeId = $_POST['employeeId'];
-    $description = $_POST['description'];
-    $time = $_POST['time'];
-    $query = "UPDATE hours SET
-    projectId = '" . $projectId . "' ,
-    employeeId = '" . $employeeId . "' ,
-    description = '" . $description . "' ,
-    time = '" . $time . "' ,
-    WHERE
-    hourId = " . $hourId;
-    return $query;
-}
-
 function updateComment() {
     $id = $_POST['id'];
     $id = $_POST['id'];
@@ -157,56 +141,24 @@ function updateComment() {
     return $query;
 }
 
-function updateBlock() {
-    $id = $_POST['id'];
-    $date = $_POST['date'];
-    $employeeId = $_POST['employeeId'];
-    $projectId = $_POST['projectId'];
-    $time = $_POST['time'];
-    $done = $_POST['done'];
-    $query = "UPDATE blocks SET
-    date = '" . $date . "' ,
-    employeeId = '" . $employeeId . "' ,
-    projectId = '" . $projectId . "' ,
-    time = '" . $time . "' ,
-    done = '" . $done . "'
-    WHERE
-    id = '" . $id. "'";
-    return $query;
-}
-
-function updateTodo() {
-    $id = $_POST['id'];
-    $date = $_POST['date'];
-    $employeeId = $_POST['employeeId'];
-    $title = $_POST['title'];
-    $done = $_POST['done'];
-    $query = "UPDATE todos SET
-    date = '" . $date . "' ,
-    employeeId = '" . $employeeId . "' ,
-    title = '" . $title . "' ,
-    done = '" . $done . "'
-    WHERE
-    id = '" . $id. "'";
-    return $query;
-}
-
 function updateMail() {
     $id = $_POST['id'];
     $subject = $_POST['subject'];
     $content = $_POST['content'];
-    $member_id = $_POST['member_id'];
+    $employeeId = $_POST['employeeId'];
     $receiver = $_POST['receiver'];
     $date = $_POST['date'];
     $mailType = $_POST['mailType'];
+    $documentId = $_POST['documentId'];
     $query = "UPDATE mails SET
     id = '" . $id . "' ,
     subject = '" . $subject . "' ,
     content = '" . $content . "' ,
-    member_id = '" . $member_id . "' ,
+    employeeId = '" . $employeeId . "' ,
     receiver = '" . $receiver . "' ,
     date = '" . $date . "' ,
-    mailType = '" . $mailType . "'
+    mailType = '" . $mailType . "' ,
+    documentId = '" . $documentId . "'
     WHERE
     id = '" . $id. "'";
     return $query;

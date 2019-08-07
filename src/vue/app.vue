@@ -5,12 +5,13 @@
     import pages from '@data/pages';
     import statusses from '@data/statusses';
     import documentPopup from '@components/pages/document/document-popup';
+    import mailPopup from '@components/pages/mails/mail-popup';
     import modal from '@components/elements/modal';
 
     export default {
         name: 'app',
         components: {
-            navigation, settings, documentPopup, modal
+            navigation, settings, documentPopup, mailPopup, modal
         },
         computed: {
             isBootstrapped() {
@@ -24,6 +25,9 @@
             },
             currentDocument() {
                 return this.$store.state.documents.current;
+            },
+            currentMail() {
+                return this.$store.state.mails.current;
             }
         },
         methods: {
@@ -33,9 +37,8 @@
                 this.$store.commit('projects/init', data.projects);
                 this.$store.commit('employees/init', data.employees);
                 this.$store.commit('documents/init', data.documents);
-                //this.$store.commit('documentLines/init', data.lines);
-                //this.$store.commit('comments/init', data.comments);
                 this.$store.commit('company/init', data.company);
+                this.$store.commit('mails/init', data.mails);
                 this.$store.commit('settings/updateProperty', {key: 'bootstrapped', value: true});
             },
             readCache() {
@@ -97,6 +100,10 @@
         <document-popup
             v-if="isBootstrapped && currentDocument"
             :document="currentDocument"/>
+
+        <mail-popup
+            v-if="isBootstrapped && currentMail"
+            :mail="currentMail"/>
 
         <modal v-if="showModal"></modal>
     </div>

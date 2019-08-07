@@ -39,7 +39,7 @@
         methods: {
             deleteDocumentLine() {
                 var message, callback;
-                message = 'Wil je deze echt verwijderen?';
+                message = 'Wil je deze regel echt verwijderen?';
                 callback = () => {
                     this.$store.dispatch('documentLines/delete', this.documentLine).then((response) => {
                         console.log('documentLine removed');

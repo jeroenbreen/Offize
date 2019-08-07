@@ -168,20 +168,22 @@ function createMails() {
     $id = $_POST['id'];
     $subject = $_POST['subject'];
     $content = $_POST['content'];
-    $member_id = $_POST['member_id'];
+    $employeeId = $_POST['employeeId'];
     $receiver = $_POST['receiver'];
     $date = $_POST['date'];
     $mailType = $_POST['mailType'];
+    $documentId = $_POST['documentId'];
     $query = "INSERT INTO mails
-    (id, subject, content, member_id, receiver, date, mailType)
+    (id, subject, content, employeeId, receiver, date, mailType, documentId)
     VALUES (
     '". $id ."' ,
     '". $subject ."' ,
     '". $content ."' ,
-    '". $member_id ."' ,
+    '". $employeeId ."' ,
     '". $receiver ."' ,
     '". $date ."' ,
-    '". $mailType ."'
+    '". $mailType ."' ,
+    '". $documentId ."'
     )";
     return $query;
 }

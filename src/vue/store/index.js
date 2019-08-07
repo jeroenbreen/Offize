@@ -12,6 +12,7 @@ import clients from './modules/clients'
 import documents from './modules/documents'
 import documentLines from './modules/document-lines'
 import comments from './modules/comments'
+import mails from './modules/mails'
 import modal from './modules/modal'
 
 Vue.use(Vuex);
@@ -39,7 +40,7 @@ export default new Vuex.Store({
     actions,
     modules: {
         settings, pages, statusses, company,
-        projects, employees, clients, documents, documentLines, comments,
+        projects, employees, clients, documents, documentLines, comments, mails,
         modal
     },
     strict: true

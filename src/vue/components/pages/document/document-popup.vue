@@ -61,6 +61,10 @@
 
     .document-popup {
 
+        .popup__container {
+            width: 1100px;
+        }
+
         .document__container {
             display: flex;
         }

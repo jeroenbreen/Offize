@@ -1,10 +1,15 @@
 <script>
     import Document from '@classes/Document';
+    import Mail from '@classes/Mail';
+    import mails from '@components/pages/mails/mails';
+    import dateTool from '@tools/date-tool';
     import $ from 'jquery';
 
     export default {
         name: 'document-tools',
-        components: {},
+        components: {
+            mails
+        },
         props: {
             document: {
                 type: Document,
@@ -14,18 +19,23 @@
         computed: {
             company() {
                 return this.$store.state.company.current;
+            },
+            project() {
+                return this.$store.getters['projects/getItemById'](this.document.projectId);
+            },
+            client() {
+                 return this.$store.getters['clients/getItemById'](this.project.clientId);
+            },
+            employee() {
+                return this.$store.getters['employees/getItemById'](this.document.employeeId);
             }
         },
         methods: {
             print() {
-                let document, project, client, documentLines, employee;
+                let document, documentLines, employee;
                 document = this.document.toPrint();
-                project = this.$store.getters['projects/getItemById'](this.document.projectId);
-                if (project) {
-                    client = this.$store.getters['clients/getItemById'](project.clientId);
-                }
-                document.company = this.company.toBackend();
-                document.client = client.toBackend();
+                     document.company = this.company.toBackend();
+                document.client = this.client.toBackend();
                 document.client.clientName = this.document.clientName;
                 employee = this.$store.getters['employees/getItemById'](this.document.employeeId);
                 document.employee = employee.name;
@@ -47,19 +57,20 @@
                 });
             },
             mail() {
-                // var mail = {
-                //     id: null,
-                //     subject: document.getPrefix() + ' voor de werkzaamheden m.b.t. ' + document.title,
-                //     content: 'Beste ' + document.contactName + ',\n\nBijgeleverd de ' + document.getPrefix().toLowerCase() + ' voor de werkzaamheden  m.b.t. ' + document.title + '.\n\n',
-                //     member_id: document.member.memberId,
-                //     sender: document.member.email,
-                //     receiver: document.contact.email,
-                //     date: dateTool.toBackendString(new Date()),
-                //     mailType: 'invoice'
-                // };
-                //
-                // status.mailPopup.active = true;
-                // status.mailPopup.mail = new Mail(mail);
+                var mail;
+                console.log(this.employee);
+                mail = {
+                    id: null,
+                    subject: this.document.getPrefix() + ' voor de werkzaamheden m.b.t. ' + this.document.title,
+                    content: 'Beste ' + this.document.clientName + ',\n\nBijgeleverd de ' + this.document.getPrefix().toLowerCase() + ' voor de werkzaamheden  m.b.t. ' + this.document.title + '.\n\n',
+                    employeeId: this.document.employeeId,
+                    receiver: this.client.email,
+                    documentId: this.document.id,
+                    date: dateTool.toBackendString(new Date()),
+                    mailType: 'invoice'
+                };
+                console.log(new Mail(mail));
+                this.$store.commit('mails/setCurrent', new Mail(mail));
             },
             lock () {
                 this.document.locked = !this.document.locked;
@@ -147,6 +158,11 @@
                         v-model="document.vat">
             </div>
         </div>
+
+        <div class="mails__container">
+            <mails
+                :document="document"/>
+        </div>
     </div>
 </template>
 
@@ -155,7 +171,7 @@
     @import '@styles/variables.scss';
 
     .document-tools {
-        width: 170px;
+        width: 400px;
         margin-left: 20px;
 
         .document-tools__main {

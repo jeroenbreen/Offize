@@ -24,7 +24,7 @@
 
 
 <template>
-    <div class="client-details overlay">
+    <div class="settings overlay">
         <div class="popup__container">
             <div class="popup">
                 <div class="panel">
