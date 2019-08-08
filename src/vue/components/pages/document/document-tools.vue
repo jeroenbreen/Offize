@@ -36,7 +36,7 @@
                 document = this.document.toPrint();
                      document.company = this.company.toBackend();
                 document.client = this.client.toBackend();
-                document.client.clientName = this.document.clientName;
+                document.client.clientName = this.document.clientName ? this.document.clientName : '';
                 employee = this.$store.getters['employees/getItemById'](this.document.employeeId);
                 document.employee = employee.name;
                 documentLines = this.$store.getters['documentLines/getLinesForDocument'](this.document.id);

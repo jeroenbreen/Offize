@@ -44,7 +44,7 @@ class PrintManager
         $months = array("januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december");
         $this->month_nice = $months[$this->data->month - 1];
 
-        $html = "test";
+        $html = "";
         //$html .= $this->getGrid();
         $html .= $this->getTop();
         $html .= $this->getBody();
