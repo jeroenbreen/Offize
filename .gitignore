@@ -3,3 +3,5 @@ frontend/uploads/
 /vendor/
 backend/bootstrap.php
 print/pdf/
+node_modules/
+dist/bundle.js
