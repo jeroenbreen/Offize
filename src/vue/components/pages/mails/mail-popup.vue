@@ -1,6 +1,7 @@
 <script>
     import Mail from '@classes/Mail';
     import closeMixin from '@mixins/close';
+    import $ from 'jquery';
 
     export default {
         name: 'mail-popup',
@@ -29,7 +30,16 @@
             },
             document() {
                 return this.$store.getters['documents/getItemById'](this.clone.documentId);
-            }
+            },
+            company() {
+                return this.$store.state.company.current;
+            },
+            project() {
+                return this.$store.getters['projects/getItemById'](this.document.projectId);
+            },
+            client() {
+                return this.$store.getters['clients/getItemById'](this.project.clientId);
+            },
         },
         methods: {
             close() {
@@ -39,11 +49,75 @@
                 return content.replace(/\n/g, "<br />");
             },
             send() {
-                this.$store.dispatch('mails/create', this.clone.toBackend()).then((response) => {
-                    console.log('mail created');
-                    this.close();
+                this.createDocument().then((response) => {
+                    let file = window.config.printLocation + response;
+
+                    this.sendMail(file).then((response) => {
+
+                        this.$store.dispatch('mails/create', this.clone.toBackend()).then((response) => {
+                            console.log('mail created');
+                            this.close();
+                        });
+                    })
                 });
-            }
+            },
+            async createDocument() {
+                console.log('creating pdf...');
+
+                return new Promise((resolve, reject) => {
+                    // todo make DRY with document-tools.vue
+                    let document, documentLines, employee;
+                    document = this.document.toPrint();
+                    document.company = this.company.toBackend();
+                    document.client = this.client.toBackend();
+                    document.client.clientName = this.document.clientName ? this.document.clientName : '';
+                    employee = this.$store.getters['employees/getItemById'](this.document.employeeId);
+                    document.employee = employee.name;
+                    documentLines = this.$store.getters['documentLines/getLinesForDocument'](this.document.id);
+                    document.documentLines = [...documentLines];
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'print/print-adapter.php',
+                        data: JSON.stringify({data: document}),
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        success: function(response){
+                            resolve(response);
+                        }
+                    });
+                })
+            },
+            async sendMail(file) {
+                console.log('sending mail...');
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'mail/document.php',
+                        data: JSON.stringify({
+                            data: {
+                                attachment: file,
+                                attachmentName: this.document.getPDFname(),
+                                sender: this.employee.email,
+                                receiver: this.mail.receiver,
+                                subject: this.mail.subject,
+                                content: this.mail.content,
+                                footer: this.employee.mailFooter
+                            }
+                        }),
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        success: function(response){
+                            resolve(response);
+                        }
+                    });
+                })
+;            }
         }
     }
 </script>

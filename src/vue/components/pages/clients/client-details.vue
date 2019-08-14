@@ -17,7 +17,7 @@
         },
         data() {
             return {
-                clone: new Client({...this.client})
+                clone: new Client(this.client.toBackend())
             }
         },
         computed: {},
@@ -103,6 +103,24 @@
                                    v-model="clone.city">
                             <div class="object-properties__label">
                                 Plaats
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <div class="object-properties__set">
+                            <md-checkbox v-model="clone.international"></md-checkbox>
+                            <div class="object-properties__label">
+                                Internationale klant
+                            </div>
+                        </div>
+                        <div
+                                v-if="clone.international"
+                                class="object-properties__set">
+                            <input title="Plaats"
+                                   v-model="clone.vat">
+                            <div class="object-properties__label">
+                                BTW nr
                             </div>
                         </div>
                     </div>

@@ -34,13 +34,7 @@
                         <div class="object-properties__set">
                             <input v-model="clone.name">
                             <div class="object-properties__label">
-                                Name
-                            </div>
-                        </div>
-                        <div class="object-properties__set">
-                            <input v-model="clone.companyNameNice">
-                            <div class="object-properties__label">
-                                Afkorting
+                                Naam
                             </div>
                         </div>
                     </div>
@@ -49,7 +43,13 @@
                         <div class="object-properties__set">
                             <input v-model="clone.address">
                             <div class="object-properties__label">
-                                Address
+                                Addre
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.addressExtra">
+                            <div class="object-properties__label">
+                                Addres extra
                             </div>
                         </div>
                         <div class="object-properties__set">
@@ -61,9 +61,18 @@
                         <div class="object-properties__set">
                             <input v-model="clone.city">
                             <div class="object-properties__label">
-                                City
+                                Plaatsnaam
                             </div>
                         </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.country">
+                            <div class="object-properties__label">
+                                Land
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
                         <div class="object-properties__set">
                             <input title="Contact"
                                    v-model="clone.coc">
@@ -77,6 +86,31 @@
                                 BTW nr
                             </div>
                         </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.bankName">
+                            <div class="object-properties__label">
+                                Naam bank
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.bankAddress">
+                            <div class="object-properties__label">
+                                Adres bank
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <input v-model="clone.iban">
+                            <div class="object-properties__label">
+                                IBAN
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <input title="Contact"
+                                   v-model="clone.bic">
+                            <div class="object-properties__label">
+                                BIC
+                            </div>
+                        </div>
                     </div>
 
                     <div class="panel-section">
@@ -84,6 +118,12 @@
                             <textarea v-model="clone.invoiceText"></textarea>
                             <div class="object-properties__label">
                                 Tekst onder factuur
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <textarea v-model="clone.invoiceTextEnglish"></textarea>
+                            <div class="object-properties__label">
+                                Tekst onder englese factuur
                             </div>
                         </div>
                         <div class="object-properties__set">

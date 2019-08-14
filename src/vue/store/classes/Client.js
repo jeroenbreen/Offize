@@ -16,6 +16,8 @@ class Client extends _Base {
         this.telephone = client ? client.telephone : '';
         this.web = client ? client.web : '';
         this.info = client ? client.info : '';
+        this.vat = client ? client.vat : '';
+        this.international = client && client.international ? Boolean(parseInt(client.international)) : false;
     }
 
     toSlug(limitString) {
@@ -32,6 +34,17 @@ class Client extends _Base {
                 return label;
             }
         }
+    }
+
+    toBackend() {
+        let client = {};
+        for (let key in this) {
+            if (this.hasOwnProperty(key)) {
+                client[key] = this[key];
+            }
+        }
+        client.international = this.international ? 1 : 0;
+        return client;
     }
 }
 

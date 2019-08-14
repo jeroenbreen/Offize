@@ -6,13 +6,16 @@ class Company extends _Base {
         this.type = 'company';
         this.name = company.name;
         this.address = company.address;
+        this.addressExtra = company.addressExtra;
         this.zipcode = company.zipcode;
         this.city = company.city;
+        this.country = company.country;
         this.standardRate = Number(company.standardRate);
         this.startingYear = Number(company.startingYear);
         this.title = company.title;
         this.companyNameNice = company.companyNameNice;
         this.invoiceText = company.invoiceText;
+        this.invoiceTextEnglish = company.invoiceTextEnglish;
         this.color1 = company.color1;
         this.color2 = company.color2;
         this.logoUrl = company.logoUrl;
@@ -22,6 +25,10 @@ class Company extends _Base {
         this.usesAcumulus = company.usesAcumulus === "1";
         this.coc = company.coc;
         this.vat = company.vat;
+        this.bankName = company.bankName;
+        this.bankAddress = company.bankAddress;
+        this.iban = company.iban;
+        this.bic = company.bic;
         this.injectStyle();
     }
 

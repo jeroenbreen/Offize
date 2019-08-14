@@ -1,8 +1,5 @@
 <?php
-
-include('PhpMailer/PHPMailer.php');
-include('PhpMailer/Exception.php');
-include('PhpMailer/SMTP.php');
+include('../vendor/autoload.php');
 
 $data = file_get_contents("php://input");
 $json_decoded = json_decode($data);
@@ -22,22 +19,34 @@ $headers = "From:" . $sender . "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-//mail($receiver, $subject, $mail_content, $headers);
-
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$email = new PHPMailer();
-$email->SetFrom($sender);
-$email->Subject = $subject;
-$email->Body = $mail_content;
-$email->AddAddress($receiver);
-$email->isHTML(true);
-$email->AddAttachment($attachment, $attachment_name);
 
-echo $attachment;
 
-return $email->Send();
+
+try {
+    $email = new PHPMailer();
+    //$email = new PHPMailer\PHPMailer\PHPMailer();
+
+    $email->Host       = 'smtp-relay.gmail.com';                 // Specify main and backup SMTP servers
+    $email->SMTPAuth   = true;                                   // Enable SMTP authentication
+    //$email->Username   = 'user@example.com';                   // SMTP username
+    //$email->Password   = 'secret';                             // SMTP password
+    $email->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+    $email->Port       = 587;
+
+    $email->SetFrom($sender);
+    $email->SMTPDebug = 2;
+    $email->Subject = $subject;
+    $email->Body = $mail_content;
+    $email->AddAddress($receiver);
+    $email->isHTML(true);
+    $email->AddAttachment($attachment, $attachment_name);
+
+    echo $email->Send();
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
 
 ?>

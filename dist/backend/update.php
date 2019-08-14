@@ -95,6 +95,9 @@ function updateClient() {
     $telephone = $_POST['telephone'];
     $rate = $_POST['rate'];
     $info = $_POST['info'];
+    $vat = $_POST['vat'];
+    $international = $_POST['international'];
+
     $query = "UPDATE clients SET
     name = '" . $name . "' ,
     contactPerson = '" . $contactPerson . "' ,
@@ -105,7 +108,9 @@ function updateClient() {
     email = '" . $email . "' ,
     telephone = '" . $telephone . "' ,
     rate = '" . $rate . "' ,
-    info= '" . $info . "'
+    info = '" . $info . "' ,
+    vat = '" . $vat . "' ,
+    international = '" . $international . "'
     WHERE
     id = '" . $id. "'";
     return $query;
@@ -193,10 +198,13 @@ function updateCompany() {
     $name = $_POST['name'];
     $companyNameNice = $_POST['companyNameNice'];
     $address = $_POST['address'];
+    $addressExtra = $_POST['addressExtra'];
     $zipcode = $_POST['zipcode'];
     $city = $_POST['city'];
+    $country = $_POST['country'];
     $standardRate = $_POST['standardRate'];
     $invoiceText = $_POST['invoiceText'];
+    $invoiceTextEnglish = $_POST['invoiceTextEnglish'];
     $color1 = $_POST['color1'];
     $color2 = $_POST['color2'];
     $logoUrl = $_POST['logoUrl'];
@@ -206,16 +214,24 @@ function updateCompany() {
     $usesAcumulus = $_POST['usesAcumulus'];
     $coc = $_POST['coc'];
     $vat = $_POST['vat'];
+    $bankName = $_POST['bankName'];
+    $bankAddress = $_POST['bankAddress'];
+    $iban = $_POST['iban'];
+    $bic = $_POST['bic'];
+
     $query = "UPDATE companies SET
     startingYear = '" . $startingYear . "' ,
     title = '" . $title . "' ,
     name = '" . $name . "',
     companyNameNice = '" . $companyNameNice . "',
     address = '" . $address . "' ,
+    addressExtra = '" . $addressExtra . "' ,
     zipcode = '" . $zipcode . "' ,
     city = '" . $city . "' ,
+    country = '" . $country . "' ,
     standardRate = '" . $standardRate . "' ,
     invoiceText = '" . $invoiceText . "' ,
+    invoiceTextEnglish = '" . $invoiceTextEnglish . "' ,
     color1 = '" . $color1 . "' ,
     color2 = '" . $color2 . "' ,
     logoUrl = '" . $logoUrl . "' ,
@@ -224,7 +240,12 @@ function updateCompany() {
     usesGoogleDrive = '" . $usesGoogleDrive . "' ,
     usesAcumulus = '" . $usesAcumulus . "' ,
     coc = '" . $coc . "' ,
-    vat = '" . $vat . "'
+    vat = '" . $vat . "' ,
+    bankName = '" . $bankName . "' ,
+    bankAddress = '" . $bankAddress . "' ,
+    iban = '" . $iban . "' ,
+    bic = '" . $bic . "'
+
     WHERE
     id = '" . $id. "'";
     return $query;
