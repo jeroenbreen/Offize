@@ -218,6 +218,7 @@ function updateCompany() {
     $bankAddress = $_POST['bankAddress'];
     $iban = $_POST['iban'];
     $bic = $_POST['bic'];
+    $companySameAsEmployee = $_POST['companySameAsEmployee'];
 
     $query = "UPDATE companies SET
     startingYear = '" . $startingYear . "' ,
@@ -244,7 +245,8 @@ function updateCompany() {
     bankName = '" . $bankName . "' ,
     bankAddress = '" . $bankAddress . "' ,
     iban = '" . $iban . "' ,
-    bic = '" . $bic . "'
+    bic = '" . $bic . "' ,
+    companySameAsEmployee = '" . $companySameAsEmployee . "'
 
     WHERE
     id = '" . $id. "'";

@@ -31,6 +31,11 @@
                     });
                 }
             }
+        },
+        mounted() {
+            if (this.employees.length === 1) {
+                this.project.employeeId = this.employees[0].id;
+            }
         }
     }
 </script>

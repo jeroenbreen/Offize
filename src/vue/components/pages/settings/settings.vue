@@ -37,6 +37,12 @@
                                 Naam
                             </div>
                         </div>
+                        <div class="object-properties__set">
+                            <md-checkbox v-model="clone.companySameAsEmployee"></md-checkbox>
+                            <div class="object-properties__label">
+                                Bedrijfsnaam is eigen naam (naam van werknemer wordt dan weggelaten op documenten)
+                            </div>
+                        </div>
                     </div>
 
                     <div class="panel-section">
@@ -154,18 +160,6 @@
                             <div class="object-properties__label">
                                 Aanvangsjaar
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="panel-section">
-                        <div class="object-properties__set">
-                            <md-checkbox v-model="clone.usesMail"> Mail</md-checkbox>
-                        </div>
-                        <div class="object-properties__set">
-                            <md-checkbox v-model="clone.usesGoogleDrive"> Google Drive</md-checkbox>
-                        </div>
-                        <div class="object-properties__set">
-                            <md-checkbox v-model="clone.usesAcumulus"> Acumulus</md-checkbox>
                         </div>
                     </div>
 

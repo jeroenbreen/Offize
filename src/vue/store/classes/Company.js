@@ -29,6 +29,7 @@ class Company extends _Base {
         this.bankAddress = company.bankAddress;
         this.iban = company.iban;
         this.bic = company.bic;
+        this.companySameAsEmployee = company.companySameAsEmployee === "1";
         this.injectStyle();
     }
 
@@ -51,6 +52,7 @@ class Company extends _Base {
         company.usesMail = this.usesMail ? '1' : '0';
         company.usesGoogleDrive = this.usesGoogleDrive ? '1' : '0';
         company.usesAcumulus = this.usesAcumulus ? '1' : '0';
+        company.companySameAsEmployee = this.companySameAsEmployee ? '1' : '0';
         return company;
     }
 
