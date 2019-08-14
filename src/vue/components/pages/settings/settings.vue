@@ -49,13 +49,13 @@
                         <div class="object-properties__set">
                             <input v-model="clone.address">
                             <div class="object-properties__label">
-                                Addre
+                                Adres
                             </div>
                         </div>
                         <div class="object-properties__set">
                             <input v-model="clone.addressExtra">
                             <div class="object-properties__label">
-                                Addres extra
+                                Adres extra
                             </div>
                         </div>
                         <div class="object-properties__set">
@@ -129,7 +129,7 @@
                         <div class="object-properties__set">
                             <textarea v-model="clone.invoiceTextEnglish"></textarea>
                             <div class="object-properties__label">
-                                Tekst onder englese factuur
+                                Tekst onder engelse factuur
                             </div>
                         </div>
                         <div class="object-properties__set">
