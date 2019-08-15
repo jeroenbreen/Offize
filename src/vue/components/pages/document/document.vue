@@ -23,6 +23,10 @@
             document: {
                 type: Document,
                 required: true
+            },
+            international: {
+                type: Boolean,
+                required: true
             }
         },
         data() {
@@ -34,16 +38,6 @@
         computed: {
             company() {
                 return this.$store.state.company.current;
-            },
-            international() {
-                let project, client;
-                project = this.$store.getters['projects/getItemById'](this.document.projectId);
-                if (project) {
-                    client = this.$store.getters['clients/getItemById'](project.clientId);
-                    if (client) {
-                        return client.international;
-                    }
-                }
             }
         },
         methods: {

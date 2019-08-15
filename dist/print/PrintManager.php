@@ -41,8 +41,14 @@ class PrintManager
     protected function getHMTL()
     {
 
-        $months = array("januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december");
-        $this->month_nice = $months[$this->data->month - 1];
+        $monthsNl = array("januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december");
+        $monthsEn = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+        if ($this->data->international == '1') {
+            $this->month_nice = $monthsEn[$this->data->month - 1];
+        } else {
+            $this->month_nice = $monthsNl[$this->data->month - 1];
+        }
+
 
         $html = "";
         //$html .= $this->getGrid();
@@ -89,7 +95,7 @@ class PrintManager
                                      <div>" . $this->data->client->street  . "</div>
                                      <div>" . $this->data->client->zipcode . " " . $this->data->client->city . "</div>";
         if ($this->data->client->international == '1') {
-             $html .= "<div>VAT: " . $this->data->client->vat . "</div>";
+             $html .= "<div>" . $this->translate('vat') . ": " . $this->data->client->vat . "</div>";
          }
          $html .= "
                                  </div>
@@ -113,9 +119,8 @@ class PrintManager
                          </div>
 
                          <div class='document__title'>
-                             <b>Betreft:</b> " . $this->data->title . "
-                         </div>
-         ";
+                            <b>" . $this->translate('subject') . "</b> " . $this->data->title . "
+                         </div>";
         return $html;
     }
 
@@ -163,13 +168,28 @@ class PrintManager
 
             <div class='document__legal'>
                 <div>
-                    " . $this->data->company->name . " | KvK " . $this->data->company->coc . " | BTW " . $this->data->company->vat . "
+                    " . $this->data->company->name . " | " . $this->translate('coc') ." " . $this->data->company->coc . " | " . $this->translate('vat') . " " . $this->data->company->vat . "
                 </div>
                 <div>
                     <b>" . $this->data->company->bankName . "</b> | " . $this->data->company->bankAddress . " | IBAN: " . $this->data->company->iban . " | BIC: " . $this->data->company->bic . "
                 </div>
             </div>";
         return $html;
+    }
+
+    protected function translate($word) {
+        $dict = [
+            "coc"           => ["CoC", "Kvk"],
+            "subject"       => ["Subject", "Betreft"],
+            "total"         => ["Total", "Totaal"],
+            "totalAmount"   => ["Total amount", "Te betalen"],
+            "vat"           => ["VAT", "BTW"]
+        ];
+        if ($this->data->international == '1') {
+            return $dict[$word][0];
+        } else {
+            return $dict[$word][1];
+        }
     }
 
     protected function getClosing()
@@ -279,7 +299,7 @@ class PrintManager
                 <div id='total'>
                     <div class='lines-row'>
                         <div class='line-title'>
-                            Totaal";
+                            " . $this->translate('total');
                         if ($this->data->doctype == "quotation") {
                             $html .= " (excl. 21% BTW)";
                         }
@@ -294,7 +314,7 @@ class PrintManager
                 $html .= "
                     <div class='lines-row'>
                         <div class='line-title'>
-                            BTW " .$this->data->vat . "%
+                            " . $this->translate('vat') ." " .$this->data->vat . "%
                         </div>
                         <div class='line-right-part'>
                             " . $this->nrToCur($this->total * ($this->data->vat / 100)) . " EUR
@@ -303,7 +323,7 @@ class PrintManager
                     <div class='lines-row'>
                         <div class='line-title'>
                             <div class='total-labal'>
-                                Te betalen
+                                " . $this->translate('totalAmount') ."
                             </div>
                         </div>
                         <div class='line-right-part'>

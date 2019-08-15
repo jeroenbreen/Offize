@@ -14,6 +14,10 @@
             document: {
                 type: Document,
                 required: true
+            },
+            international: {
+                type: Boolean,
+                required: true
             }
         },
         computed: {
@@ -37,6 +41,7 @@
                      document.company = this.company.toBackend();
                 document.client = this.client.toBackend();
                 document.client.clientName = this.document.clientName ? this.document.clientName : '';
+                document.international = this.international ? '1' : '0';
                 employee = this.$store.getters['employees/getItemById'](this.document.employeeId);
                 document.employee = employee.name;
                 documentLines = this.$store.getters['documentLines/getLinesForDocument'](this.document.id);

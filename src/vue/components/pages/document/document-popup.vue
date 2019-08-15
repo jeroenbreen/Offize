@@ -22,7 +22,18 @@
                 clone: new Document(this.document.toBackend())
             }
         },
-        computed: {},
+        computed: {
+            international() {
+                let project, client;
+                project = this.$store.getters['projects/getItemById'](this.document.projectId);
+                if (project) {
+                    client = this.$store.getters['clients/getItemById'](project.clientId);
+                    if (client) {
+                        return client.international;
+                    }
+                }
+            }
+        },
         methods: {
             close() {
                 this.$store.commit('documents/unsetCurrent');
@@ -39,10 +50,12 @@
             <div class="popup">
                 <div class="document__container">
                     <document
-                        :document="clone"/>
+                        :document="clone"
+                        :international="international"/>
 
                     <document-tools
-                        :document="clone"/>
+                        :document="clone"
+                        :international="international"/>
                 </div>
             </div>
             <div
