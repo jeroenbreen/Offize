@@ -34,6 +34,16 @@
         computed: {
             company() {
                 return this.$store.state.company.current;
+            },
+            international() {
+                let project, client;
+                project = this.$store.getters['projects/getItemById'](this.document.projectId);
+                if (project) {
+                    client = this.$store.getters['clients/getItemById'](project.clientId);
+                    if (client) {
+                        return client.international;
+                    }
+                }
             }
         },
         methods: {
@@ -69,7 +79,8 @@
             <document-info
                 :document="document"
                 :template="template"
-                :scale="scale"/>
+                :scale="scale"
+                :international="international"/>
 
             <document-addresses
                 :document="document"
@@ -79,7 +90,8 @@
             <document-title
                 :document="document"
                 :template="template"
-                :scale="scale"/>
+                :scale="scale"
+                :international="international"/>
 
             <document-lines
                 :document="document"
@@ -90,17 +102,20 @@
                 v-if="!document.hideTotal"
                 :document="document"
                 :template="template"
-                :scale="scale"/>
+                :scale="scale"
+                :international="international"/>
 
             <document-footer
                 :document="document"
                 :template="template"
-                :scale="scale"/>
+                :scale="scale"
+                :international="international"/>
 
             <document-legal
                 :document="document"
                 :template="template"
-                :scale="scale"/>
+                :scale="scale"
+                :international="international"/>
         </div>
     </div>
 </template>

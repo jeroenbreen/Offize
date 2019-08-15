@@ -16,9 +16,15 @@
             template: {
                 type: Object,
                 required: true
+            },
+            international: {
+                type: Boolean,
+                required: true
             }
         },
-        computed: {},
+        computed: {
+
+        },
         methods: {
             getSize(size) {
                 return size * this.scale + 'px';
@@ -36,7 +42,12 @@
                 'padding': getSize(template.title.padding)
             }"
         class="document__title">
-        <b>Betreft:</b>&nbsp;
+        <span v-if="international">
+            <b>Subject:</b>&nbsp;
+        </span>
+        <span v-else>
+            <b>Betreft:</b>&nbsp;
+        </span>
         <input
                 v-if="!document.locked"
                 v-model="document.title">

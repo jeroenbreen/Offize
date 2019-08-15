@@ -16,6 +16,10 @@
             template: {
                 type: Object,
                 required: true
+            },
+            international: {
+                type: Boolean,
+                required: true
             }
         },
         computed: {
@@ -45,7 +49,12 @@
                     'font-size': getSize(template.footer.invoiceText.fontSize)
                 }"
             class="document__invoice-text">
-            {{company.invoiceText}}
+            <span v-if="international">
+                {{company.invoiceTextEnglish}}
+            </span>
+            <span v-else>
+                {{company.invoiceText}}
+            </span>
         </div>
 
         <img

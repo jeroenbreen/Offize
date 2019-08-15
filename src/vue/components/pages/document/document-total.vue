@@ -16,6 +16,10 @@
             template: {
                 type: Object,
                 required: true
+            },
+            international: {
+                type: Boolean,
+                required: true
             }
         },
         computed: {
@@ -55,7 +59,12 @@
         }"
         class="document__total" >
         <span class="left">
-            Totaal
+            <span v-if="international">
+                Total
+            </span>
+            <span v-else>
+                Totaal
+            </span>
         </span>
         <span class="right">
             {{getTotal(1)}}
@@ -64,16 +73,25 @@
         <br>
         <div>
             <span class="left">
-                BTW {{document.vat}}%
-            </span>
+                <span v-if="international">
+                    VAT&nbsp;
+                </span>
+                <span v-else>
+                    BTW&nbsp;
+                </span>
+                 {{document.vat}}%
+                </span>
             <span class="right">
                 {{getTotal((document.vat / 100))}}
                 {{document.currency}}
             </span>
             <span class="left lines-total-big">
-                <b>
-                    Te betalen
-                </b>
+                <span v-if="international">
+                    <b>Total Amount</b>&nbsp;&nbsp;
+                </span>
+                <span v-else>
+                    <b>Te betalen</b>&nbsp;
+                </span>
             </span>
             <span class="right lines-total-big">
                 <b>

@@ -6,8 +6,8 @@
         components: {},
         data() {
             return {
-                months: ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"]
-
+                monthsNl: ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"],
+                monthsEn: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         }
         },
         props: {
@@ -22,9 +22,17 @@
             template: {
                 type: Object,
                 required: true
+            },
+            international: {
+                type: Boolean,
+                required: true
             }
         },
-        computed: {},
+        computed: {
+            months() {
+                return this.international ? this.monthsEn : this.monthsNl;
+            }
+        },
         methods: {
             getSize(size) {
                 return size * this.scale + 'px';

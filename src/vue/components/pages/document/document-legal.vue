@@ -16,6 +16,10 @@
             template: {
                 type: Object,
                 required: true
+            },
+            international: {
+                type: Boolean,
+                required: true
             }
         },
         computed: {
@@ -40,7 +44,7 @@
             }"
         class="document__legal">
             <div>
-                {{company.name}} | KvK: {{company.coc}} | BTW: {{company.vat}}
+                {{company.name}} | <span v-if="international">CoC:</span><span v-else>KvK:</span> {{company.coc}} | <span v-if="international">VAT:</span><span v-else>BTW:</span> {{company.vat}}
             </div>
             <div>
                 <b>{{company.bankName}}</b> | {{company.bankAddress}} | IBAN: {{company.iban}} | BIC: {{company.bic}}
