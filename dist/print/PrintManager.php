@@ -66,39 +66,53 @@ class PrintManager
 
                  <BODY>
                      <div class='pagewrap'>
-                        <div id='header'>
+                        <div class='document__header'>
                              <div id='identity'>
                                  <img src='" . $this->data->company->logoUrl . "'>
                              </div>
 
-                             <div id='document-info'>
-                                 <div id='document-date'>
+                             <div class='document__info'>
+                                 <div class='document__date'>
                                      " . $this->data->day . " " . $this->month_nice . " " . $this->data->year . "
                                  </div>
-                                 <div id='document-id'>
+                                 <div class='document__id'>
                                      " . $this->data->prefix . " <b>" . $this->data->slug . "</b>
                                  </div>
                              </div>
                         </div>
 
-                        <div id='address-info'>
+                        <div class='document__addresses'>
                             <div class='relative-wrapper'>
-                                 <div id='address-receiver'>
-                                     <b>" . $this->data->client->name . "</b><br>
-                                     " . $this->data->client->clientName . "<br>
-                                     " . $this->data->client->street  . "<br>
-                                     " . $this->data->client->zipcode . " " . $this->data->client->city . "
+                                 <div class='document__addresses--left'>
+                                     <div><b>" . $this->data->client->name . "</b></div>
+                                     <div>" . $this->data->client->clientName . "</div>
+                                     <div>" . $this->data->client->street  . "</div>
+                                     <div>" . $this->data->client->zipcode . " " . $this->data->client->city . "</div>";
+        if ($this->data->client->international == '1') {
+             $html .= "<div>VAT: " . $this->data->client->vat . "</div>";
+         }
+         $html .= "
                                  </div>
-                                 <div id='address-sender'>
-                                     <b>" . $this->data->company->name . "</b><br>
-                                     " . $this->data->employee . "<br>
-                                     " . $this->data->company->address . "<br>
-                                     " . $this->data->company->zipcode . " " . $this->data->company->city . "
+                                 <div class='document__addresses--right'>
+                                    <div><b>" . $this->data->company->name . "</b></div>";
+        if ($this->data->company->companySameAsEmployee != '1') {
+            $html .= "<div>" . $this->data->employee . "</div>";
+        }
+        $html .= "<div>" . $this->data->company->address . "</div>";
+        if (strlen($this->data->company->addressExtra) > 0) {
+            $html .= "<div>" . $this->data->company->addressExtra . "</div>";
+        }
+        $html .= "                   <div>" . $this->data->company->zipcode . " " . $this->data->company->city . "</div>";
+        if ($this->data->client->international == '1') {
+            $html .= "<div>" . $this->data->company->country . "</div>";
+        }
+        $html .= "
+
                                  </div>
                              </div>
                          </div>
 
-                         <div id='document-description'>
+                         <div class='document__title'>
                              <b>Betreft:</b> " . $this->data->title . "
                          </div>
          ";
@@ -131,21 +145,29 @@ class PrintManager
     protected function getFooter()
     {
         $html = "
-            <div id='footer'>
-                <div id='footer-text'>";
-                    if ($this->data->{'doctype'} === "invoice") {
-                        $html .= $this->data->company->invoiceText;
+            <div class='document__footer'>
+                <div class='document__invoice-text'>";
+                    if ($this->data->doctype == "invoice") {
+                        if ($this->data->client->international == "1") {
+                            $html .= $this->data->company->invoiceTextEnglish;
+                        } else {
+                            $html .= $this->data->company->invoiceText;
+                        }
                     } else {
                         $html .= "Handtekening voor akkoord:";
                     }
                     $html .= "
                 </div>
-                <div id='footer-slogan'>
-                    <img src='" . $this->data->company->footerImageUrl . "'>
-                </div>
+                <img src='" . $this->data->company->footerImageUrl . "'>
             </div>
-            <div id='legal-info'>
-                " . $this->data->company->name . " | KvK " . $this->data->company->coc . " | BTW " . $this->data->company->vat . "
+
+            <div class='document__legal'>
+                <div>
+                    " . $this->data->company->name . " | KvK " . $this->data->company->coc . " | BTW " . $this->data->company->vat . "
+                </div>
+                <div>
+                    <b>" . $this->data->company->bankName . "</b> | " . $this->data->company->bankAddress . " | IBAN: " . $this->data->company->iban . " | BIC: " . $this->data->company->bic . "
+                </div>
             </div>";
         return $html;
     }
@@ -167,7 +189,7 @@ class PrintManager
             $this->total += $rate * $hours;
             $this->subtotal += $rate * $hours;
             $html .= "
-                <div class='line'>
+                <div class='lines-row'>
                     <div class='line-title'>
                         " . $text . "
                     </div>
@@ -190,7 +212,7 @@ class PrintManager
         $this->total += $amount;
         $this->subtotal += $amount;
             $html .= "
-                <div class='line'>
+                <div class='lines-row'>
                     <div class='line-title'>
                         " . $text  . "
                     </div>
@@ -201,7 +223,7 @@ class PrintManager
         }
         else if ($lineType == 'text') {
             $html .= "
-                <div class='line'>
+                <div class='lines-row'>
                     <div class='line-full'>
                         " . $text . "
                     </div>
@@ -213,7 +235,7 @@ class PrintManager
         else if ($lineType == 'subtotal') {
             $html .= "
                 <div class='subtotal-block'>
-                    <div class='line'>
+                    <div class='lines-row'>
                         <div class='line-title'>
                             Subtotaal
                         </div>
@@ -221,7 +243,7 @@ class PrintManager
                             <b>" . $this->nrToCur($this->subtotal)  . "</b> EUR
                         </div>
                     </div>
-                    <div class='line'>
+                    <div class='lines-row'>
                         <div class='line-title'>
                             BTW 21%
                         </div>
@@ -240,7 +262,7 @@ class PrintManager
     $total = 0;
     $subtotal = 0;
         $html = "
-            <div id='document-activities'>";
+            <div class='document__lines'>";
         for ($i = 0; $i < count($this->data->documentLines); $i++) {
             $line = $this->data->documentLines[$i];
                 $html .= $this->printLine($line);
@@ -255,7 +277,7 @@ class PrintManager
         if (!$this->data->hideTotal){
             $html .= "
                 <div id='total'>
-                    <div class='line'>
+                    <div class='lines-row'>
                         <div class='line-title'>
                             Totaal";
                         if ($this->data->doctype == "quotation") {
@@ -270,7 +292,7 @@ class PrintManager
                     </div>";
             if ($this->data->doctype === "invoice") {
                 $html .= "
-                    <div class='line'>
+                    <div class='lines-row'>
                         <div class='line-title'>
                             BTW " .$this->data->vat . "%
                         </div>
@@ -278,7 +300,7 @@ class PrintManager
                             " . $this->nrToCur($this->total * ($this->data->vat / 100)) . " EUR
                         </div>
                     </div>
-                    <div class='line'>
+                    <div class='lines-row'>
                         <div class='line-title'>
                             <div class='total-labal'>
                                 Te betalen

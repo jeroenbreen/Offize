@@ -76,6 +76,9 @@
             <div>
                 {{client.zipcode}} {{client.city}}
             </div>
+            <div v-if="client.international">
+                VAT: {{client.vat}}
+            </div>
         </div>
 
         <div class="document__addresses--right">

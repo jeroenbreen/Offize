@@ -26,7 +26,7 @@ body {
     position: relative;
 }
 
-#header {
+.document__header {
     position: absolute;
     left: 0;
     top: 0;
@@ -42,19 +42,21 @@ body {
     height: 200px;
 }
 
-#document-info {
+
+
+.document__info {
     position: absolute;
     right: 0;
     top: 10px;
 }
 
-#document-date {
+.document__date {
     display: inline-block;
     vertical-align: top;
-    padding-top: 6px;
+    padding-top: 8px;
 }
 
-#document-id {
+.document__id {
     display: inline-block;
     padding: 15px;
     background: #eee;
@@ -62,48 +64,53 @@ body {
     margin-left: 8px;
 }
 
-#address-info {
+
+
+.document__addresses {
     position: absolute;
     left: 0;
     top: 388px;
     border-top: 0.5px solid #333;
     width: 100%;
     padding: 20px;
+    line-height: 1.7;
 }
 
-#address-receiver {
+.document__addresses--left {
     position: absolute;
     left: 0;
     top: 0;
     width: 518px;
 }
 
-#address-sender {
+.document__addresses--right {
     position: absolute;
     right: 0;
     top: 0;
     width: 518px;
 }
 
-#document-description {
+
+
+.document__title {
     position: absolute;
     left: 0;
-    top: 612px;
+    top: 632px;
     border-top: 0.5px solid #333;
     width: 100%;
     padding: 20px;
 }
 
-#document-activities {
+.document__lines {
     position: absolute;
     left: 0;
-    top: 680px;
+    top: 700px;
     border-top: 0.5px solid #333;
     width: 100%;
     padding: 20px;
 }
 
-.line {
+.lines-row {
     padding: 2px 0;
     position: relative;
 }
@@ -174,38 +181,37 @@ body {
 }
 
 
-#footer {
+.document__footer {
     position: absolute;
     left: 0;
     top: 1224px;
     width: 100%;
+    text-align: center;
 }
 
-#footer-text {
+.document__invoice-text {
     border-top: 0.5px solid #333;
     border-bottom: 0.5px solid #333;
     width: 100%;
     padding: 20px;
     font-size: 7pt;
-    text-align: center;
 }
 
-#footer-slogan {
-    text-align: center;
-    padding-top: 20px;
-}
-
-#footer-slogan img {
+.document__footer img {
     width: 210px;
+    margin-top: 20px;
 }
 
-#legal-info {
+
+
+.document__legal {
     position: absolute;
     left: 0;
     top: 1590px;
     width: 100%;
     text-align: center;
     font-size: 7pt;
+    line-height: 1.7;
 }
 
 #total {

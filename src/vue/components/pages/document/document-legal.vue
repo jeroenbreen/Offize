@@ -39,7 +39,12 @@
                 'font-size': getSize(template.legal.fontSize)
             }"
         class="document__legal">
-        {{company.name}} | KvK {{company.coc}} | BTW {{company.vat}}
+            <div>
+                {{company.name}} | KvK: {{company.coc}} | BTW: {{company.vat}}
+            </div>
+            <div>
+                <b>{{company.bankName}}</b> | {{company.bankAddress}} | IBAN: {{company.iban}} | BIC: {{company.bic}}
+            </div>
     </div>
 </template>
 

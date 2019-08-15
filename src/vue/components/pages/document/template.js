@@ -40,7 +40,7 @@ const template = {
         }
     },
     legal :{
-        top: 1590,
+        top: 1550,
         fontSize: 18
     }
 };
