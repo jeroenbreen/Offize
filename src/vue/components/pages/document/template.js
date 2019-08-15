@@ -16,12 +16,12 @@ const template = {
         padding: 20
     },
     title: {
-        top: 612,
+        top: 632,
         padding: 20,
         height: 90
     },
     lines: {
-        top: 700,
+        top: 720,
         padding: 20
     },
     total: {

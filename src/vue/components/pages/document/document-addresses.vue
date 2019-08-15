@@ -59,41 +59,59 @@
         }"
         class="document__addresses">
 
-        <div class="document__addresses--left" v-if="!document.locked">
-            <b>{{client.name}}</b><br>
-            <input v-model="document.clientName">
-            {{client.street}}<br>
-            {{client.zipcode}} {{client.city}}
+        <div class="document__addresses--left">
+            <div>
+                <b>{{client.name}}</b>
+            </div>
+            <div >
+                <input v-if="!document.locked" v-model="document.clientName">
+                <span v-else>
+                    {{document.clientName}}
+                </span>
+            </div>
+
+            <div>
+                {{client.street}}
+            </div>
+            <div>
+                {{client.zipcode}} {{client.city}}
+            </div>
         </div>
 
-        <div class="document__addresses--left" v-if="document.locked">
-            <b>{{client.name}}</b><br>
-            {{document.clientName}}<br>
-            {{client.street}}<br>
-            {{client.zipcode}} {{client.city}}
-        </div>
+        <div class="document__addresses--right">
+            <div>
+                <b>{{company.name}}</b>
+            </div>
 
-        <div class="document__addresses--right" v-if="!document.locked">
-            <b>{{company.name}}</b><br>
-            <md-field>
-                <md-select
-                    v-model="document.employeeId"
-                    placeholder="Employee">
-                    <md-option
-                        v-for="(employee, index) in employees"
-                        :value="employee.id"
-                        :key="index">{{employee.name}}</md-option>
-                </md-select>
-            </md-field>
-            {{company.address}}<br>
-            {{company.zipcode}} {{company.city}}
-        </div>
+            <div v-if="!company.companySameAsEmployee">
+                <md-field v-if="!document.locked">
+                    <md-select
+                            v-model="document.employeeId"
+                            placeholder="Employee">
+                        <md-option
+                                v-for="(employee, index) in employees"
+                                :value="employee.id"
+                                :key="index">{{employee.name}}</md-option>
+                    </md-select>
+                </md-field>
 
-        <div class="document__addresses--right" v-if="document.locked">
-            <b>{{company.name}}</b><br>
-            {{employee.name}}<br>
-            {{company.address}}<br>
-            {{company.zipcode}} {{company.city}}
+                <div v-else>
+                    {{employee.name}}
+                </div>
+            </div>
+
+            <div>
+                {{company.address}}
+            </div>
+            <div v-if="company.addressExtra.length > 0">
+                {{company.addressExtra}}
+            </div>
+            <div>
+                {{company.zipcode}} {{company.city}}
+            </div>
+            <div v-if="client.international">
+                {{company.country}}
+            </div>
         </div>
     </div>
 </template>
