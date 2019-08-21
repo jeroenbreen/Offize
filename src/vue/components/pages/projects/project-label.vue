@@ -43,7 +43,7 @@
                 this.update();
             },
             update() {
-                this.$store.dispatch('projects/update', this.clone).then((response) => {
+                this.$store.dispatch('projects/update', this.clone.toBackend()).then((response) => {
                     console.log('update ' + this.clone.projectName);
                     console.log('client update');
                 })
