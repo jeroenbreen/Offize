@@ -21,18 +21,10 @@ class Project extends _Base {
 
     // helpers
 
-    toSlug(limitString, addMember) {
-        // var formattedName = this.projectName.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-'),
-        //     label = commonTools.digitize(this.contact.id) + '-' + formattedName;
-        // if (addMember) {
-        //     label = this.member.initials + ': ' + label;
-        // }
-        // if (limitString && label.length > limitString) {
-        //     return label.substr(0,limitString) + '...'
-        // } else {
-        //     return label;
-        // }
-        return this.projectName;
+    toSlug(limitString) {
+        let formattedName, label;
+        formattedName = this.projectName.toLowerCase().replace(/\//g, '-').replace(/\s/g, '-').replace(/\./g, '-').replace(/-+/g, '-');
+        return commonTools.digitize(this.clientId) + '-' + formattedName;
     }
 
     getRegistrationRate() {

@@ -54,6 +54,9 @@
             },
             deArchiveProject() {
                 this.clone.projectStatus = 0;
+            },
+            copySlug() {
+                console.log(this.clone.toSlug());
             }
         },
         watch: {
