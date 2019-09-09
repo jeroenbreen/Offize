@@ -58,7 +58,7 @@
                         <md-option
                                 v-for="(client, index) in clients"
                                 :value="client.id"
-                                :key="index">{{client.name}}</md-option>
+                                :key="index">{{client.toSlug()}}</md-option>
                     </md-select>
                 </md-field>
 
