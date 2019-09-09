@@ -2,11 +2,12 @@
     import Project from '@classes/Project';
     import autoSaver from '@components/elements/auto-saver';
     import commonTools from '@tools/common-tools';
+    import projectStatusTools from './project-status-tools';
 
     export default {
         name: 'project-details',
         components: {
-            autoSaver
+            projectStatusTools, autoSaver
         },
         props: {
             project: {
@@ -55,6 +56,12 @@
             },
             deArchiveProject() {
                 this.clone.projectStatus = 0;
+            },
+            prevStatus() {
+                this.clone.projectStatus -= 1;
+            },
+            nextStatus() {
+                this.clone.projectStatus += 1;
             },
             copySlug() {
                 commonTools.clipboard(this.clone.toSlug());
@@ -153,7 +160,13 @@
                     <div class="status-indicator__label">
                         {{status}}
                     </div>
+
+                    <project-status-tools
+                            :project="clone"
+                            :save="false"/>
                 </div>
+
+
             </div>
 
 
@@ -230,6 +243,10 @@
             .document-tool__container {
                 margin-bottom: 16px;
             }
+        }
+
+        .project-status-tools {
+            margin-left: auto;
         }
     }
 </style>

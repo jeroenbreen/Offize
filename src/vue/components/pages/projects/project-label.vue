@@ -1,10 +1,13 @@
 <script>
     import Project from '@classes/Project';
     import commonTools from '@tools/common-tools';
+    import projectStatusTools from './project-status-tools';
 
     export default {
         name: 'project-label',
-        components: {},
+        components: {
+            projectStatusTools
+        },
         props: {
             project: {
                 type: Project,
@@ -32,22 +35,6 @@
             }
         },
         methods: {
-            prevStatus() {
-                this.clone.projectStatus -= 1;
-                this.$store.commit('projects/setCurrentLight', this.project);
-                this.update();
-            },
-            nextStatus() {
-                this.clone.projectStatus += 1;
-                this.$store.commit('projects/setCurrentLight', this.project);
-                this.update();
-            },
-            update() {
-                this.$store.dispatch('projects/update', this.clone.toBackend()).then((response) => {
-                    console.log('update ' + this.clone.projectName);
-                    console.log('client update');
-                })
-            },
             setCurrent() {
                 this.$store.commit('projects/setCurrent', this.project);
                 localStorage.currentProject = this.project.id;
@@ -94,24 +81,9 @@
 
 
         <div class="project-label__tools">
-            <div
-                v-show="project.projectStatus > 0"
-                @click="prevStatus()"
-                class="document-tool document-tool--small"
-                title="opdrachtstatus terug">
-                <i class="fa fa-arrow-up"></i>
-            </div>
-
-            <div
-                v-if="project.projectStatus === 0"
-                class="spacer"></div>
-            <div
-                v-show="project.projectStatus < 5"
-                @click="nextStatus()"
-                class="document-tool document-tool--small"
-                title="opdrachtstatus vooruit">
-                <i class="fa fa-arrow-down"></i>
-            </div>
+            <project-status-tools
+                :project="clone"
+                :save="true"/>
 
             <div
                 v-if="project.projectStatus === 5"
