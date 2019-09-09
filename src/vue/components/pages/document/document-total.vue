@@ -43,7 +43,7 @@
                     }
                 }
                 total *= multiplier;
-                total = Math.round(100 * total) / 100;
+                total = Math.ceil(100 * total) / 100;
                 return total;
             }
         }

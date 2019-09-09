@@ -38,7 +38,7 @@
             print() {
                 let document, documentLines, employee;
                 document = this.document.toPrint();
-                     document.company = this.company.toBackend();
+                document.company = this.company.toBackend();
                 document.client = this.client.toBackend();
                 document.client.clientName = this.document.clientName ? this.document.clientName : '';
                 document.international = this.international ? '1' : '0';

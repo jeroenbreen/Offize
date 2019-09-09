@@ -1,6 +1,7 @@
 <script>
     import Project from '@classes/Project';
     import autoSaver from '@components/elements/auto-saver';
+    import commonTools from '@tools/common-tools';
 
     export default {
         name: 'project-details',
@@ -56,7 +57,7 @@
                 this.clone.projectStatus = 0;
             },
             copySlug() {
-                console.log(this.clone.toSlug());
+                commonTools.clipboard(this.clone.toSlug());
             }
         },
         watch: {

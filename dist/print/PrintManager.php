@@ -317,7 +317,7 @@ class PrintManager
                             " . $this->translate('vat') ." " .$this->data->vat . "%
                         </div>
                         <div class='line-right-part'>
-                            " . $this->nrToCur($this->total * ($this->data->vat / 100)) . " EUR
+                            " . $this->nrToCur(ceil($this->total * ($this->data->vat)) / 100) . " EUR
                         </div>
                     </div>
                     <div class='lines-row'>
@@ -328,7 +328,7 @@ class PrintManager
                         </div>
                         <div class='line-right-part'>
                             <div class='total-labal'>
-                                " . $this->nrToCur($this->total * (1 + ($this->data->vat / 100))) . " EUR
+                                " . $this->nrToCur(ceil($this->total * (100 + $this->data->vat)) / 100) . " EUR
                             </div>
                         </div>
                     </div>
