@@ -341,7 +341,6 @@ class PrintManager
     }
 
     protected function nrToCur ($value) {
-        //setlocale("LC_MONETARY", "de_DE");
         return money_format("%!n", $value);
     }
 }
