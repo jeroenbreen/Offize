@@ -246,6 +246,7 @@
                 position: absolute;
                 left: 0;
                 padding: 10px;
+                z-index: 10;
 
                 ul {
                     padding: 0;
@@ -255,7 +256,6 @@
                     li {
                         position: relative;
                         border-left: 2px solid transparent;
-                        padding: 4px 0;
 
                         &.current-line {
                             border-left: 2px solid #000;
@@ -334,7 +334,7 @@
     li.lines-row, .ui-sortable-helper {
         width: 100%;
         position: relative;
-        min-height: 24px;
+        min-height: 22px;
         display: flex;
 
         .handle {
@@ -349,8 +349,11 @@
         .lines-cell {
             display: flex;
             align-items: center;
-
             width: 100%;
+
+            input {
+                height: 24px;
+            }
 
             .lines-row-c1 {
                 width: calc(52% - 30px);
