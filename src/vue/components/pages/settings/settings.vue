@@ -12,7 +12,7 @@
         mixins: [closeMixin],
         data() {
             return {
-                clone: new Company(this.$store.state.company.current.toBackend())
+                clone: new Company(this.$store.state.company.all[0].toBackend())
             }
         },
         computed: {},

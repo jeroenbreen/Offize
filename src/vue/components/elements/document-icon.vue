@@ -10,7 +10,11 @@
                 required: true
             }
         },
-        computed: {},
+        computed: {
+            isUnpaid() {
+                return this.document.doctype === 'invoice' && !this.document.paid;
+            }
+        },
         methods: {
             setCurrent() {
                 this.$store.commit('documents/setCurrent', this.document);
@@ -24,6 +28,7 @@
 <template>
     <div
         @click="setCurrent()"
+        :class="{'document-icon--unpaid': isUnpaid}"
         class="document-icon">
         <div class="document-icon__icon">
             <i class="fa fa-folder-open"></i>
@@ -52,6 +57,14 @@
         border: 1px solid transparent;
         background: $grey-soft;
         box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+
+        &.document-icon--unpaid {
+            background: $warning-color;
+
+            .document-icon__icon {
+                color: #fff;
+            }
+        }
 
         .document-icon__icon {
             font-size: 14px;

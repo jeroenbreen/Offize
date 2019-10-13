@@ -24,7 +24,7 @@
                 let years, currentYear;
                 years = ['Alle'];
                 currentYear = new Date().getFullYear();
-                for (let i = this.$store.state.company.current.startingYear, l = currentYear; i < (l + 1); i++) {
+                for (let i = this.$store.state.company.all[0].startingYear, l = currentYear; i < (l + 1); i++) {
                     years.push(i);
                 }
                 return years;

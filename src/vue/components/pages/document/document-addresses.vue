@@ -20,7 +20,7 @@
         },
         computed: {
             company() {
-                return this.$store.state.company.current;
+                return this.$store.state.company.all[0];
             },
             employee() {
                 let employee = this.$store.getters['employees/getItemById'](this.document.employeeId);

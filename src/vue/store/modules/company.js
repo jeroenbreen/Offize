@@ -1,11 +1,10 @@
 import _base from './_base-module';
 import Company from '@classes/Company';
 
-const Model = Object;
+const Model = Company;
 
 const state = {
-    all: [],
-    current: null
+    all: []
 };
 
 const getters = {
@@ -21,10 +20,9 @@ const mutations = {
     init(state, company) {
         let c = new Company(company);
         state.all.push(c);
-        state.current = c;
     },
     updateProperty(state, payload) {
-        state.current[payload.key] = payload.value;
+        //state.current[payload.key] = payload.value;
     },
     update(state, item) {
         return _base.mutations.update(state, item, Model);

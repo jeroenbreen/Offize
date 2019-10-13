@@ -32,6 +32,22 @@
             },
             budget() {
                 return commonTools.currencyFormat(this.project.getBudget());
+            },
+            documents() {
+                return this.$store.getters['documents/getDocumentsForProjectOfType']({projectId: this.project.id, doctype: 'invoice'});
+            },
+            isPaidInvoice() {
+                if (this.project.projectStatus === 3 || this.project.projectStatus === 4) {
+                    let paid = true;
+                    for (let document of this.documents) {
+                        if (!document.paid) {
+                            paid = false;
+                        }
+                    }
+                    return paid;
+                } else {
+                    return false;
+                }
             }
         },
         methods: {
@@ -66,6 +82,9 @@
             class="project-label__properties">
             <div class="project-label__name">
                 {{project.toSlug()}}
+                <span
+                    v-if="isPaidInvoice"
+                    class="checkmark"></span>
             </div>
 
             <div class="project-label__client">

@@ -22,7 +22,7 @@
         },
         computed: {
             company() {
-                return this.$store.state.company.current;
+                return this.$store.state.company.all[0];
             },
             project() {
                 return this.$store.getters['projects/getItemById'](this.document.projectId);

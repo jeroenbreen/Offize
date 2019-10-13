@@ -21,7 +21,7 @@
         methods: {
             create() {
                 if (this.project.employeeId && this.project.clientId) {
-                    this.project.rate = this.$store.state.company.current.standardRate;
+                    this.project.rate = this.$store.state.company.all[0].standardRate;
                     this.$store.dispatch('projects/create', this.project.toBackend()).then((response) => {
                         this.project = new Project();
                     });
