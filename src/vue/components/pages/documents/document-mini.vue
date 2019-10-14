@@ -85,7 +85,7 @@
 
         .document-mini__label {
 
-            .document-mini__title {
+            .document-mini__id {
                 font-weight: 700;
             }
         }
