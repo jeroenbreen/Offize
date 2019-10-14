@@ -2,11 +2,12 @@
     import Project from '@classes/Project';
     import commonTools from '@tools/common-tools';
     import projectStatusTools from './project-status-tools';
+    import documentMini from '@components/pages/documents/document-mini';
 
     export default {
         name: 'project-label',
         components: {
-            projectStatusTools
+            projectStatusTools, documentMini
         },
         props: {
             project: {
@@ -91,6 +92,14 @@
                 {{clientName}}
             </div>
 
+
+            <div class="project-label__documents">
+                <document-mini
+                    v-for="document in documents"
+                    :document="document"
+                    :tiny="true"/>
+            </div>
+
             <div class="project-label__budget">
                 {{budget}}
                 {{project.currency}}
@@ -136,7 +145,7 @@
             border-bottom: 1px solid rgba(0,0,0,0.2);
             border-left: 1px solid rgba(0,0,0,0.2);
 
-            div {
+            > div {
                 height: 100%;
                 display: flex;
                 align-items: center;
@@ -151,12 +160,17 @@
             }
 
             .project-label__name {
-                width: calc(50% - 50px);
+                width: calc(50% - 125px);
                 border-left: 4px solid transparent;
             }
 
             .project-label__client {
-                width: calc(50% - 50px);
+                width: calc(50% - 125px);
+            }
+
+            .project-label__documents {
+                width: 150px;
+                display: flex;
             }
 
             .project-label__budget {

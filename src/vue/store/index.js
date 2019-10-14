@@ -21,8 +21,10 @@ const getters = {
 
 };
 
-const state = {
+let now = new Date();
 
+const state = {
+    today: new Date(now.getFullYear(), now.getMonth(), now.getDate())
 };
 
 const actions = {

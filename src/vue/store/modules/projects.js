@@ -22,7 +22,7 @@ const getters = {
                 (state.searchEmployee === -1 || item.employeeId ===  state.searchEmployee) &&
                 (state.searchClient === -1 || item.clientId ===  state.searchClient) &&
                 (state.searchYear === 'Alle' || item.year ===  state.searchYear) &&
-                (state.searchLiveProjects === false || item.projectStatus < 3);
+                (state.searchLiveProjects === false || item.projectStatus < 4);
         })
     },
     ordered(state, getters) {

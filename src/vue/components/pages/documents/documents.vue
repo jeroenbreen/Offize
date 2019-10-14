@@ -1,11 +1,11 @@
 <script>
     import documentSearch from './document-search';
-    import miniDocument from './mini-document';
+    import documentMini from './document-mini';
 
     export default {
         name: 'documents',
         components: {
-            documentSearch, miniDocument
+            documentSearch, documentMini
         },
         props: {},
         computed: {
@@ -24,7 +24,7 @@
             <document-search/>
 
             <div class="page__search-results">
-                <mini-document
+                <document-mini
                     v-for="(document, index) in documents"
                     :key="index"
                     :document="document"/>

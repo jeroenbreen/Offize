@@ -36,6 +36,21 @@ class Document {
         return this.getPrefix() + '-' + this.toSlug() + '.pdf';
     };
 
+    //
+
+    daysLate(date, maxDays) {
+        let today, invoiceDate, difference, msPerDay;
+        today = date;
+        invoiceDate = new Date(this.year + '-' + this.month + '-' + this.day).getTime();
+        difference = today - invoiceDate;
+        msPerDay = 1000 * 60 * 60 * 24;
+        return Math.round((difference / (msPerDay)) - maxDays);
+    }
+
+    late(date, maxDays) {
+        return !this.paid && this.daysLate(date, maxDays) > 0;
+    }
+
 
 
     // object stuff

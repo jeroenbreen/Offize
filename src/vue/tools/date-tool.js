@@ -14,7 +14,7 @@ var getThisMonday,
 getThisMonday = function() {
     var newDate = new Date(),
         day = newDate.getDay(),
-        diff = newDate.getDate() - day + (day == 0 ? -6 : 1);
+        diff = newDate.getDate() - day + (day === 0 ? -6 : 1);
     return new Date(newDate.setDate(diff));
 };
 
