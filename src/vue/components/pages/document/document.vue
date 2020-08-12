@@ -38,6 +38,16 @@
         computed: {
             company() {
                 return this.$store.state.company.all[0];
+            },
+            client() {
+                let project, client;
+                project = this.$store.getters['projects/getItemById'](this.document.projectId);
+                if (project) {
+                    client = this.$store.getters['clients/getItemById'](project.clientId);
+                    if (client) {
+                        return client;
+                    }
+                }
             }
         },
         methods: {
@@ -78,6 +88,7 @@
 
             <document-addresses
                 :document="document"
+                :client="client"
                 :template="template"
                 :scale="scale"/>
 
@@ -95,15 +106,15 @@
             <document-total
                 v-if="!document.hideTotal"
                 :document="document"
+                :client="client"
                 :template="template"
-                :scale="scale"
-                :international="international"/>
+                :scale="scale"/>
 
             <document-footer
                 :document="document"
                 :template="template"
                 :scale="scale"
-                :international="international"/>
+                :client="client"/>
 
             <document-legal
                 :document="document"
@@ -261,29 +272,6 @@
                             border-left: 2px solid #000;
                         }
                     }
-                }
-            }
-
-            .document__total {
-                width: 100%;
-                position: absolute;
-                left: 0;
-
-                span.left {
-                    float: left;
-                    width: 50%;
-                }
-
-                span.right {
-                    float: right;
-                    width: 50%;
-                    text-align: right;
-                }
-
-                .lines-total-big {
-                    font-size: 150%;
-                    font-weight: 700;
-                    margin-top: 5px;
                 }
             }
 

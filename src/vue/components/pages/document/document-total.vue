@@ -1,5 +1,6 @@
 <script>
     import Document from '@classes/Document';
+    import Client from '@classes/Client';
 
     export default {
         name: 'document-total',
@@ -9,6 +10,10 @@
                 type: Document,
                 required: true
             },
+            client: {
+                type: Client,
+                required: true
+            },
             scale: {
                 type: Number,
                 required: true
@@ -16,15 +21,14 @@
             template: {
                 type: Object,
                 required: true
-            },
-            international: {
-                type: Boolean,
-                required: true
             }
         },
         computed: {
             company() {
                 return this.$store.state.company.all[0];
+            },
+            vatShifted() {
+                return this.client.eu;
             }
         },
         methods: {
@@ -57,48 +61,76 @@
             'top': getSize(template.total.top),
             'padding': getSize(template.total.padding)
         }"
-        class="document__total" >
-        <span class="left">
-            <span v-if="international">
-                Total
-            </span>
-            <span v-else>
-                Totaal
-            </span>
-        </span>
-        <span class="right">
-            {{getTotal(1)}}
-            {{document.currency}}
-        </span>
-        <br>
-        <div>
-            <span class="left">
-                <span v-if="international">
+        class="document__total">
+
+        <div
+            :class="{'document__total-row--big': vatShifted }"
+            class="document__total-row">
+            <div class="document__total-left">
+                <div v-if="client.language === 'en'">
+                    Total
+                </div>
+                <div v-if="client.language === 'nl'">
+                    Totaal
+                </div>
+            </div>
+            <div class="document__total-right">
+                {{getTotal(1)}}
+                {{document.currency}}
+            </div>
+        </div>
+
+        <div
+            v-if="vatShifted"
+            class="document__total-row">
+            <div class="document__total-left">
+                <div v-if="client.language === 'en'">
+                    ????
+                </div>
+                <div v-if="client.language === 'nl'">
+                    BTW verlegd naar {{client.vat}}
+                </div>
+            </div>
+            <div class="document__total-right"></div>
+        </div>
+
+
+
+        <div
+            v-if="!vatShifted"
+            class="document__total-row">
+            <div class="document__total-left">
+                <span v-if="client.language === 'en'">>
                     VAT&nbsp;
                 </span>
-                <span v-else>
+                <span v-if="client.language === 'nl'">
                     BTW&nbsp;
                 </span>
                  {{document.vat}}%
-                </span>
-            <span class="right">
+            </div>
+            <div class="document__total-right">
                 {{getTotal((document.vat / 100))}}
                 {{document.currency}}
-            </span>
-            <span class="left lines-total-big">
-                <span v-if="international">
+            </div>
+        </div>
+
+        <div
+            v-if="!vatShifted"
+            class="document__total-row document__total-row--big">
+            <div class="document__total-left">
+                <span v-if="client.language === 'nl'">
                     <b>Total Amount</b>&nbsp;&nbsp;
                 </span>
-                <span v-else>
+                <span v-if="client.language === 'nl'">
                     <b>Te betalen</b>&nbsp;
                 </span>
-            </span>
-            <span class="right lines-total-big">
+            </div>
+            <div class="document__total-right">
                 <b>
                     {{getTotal((1 + (document.vat / 100)))}}
                     {{document.currency}}
                 </b>
-            </span>
+            </div>
         </div>
     </div>
 </template>
@@ -106,5 +138,31 @@
 
 <style lang="scss">
     @import '@styles/variables.scss';
+
+    .document__total {
+        width: 100%;
+        position: absolute;
+        left: 0;
+
+        .document__total-row {
+            display: flex;
+            width: 100%;
+
+            .document__total-left {
+                width: 50%;
+            }
+
+            .document__total-right {
+                width: 50%;
+                text-align: right;
+            }
+
+            &.document__total-row--big {
+                font-size: 150%;
+                font-weight: 700;
+                margin-top: 5px;
+            }
+        }
+    }
 
 </style>

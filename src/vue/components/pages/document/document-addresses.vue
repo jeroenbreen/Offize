@@ -1,5 +1,6 @@
 <script>
     import Document from '@classes/Document'
+    import Client from '@classes/Client'
 
     export default {
         name: 'document-addresses',
@@ -7,6 +8,10 @@
         props: {
             document: {
                 type: Document,
+                required: true
+            },
+            client: {
+                type: Client,
                 required: true
             },
             scale: {
@@ -26,16 +31,6 @@
                 let employee = this.$store.getters['employees/getItemById'](this.document.employeeId);
                 if (employee) {
                     return employee;
-                }
-            },
-            client() {
-                let project, client;
-                project = this.$store.getters['projects/getItemById'](this.document.projectId);
-                if (project) {
-                    client = this.$store.getters['clients/getItemById'](project.clientId);
-                    if (client) {
-                        return client;
-                    }
                 }
             },
             employees() {

@@ -1,5 +1,6 @@
 <script>
     import Document from '@classes/Document';
+    import Client from '@classes/Client';
 
     export default {
         name: 'document-footer',
@@ -9,16 +10,16 @@
                 type: Document,
                 required: true
             },
+            client: {
+                type: Client,
+                required: true
+            },
             scale: {
                 type: Number,
                 required: true
             },
             template: {
                 type: Object,
-                required: true
-            },
-            international: {
-                type: Boolean,
                 required: true
             }
         },
@@ -49,10 +50,10 @@
                     'font-size': getSize(template.footer.invoiceText.fontSize)
                 }"
             class="document__invoice-text">
-            <span v-if="international">
+            <span v-if="client.language === 'en'">
                 {{company.invoiceTextEnglish}}
             </span>
-            <span v-else>
+            <span v-if="client.language === 'nl'">
                 {{company.invoiceText}}
             </span>
         </div>

@@ -39,15 +39,19 @@
 <template>
     <div
         :style="{
-                'top': getSize(template.legal.top),
-                'font-size': getSize(template.legal.fontSize)
+            'top': getSize(template.legal.top),
+            'font-size': getSize(template.legal.fontSize)
             }"
         class="document__legal">
             <div>
-                {{company.name}} | <span v-if="international">CoC:</span><span v-else>KvK:</span> {{company.coc}} | <span v-if="international">VAT:</span><span v-else>BTW:</span> {{company.vat}}
+                <b>{{company.name}}</b> |
+                <span v-if="international">CoC:</span><span v-else>KvK:</span> {{company.coc}} |
+                <span v-if="international">VAT:</span><span v-else>BTW:</span> {{company.vat}}
             </div>
             <div>
-                <b>{{company.bankName}}</b> | {{company.bankAddress}} | IBAN: {{company.iban}} | BIC: {{company.bic}}
+                Bank: {{company.bankName}} {{company.bankAddress}} |
+                IBAN: {{company.iban}} |
+                BIC: {{company.bic}}
             </div>
     </div>
 </template>
