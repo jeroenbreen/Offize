@@ -2,6 +2,7 @@
     import Client from '@classes/Client';
     import autoSaver from '@components/elements/auto-saver';
     import closeMixin from '@mixins/close';
+    import commonTools from '@tools/common-tools';
 
     export default {
         name: 'client-details',
@@ -20,7 +21,21 @@
                 clone: new Client(this.client.toBackend())
             }
         },
-        computed: {},
+        computed: {
+            languages() {
+                return [
+                    {
+                        id: 1,
+                        title: 'Nederlands',
+                        isoCode: 'nl'
+                    }, {
+                        id: 2,
+                        title: 'Engels',
+                        isoCode: 'en'
+                    }
+                ]
+            }
+        },
         methods: {
             remove() {
                 var message, callback;
@@ -40,6 +55,9 @@
             close() {
                 this.$store.commit('clients/unsetCurrent');
                 localStorage.currentClient = null;
+            },
+            copySlug() {
+                commonTools.clipboard(this.client.toSlug());
             }
         }
     }
@@ -114,13 +132,25 @@
                                 Internationale klant
                             </div>
                         </div>
-                        <div
-                                v-if="clone.international"
-                                class="object-properties__set">
-                            <input title="Plaats"
-                                   v-model="clone.vat">
+                        <div class="object-properties__set">
+                            <md-checkbox v-model="clone.eu"></md-checkbox>
                             <div class="object-properties__label">
-                                BTW nr
+                                Binnen de EU
+                            </div>
+                        </div>
+                        <div class="object-properties__set">
+                            <md-field>
+                                <md-select
+                                        v-model="clone.language"
+                                        placeholder="Language">
+                                    <md-option
+                                            v-for="(language, index) in languages"
+                                            :value="language.isoCode"
+                                            :key="language.isoCode">{{language.title}}</md-option>
+                                </md-select>
+                            </md-field>
+                            <div class="object-properties__label">
+                                Taal
                             </div>
                         </div>
                     </div>

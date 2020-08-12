@@ -97,6 +97,8 @@ function updateClient() {
     $info = $_POST['info'];
     $vat = $_POST['vat'];
     $international = $_POST['international'];
+    $language = $_POST['language'];
+    $eu = $_POST['eu'];
 
     $query = "UPDATE clients SET
     name = '" . $name . "' ,
@@ -110,7 +112,9 @@ function updateClient() {
     rate = '" . $rate . "' ,
     info = '" . $info . "' ,
     vat = '" . $vat . "' ,
-    international = '" . $international . "'
+    international = '" . $international . "' ,
+    language = '" . $language . "' ,
+    eu = '" . $eu . "'
     WHERE
     id = '" . $id. "'";
     return $query;

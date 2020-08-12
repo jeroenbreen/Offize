@@ -21,7 +21,9 @@
         methods: {
             create() {
                 if (this.project.employeeId && this.project.clientId) {
-                    this.project.rate = this.$store.state.company.all[0].standardRate;
+                    let client = this.$store.getters['clients/getItemByProperty']('id', this.project.clientId);
+                    console.log(client);
+                    this.project.rate = client.rate;
                     this.$store.dispatch('projects/create', this.project.toBackend()).then((response) => {
                         this.project = new Project();
                     });

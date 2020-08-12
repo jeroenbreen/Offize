@@ -93,6 +93,8 @@ function createClient() {
     $info = $_POST['info'];
     $vat = $_POST['vat'];
     $international = $_POST['international'];
+    $language = $_POST['language'];
+    $eu = $_POST['eu'];
 
     $query = "INSERT INTO clients
     (name, contactPerson, street, zipcode, city, web, email, telephone, rate, info, vat, international)
@@ -108,7 +110,9 @@ function createClient() {
     '". $rate ."'  ,
     '". $info ."' ,
     '". $vat ."' ,
-    '". $international ."'
+    '". $international ."',
+    '". $language ."',
+    '". $eu ."'
     )";
     return $query;
 }

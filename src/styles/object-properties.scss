@@ -20,6 +20,16 @@
         margin-right: 229px!important;
     }
 
+    .md-field {
+        width: 250px;
+
+        .md-select {
+            border: 1px solid #ddd;
+            border-bottom: 0;
+            height: 34px;
+        }
+    }
+
     textarea {
         height: 180px;
         resize: none;
