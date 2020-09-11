@@ -19,7 +19,7 @@ class Client extends _Base {
         this.vat = client ? client.vat : '';
         this.international = client && client.international ? Boolean(parseInt(client.international)) : false;
         this.eu = client && client.eu ? Boolean(parseInt(client.eu)) : false;
-        this.language = client ? client.language : '';
+        this.language = client ? client.language : 'nl';
     }
 
     toSlug(limitString) {

@@ -14,6 +14,7 @@
         methods: {
             create() {
                 if (this.client.name.length > 0) {
+                    console.log(this.client.toBackend());
                     this.$store.dispatch('clients/create', this.client.toBackend()).then((response) => {
                         console.log('client created');
                         this.client = new Client();

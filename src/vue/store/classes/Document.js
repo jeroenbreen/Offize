@@ -29,7 +29,12 @@ class Document {
     };
 
     getPrefix() {
-        return this.doctype === 'invoice' ? 'Factuur' : 'Offerte';
+        if (this.english) {
+            return this.doctype === 'invoice' ? 'Invoice' : 'Quotation';
+        } else {
+            return this.doctype === 'invoice' ? 'Factuur' : 'Offerte';
+        }
+
     };
 
     getPDFname() {

@@ -141,6 +141,15 @@
                         v-model="document.paid">
             </div>
 
+            <div>
+                <span>Engels</span>
+                <input
+                    type="checkbox"
+                    class=""
+                    value="1"
+                    v-model="document.english">
+            </div>
+
             <div v-if="!document.locked">
                 <span>
                     Verberg total

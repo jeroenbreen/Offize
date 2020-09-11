@@ -10,9 +10,6 @@
     import documentLegal from './document-legal';
     import DocumentLines from "./document-lines/document-lines";
 
-
-
-
     export default {
         name: 'document',
         components: {
@@ -82,9 +79,9 @@
 
             <document-info
                 :document="document"
+                :client="client"
                 :template="template"
-                :scale="scale"
-                :international="international"/>
+                :scale="scale"/>
 
             <document-addresses
                 :document="document"
@@ -95,8 +92,7 @@
             <document-title
                 :document="document"
                 :template="template"
-                :scale="scale"
-                :international="international"/>
+                :scale="scale"/>
 
             <document-lines
                 :document="document"

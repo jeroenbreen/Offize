@@ -45,8 +45,8 @@
         class="document__legal">
             <div>
                 <b>{{company.name}}</b> |
-                <span v-if="international">CoC:</span><span v-else>KvK:</span> {{company.coc}} |
-                <span v-if="international">VAT:</span><span v-else>BTW:</span> {{company.vat}}
+                <span v-if="document.english">CoC:</span><span v-else>KvK:</span> {{company.coc}} |
+                <span v-if="document.english">VAT:</span><span v-else>BTW:</span> {{company.vat}}
             </div>
             <div>
                 Bank: {{company.bankName}} {{company.bankAddress}} |

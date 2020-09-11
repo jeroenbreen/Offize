@@ -43,7 +43,7 @@ class PrintManager
 
         $monthsNl = array("januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december");
         $monthsEn = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
-        if ($this->data->international == '1') {
+        if ($this->data->client->language == 'en') {
             $this->month_nice = $monthsEn[$this->data->month - 1];
         } else {
             $this->month_nice = $monthsNl[$this->data->month - 1];
@@ -94,7 +94,7 @@ class PrintManager
                                      <div>" . $this->data->client->clientName . "</div>
                                      <div>" . $this->data->client->street  . "</div>
                                      <div>" . $this->data->client->zipcode . " " . $this->data->client->city . "</div>";
-        if ($this->data->client->international == '1') {
+        if ($this->data->client->language == 'en') {
              $html .= "<div>" . $this->translate('vat') . ": " . $this->data->client->vat . "</div>";
          }
          $html .= "
@@ -109,7 +109,7 @@ class PrintManager
             $html .= "<div>" . $this->data->company->addressExtra . "</div>";
         }
         $html .= "                   <div>" . $this->data->company->zipcode . " " . $this->data->company->city . "</div>";
-        if ($this->data->client->international == '1') {
+        if ($this->data->client->language == 'en') {
             $html .= "<div>" . $this->data->company->country . "</div>";
         }
         $html .= "
@@ -153,7 +153,7 @@ class PrintManager
             <div class='document__footer'>
                 <div class='document__invoice-text'>";
                     if ($this->data->doctype == "invoice") {
-                        if ($this->data->client->international == "1") {
+                        if ($this->data->client->language == 'en') {
                             $html .= $this->data->company->invoiceTextEnglish;
                         } else {
                             $html .= $this->data->company->invoiceText;
@@ -168,10 +168,10 @@ class PrintManager
 
             <div class='document__legal'>
                 <div>
-                    " . $this->data->company->name . " | " . $this->translate('coc') ." " . $this->data->company->coc . " | " . $this->translate('vat') . " " . $this->data->company->vat . "
+                    <b>" . $this->data->company->name . "</b>  | " . $this->translate('coc') ." " . $this->data->company->coc . " | " . $this->translate('vat') . " " . $this->data->company->vat . "
                 </div>
                 <div>
-                    <b>" . $this->data->company->bankName . "</b> | " . $this->data->company->bankAddress . " | IBAN: " . $this->data->company->iban . " | BIC: " . $this->data->company->bic . "
+                    " . $this->data->company->bankName . " " . $this->data->company->bankAddress . " | IBAN: " . $this->data->company->iban . " | BIC: " . $this->data->company->bic . "
                 </div>
             </div>";
         return $html;
@@ -183,9 +183,13 @@ class PrintManager
             "subject"       => ["Subject", "Betreft"],
             "total"         => ["Total", "Totaal"],
             "totalAmount"   => ["Total amount", "Te betalen"],
-            "vat"           => ["VAT", "BTW"]
+            "vat"           => ["VAT", "BTW"],
+            "invoice"       => ["Invoice", "Factuur"],
+            "quotation"     => ["Quotation", "Offerte"],
+            "activities"    => ["Activities", "Werkzaamheden"],
+            "vatShifted"    => ["VAT shifted to", "BTW verlegd naar"],
         ];
-        if ($this->data->international == '1') {
+        if ($this->data->client->language == 'en') {
             return $dict[$word][0];
         } else {
             return $dict[$word][1];
@@ -295,10 +299,15 @@ class PrintManager
     {
         $html = "";
         if (!$this->data->hideTotal){
+            if ($this->data->client->eu) {
+                $extraClass = ' total-label';
+            } else {
+                $extraClass = '';
+            }
             $html .= "
                 <div id='total'>
                     <div class='lines-row'>
-                        <div class='line-title'>
+                        <div class='line-title" . $extraClass . "'>
                             " . $this->translate('total');
                         if ($this->data->doctype == "quotation") {
                             $html .= " (excl. 21% BTW)";
@@ -306,11 +315,11 @@ class PrintManager
 
                         $html .= "
                         </div>
-                        <div class='line-right-part'>
+                        <div class='line-right-part" . $extraClass . "'>
                             " . $this->nrToCur($this->total) . " EUR
                         </div>
                     </div>";
-            if ($this->data->doctype === "invoice") {
+            if ($this->data->doctype === "invoice" && !$this->data->client->eu) {
                 $html .= "
                     <div class='lines-row'>
                         <div class='line-title'>
@@ -322,18 +331,27 @@ class PrintManager
                     </div>
                     <div class='lines-row'>
                         <div class='line-title'>
-                            <div class='total-labal'>
+                            <div class='total-label'>
                                 " . $this->translate('totalAmount') ."
                             </div>
                         </div>
                         <div class='line-right-part'>
-                            <div class='total-labal'>
+                            <div class='total-label'>
                                 " . $this->nrToCur(ceil($this->total * (100 + $this->data->vat)) / 100) . " EUR
                             </div>
                         </div>
                     </div>
                 ";
-
+            }
+            if ($this->data->client->eu) {
+                $html .= "
+                    <div class='lines-row'>
+                        <div class='line-title'>
+                            " . $this->translate('vatShifted') . " " .$this->data->client->vat . "
+                        </div>
+                        <div class='line-right-part'></div>
+                    </div>
+                ";
             }
             $html .= "</div>";
             return $html;

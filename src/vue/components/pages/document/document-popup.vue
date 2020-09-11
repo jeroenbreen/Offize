@@ -29,7 +29,7 @@
                 if (project) {
                     client = this.$store.getters['clients/getItemById'](project.clientId);
                     if (client) {
-                        return client.international;
+                        return client.language === 'en';
                     }
                 }
             }

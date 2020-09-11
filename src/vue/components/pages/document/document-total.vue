@@ -67,10 +67,10 @@
             :class="{'document__total-row--big': vatShifted }"
             class="document__total-row">
             <div class="document__total-left">
-                <div v-if="client.language === 'en'">
+                <div v-if="document.english">
                     Total
                 </div>
-                <div v-if="client.language === 'nl'">
+                <div v-else>
                     Totaal
                 </div>
             </div>
@@ -84,10 +84,10 @@
             v-if="vatShifted"
             class="document__total-row">
             <div class="document__total-left">
-                <div v-if="client.language === 'en'">
-                    ????
+                <div v-if="document.english">
+                    Vat shifted to {{client.vat}}
                 </div>
-                <div v-if="client.language === 'nl'">
+                <div v-else>
                     BTW verlegd naar {{client.vat}}
                 </div>
             </div>
@@ -100,10 +100,10 @@
             v-if="!vatShifted"
             class="document__total-row">
             <div class="document__total-left">
-                <span v-if="client.language === 'en'">>
+                <span v-if="document.english">
                     VAT&nbsp;
                 </span>
-                <span v-if="client.language === 'nl'">
+                <span v-else>
                     BTW&nbsp;
                 </span>
                  {{document.vat}}%
@@ -118,10 +118,10 @@
             v-if="!vatShifted"
             class="document__total-row document__total-row--big">
             <div class="document__total-left">
-                <span v-if="client.language === 'nl'">
+                <span v-if="document.english">
                     <b>Total Amount</b>&nbsp;&nbsp;
                 </span>
-                <span v-if="client.language === 'nl'">
+                <span v-else>
                     <b>Te betalen</b>&nbsp;
                 </span>
             </div>

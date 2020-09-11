@@ -22,15 +22,11 @@
             template: {
                 type: Object,
                 required: true
-            },
-            international: {
-                type: Boolean,
-                required: true
             }
         },
         computed: {
             months() {
-                return this.international ? this.monthsEn : this.monthsNl;
+                return this.document.english ? this.monthsEn : this.monthsNl;
             }
         },
         methods: {

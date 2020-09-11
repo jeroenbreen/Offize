@@ -50,10 +50,10 @@
                     'font-size': getSize(template.footer.invoiceText.fontSize)
                 }"
             class="document__invoice-text">
-            <span v-if="client.language === 'en'">
+            <span v-if="document.english">
                 {{company.invoiceTextEnglish}}
             </span>
-            <span v-if="client.language === 'nl'">
+            <span v-else>
                 {{company.invoiceText}}
             </span>
         </div>

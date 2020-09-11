@@ -41,6 +41,7 @@
                 document.rate = this.project.rate;
                 client = this.$store.getters['clients/getItemById'](this.project.clientId);
                 document.clientName = client.contactPerson;
+                document.english = client.english;
                 data = document.toBackend();
                 this.$store.dispatch('documents/create', data).then((response) => {
                     let doc = this.$store.getters['documents/getItemById'](Number(response.id));

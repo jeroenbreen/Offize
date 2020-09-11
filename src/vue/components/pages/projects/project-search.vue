@@ -14,7 +14,7 @@
         },
         computed: {
             clients() {
-                return [{id: -1, name: 'Alle'}, ...this.$store.state.clients.all];
+                return [{id: -1, name: 'Alle', toSlug(){return 'Alle';}}, ...this.$store.state.clients.all];
             },
             employees() {
                 return [{id: -1, name: 'Alle'}, ...this.$store.state.employees.all];
@@ -68,7 +68,7 @@
                     <md-option
                             v-for="(client, index) in clients"
                             :value="client.id"
-                            :key="index">{{client.name}}</md-option>
+                            :key="index">{{client.toSlug()}}</md-option>
                 </md-select>
             </md-field>
 

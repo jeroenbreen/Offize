@@ -153,6 +153,13 @@
                                 Taal
                             </div>
                         </div>
+                        <div class="object-properties__set">
+                            <input title="Telefoon"
+                                   v-model="clone.vat">
+                            <div class="object-properties__label">
+                                BTW nummer
+                            </div>
+                        </div>
                     </div>
 
                     <div class="panel-section">

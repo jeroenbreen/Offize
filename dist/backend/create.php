@@ -97,7 +97,7 @@ function createClient() {
     $eu = $_POST['eu'];
 
     $query = "INSERT INTO clients
-    (name, contactPerson, street, zipcode, city, web, email, telephone, rate, info, vat, international)
+    (name, contactPerson, street, zipcode, city, web, email, telephone, rate, info, vat, international, language, eu)
     VALUES (
     '". $name ."'  ,
     '". $contactPerson ."' ,

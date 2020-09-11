@@ -16,10 +16,6 @@
             template: {
                 type: Object,
                 required: true
-            },
-            international: {
-                type: Boolean,
-                required: true
             }
         },
         computed: {
@@ -42,7 +38,7 @@
                 'padding': getSize(template.title.padding)
             }"
         class="document__title">
-        <span v-if="international">
+        <span v-if="document.english">
             <b>Subject:</b>&nbsp;
         </span>
         <span v-else>
