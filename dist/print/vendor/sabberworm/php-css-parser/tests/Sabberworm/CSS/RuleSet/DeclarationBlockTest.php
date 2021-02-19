@@ -7,7 +7,7 @@ use Sabberworm\CSS\Parser;
 class DeclarationBlockTest extends \PHPUnit_Framework_TestCase {
 
 	/**
-	 * @dataProvider expandBorderShorthandProvider
+	 * @/dataProvider expandBorderShorthandProvider
 	 * */
 	public function testExpandBorderShorthand($sCss, $sExpected) {
 		$oParser = new Parser($sCss);
@@ -30,7 +30,7 @@ class DeclarationBlockTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider expandFontShorthandProvider
+	 * @/dataProvider expandFontShorthandProvider
 	 * */
 	public function testExpandFontShorthand($sCss, $sExpected) {
 		$oParser = new Parser($sCss);
@@ -71,7 +71,7 @@ class DeclarationBlockTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider expandBackgroundShorthandProvider
+	 * @/dataProvider expandBackgroundShorthandProvider
 	 * */
 	public function testExpandBackgroundShorthand($sCss, $sExpected) {
 		$oParser = new Parser($sCss);
@@ -94,7 +94,7 @@ class DeclarationBlockTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider expandDimensionsShorthandProvider
+	 * @/dataProvider expandDimensionsShorthandProvider
 	 * */
 	public function testExpandDimensionsShorthand($sCss, $sExpected) {
 		$oParser = new Parser($sCss);
@@ -116,7 +116,7 @@ class DeclarationBlockTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider createBorderShorthandProvider
+	 * @/dataProvider createBorderShorthandProvider
 	 * */
 	public function testCreateBorderShorthand($sCss, $sExpected) {
 		$oParser = new Parser($sCss);
@@ -137,7 +137,7 @@ class DeclarationBlockTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider createFontShorthandProvider
+	 * @/dataProvider createFontShorthandProvider
 	 * */
 	public function testCreateFontShorthand($sCss, $sExpected) {
 		$oParser = new Parser($sCss);
@@ -160,7 +160,7 @@ class DeclarationBlockTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider createDimensionsShorthandProvider
+	 * @/dataProvider createDimensionsShorthandProvider
 	 * */
 	public function testCreateDimensionsShorthand($sCss, $sExpected) {
 		$oParser = new Parser($sCss);
@@ -182,7 +182,7 @@ class DeclarationBlockTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider createBackgroundShorthandProvider
+	 * @/dataProvider createBackgroundShorthandProvider
 	 * */
 	public function testCreateBackgroundShorthand($sCss, $sExpected) {
 		$oParser = new Parser($sCss);
