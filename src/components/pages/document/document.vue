@@ -187,6 +187,10 @@
                     align-items: center;
                     justify-content: flex-end;
                     margin-bottom: 2px;
+
+                    div {
+                        margin-left: 4px;
+                    }
                 }
 
                 .document__date {

@@ -37,7 +37,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             $.post(window.config.api + 'read.php', $.param({id: id, type: type}), (response) => {
                 context.commit('read', response);
-                resolve();
+                resolve(response);
             });
         })
     },

@@ -1,7 +1,7 @@
 <script>
     import Project from '@/store/classes/Project';
     import projectDetails from './project-details';
-    import projectDocuments from './project-documents';
+    import projectDocuments from './documents/project-documents';
     import projectComments from './project-comments';
     import closeMixin from '@/mixins/close';
 

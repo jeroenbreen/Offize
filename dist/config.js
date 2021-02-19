@@ -1,3 +1,3 @@
 window.config = {
-    printLocation: 'print/'
+    api: 'http://localhost/innouveau/office/dev/backend/'
 };

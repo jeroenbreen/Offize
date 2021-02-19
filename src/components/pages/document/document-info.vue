@@ -43,7 +43,7 @@
         :style="{'top': getSize(template.info.top)}"
         class="document__info">
         <div class="document__id">
-            {{document.getPrefix()}}&nbsp;
+            {{document.getPrefix()}}
 
             <div v-if="!document.locked">
                 <input
@@ -55,7 +55,7 @@
                     class="document-info__nr">
             </div>
 
-            <div v-if="document.locked">
+            <div v-else>
                 {{document.toSlug()}}
             </div>
         </div>
