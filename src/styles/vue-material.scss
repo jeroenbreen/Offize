@@ -1,0 +1,82 @@
+.md-snackbar {
+    z-index: 1000;
+}
+
+.md-select-menu {
+    //background: #fff;
+}
+
+.md-checkbox {
+    margin: 6px 16px 6px 0
+}
+
+.md-field {
+    margin: 0;
+    padding-top: 0;
+    font-size: 14px!important;
+    font-family: "Roboto condensed", serif;
+    height: 33px;
+    min-height: 0;
+
+    .md-select {
+        background: #eee;
+        padding: 4px;
+        align-items: center;
+
+        input.md-input {
+            height: 24px;
+            margin-bottom: 0;
+
+            &::-webkit-input-placeholder,
+            &::-moz-placeholder,
+            &:-ms-input-placeholder,
+            &:-moz-placeholder {
+                font-size: 14px;
+            }
+        }
+
+        .md-icon {
+
+            svg {
+
+                path:first-child {
+                    fill: #aaa;
+                }
+            }
+        }
+    }
+
+    &:before {
+        background-color: $active-color!important;
+    }
+
+    &.md-has-value {
+
+        label {
+            font-size: 10px;
+            color: $active-color;
+        }
+
+        input.md-input {
+            font-size: 14px;
+        }
+    }
+
+    &.md-focused {
+
+        label {
+            color: $active-color!important;
+        }
+    }
+}
+
+.md-button {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #000!important;
+}
+
+.md-menu-content {
+    background: #fff;
+    z-index: 100;
+}

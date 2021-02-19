@@ -1,0 +1,58 @@
+.object-properties__set {
+    margin-bottom: 4px;
+    display: flex;
+    align-items: flex-start;
+
+    input,
+    textarea {
+        padding: 6px;
+        font-size: 13px;
+        outline: none;
+        width: 250px;
+
+        &.input-small {
+            width: 60px;
+            margin-right: 190px;
+        }
+    }
+
+    .md-checkbox {
+        margin-right: 229px!important;
+    }
+
+    .md-field {
+        width: 250px;
+
+        .md-select {
+            border: 1px solid #ddd;
+            border-bottom: 0;
+            height: 34px;
+        }
+    }
+
+    textarea {
+        height: 180px;
+        resize: none;
+    }
+
+    .object-properties__label {
+        display: inline-block;
+        margin-left: 8px;
+        width: 200px;
+        padding-top: 6px;
+    }
+
+    .html-rendered {
+        border: 1px dotted #ddd;
+        padding: 4px;
+        margin-left: 30px;
+        width: 200px;
+    }
+
+    .html-rendered-img {
+        border: 1px dotted #ddd;
+        margin-left: 30px;
+        width: 100px;
+        height: auto;
+    }
+}

@@ -4,4 +4,6 @@ frontend/uploads/
 backend/bootstrap.php
 print/pdf/
 node_modules/
+node_modules
+dist/print/pdf/*.pdf
 dist/bundle.js

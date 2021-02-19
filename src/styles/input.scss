@@ -1,0 +1,16 @@
+input, textarea {
+    font-family: "Roboto condensed", serif;
+    font-size: inherit;
+    padding: 6px;
+    background: #eee;
+    border: 1px solid #ddd;
+
+    &:focus {
+        outline: none;
+        border: 1px solid $active-color;
+    }
+
+    &.input--full {
+        width: 100%;
+    }
+}

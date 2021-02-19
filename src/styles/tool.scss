@@ -1,0 +1,69 @@
+.document-tool {
+    width: 26px;
+    height: 26px;
+    font-size: 10px;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    margin: 2px 4px 2px 0;
+
+    &.document-tool--small {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+    }
+
+    &:hover {
+        background: $active-color;
+    }
+
+    &.document-tool--active {
+        background: $active-color;
+
+        &:hover {
+            background: #fff;
+        }
+    }
+
+    &.document-tool--warning {
+        background: $warning-color;
+        color: #fff;
+
+        &:hover {
+            background: $warning-color-hover;
+        }
+    }
+}
+
+.document-tool__container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 4px 0;
+
+    &:hover {
+
+        .document-tool {
+            background: $active-color;
+
+            &.document-tool--active {
+                background: #fff;
+            }
+
+            &.document-tool--warning {
+                background: $warning-color-hover;
+            }
+        }
+
+
+    }
+
+    .document-tool {
+        margin-right: 8px;
+    }
+}
