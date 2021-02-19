@@ -76,9 +76,7 @@
             }
         },
         mounted() {
-            console.log(window.config.api + 'bootstrap.php');
             $.get((window.config.api + 'bootstrap.php'), (response) => {
-                console.log(response);
                 this.$store.commit('pages/init', pages);
                 this.bootstrap(response);
                 this.readCache();

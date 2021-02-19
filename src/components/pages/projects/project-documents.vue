@@ -43,7 +43,9 @@
                 document.clientName = client.contactPerson;
                 document.english = client.english;
                 data = document.toBackend();
+                console.log(data);
                 this.$store.dispatch('documents/create', data).then((response) => {
+                    console.log(response);
                     let doc = this.$store.getters['documents/getItemById'](Number(response.id));
                     this.$store.commit('documents/setCurrent', doc);
                 });

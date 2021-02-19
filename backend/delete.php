@@ -59,7 +59,10 @@ $result = $mysqli->query ($query);
 if ($result === false) {
     echo $mysqli->error;
 } else {
-    echo $type. " verwijderd uit database";
+$response = [];
+    $response['id'] = mysqli_insert_id($mysqli);
+    $response['message'] = $type . " verwijderd uit database";
+    echo json_encode($response);
 }
 $mysqli->close();
 ?>

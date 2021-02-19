@@ -27,9 +27,9 @@ const actions = {
     create(context, item) {
         return new Promise((resolve, reject) => {
             $.post(window.config.api + 'create.php', $.param(item), (response) => {
-                item.id = JSON.parse(response).id;
+                item.id = response.id;
                 context.commit('create', item);
-                resolve(JSON.parse(response));
+                resolve(response);
             });
         })
     },
@@ -51,9 +51,14 @@ const actions = {
     },
     delete(context, item) {
         return new Promise((resolve, reject) => {
-            $.post(window.config.api + 'delete.php', $.param(item), (response) => {
-                context.commit('delete', item);
-                resolve();
+            $.ajax({
+                type: 'POST',
+                url: window.config.api + 'delete.php',
+                data: item,
+                success: (data) =>{
+                    context.commit('delete', item);
+                    resolve();
+                },
             });
         })
     }
