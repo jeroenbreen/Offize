@@ -3,11 +3,12 @@
     import Mail from '@/store/classes/Mail';
     import mails from '@/components/pages/mails/mails';
     import dateTool from '@/tools/date-tool';
-    import $ from 'jquery';
+    import documentPrint from "./tools/document-print";
 
     export default {
         name: 'document-tools',
         components: {
+            documentPrint,
             mails
         },
         props: {
@@ -35,30 +36,6 @@
             }
         },
         methods: {
-            print() {
-                let document, documentLines, employee;
-                document = this.document.toPrint();
-                document.company = this.company.toBackend();
-                document.client = this.client.toBackend();
-                document.client.clientName = this.document.clientName ? this.document.clientName : '';
-                document.international = this.international ? '1' : '0';
-                employee = this.$store.getters['employees/getItemById'](this.document.employeeId);
-                document.employee = employee.name;
-                documentLines = this.$store.getters['documentLines/getLinesForDocument'](this.document.id);
-                document.documentLines = [...documentLines];
-                $.ajax({
-                    type: 'POST',
-                    url: 'print/print-adapter.php',
-                    data: JSON.stringify({data: document}),
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    success: function(response){
-                        window.open(window.config.printLocation + response);
-                    }
-                });
-            },
             mail() {
                 var mail;
                 mail = {
@@ -102,12 +79,9 @@
 <template>
     <div class="document-tools">
         <div class="document-tools__main">
-            <div
-                @click="print()"
-                class="document-tool">
-                <i class="fa fa-print"></i>
-            </div>
-
+            <document-print
+                :document="document"
+                :international="international"/>
             <div
                 v-if="company.usesMail"
                 @click="mail()"
